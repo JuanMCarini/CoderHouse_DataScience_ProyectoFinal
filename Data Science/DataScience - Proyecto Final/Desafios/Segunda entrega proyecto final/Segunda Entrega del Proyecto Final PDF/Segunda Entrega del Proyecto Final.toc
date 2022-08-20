@@ -1,0 +1,23 @@
+\babel@toc {spanish}{}\relax 
+\contentsline {section}{\numberline {1}Presentación del problema y fuente de información}{3}{section.1}%
+\contentsline {subsection}{\numberline {1.1}Presentación del problema}{3}{subsection.1.1}%
+\contentsline {subsection}{\numberline {1.2}Definición de la fuente de información}{3}{subsection.1.2}%
+\contentsline {section}{\numberline {2}Pregunta y objetivos de investigación}{4}{section.2}%
+\contentsline {section}{\numberline {3}Orden de trabajo}{5}{section.3}%
+\contentsline {section}{\numberline {4}Análisis exploratorio de datos (EDA)}{6}{section.4}%
+\contentsline {subsection}{\numberline {4.1}Análisis univariado}{10}{subsection.4.1}%
+\contentsline {subsubsection}{\numberline {4.1.1}Género y edad}{10}{subsubsection.4.1.1}%
+\contentsline {subsubsection}{\numberline {4.1.2}Comuna}{10}{subsubsection.4.1.2}%
+\contentsline {subsubsection}{\numberline {4.1.3}Ingreso familiar per capita}{10}{subsubsection.4.1.3}%
+\contentsline {subsubsection}{\numberline {4.1.4}Años de escolaridad}{12}{subsubsection.4.1.4}%
+\contentsline {subsubsection}{\numberline {4.1.5}Máximo nivel educativo (Target)}{12}{subsubsection.4.1.5}%
+\contentsline {subsection}{\numberline {4.2}Análisis bivariado}{13}{subsection.4.2}%
+\contentsline {subsubsection}{\numberline {4.2.1}Comparación entre variables numéricas}{15}{subsubsection.4.2.1}%
+\contentsline {subsubsection}{\numberline {4.2.2}Comparación de variables categóricas con numéricas}{16}{subsubsection.4.2.2}%
+\contentsline {subsubsection}{\numberline {4.2.3}Variable numéricas con comuna}{16}{subsubsection.4.2.3}%
+\contentsline {subsection}{\numberline {4.3}Análisis multivariado}{18}{subsection.4.3}%
+\contentsline {section}{\numberline {5}Modelado de datos}{21}{section.5}%
+\contentsline {subsection}{\numberline {5.1}División del train y el test}{21}{subsection.5.1}%
+\contentsline {subsubsection}{\numberline {5.1.1}Train}{21}{subsubsection.5.1.1}%
+\contentsline {subsubsection}{\numberline {5.1.2}Test}{24}{subsubsection.5.1.2}%
+\contentsline {subsection}{\numberline {5.2}Árbol de decisión}{24}{subsection.5.2}%
