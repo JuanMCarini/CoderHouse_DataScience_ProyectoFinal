@@ -4,3 +4,5 @@
 *.fls
 *.log
 *.synctex.gz
+*.out
+*.toc

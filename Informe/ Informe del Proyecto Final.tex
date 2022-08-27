@@ -52,7 +52,7 @@ Análisis socioeducativo de los habitantes de la Ciudad de Buenos Aires}
 \maketitle
 
 \begin{center}
-    \includegraphics{Coder.png}
+    \includegraphics{Imagenes/Coder.png}
 \end{center}
 
 \thispagestyle{empty}
@@ -208,7 +208,7 @@ Análisis socioeducativo de los habitantes de la Ciudad de Buenos Aires}
     \end{tabular}\end{center}
     \end{table}
 
-    \includegraphics[scale=0.3]{GNulls.png}
+    \includegraphics[scale=0.3]{Imagenes/GNulls.png}
 
     Tomamos el código visto en clase para tener un vistazo de las diversas medidas estadísticas de cada variable, donde calculamos información estadísticas y genéricas de cada columna en un dataframe:
 
@@ -270,7 +270,7 @@ Análisis socioeducativo de los habitantes de la Ciudad de Buenos Aires}
         
             Comenzamos con un pantallazo general sobre las primeras cualidades de los datos, como muestra representativa para la EPH, sobre quiénes son los ciudadanos representado en el dataset.
         
-            \includegraphics[scale=0.5]{GGenYEdad.png}
+            \includegraphics[scale=0.5]{Imagenes/GGenYEdad.png}
 
             En la variable género los datos parecen equilibrados en las categorías. Para el caso de la variable "edad", la distribución se asemeja a la de una normal.
         
@@ -280,7 +280,7 @@ Análisis socioeducativo de los habitantes de la Ciudad de Buenos Aires}
         
             Para esto vamos a generar un mapa, así que utilizaremos el mapa de comunas de la Ciudad de Buenos Aires, transformamos las variables que vamos a usar para joinear el mapa con la base de manera que coincidan, transformamos la base para contablizar la frecuencia con la que aparece cada comuna en la base. Y por último unimos ambos datasets y generamos una nueva variable con las coordenadas para poder agregar etiquetas en el centro geográfico de cada comuna, que nos da como resultado los siguientes graficos:
         
-            \includegraphics[scale=0.4]{GComuna1.png}
+            \includegraphics[scale=0.4]{Imagenes/GComuna1.png}
 
             Observando ambos gráficos vemos que las comunas 1,4,7 y 8 tienen mayor cantidad de casos. Queda por verse si en posteriores análisis es necesario abordar esta diferencia para evitar sesgos. Para eso, será necesario tomar en cuenta el porcentaje de la población total de cada comuna.
         
@@ -290,11 +290,11 @@ Análisis socioeducativo de los habitantes de la Ciudad de Buenos Aires}
         
             Para esto, armamos una función para graficar y jugar con el nivel del filtrado de la variable y obtener un histograma que permita apreciar mejor la distribución de la variable sin tantos outliers. Probamos graficando con el máximo de la variable:
         
-            \includegraphics[scale=0.4]{GIFPC1.png}
+            \includegraphics[scale=0.4]{Imagenes/GIFPC1.png}
         
             Y como hay muchos outliers que impiden ver la distribución correctamente, los quitamos de los gráficos:
         
-            \includegraphics[scale=0.4]{GIFPC2.png}
+            \includegraphics[scale=0.4]{Imagenes/GIFPC2.png}
 
             De este forma vemos que, aún removiendo los outliers, la distribución sigue sesgada.
 
@@ -304,13 +304,13 @@ Análisis socioeducativo de los habitantes de la Ciudad de Buenos Aires}
         
             Analizamos mediante un gráfico de barras los años de escolaridad alcanzados por los encuestados:
             
-            \includegraphics[scale=0.7]{GAñosEsc.png}
+            \includegraphics[scale=0.7]{Imagenes/GAñosEsc.png}
             
             A simple vista se observan tres "picos": en el valor mínimo, alrededor del 7.5 y alrededor del 12.5. Podemos inferir que estos tres casos corresponden a no tener estudios, solo haber transcurrido el primario y haber transcurrido hasta la educación secundaria, respectivamente.
         
         \subsubsection{Máximo nivel educativo (Target)}
         
-            \includegraphics[scale=0.35]{GMNEA.png}
+            \includegraphics[scale=0.35]{Imagenes/GMNEA.png}
         
             Podemos observar que el nivel máximo educativo más alcanzado es el secundario completo, seguido por el primario. Contrario de lo que habíamos intuido anteriormente, el nivel superior quedó en tercer lugar. Adicionalmente, el nivel secundario y primario explican casi el 77\% de los datos.
 
@@ -320,7 +320,7 @@ Análisis socioeducativo de los habitantes de la Ciudad de Buenos Aires}
 
         Realizamos diferentes heatmaps para ver si algo nos llama la atención, utilizando el método de correlación de Spearman:
 
-        \includegraphics[scale=0.6]{GHitMap1.png}
+        \includegraphics[scale=0.6]{Imagenes/GHitMap1.png}
 
         A simple vista, no se observan fuertes correlaciones. Sorprende la relación entre la variable sexo\_Varon y el resto. Convendría consultar con el profesor para saber qué puede estar ocurriendo.
 
@@ -329,7 +329,7 @@ Análisis socioeducativo de los habitantes de la Ciudad de Buenos Aires}
         Graficar en base a un threshold de 0.6 y 0.5 de correlación:
 
         \begin{center}
-            \includegraphics[scale=0.7]{GHitMap2.png}
+            \includegraphics[scale=0.7]{Imagenes/GHitMap2.png}
         \end{center}
 
         Por último corremos una tabla de correlación y filtramos las de valores más altos:
@@ -356,7 +356,7 @@ Análisis socioeducativo de los habitantes de la Ciudad de Buenos Aires}
 
         \subsubsection{Comparación entre variables numéricas}
         
-        \includegraphics[scale=0.28]{GComVarNum1.png}
+        \includegraphics[scale=0.28]{Imagenes/GComVarNum1.png}
 
         Por parte de las variables de ingreso, no parece haber nada disruptivo. La distribución por ingreso y años de escolaridad pareciera ocurrir pero no en un orden lineal.
 
@@ -364,7 +364,7 @@ Análisis socioeducativo de los habitantes de la Ciudad de Buenos Aires}
 
         A continuación hacemos un gráfico lineal en base a la edad comparando el ingreso familiar con los ingresos totales. 
 
-        \includegraphics[scale=0.27]{GComVarNum2.png}
+        \includegraphics[scale=0.27]{Imagenes/GComVarNum2.png}
 
         Se puede ver que desde los 30 años en adelante el ingreso total de la persona se corresponde con el ingreso familiar. Por ende suele haber un único ingreso fuerte por grupo familiar.
 
@@ -374,16 +374,16 @@ Análisis socioeducativo de los habitantes de la Ciudad de Buenos Aires}
         
         Adicionalmente, vamos a comparar algunas variables con nuestro target, comenzando con los ingresos totales:
 
-        \includegraphics[scale=0.35]{GComVarCatNum1.png}
+        \includegraphics[scale=0.35]{Imagenes/GComVarCatNum1.png}
         
         \subsubsection{Variable numéricas con comuna}
         
-        \includegraphics[scale=0.8]{GVarNumCom1.png}
+        \includegraphics[scale=0.8]{Imagenes/GVarNumCom1.png}
         
         Se observa que en el sur de la ciudad hay mayor cantidad de encuestados con niveles de inicial, primario y secundario completo, mientras que el norte (particularmente el barrio de Palermo) tiene mayor cantidad de personas con estudios superiores. En menor medida también las comunas del este (comunmente llamado el "centro" de la ciudad) destacan por la cantidad de encuestados con nivel superior.
         
         \begin{center}
-            \includegraphics[scale=0.9]{GAñosEscXCom.png}
+            \includegraphics[scale=0.9]{Imagenes/GAñosEscXCom.png}
         \end{center}
 
         Lo que podemos observar en los últimos dos gráficos es una clara división geográfica del nivel educativo.
@@ -402,8 +402,7 @@ Análisis socioeducativo de los habitantes de la Ciudad de Buenos Aires}
             Probamos de cruzar años de escolaridad, nivel máximo educativo y los ingresos totales.
 
             \begin{center}
-                \includegraphics[scale=0.8
-                ]{GMul1.png}
+                \includegraphics[scale=0.8]{Imagenes/GMul1.png}
             \end{center}
 
             Conclusiones de la visualización:
@@ -417,7 +416,7 @@ Análisis socioeducativo de los habitantes de la Ciudad de Buenos Aires}
             
         \subsubsection*{Ingresos familiares por el nivel máximo educativo y el dominio}
 
-            \includegraphics[scale=0.45]{GMul2.png}
+            \includegraphics[scale=0.45]{Imagenes/GMul2.png}
 
             Aquí obtuvimos un descubrimiento interesante: no importa el nivel máximo educativo, los casos que no provienen de villas de emergencia (dominio='villas\_de\_emergencia') obtienen en promedio ingresos más altos en todos los niveles educativos. El alcanzar estudios superiores no parece homogeneizar ambos conjuntos.
 
@@ -425,7 +424,7 @@ Análisis socioeducativo de los habitantes de la Ciudad de Buenos Aires}
 
         \subsubsection*{Ingresos familiares por comuno y sus nivel educativo}
 
-            \includegraphics[scale=0.8]{GMul3.png}
+            \includegraphics[scale=0.8]{Imagenes/GMul3.png}
 
             Aquí podemos observar que a medida que avanza el nivel educativo máximo se atenúan levemente las diferencias de ingresos familiares entre comunas. Queda pendiente cruzar estos datos con la edad, para saber si el hecho de incluir a menores de edad está sesgando los valores para nivel inicial, primario y secundario.
 
