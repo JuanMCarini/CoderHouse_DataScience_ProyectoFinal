@@ -1,0 +1,74 @@
+\documentclass[a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
+
+\usepackage[top=2cm, bottom=1.5cm, right=1.5cm, left=2cm]{geometry}
+
+\usepackage{graphicx}
+
+\usepackage{hyperref}%Links
+\hypersetup{  %formato link
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=blue,      
+    urlcolor=blue}
+
+\title{\textbf{CoderHouse \\ \vspace{0.5cm} Curso Data Science \\ \vspace{0.5cm} Informe del Proyecto Final\\ \vspace{0.5cm}
+Análisis socioeducativo de los habitantes de la Ciudad de Buenos Aires}}
+
+\author{\textbf{Profesor:} Damian Dapueto \\ \vspace{0.2cm} \textbf{Tutor:} Héctor Alonso \\ \vspace{0.2cm} \textbf{Grupo de Trabajo:} \\ Lucia Buzzeo, Lucia Hukovsky,\\ Jose Saint German, Juan Martín Carini}
+
+\begin{document}
+
+\maketitle
+
+\begin{center}
+    \includegraphics[scale=1.75]{Imagenes/Coder.png}
+\end{center}
+
+\thispagestyle{empty}
+
+\newpage
+
+\tableofcontents
+
+\newpage
+
+\section{Presentación del problema y fuente de información}
+
+    \subsection{Presentación del problema}
+
+        Nos es de gran de interés vivir en una comunidad con políticas públicas eficaces que mejoren las condiciones de vida de las personas. En este sentido, hemos decidido analizar los diferentes ejes que en nuestro país se rigen por políticas publicas. Al respecto, encontramos una gran limitación en el eje de educación al reconocer que su acceso dista de ser equitativo. Este aspecto no nos resultó una novedad, sin embargo, nos dio el pie para comenzar una investigación que permita dar una explicación teórica a la problemática. 
+        En concreto, nos ha permitido conocer mejor la situación educativa actual de CABA y descubrir las principales variables que afectan el nivel educativo.
+        
+        El análisis realizado en el marco del presente proyecto podría establecer una base de requerimientos que permitan generar políticas públicas efectivas, no solo en el ámbito educativo, sino en el económico, cultural, social y geográfico, entre otros.
+
+    \subsection{Definición de la fuente de información}
+
+        Para trabajar esta problemática, hemos decidido recurrir a la \href{https://www.estadisticaciudad.gob.ar/eyc/?page_id=702}{datos abiertos} del Gobierno de la Ciudad de Buenos Aires para el año 2019. El mismo está disponible en la base de \href{https://data.buenosaires.gob.ar/dataset/encuesta-anual-hogares/resource/3a45c563-396d-42de-ba93-8a93729e0723}{Encuesta Anual de Hogares} del GCBA.
+
+        Esta encuesta contiene información demográfica, social, económica, educativa y de salud de 14319 habitantes de la Ciudad, la cual es una muestra representativa que permite obtener un vistazo de la población de la Ciudad.
+
+\section{Pregunta y objetivos de investigación}
+
+    Nuestro objetivo principal es descubrir las principales variables intervinientes en el nivel máximo educativo alcanzado por la población de la Ciudad Autónoma de Buenos Aires (CABA).
+
+    De este objetivo principal se desprenden los siguientes sub-objetivos:
+    \begin{itemize}
+        \item Determinar si la ubicación geográfica del encuestado es determinante para alcanzar ciertos niveles educativos. De este objetivo se desprende determinar la relación entre el nivel educativo y la comuna del encuestado, así como la relación entre la misma variable y el hecho de que el encuestado habite en una villa de emergencia.
+        \item Establecer la fuerza con la que el nivel socio-económico afecta la variable target.
+        \item Explorar la relación del target con otras variables, como el sexo del encuestado, la cantidad de hijos, la afiliación de salud o la edad.
+    \end{itemize}
+
+\section{Orden de trabajo}
+
+    Este trabajo estará divido en 3 partes:
+    \begin{enumerate}
+        \item \textbf{Introducción a las variables del problema:} Se hará un análisis de las variables en donde se buscará conocer su performance dentro del dataset y su potencial signifícanos para la pregunta que buscamos responder. A la vez, queremos ver cómo las variables interactúan entre si. Esta parte es lo que se conoce como análisis univariado, bivariado y multivariado,
+        \item \textbf{Modelos analíticos:} En esta sección se llevarán a cabo diversos modelos analíticos y algoritmos que nos servirán para acercarnos a la respuesta a nuestra pregunta de investigación,
+        \item \textbf{Conclusión:} Haremos conclusiones finales sobre nuestros hallazgos. Además, discutiremos posibles limitaciones que tuviera y plantearemos futuras líneas de análisis a partir del análisis presente.
+    \end{enumerate}
+
+\section{}
+\end{document}
