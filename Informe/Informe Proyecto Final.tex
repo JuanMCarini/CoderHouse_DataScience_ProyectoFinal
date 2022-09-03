@@ -14,6 +14,9 @@
     filecolor=blue,      
     urlcolor=blue}
 
+\usepackage{float} %para fijar tablas
+\usepackage{multirow} %Para tablas
+
 \title{\textbf{CoderHouse \\ \vspace{0.5cm} Curso Data Science \\ \vspace{0.5cm} Informe del Proyecto Final\\ \vspace{0.5cm}
 Análisis socioeducativo de los habitantes de la Ciudad de Buenos Aires}}
 
@@ -72,7 +75,171 @@ Análisis socioeducativo de los habitantes de la Ciudad de Buenos Aires}}
 
 \section{Introducción a las variables: Análisis exploratorio de los datos}
 
+    Una ves cargado el dataset con el que vamos a trabajar, miramos sus variable, el tipo que son y si tienen nulls:
+    \begin{table}[H]\begin{center}
+    \begin{tabular}{clll}
+    \multicolumn{4}{l}{RangeIndex: 14319 entries, 0 to 14318} \\
+    \multicolumn{4}{l}{Data columns (total 31 columns):}  \\
+    \#  & Column                     & Non-Null Count & Dtype \\ \hline
+    0  & id                          & 14319 non-null & int64 \\ 
+    1  & nhogar                      & 14319 non-null & int64 \\ 
+    2  & miembro                     & 14319 non-null & int64 \\ 
+    3  & comuna                      & 14319 non-null & int64 \\ 
+    4  & dominio                     & 14319 non-null & object \\
+    5  & edad                        & 14319 non-null & int64 \\ 
+    6  & sexo                        & 14319 non-null & object \\
+    7  & parentesco\_jefe             & 14319 non-null & object \\
+    8  & situacion\_conyugal          & 14318 non-null & object \\
+    9  & num\_miembro\_padre           & 14319 non-null & object \\
+    10 & num\_miembro\_madre           & 14319 non-null & object \\
+    11 & estado\_ocupacional          & 14319 non-null & object \\
+    12 & cat\_ocupacional             & 14319 non-null & object \\
+    13 & calidad\_ingresos\_lab        & 14319 non-null & object \\
+    14 & ingreso\_total\_lab           & 14319 non-null & int64  \\
+    15 & calidad\_ingresos\_no\_lab     & 14319 non-null & object \\
+    16 & ingreso\_total\_no\_lab        & 14319 non-null & int64  \\
+    17 & calidad\_ingresos\_totales    & 14319 non-null & object \\
+    18 & ingresos\_totales            & 14319 non-null & int64  \\
+    19 & calidad\_ingresos\_familiares & 14319 non-null & object \\
+    20 & ingresos\_familiares         & 14319 non-null & int64  \\
+    21 & ingreso\_per\_capita\_familiar & 14319 non-null & int64  \\
+    22 & estado\_educativo            & 14319 non-null & object \\
+    23 & sector\_educativo            & 14316 non-null & object \\
+    24 & nivel\_actual                & 14319 non-null & object \\
+    25 & nivel\_max\_educativo         & 13265 non-null & object \\
+    26 & años\_escolaridad            & 14257 non-null & object \\
+    27 & lugar\_nacimiento            & 14318 non-null & object \\
+    28 & afiliacion\_salud            & 14315 non-null & object \\
+    29 & hijos\_nacidos\_vivos         & 6535 non-null  & object \\
+    30 & cantidad\_hijos\_nac\_vivos    & 14319 non-null & object \\
+    \multicolumn{4}{l}{dtypes: int64(10), object(21)}  \\ 
+    \multicolumn{4}{l}{memory usage: 3.4+ MB} \\
+    \end{tabular}\end{center}
+    \end{table}
+        
+    Luego, generamos diversas transformaciones de variables, así como la creación de la variable "Target", pues es la que usaremos para todo el análisis:
+    \begin{itemize}
+        \item creamos el target para nivel\_max\_educativo,
+        \item remplazamos los valores de años\_escolaridad para que todos sean numéricos,
+        \item la variable ``cantidad\_hijos\_nac\_vivos'' se puede pasar a numérica si se toma ``no corresponde'' como NAN,
+        \item hay determinadas variables (comuna, id, hogar y miembro) que están como numéricas pero deberían ser categóricas,
+        \item por otro lado, variables como sexo y dominio pueden pasarse a numérico mediante one hot encoding,
+        \item generamos la variable ``target'' como copia de ``Target'' para tener ambas versiones,
+        \item pasamos la variable Target a one hot encoding,
+        \item por último renombramos algunas variables para que sean más cortas.
+    \end{itemize}
+
+    Ahora, con el dataset ya acomodado, comenzamos analizándolo en su conjunto.    Miramos las nuevas modificaciones en las variable, el tipo que son y si tienen nulls:
+    \begin{table}[H]\begin{center}
+    \begin{tabular}{clll}
+        \multicolumn{4}{l}{RangeIndex: 14319 entries, 0 to 14318} \\
+        \multicolumn{4}{l}{Data columns (total 36 columns):} \\
+        \#  & Column                     & Non-Null Count & Dtype \\ \hline
+        0 & id                           & 14319 non-null & object \\
+        1 & nhogar                       & 14319 non-null & object \\
+        2 &  miembro                     & 14319 non-null & object \\ 
+        3 &  comuna                      & 14319 non-null & object  \\
+        4 &  edad                        & 14319 non-null & int64   \\
+        5 &  parentesco\_jefe             & 14319 non-null & object  \\
+        6 &  situacion\_conyugal          & 14318 non-null & object  \\
+        7 &  num\_miembro\_padre           & 14319 non-null & object  \\
+        8 &  num\_miembro\_madre           & 14319 non-null & object  \\
+        9 &  estado\_ocupacional          & 14319 non-null & object  \\
+        10 &  cat\_ocupacional            & 14319 non-null & object  \\
+        11 & calidad\_ingresos\_lab        & 14319 non-null & object  \\
+        12 & ingreso\_total\_lab           & 14319 non-null & int64   \\
+        13 & calidad\_ingresos\_no\_lab     & 14319 non-null & object  \\
+        14 & ingreso\_total\_no\_lab        & 14319 non-null & int64   \\
+        15 & calidad\_ingresos\_totales    & 14319 non-null & object  \\
+        16 & ingresos\_totales            & 14319 non-null & int64   \\
+        17 & calidad\_ingresos\_familiares & 14319 non-null & object  \\
+        18 & ingresos\_familiares         & 14319 non-null & int64   \\
+        19 & ing\_per\_cap\_familiar        & 14319 non-null & int64   \\
+        20 & estado\_educativo            & 14319 non-null & object  \\
+        21 & sector\_educativo            & 14316 non-null & object  \\
+        22 & nivel\_actual                & 14319 non-null & object  \\
+        23 & nivel\_max\_educativo         & 13265 non-null & object  \\
+        24 & años\_escolaridad            & 14257 non-null & float64 \\
+        25 & lugar\_nacimiento            & 14318 non-null & object  \\
+        26 & afiliacion\_salud            & 14315 non-null & object  \\
+        27 & hijos\_nacidos\_vivos         & 6535 non-null  & object  \\
+        28 & cant\_hijos\_nac\_vivos        & 14319 non-null & int64   \\
+        29 & sexo\_Varon                  & 14319 non-null & uint8   \\
+        30 & dominio\_villas              & 14319 non-null & uint8   \\
+        31 & target                      & 13223 non-null & object  \\
+        32 & Target\_inicial              & 14319 non-null & uint8   \\
+        33 & Target\_prim\_completo        & 14319 non-null & uint8   \\
+        34 & Target\_sec\_completo         & 14319 non-null & uint8   \\
+        35 & Target\_superior             & 14319 non-null & uint8   \\
+        \multicolumn{4}{l}{dtypes: float64(1), int64(7), object(22), uint8(6)}  \\
+        \multicolumn{4}{l}{memory usage: 3.4+ MB}
+    \end{tabular}\end{center}
+    \end{table}
+
+    \begin{center}
+        \includegraphics[scale=0.25]{Imagenes/NullsDS.png}
+    \end{center}
+
+    Detectamos que nuestra variable target tiene 1054 valores nulos. Es importante tener este dato presente cuando querramos correr un algoritmo de clasificación.
+
     \subsection{Análisis univariado}
+
+        \subsubsection{Género y edad}
+            
+            Comenzamos con un pantallazo general sobre las primeras cualidades de los datos, como muestra representativa para la EPH, sobre quiénes son los ciudadanos representado en el dataset.
+            
+            \begin{center}
+                \includegraphics[scale=0.45]{Imagenes/AUGenero.png}    
+            \end{center}
+            
+
+            En la variable género los datos parecen equilibrados en las categorías. Para el caso de la variable "edad", la distribución se asemeja a la de una normal.
+            
+            \subsubsection{Comuna}
+            
+            Seguimos observando la variable ``comuna". En la misma se muestra la comuna de la Ciudad de Buenos Aires del entrevistado, de manera de tener una ubicación geográfica. Consideramos importante revisar esta variable ya que tenemos como hipótesis que el nivel educativo alcanzado puede estar dependiendo de la zona geográfica de la ciudad en la que se encuentra el entrevistado.
+            
+            Para esto vamos a generar un mapa, así que utilizaremos el mapa de comunas de la Ciudad de Buenos Aires, transformamos las variables que vamos a usar para joinear el mapa con la base de manera que coincidan, transformamos la base para contablizar la frecuencia con la que aparece cada comuna en la base. Y por último unimos ambos datasets y generamos una nueva variable con las coordenadas para poder agregar etiquetas en el centro geográfico de cada comuna, que nos da como resultado los siguientes graficos:
+            
+            \begin{center}
+                \includegraphics[scale=0.30]{Imagenes/AUComuna.png}    
+            \end{center}
+
+            Observando ambos gráficos vemos que las comunas 1,4,7 y 8 tienen mayor cantidad de casos. Queda por verse si en posteriores análisis es necesario abordar esta diferencia para evitar sesgos. Para eso, será necesario tomar en cuenta el porcentaje de la población total de cada comuna.
+            
+            \subsubsection{Ingreso familiar per capita}
+            
+            Ahora probamos con observar los ingresos familiares. Creemos que puede ser un indicador interesante del nivel educativo.
+            
+            Para esto, armamos una función para graficar y jugar con el nivel del filtrado de la variable y obtener un histograma que permita apreciar mejor la distribución de la variable sin tantos outliers. Probamos graficando con el máximo de la variable:
+            
+            \begin{center}
+                \includegraphics[scale=0.325]{Imagenes/AUIngFam.png}
+            \end{center}
+            
+            Y como hay muchos outliers que impiden ver la distribución correctamente, los quitamos de los gráficos:
+            
+            % \includegraphics[scale=0.4]{Graf5.png}
+
+            De este forma vemos que, aún removiendo los outliers, la distribución sigue sesgada.
+
+            \subsubsection{Años de escolaridad}
+            
+            Analizamos mediante un gráfico de barras los años de escolaridad alcanzados por los encuestados:
+            
+            \begin{center}
+                \includegraphics[scale=0.6]{Imagenes/AUAnosEsc.png}
+            \end{center}
+            
+            A simple vista se observan tres "picos": en el valor mínimo, alrededor del 7.5 y alrededor del 12.5. Podemos inferir que estos tres casos corresponden a no tener estudios, solo haber transcurrido el primario y haber transcurrido hasta la educación secundaria, respectivamente.
+            
+            \subsubsection{Máximo nivel educativo (Target)}
+            
+            \begin{center}
+                \includegraphics[scale=0.3]{Imagenes/AUTarget.png}    
+            \end{center}
+            
+            Podemos observar que el nivel máximo educativo más alcanzado es el secundario completo, seguido por el primario. Contrario de lo que habíamos intuido anteriormente, el nivel superior quedó en tercer lugar. Adicionalmente, el nivel secundario y primario explican casi el 77\% de los datos.
 
     \subsection{Análisis bivariado}
 
