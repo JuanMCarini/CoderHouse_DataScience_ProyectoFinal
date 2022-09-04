@@ -117,19 +117,19 @@ Análisis socioeducativo de los habitantes de la Ciudad de Buenos Aires}}
     \end{tabular}\end{center}
     \end{table}
         
-    Luego, generamos diversas transformaciones de variables, así como la creación de la variable "Target", pues es la que usaremos para todo el análisis:
+    Ahora, en base a los datos arrojados por la tabla de arriba, generamos diversas transformaciones de variables, así como la creación de la variable ``Target'', pues es la que usaremos para todo el análisis:
     \begin{itemize}
-        \item creamos el target para nivel\_max\_educativo,
-        \item remplazamos los valores de años\_escolaridad para que todos sean numéricos,
+        \item creamos el target para ``nivel\_max\_educativo'',
+        \item remplazamos los valores de ``años\_escolaridad'' para que todos sean numéricos,
         \item la variable ``cantidad\_hijos\_nac\_vivos'' se puede pasar a numérica si se toma ``no corresponde'' como NAN,
         \item hay determinadas variables (comuna, id, hogar y miembro) que están como numéricas pero deberían ser categóricas,
         \item por otro lado, variables como sexo y dominio pueden pasarse a numérico mediante one hot encoding,
         \item generamos la variable ``target'' como copia de ``Target'' para tener ambas versiones,
-        \item pasamos la variable Target a one hot encoding,
-        \item por último renombramos algunas variables para que sean más cortas.
+        \item pasamos la variable ``Target'' a one hot encoding,
+        \item y por último renombramos algunas variables para que sean más cortas.
     \end{itemize}
 
-    Ahora, con el dataset ya acomodado, comenzamos analizándolo en su conjunto.    Miramos las nuevas modificaciones en las variable, el tipo que son y si tienen nulls:
+    Luego, con el dataset ya acomodado, comenzamos analizándolo en su conjunto.    Miramos las nuevas modificaciones en las variable, el tipo que son y si tienen nulls:
     \begin{table}[H]\begin{center}
     \begin{tabular}{clll}
         \multicolumn{4}{l}{RangeIndex: 14319 entries, 0 to 14318} \\
@@ -243,7 +243,139 @@ Análisis socioeducativo de los habitantes de la Ciudad de Buenos Aires}}
 
     \subsection{Análisis bivariado}
 
+        Para comenzar el análisis bivariado del problema, realizamos diferentes heatmaps para ver si algo nos llama la atención entre las variables numéricas.        
+        
+        \begin{center}
+            \includegraphics[scale=0.25]{Imagenes/ABSpearman.png}
+        \end{center}
+
+        A simple vista, no se observan fuertes correlaciones.
+
+        Podemos notar que la variable "años\_escolaridad" correlaciona moderadamente bien con variablres relacionadas al ingreso.
+
+        La principal correlación positiva es "años\_escolaridad" con ingreso familiar per cápita ("ing\_per\_cap\_familiar"), lo cual hace sentido teórico.
+
+        \begin{center}
+            \includegraphics[scale=0.25]{Imagenes/ABThreshold.png}
+        \end{center}
+
+        Aquí, vemos que los años de escolaridad alcanzados por los entrevistados tienen algo relación $(66\%$) con la variable "ingresos\_totales".
+
+        Por último corremos una tabla de correlación y filtramos las de valores más altos
+
+        \begin{table}[H]
+            \centering
+            \begin{tabular}{|l|l|l|l|}
+            \hline
+                ~ & Variable\_1 & Variable\_2 & corr\_value \\ \hline
+                2 & ingreso\_total\_lab & ingresos\_totales & 0.8028054238319398 \\ \hline
+                6 & ingresos\_familiares & ing\_per\_cap\_familiar & 0.7616082762779849 \\ \hline
+                4 & ingresos\_totales & ing\_per\_cap\_familiar & 0.6214687193744823 \\ \hline
+                5 & ingresos\_totales & años\_escolaridad & 0.602779948043472 \\ \hline
+                1 & edad & ingreso\_total\_no\_lab & 0.5734168774116969 \\ \hline
+                7 & años\_escolaridad & Target & 0.571440140244098 \\ \hline
+                3 & ingreso\_total\_lab & años\_escolaridad & 0.5389383108306696 \\ \hline
+            \end{tabular}
+        \end{table}
+
+        \textbf{Conclusiones:}
+        \begin{itemize}
+            \item Como es esperable, hay alta correlación entre las variables relacionadas al ingreso.
+            \item A su vez, encontramos una alta correlación (66\%) entre los ingresos y los años de escolaridad.
+            \item También observamos una relación positiva entre la edad y los ingresos totales.
+        \end{itemize}
+
+        \subsubsection{Comparación entre variables numéricas}
+
+            \begin{center}
+                \includegraphics[scale=0.2]{Imagenes/ABCompVarNum.png}
+            \end{center}
+
+            Se puede ver que desde los 30 años en adelante el ingreso total de la persona se corresponde con el ingreso familiar. Por ende suele haber un unico ingreso fuerte por grupo familiar.
+
+        \subsubsection{Comparación de variables categóricas con numéricas}
+
+            Adicionalmente, vamos a comparar algunas variables con nuestro target, comenzando con los ingresos totales.
+
+            \begin{center}
+                \includegraphics[scale=0.225]{Imagenes/ABCatVsNum1.png}
+            \end{center}
+
+            Probemos quitando outliers, a excepciónn de la cantidad de hijos nacidos vivos (puesto que no arrojará ningún dato nuevo) y de años de escolaridad (que no tiene outliers)
+
+            \begin{center}
+                \includegraphics[scale=0.425]{Imagenes/ABCatVsNum2.png}
+            \end{center}
+
+            Por parte de las variables de ingreso, no parece haber nada disruptivo. La distribución por ingreso y años de escolaridad pareciera ocurrir pero no en un orden lineal.
+
+            Llama la atención la variable "sexo": por algún motivo, todos los encuestados hombres figuran sin hijos nacidos vivos. Alternativamente, se podría investigar la metodología de la encuesta para ver si hay alguna respuesta. Adicionalmente, los hombres parecieran tener ingresos totales y familiares mayores que las mujeres, pero no pareciera que haya distribuciones desiguales en los años de escolaridad.
+
+            \begin{center}
+                \includegraphics[scale=0.3]{Imagenes/ABCatVsNum3Bis.png}
+            \end{center}
+
+            Parece que para el nivel inicial la remoción de outliers en otra categoría sigue siendo insuficiente para mostrar la distribución real de la variable. Echemos un vistazo a los valores de esta categoría.
+
+            \begin{center}
+                \includegraphics[scale=0.8]{Imagenes/ABCatVsNum4.png}
+            \end{center}
+
+            Logicamente, la enorme mayoría de los ingresos para el valor inicial dan 0, puesto que incluye a personas que en ese momento estaban cursando su educación inicial, por lo que tenían entre 2 y 6 años.
+
+            \begin{center}
+                \includegraphics[scale=0.3]{Imagenes/ABCatVsNum5.png}
+            \end{center}
+
+            En definitiva, se observa un corrimiento de los valores centrales (dentro de la caja) hacia la izquierda a medida que aumenta el nivel educativo.
+
+        \subsubsection{Variable numéricas con comuna}
+
+            \begin{center}
+                \includegraphics[scale=0.65]{Imagenes/ABCatVsNum6.png}
+            \end{center}
+
+            Se observa que en el sur de la ciudad hay  mayor cantidad de encuestados con niveles de inicial, primario y secundario completo, mientras que el norte (particularmente el barrio de Palermo) tiene mayor cantidad de personas con estudios superiores. En menor medida también las comunas del este (comunmente llamado el "centro" de la ciudad) destacan por la cantidad de encuestados con nivel superior.
+
+            \begin{center}
+                \includegraphics[scale=0.65]{Imagenes/ABCatVsNum7.png}
+            \end{center}
+
+            Lo que podemos observar en los últimos dos gráficos es una clara división geográfica del nivel educativo:
+            \begin{itemize}
+                \item Las comunas del norte son las que tienen mayor nivel educativo.
+                \item Las comunas del centro tienen niveles medios.
+                \item Las comunas del sur (con las comuna 6 en el centro de la ciudad como outlier) y la comuna 1 en el este son las que tienen niveles más bajos.
+            \end{itemize}
+            
     \subsection{Análisis multivariado}
+
+        Probamos de cruzar años de escolaridad, nivel máximo educativo y los ingresos totales.
+
+        \begin{center}
+            \includegraphics[scale=0.65]{Imagenes/AMIngVsAnosEsc.png}
+        \end{center}
+
+        \textbf{Conclusiones de la visualización:}
+
+        \begin{itemize}
+            \item Hasta los 6 años, como era esperable, todos los casos llegan al nivel inicial.
+            \item Vemos dos años en que aparece el primario completo: 7 y 12 años. Estimamos que se debe a la división entre los que comenzaro su educación en la primaria y los que comenzaron en el nivel inicial.
+            \item A partir de los 12 años vemos un aumento consistente de los ingresos totales.
+        \end{itemize}
+
+        \begin{center}
+            \includegraphics[scale=0.25]{Imagenes/AMIngVSTargetBis.png}
+        \end{center}
+
+        Aquí obtuvimos un descubrimiento interesante: no importa el nivel máximo educativo, los casos que no provienen de villas de emergencia (dominio=``villas\_de\_emergencia'') obtienen en promedio ingresos más altos en todos los niveles educativos. El alcanzar estudios superiores no parece homogeneizar ambos conjuntos. Esto se puede observar en el segundo gráfico, ya que el violín naranja acumula mayor cantidad de casos hacia la derecha, en comparación con los violines azules que tienen una mayor distribución.
+
+        \begin{center}
+            \includegraphics[scale=0.6]{Imagenes/AMIngVsComuna.png}
+        \end{center}
+
+        Aquí podemos observar que a medida que avanza el nivel educativo máximo se atenúan levemente las diferencias de ingresos familiares entre comunas. Queda pendiente cruzar estos datos con la edad, para saber si el hecho de incluir a menores de edad está sesgando los valores para nivel inicial, primario y secundario.
+
 
 \section{Modelos analíticos}
 
