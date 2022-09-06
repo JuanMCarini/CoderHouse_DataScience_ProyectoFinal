@@ -84,13 +84,6 @@ Análisis socioeducativo de los habitantes de la Ciudad de Buenos Aires}}
         \item \textbf{Conclusión:} Se alcanzan conclusiones finales sobre los hallazgos. Además, se discuten posibles limitaciones y se plantean futuras líneas de análisis, a partir del análisis presente.
         
     \end{enumerate}
- 
-%     Este trabajo estará divido en 3 partes:
-%     \begin{enumerate}
-%         \item \textbf{Introducción a las variables del problema:} Se hará un análisis de las variables en donde se buscará conocer su performance dentro del dataset y su potencial significante para la pregunta que buscamos responder. A la vez, queremos ver cómo las variables interactúan entre sí. Esta parte es lo que se conoce como análisis univariado, bivariado y multivariado,
-%         \item \textbf{Modelos analíticos:} En esta sección se llevarán a cabo diversos modelos analíticos y algoritmos que nos servirán para acercarnos a la respuesta a nuestra pregunta de investigación,
-%         \item \textbf{Conclusión:} Haremos conclusiones finales sobre nuestros hallazgos. Además, discutiremos posibles limitaciones que tuviera y planteamos futuras líneas de análisis a partir del análisis presente.
-%     \end{enumerate}
 
 \section{Introducción a las variables: Análisis exploratorio de los datos}
  
@@ -403,6 +396,15 @@ Análisis socioeducativo de los habitantes de la Ciudad de Buenos Aires}}
  
 \section{Modelos analíticos}
 
+    Comenzamos transformando algunas variables para poder trabajar con los algoritmos:
+    \begin{itemize}
+        \item recategorizando la variables "Target" en variables numéricas,
+        \item reagrupamos la variable "comuna" por regiones para reducir la dimensionalidad,
+        \item y por último renombramos algunas variables para que sean más cortas.
+
+    Como resultado nos quedan las siguientes variables:
+    
+
     \subsection{Tratados de nulos}
 
         \subsubsection{Variables reemplazadas con moda}
@@ -428,6 +430,5 @@ Análisis socioeducativo de los habitantes de la Ciudad de Buenos Aires}}
             \paragraph{Comparación de cantidad de columnas}
     
     \subsection{Buscando el mejor modelo}
-
 
 \end{document}
