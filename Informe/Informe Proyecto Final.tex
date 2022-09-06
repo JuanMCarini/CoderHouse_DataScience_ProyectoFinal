@@ -17,6 +17,8 @@
 \usepackage{float} %para fijar tablas
 \usepackage{multirow} %Para tablas
 
+\usepackage{csvsimple} %csv to table
+
 \title{\textbf{CoderHouse \\ \vspace{0.5cm} Curso Data Science \\ \vspace{0.5cm} Informe del Proyecto Final\\ \vspace{0.5cm}
 Análisis socioeducativo de los habitantes de la Ciudad de Buenos Aires}}
 
@@ -401,34 +403,288 @@ Análisis socioeducativo de los habitantes de la Ciudad de Buenos Aires}}
         \item recategorizando la variables "Target" en variables numéricas,
         \item reagrupamos la variable "comuna" por regiones para reducir la dimensionalidad,
         \item y por último renombramos algunas variables para que sean más cortas.
+    \end{itemize}
 
     Como resultado nos quedan las siguientes variables:
     
+    \begin{table}[H]
+        \centering
+        \begin{tabular}{clll}
+            \multicolumn{4}{l}{RangeIndex: 14319 entries, 0 to 14318} \\
+            \multicolumn{4}{l}{Data columns (total 33 columns):} \\
+            \# & features & types & non\_null\_counts \\ \hline 
+            0  & id & object & 14319 \\ 
+            1  & nhogar & object & 14319 \\ 
+            2  & miembro & object & 14319 \\ 
+            3  & comuna & object & 14319 \\ 
+            4  & dominio & object & 14319 \\ 
+            5  & edad & int64 & 14319 \\ 
+            6  & sexo & object & 14319 \\ 
+            7  & parentesco\_jefe & object & 14319 \\ 
+            8  & situacion\_conyugal & object & 14318 \\ 
+            9  & num\_miembro\_padre & object & 14319 \\ 
+            10  & num\_miembro\_madre & object & 14319 \\ 
+            11  & estado\_ocupacional & object & 14319 \\ 
+            12  & cat\_ocupacional & object & 14319 \\ 
+            13  & calidad\_ingresos\_lab & object & 14319 \\ 
+            14  & ingreso\_total\_lab & int64 & 14319 \\ 
+            15  & calidad\_ingresos\_no\_lab & object & 14319 \\ 
+            16  & ingreso\_total\_no\_lab & int64 & 14319 \\ 
+            17  & calidad\_ingresos\_totales & object & 14319 \\ 
+            18  & ingresos\_totales & int64 & 14319 \\ 
+            19  & calidad\_ingresos\_familiares & object & 14319 \\ 
+            20  & ingresos\_familiares & int64 & 14319 \\ 
+            21  & ing\_per\_cap\_familiar & int64 & 14319 \\ 
+            22  & estado\_educativo & object & 14319 \\ 
+            23  & sector\_educativo & object & 14316 \\ 
+            24  & nivel\_actual & object & 14319 \\ 
+            25  & nivel\_max\_educativo & object & 13265 \\ 
+            26  & años\_escolaridad & float64 & 14257 \\ 
+            27  & lugar\_nacimiento & object & 14318 \\ 
+            28  & afiliacion\_salud & object & 14315 \\ 
+            29  & hijos\_nacidos\_vivos & object & 6535 \\ 
+            30  & cant\_hijos\_nac\_vivos & int64 & 14319 \\ 
+            31  & Target & Int64 & 13223 \\ 
+            32  & region & object & 14319 \\
+            \multicolumn{4}{l}{dtypes: Int64(1), float64(1), int64(7), object(24)} \\
+            \multicolumn{4}{l}{memory usage: 3.6+ MB } \\
+        \end{tabular}
+    \end{table}
 
     \subsection{Tratados de nulos}
 
-        \subsubsection{Variables reemplazadas con moda}
+        En primer lugar, armamos una función para tener una lista limpia de variables con nulos, que nos da como resultado:
+
+        \begin{table}[H]
+            \begin{tabular}{lr}
+                situacion\_conyugal & 1 \\ 
+                lugar\_nacimiento & 1 \\ 
+                sector\_educativo & 3 \\ 
+                afiliacion\_salud & 4 \\ 
+                años\_escolaridad & 62 \\ 
+                nivel\_max\_educativo & 1054 \\ 
+                Target & 1096 \\ 
+                hijos\_nacidos\_vivos & 7784 \\ 
+            \end{tabular}
+        \end{table}
+
+        Entonces, para eliminar los valores nulos de la variable ``años\_escolaridad'' reemplazamos los nulos con la mediana por comuna y sexo.
+
+        Por otro lado, a los nulos las variables:
+        \begin{itemize}
+            \item ``lugar\_nacimiento'',
+            \item ``situacion\_conyugal'',
+            \item ``afiliacion\_salud'',
+            \item ``sector\_educativo''
+            \item ``hijos\_nacidos\_vivos''
+        \end{itemize}
+        los reemplazamos con la moda.
+        
+        Luego, elimios la variable ``nivel\_max\_educativo'' ya que no la vamos a utilizar y por último eliminamos los nulos de nuestro target y pasamos el tipo de dato de la misma a entero. 
+        
 
     \subsection{Target}
 
         \subsubsection{Borrado de variables}
     
-    \subsection{División de train y test}
+        Hay muchas variables que consideramos que no es necesario sumarlas al algoritmo de clasificacion dado que brindan información repetida o que no suma para la clasificación. A continuación se comparten las categoria que se descartarán para correr el algoritmo: 
+        \begin{itemize}
+            \item \textbf{id:} no suma información para la clasificación,
+            \item \textbf{nhogar:} no suma información para la clasificación,
+            \item \textbf{parentesco\_jefe:} no suma información para la clasificación,
+            \item \textbf{miembro:} no suma información para la clasificación,
+            \item \textbf{num\_miembro\_padre:} no suma información para la clasificación,
+            \item \textbf{num\_miembro\_madre:} no suma información para la clasificación,
+            \item \textbf{cat\_ocupacional:} brinda la misma información que estado\_ocupacional,
+            \item \textbf{calidad\_ingresos\_lab:} brinda la misma información que ingreso\_total\_lab,
+            \item \textbf{calidad\_ingresos\_no\_lab:} brinda la misma información que ingreso\_total\_no\_lab,
+            \item \textbf{calidad\_ingresos\_totales:} brinda la misma información que ingresos\_totales,
+            \item \textbf{calidad\_ingresos\_familiares:} brinda la misma información que ingreso\_familiares,
+            \item \textbf{estado\_educativo:} no aporta información para la clasificación,
+            \item \textbf{nivel\_actual:} no aporta información para la clasificacion,
+            \item \textbf{hijos\_nacidos\_vivos:} brinda la misma información que cant\_hijos\_nac\_vivos,
+            \item \textbf{comuna:} variable ya abordada en la variable 'región'.
+        \end{itemize}
 
-        \subsubsection{Trian}
+        Y como resultado, tenemos nuestro dataset listo para el procesamiento:
 
-            \paragraph{One Hot Encoding}
+        \begin{table}[H]
+            \centering
+            \begin{tabular}{clll}
+                \multicolumn{4}{l}{RangeIndex: 14319 entries, 0 to 14318} \\
+                \multicolumn{4}{l}{Data columns (total 18 columns):} \\
+                \# & features & types & non\_null\_counts \\ \hline
+                0  & dominio & object & 14319 \\ 
+                1  & edad & int64 & 14319 \\ 
+                2  & sexo & object & 14319 \\ 
+                3  & situacion\_conyugal & object & 14318 \\ 
+                4  & estado\_ocupacional & object & 14319 \\ 
+                5  & ingreso\_total\_lab & int64 & 14319 \\ 
+                6  & ingreso\_total\_no\_lab & int64 & 14319 \\ 
+                7  & ingresos\_totales & int64 & 14319 \\ 
+                8  & ingresos\_familiares & int64 & 14319 \\ 
+                9  & ing\_per\_cap\_familiar & int64 & 14319 \\ 
+                10  & sector\_educativo & object & 14316 \\ 
+                11  & nivel\_max\_educativo & object & 13265 \\ 
+                12  & años\_escolaridad & float64 & 14257 \\ 
+                13  & lugar\_nacimiento & object & 14318 \\ 
+                14  & afiliacion\_salud & object & 14315 \\ 
+                15  & cant\_hijos\_nac\_vivos & int64 & 14319 \\ 
+                16  & Target & Int64 & 13223 \\ 
+                17  & region & object & 14319 \\ 
+                \multicolumn{4}{l}{dtypes: Int64(1), float64(1), int64(7), object(9)} \\
+                \multicolumn{4}{l}{memory usage: 2.0+ MB} 
+            \end{tabular}
+        \end{table}
+    \subsection{Procesamiento}
 
-            \paragraph{División de X e Y}
+        Para preparar los datos para el modelado generamos una función que:
+        \begin{itemize}
+            \item  Divide el dataframe en X\_train, y\_train, X\_test e y\_test, haciendo la división entre test y el train en un 30\% y un 70\% respectivamente, con una semilla especifica.
+            \item  Procesa el X\_train y el X\_test con un pipeline generado previamente, el cual convierte las variable numéricas con el minmaxscaler y las categóricas con one hot encoding.
+        \end{itemize}
 
-        \subsubsection{Test}
+        Una vez aplicada dicha función a nuestro dataframe, tenemos ya lista la particion (con la misma cantidad de columnas) del mismo en X\_train, y\_train, X\_test e y\_test.
 
-            \paragraph{One Hot Encoding}
+    \subsection{Árbol de decisión}
 
-            \paragraph{División de X e Y}
+        \subsubsection{Primer modelo}
 
-            \paragraph{Comparación de cantidad de columnas}
-    
-    \subsection{Buscando el mejor modelo}
+            Como primera aproximación, vamos a usar un arbol de clasificación usando con parametros:
+            \begin{itemize}
+                \item random\_state = 50,
+                \item max\_depth=8,
+            \end{itemize}
+            para saber como performa y mejorarlo a partir de ahí.
 
+            Donde el Accuracy score para el test es de: 0.940 y la matriz de confusión da:
+            \begin{table}[H]
+                \centering
+                \begin{tabular}{|l|c|c|c|c|}
+                \hline
+                    ~ & Predicc. Inicial & Predicc. Primario & Predicc. Secundario & Predicc. Superior \\ \hline
+                    Inicial & 445 & 0 & 1 & 0 \\ \hline
+                    Primario & 0 & 961 & 8 & 9 \\ \hline
+                    Secundario & 0 & 19 & 1693 & 59 \\ \hline
+                    Superior & 1 & 57 & 84 & 630 \\ \hline
+                \end{tabular}
+            \end{table}
+
+            \begin{table}[H]
+                \centering
+                \begin{tabular}{rrrrr}
+                    ~ & precision & recall & f1-score & support \\ 
+                    & & & & \\
+                    1 & 0.9977578475336323 & 0.9977578475336323 & 0.9977578475336323 & 446 \\ 
+                    2 & 0.926711668273867 & 0.9826175869120655 & 0.9538461538461539 & 978 \\ 
+                    3 & 0.9479283314669653 & 0.955957086391869 & 0.9519257801518133 & 1771 \\ 
+                    4 & 0.9025787965616046 & 0.8160621761658031 & 0.8571428571428572 & 772 \\ 
+                    & & & & \\
+                    accuracy &  &  & 0.9400050415931435 & 3967 \\ 
+                    macro avg & 0.9437441609590171 & 0.9380986742508424 & 0.9401681596686141 & 3967 \\ 
+                    weighted avg & 0.939474645209326 & 0.9400050415931435 & 0.9391067256931398 & 3967 \\ 
+                \end{tabular}
+            \end{table}
+
+            A simple vista, parece que el modelo performa muy bien, dado su accuracy. Veamos más en detalle:
+
+            Pero antes, calculemos su sesgo y su varianza:
+
+            El promedio de score en el train es  0.96889
+
+            El score minimo es 0.930
+
+            El maximo score es 0.989
+
+            Cross validation score es  0.96337 ± 0.02
+
+            El test score es  0.94001 
+
+            ------------------------------------------
+
+            La varianza tiene un valor de 0.0289
+
+            El sesgo tiene un valor de 0.9689
+
+            \textbf{Conclusiones:}
+            \begin{itemize}
+                \item \textbf{Bias o sesgo:} 96.89\% que nos indica que tengo poco error. $\Rightarrow$ low bias,
+                \item \textbf{Variance=Test\_Score - Bias=} 2.89\%  $\Rightarrow$ low variance.
+            \end{itemize}
+
+            \textbf{El modelo tiene una buena relación de sesgo y varianza.}
+
+            De aqui, vemos necesario ver cuáles son las variables más importantes para el armado del modelo. Esto nos permitirá volver el modelo más robusto, al quitar las mismas. 
+
+            Y como resultado, tenemos que la variable ``años\_escolaridad'' tiene una importancia del 84\%, por mucho superior al resto de variables.
+
+            % Tendiramos que agregar algo relacionado a la diferencia que tenemos con los resultado del EDA.
+
+            Por lo tanto, vamos a tener que desarrollar un nuevo modelo sin esta variable. El principal motivo es que los años de escolaridad es un dato que puede contastarse de forma conjunta con el nivel máximo educativo, por lo que tiene sentido que si no tenés la variable target, tampoco tengas la variable de los años de escolaridad.
+
+            Así, creamos un dataset nuevo (llamado ``df2'') sin la variable ``años\_escolaridad'', para volver a aplicar la función ``procesador'' para dividir nuevamente el mismo y generar nuevos modelos.
+
+        \subsubsection{Segundo modelo}
+
+            Esta vez al correr el modelo, utilizaremos el ``DecisionTreeClassifier'' solo con el parametro random\_state = 50. Que nos da como resultado:  
+
+            \begin{table}[!ht]
+                \centering
+                \begin{tabular}{rrrrr}
+                    ~ & precision & recall & f1-score & suppo \\ 
+                    & & & & \\
+                    1 & 0.822429906542056 & 0.7892376681614349 & 0.8054919908466819 & 446 \\ 
+                    2 & 0.46496815286624205 & 0.22392638036809817 & 0.30227743271221535 & 978 \\ 
+                    3 & 0.5658379373848987 & 0.6939582156973462 & 0.6233832107532337 & 1771 \\ 
+                    4 & 0.38504464285714285 & 0.44689119170984454 & 0.4136690647482014 & 772 \\ 
+                    & & & & \\
+                    accuracy & & & 0.5407108646332242 & 3967 \\ 
+                    macro avg & 0.559570159912585 & 0.5385033639841809 & 0.5362054247650831 & 3967 \\ 
+                    weighted avg & 0.5346347474704592 & 0.5407108646332242 & 0.5238822640130464 & 3967 \\ 
+                \end{tabular}
+            \end{table}
+
+            El promedio de score en el train es  1.00000
+            
+            El score minimo es 0.497
+            
+            El maximo score es 0.638
+            
+            Cross validation score es  0.56310 ± 0.03
+            
+            El test score es  0.54147 
+            
+            ------------------------------------------
+            
+            La varianza tiene un valor de 0.4585
+            
+            El sesgo tiene un valor de 1.0
+
+            \textbf{Conclusiones:}
+            \begin{itemize}
+                \item \textbf{Bias o sesgo:} 100\% que nos indica que tengo poco error. $\Rightarrow$ low bias,
+                \item \textbf{Variance=Test\_Score - Bias=} 44.97\% $\Rightarrow$ high variance,
+            \end{itemize}
+            
+            \textbf{OVERFITTING}
+
+            Por lo que se observa, el árbol performa bastante peor sin esta variable, aumentando especialmente la varianza. Por lo tanto optamos probar mejorar nuestro modelo con un grid search.
+        
+        \subsubsection{Gridsearch con CV}
+            
+            
+        
+    \subsection{Random Forest}
+
+        \subsubsection{Primer modelo}
+
+        \subsubsection{Segundo modelo}
+
+        \subsubsection{Gridsearch con CV}
+
+\section{Conclusiones}
+
+    Finalmente, nos queda elegir el mejor modelo para realizar nuestras predicciones. Para eso vamos a tomar las métricas de cada uno de ellos y hacer un cuadro comparativo:
+
+        
 \end{document}
