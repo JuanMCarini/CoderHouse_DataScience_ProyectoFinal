@@ -548,81 +548,143 @@ Análisis socioeducativo de los habitantes de la Ciudad de Buenos Aires}}
 
     \subsection{Árbol de decisión}
 
-        Como primera aproximación, vamos a usar un arbol de clasificación usando con parametros:
-        \begin{itemize}
-            \item random\_state = 50,
-            \item max\_depth=8,
-        \end{itemize}
-        para saber como performa y mejorarlo a partir de ahí.
+        \subsubsection{Primer modelo}
 
-        Donde el Accuracy score para el test es de: 0.940 y la matriz de confusión da:
-        \begin{table}[H]
-            \centering
-            \begin{tabular}{|l|c|c|c|c|}
-            \hline
-                ~ & Predicc. Inicial & Predicc. Primario & Predicc. Secundario & Predicc. Superior \\ \hline
-                Inicial & 445 & 0 & 1 & 0 \\ \hline
-                Primario & 0 & 961 & 8 & 9 \\ \hline
-                Secundario & 0 & 19 & 1693 & 59 \\ \hline
-                Superior & 1 & 57 & 84 & 630 \\ \hline
-            \end{tabular}
-        \end{table}
+            Como primera aproximación, vamos a usar un arbol de clasificación usando con parametros:
+            \begin{itemize}
+                \item random\_state = 50,
+                \item max\_depth=8,
+            \end{itemize}
+            para saber como performa y mejorarlo a partir de ahí.
 
-        \begin{table}[H]
-            \centering
-            \begin{tabular}{rrrrr}
-                ~ & precision & recall & f1-score & support \\ 
-                & & & & \\
-                1 & 0.9977578475336323 & 0.9977578475336323 & 0.9977578475336323 & 446 \\ 
-                2 & 0.926711668273867 & 0.9826175869120655 & 0.9538461538461539 & 978 \\ 
-                3 & 0.9479283314669653 & 0.955957086391869 & 0.9519257801518133 & 1771 \\ 
-                4 & 0.9025787965616046 & 0.8160621761658031 & 0.8571428571428572 & 772 \\ 
-                & & & & \\
-                accuracy &  &  & 0.9400050415931435 & 3967 \\ 
-                macro avg & 0.9437441609590171 & 0.9380986742508424 & 0.9401681596686141 & 3967 \\ 
-                weighted avg & 0.939474645209326 & 0.9400050415931435 & 0.9391067256931398 & 3967 \\ 
-            \end{tabular}
-        \end{table}
+            Donde el Accuracy score para el test es de: 0.940 y la matriz de confusión da:
+            \begin{table}[H]
+                \centering
+                \begin{tabular}{|l|c|c|c|c|}
+                \hline
+                    ~ & Predicc. Inicial & Predicc. Primario & Predicc. Secundario & Predicc. Superior \\ \hline
+                    Inicial & 445 & 0 & 1 & 0 \\ \hline
+                    Primario & 0 & 961 & 8 & 9 \\ \hline
+                    Secundario & 0 & 19 & 1693 & 59 \\ \hline
+                    Superior & 1 & 57 & 84 & 630 \\ \hline
+                \end{tabular}
+            \end{table}
 
-        A simple vista, parece que el modelo performa muy bien, dado su accuracy. Veamos más en detalle:
+            \begin{table}[H]
+                \centering
+                \begin{tabular}{rrrrr}
+                    ~ & precision & recall & f1-score & support \\ 
+                    & & & & \\
+                    1 & 0.9977578475336323 & 0.9977578475336323 & 0.9977578475336323 & 446 \\ 
+                    2 & 0.926711668273867 & 0.9826175869120655 & 0.9538461538461539 & 978 \\ 
+                    3 & 0.9479283314669653 & 0.955957086391869 & 0.9519257801518133 & 1771 \\ 
+                    4 & 0.9025787965616046 & 0.8160621761658031 & 0.8571428571428572 & 772 \\ 
+                    & & & & \\
+                    accuracy &  &  & 0.9400050415931435 & 3967 \\ 
+                    macro avg & 0.9437441609590171 & 0.9380986742508424 & 0.9401681596686141 & 3967 \\ 
+                    weighted avg & 0.939474645209326 & 0.9400050415931435 & 0.9391067256931398 & 3967 \\ 
+                \end{tabular}
+            \end{table}
 
-        Pero antes, calculemos su sesgo y su varianza:
+            A simple vista, parece que el modelo performa muy bien, dado su accuracy. Veamos más en detalle:
 
-        El promedio de score en el train es  0.96889
+            Pero antes, calculemos su sesgo y su varianza:
 
-        El score minimo es 0.930
+            El promedio de score en el train es  0.96889
 
-        El maximo score es 0.989
+            El score minimo es 0.930
 
-        Cross validation score es  0.96337 ± 0.02
+            El maximo score es 0.989
 
-        El test score es  0.94001 
+            Cross validation score es  0.96337 ± 0.02
 
-        ------------------------------------------
+            El test score es  0.94001 
 
-        La varianza tiene un valor de 0.0289
+            ------------------------------------------
 
-        El sesgo tiene un valor de 0.9689
+            La varianza tiene un valor de 0.0289
 
-        \textbf{Conclusiones:}
-        \begin{itemize}
-            \item \textbf{Bias o sesgo:} 96.89\% que nos indica que tengo poco error. $\Rightarrow$ low bias,
-            \item \textbf{Variance=Test\_Score - Bias=} 2.89\%  $\Rightarrow$ low variance.
-        \end{itemize}
+            El sesgo tiene un valor de 0.9689
 
-        \textbf{El modelo tiene una buena relación de sesgo y varianza.}
+            \textbf{Conclusiones:}
+            \begin{itemize}
+                \item \textbf{Bias o sesgo:} 96.89\% que nos indica que tengo poco error. $\Rightarrow$ low bias,
+                \item \textbf{Variance=Test\_Score - Bias=} 2.89\%  $\Rightarrow$ low variance.
+            \end{itemize}
 
-        De aqui, vemos necesario ver cuáles son las variables más importantes para el armado del modelo. Esto nos permitirá volver el modelo más robusto, al quitar las mismas. 
+            \textbf{El modelo tiene una buena relación de sesgo y varianza.}
 
-        Y como resultado, tenemos que la variable ``años\_escolaridad'' tiene una importancia del 84\%, por mucho superior al resto de variables.
+            De aqui, vemos necesario ver cuáles son las variables más importantes para el armado del modelo. Esto nos permitirá volver el modelo más robusto, al quitar las mismas. 
 
-        % Tendiramos que agregar algo relacionado a la diferencia que tenemos con los resultado del EDA.
+            Y como resultado, tenemos que la variable ``años\_escolaridad'' tiene una importancia del 84\%, por mucho superior al resto de variables.
 
-        Por lo tanto, vamos a tener que desarrollar un nuevo modelo sin esta variable. El principal motivo es que los años de escolaridad es un dato que puede contastarse de forma conjunta con el nivel máximo educativo, por lo que tiene sentido que si no tenés la variable target, tampoco tengas la variable de los años de escolaridad.
+            % Tendiramos que agregar algo relacionado a la diferencia que tenemos con los resultado del EDA.
 
-        Así, creamos un dataset nuevo (llamado ``df2'') sin la variable ``años\_escolaridad'', para volver a aplicar la función ``procesador'' para dividir nuevamente el mismo y generar nuevos modelos.
+            Por lo tanto, vamos a tener que desarrollar un nuevo modelo sin esta variable. El principal motivo es que los años de escolaridad es un dato que puede contastarse de forma conjunta con el nivel máximo educativo, por lo que tiene sentido que si no tenés la variable target, tampoco tengas la variable de los años de escolaridad.
+
+            Así, creamos un dataset nuevo (llamado ``df2'') sin la variable ``años\_escolaridad'', para volver a aplicar la función ``procesador'' para dividir nuevamente el mismo y generar nuevos modelos.
+
+        \subsubsection{Segundo modelo}
+
+            Esta vez al correr el modelo, utilizaremos el ``DecisionTreeClassifier'' solo con el parametro random\_state = 50. Que nos da como resultado:  
+
+            \begin{table}[!ht]
+                \centering
+                \begin{tabular}{rrrrr}
+                    ~ & precision & recall & f1-score & suppo \\ 
+                    & & & & \\
+                    1 & 0.822429906542056 & 0.7892376681614349 & 0.8054919908466819 & 446 \\ 
+                    2 & 0.46496815286624205 & 0.22392638036809817 & 0.30227743271221535 & 978 \\ 
+                    3 & 0.5658379373848987 & 0.6939582156973462 & 0.6233832107532337 & 1771 \\ 
+                    4 & 0.38504464285714285 & 0.44689119170984454 & 0.4136690647482014 & 772 \\ 
+                    & & & & \\
+                    accuracy & & & 0.5407108646332242 & 3967 \\ 
+                    macro avg & 0.559570159912585 & 0.5385033639841809 & 0.5362054247650831 & 3967 \\ 
+                    weighted avg & 0.5346347474704592 & 0.5407108646332242 & 0.5238822640130464 & 3967 \\ 
+                \end{tabular}
+            \end{table}
+
+            El promedio de score en el train es  1.00000
+            
+            El score minimo es 0.497
+            
+            El maximo score es 0.638
+            
+            Cross validation score es  0.56310 ± 0.03
+            
+            El test score es  0.54147 
+            
+            ------------------------------------------
+            
+            La varianza tiene un valor de 0.4585
+            
+            El sesgo tiene un valor de 1.0
+
+            \textbf{Conclusiones:}
+            \begin{itemize}
+                \item \textbf{Bias o sesgo:} 100\% que nos indica que tengo poco error. $\Rightarrow$ low bias,
+                \item \textbf{Variance=Test\_Score - Bias=} 44.97\% $\Rightarrow$ high variance,
+            \end{itemize}
+            
+            \textbf{OVERFITTING}
+
+            Por lo que se observa, el árbol performa bastante peor sin esta variable, aumentando especialmente la varianza. Por lo tanto optamos probar mejorar nuestro modelo con un grid search.
+        
+        \subsubsection{Gridsearch con CV}
+            
+            
+        
+    \subsection{Random Forest}
+
+        \subsubsection{Primer modelo}
+
+        \subsubsection{Segundo modelo}
+
+        \subsubsection{Gridsearch con CV}
+
+\section{Conclusiones}
+
+    Finalmente, nos queda elegir el mejor modelo para realizar nuestras predicciones. Para eso vamos a tomar las métricas de cada uno de ellos y hacer un cuadro comparativo:
 
         
-
-
 \end{document}
