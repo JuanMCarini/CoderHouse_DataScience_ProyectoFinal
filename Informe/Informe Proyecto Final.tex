@@ -17,6 +17,8 @@
 \usepackage{float} %para fijar tablas
 \usepackage{multirow} %Para tablas
 
+\usepackage{csvsimple} %csv to table
+
 \title{\textbf{CoderHouse \\ \vspace{0.5cm} Curso Data Science \\ \vspace{0.5cm} Informe del Proyecto Final\\ \vspace{0.5cm}
 Análisis socioeducativo de los habitantes de la Ciudad de Buenos Aires}}
 
@@ -401,34 +403,150 @@ Análisis socioeducativo de los habitantes de la Ciudad de Buenos Aires}}
         \item recategorizando la variables "Target" en variables numéricas,
         \item reagrupamos la variable "comuna" por regiones para reducir la dimensionalidad,
         \item y por último renombramos algunas variables para que sean más cortas.
+    \end{itemize}
 
     Como resultado nos quedan las siguientes variables:
     
+    \begin{table}[H]
+        \centering
+        \begin{tabular}{clll}
+            \multicolumn{4}{l}{RangeIndex: 14319 entries, 0 to 14318} \\
+            \multicolumn{4}{l}{Data columns (total 33 columns):} \\
+            \# & features & types & non\_null\_counts \\ \hline 
+            0  & id & object & 14319 \\ 
+            1  & nhogar & object & 14319 \\ 
+            2  & miembro & object & 14319 \\ 
+            3  & comuna & object & 14319 \\ 
+            4  & dominio & object & 14319 \\ 
+            5  & edad & int64 & 14319 \\ 
+            6  & sexo & object & 14319 \\ 
+            7  & parentesco\_jefe & object & 14319 \\ 
+            8  & situacion\_conyugal & object & 14318 \\ 
+            9  & num\_miembro\_padre & object & 14319 \\ 
+            10  & num\_miembro\_madre & object & 14319 \\ 
+            11  & estado\_ocupacional & object & 14319 \\ 
+            12  & cat\_ocupacional & object & 14319 \\ 
+            13  & calidad\_ingresos\_lab & object & 14319 \\ 
+            14  & ingreso\_total\_lab & int64 & 14319 \\ 
+            15  & calidad\_ingresos\_no\_lab & object & 14319 \\ 
+            16  & ingreso\_total\_no\_lab & int64 & 14319 \\ 
+            17  & calidad\_ingresos\_totales & object & 14319 \\ 
+            18  & ingresos\_totales & int64 & 14319 \\ 
+            19  & calidad\_ingresos\_familiares & object & 14319 \\ 
+            20  & ingresos\_familiares & int64 & 14319 \\ 
+            21  & ing\_per\_cap\_familiar & int64 & 14319 \\ 
+            22  & estado\_educativo & object & 14319 \\ 
+            23  & sector\_educativo & object & 14316 \\ 
+            24  & nivel\_actual & object & 14319 \\ 
+            25  & nivel\_max\_educativo & object & 13265 \\ 
+            26  & años\_escolaridad & float64 & 14257 \\ 
+            27  & lugar\_nacimiento & object & 14318 \\ 
+            28  & afiliacion\_salud & object & 14315 \\ 
+            29  & hijos\_nacidos\_vivos & object & 6535 \\ 
+            30  & cant\_hijos\_nac\_vivos & int64 & 14319 \\ 
+            31  & Target & Int64 & 13223 \\ 
+            32  & region & object & 14319 \\
+            \multicolumn{4}{l}{dtypes: Int64(1), float64(1), int64(7), object(24)} \\
+            \multicolumn{4}{l}{memory usage: 3.6+ MB } \\
+        \end{tabular}
+    \end{table}
 
     \subsection{Tratados de nulos}
 
-        \subsubsection{Variables reemplazadas con moda}
+        En primer lugar, armamos una función para tener una lista limpia de variables con nulos, que nos da como resultado:
+
+        \begin{table}[H]
+            \begin{tabular}{lr}
+                situacion\_conyugal & 1 \\ 
+                lugar\_nacimiento & 1 \\ 
+                sector\_educativo & 3 \\ 
+                afiliacion\_salud & 4 \\ 
+                años\_escolaridad & 62 \\ 
+                nivel\_max\_educativo & 1054 \\ 
+                Target & 1096 \\ 
+                hijos\_nacidos\_vivos & 7784 \\ 
+            \end{tabular}
+        \end{table}
+
+        Entonces, para eliminar los valores nulos de la variable ``años\_escolaridad'' reemplazamos los nulos con la mediana por comuna y sexo.
+
+        Por otro lado, a los nulos las variables:
+        \begin{itemize}
+            \item ``lugar\_nacimiento'',
+            \item ``situacion\_conyugal'',
+            \item ``afiliacion\_salud'',
+            \item ``sector\_educativo''
+            \item ``hijos\_nacidos\_vivos''
+        \end{itemize}
+        los reemplazamos con la moda.
+        
+        Luego, elimios la variable ``nivel\_max\_educativo'' ya que no la vamos a utilizar y por último eliminamos los nulos de nuestro target y pasamos el tipo de dato de la misma a entero. 
+        
 
     \subsection{Target}
 
         \subsubsection{Borrado de variables}
     
-    \subsection{División de train y test}
+        Hay muchas variables que consideramos que no es necesario sumarlas al algoritmo de clasificacion dado que brindan información repetida o que no suma para la clasificación. A continuación se comparten las categoria que se descartarán para correr el algoritmo: 
+        \begin{itemize}
+            \item \textbf{id:} no suma información para la clasificación,
+            \item \textbf{nhogar:} no suma información para la clasificación,
+            \item \textbf{parentesco\_jefe:} no suma información para la clasificación,
+            \item \textbf{miembro:} no suma información para la clasificación,
+            \item \textbf{num\_miembro\_padre:} no suma información para la clasificación,
+            \item \textbf{num\_miembro\_madre:} no suma información para la clasificación,
+            \item \textbf{cat\_ocupacional:} brinda la misma información que estado\_ocupacional,
+            \item \textbf{calidad\_ingresos\_lab:} brinda la misma información que ingreso\_total\_lab,
+            \item \textbf{calidad\_ingresos\_no\_lab:} brinda la misma información que ingreso\_total\_no\_lab,
+            \item \textbf{calidad\_ingresos\_totales:} brinda la misma información que ingresos\_totales,
+            \item \textbf{calidad\_ingresos\_familiares:} brinda la misma información que ingreso\_familiares,
+            \item \textbf{estado\_educativo:} no aporta información para la clasificación,
+            \item \textbf{nivel\_actual:} no aporta información para la clasificacion,
+            \item \textbf{hijos\_nacidos\_vivos:} brinda la misma información que cant\_hijos\_nac\_vivos,
+            \item \textbf{comuna:} variable ya abordada en la variable 'región'.
+        \end{itemize}
 
-        \subsubsection{Trian}
+        Y como resultado, tenemos nuestro dataset listo para el procesamiento:
 
-            \paragraph{One Hot Encoding}
+        \begin{table}[H]
+            \centering
+            \begin{tabular}{clll}
+                \multicolumn{4}{l}{RangeIndex: 14319 entries, 0 to 14318} \\
+                \multicolumn{4}{l}{Data columns (total 18 columns):} \\
+                \# & features & types & non\_null\_counts \\ \hline
+                0  & dominio & object & 14319 \\ 
+                1  & edad & int64 & 14319 \\ 
+                2  & sexo & object & 14319 \\ 
+                3  & situacion\_conyugal & object & 14318 \\ 
+                4  & estado\_ocupacional & object & 14319 \\ 
+                5  & ingreso\_total\_lab & int64 & 14319 \\ 
+                6  & ingreso\_total\_no\_lab & int64 & 14319 \\ 
+                7  & ingresos\_totales & int64 & 14319 \\ 
+                8  & ingresos\_familiares & int64 & 14319 \\ 
+                9  & ing\_per\_cap\_familiar & int64 & 14319 \\ 
+                10  & sector\_educativo & object & 14316 \\ 
+                11  & nivel\_max\_educativo & object & 13265 \\ 
+                12  & años\_escolaridad & float64 & 14257 \\ 
+                13  & lugar\_nacimiento & object & 14318 \\ 
+                14  & afiliacion\_salud & object & 14315 \\ 
+                15  & cant\_hijos\_nac\_vivos & int64 & 14319 \\ 
+                16  & Target & Int64 & 13223 \\ 
+                17  & region & object & 14319 \\ 
+                \multicolumn{4}{l}{dtypes: Int64(1), float64(1), int64(7), object(9)} \\
+                \multicolumn{4}{l}{memory usage: 2.0+ MB} 
+            \end{tabular}
+        \end{table}
+    \subsection{Procesamiento}
 
-            \paragraph{División de X e Y}
+        Para preparar los datos para el modelado generamos una función que:
+        \begin{itemize}
+            \item  Divide el dataframe en X\_train, y\_train, X\_test e y\_test, haciendo la división entre test y el train en un 30\% y un 70\% respectivamente, con una semilla especifica.
+            \item  Procesa el X\_train y el X\_test con un pipeline generado previamente, el cual convierte las variable numéricas con el minmaxscaler y las categóricas con one hot encoding.
+        \end{itemize}
 
-        \subsubsection{Test}
+        Una vez aplicada dicha función a nuestro dataframe, tenemos ya lista la particion (con la misma cantidad de columnas) del mismo en X\_train, y\_train, X\_test e y\_test.
 
-            \paragraph{One Hot Encoding}
+    \subsection{Árbol de decisión}
 
-            \paragraph{División de X e Y}
-
-            \paragraph{Comparación de cantidad de columnas}
-    
-    \subsection{Buscando el mejor modelo}
-
+        Como primera aproximación, vamos a usar un arbol de clasificación sin parámetros para saber como performar y mejorarlo a partir de ahí.
 \end{document}
