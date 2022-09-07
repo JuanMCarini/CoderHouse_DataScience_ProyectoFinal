@@ -575,38 +575,20 @@ Análisis socioeducativo de los habitantes de la Ciudad de Buenos Aires}}
                 \begin{tabular}{rrrrr}
                     ~ & precision & recall & f1-score & support \\ 
                     & & & & \\
-                    1 & 0.9977578475336323 & 0.9977578475336323 & 0.9977578475336323 & 446 \\ 
-                    2 & 0.926711668273867 & 0.9826175869120655 & 0.9538461538461539 & 978 \\ 
-                    3 & 0.9479283314669653 & 0.955957086391869 & 0.9519257801518133 & 1771 \\ 
-                    4 & 0.9025787965616046 & 0.8160621761658031 & 0.8571428571428572 & 772 \\ 
+                    1 & 1.00& 1.00 & 1.0 & 446 \\ 
+                    2 & 0.93 & 0.99 & 0.95 & 978 \\ 
+                    3 & 0.95 & 0.96 & 0.95 & 1771 \\ 
+                    4 & 0.90 & 0.82 & 0.86 & 772 \\ 
                     & & & & \\
-                    accuracy &  &  & 0.9400050415931435 & 3967 \\ 
-                    macro avg & 0.9437441609590171 & 0.9380986742508424 & 0.9401681596686141 & 3967 \\ 
-                    weighted avg & 0.939474645209326 & 0.9400050415931435 & 0.9391067256931398 & 3967 \\ 
+                    accuracy & & & 0.94 & 3967 \\ 
+                    macro avg & 0.94 & 0.94 & 0.94 & 3967 \\ 
+                    weighted avg & 0.94 & 0.94 & 0.94 & 3967 \\ 
                 \end{tabular}
             \end{table}
 
             A simple vista, parece que el modelo performa muy bien, dado su accuracy. Veamos más en detalle:
 
             Pero antes, calculemos su sesgo y su varianza:
-
-            El promedio de score en el train es  0.96889
-
-            El score minimo es 0.930
-
-            El maximo score es 0.989
-
-            Cross validation score es  0.96337 ± 0.02
-
-            El test score es  0.94001 
-
-            ------------------------------------------
-
-            La varianza tiene un valor de 0.0289
-
-            El sesgo tiene un valor de 0.9689
-
-            \textbf{Conclusiones:}
             \begin{itemize}
                 \item \textbf{Bias o sesgo:} 96.89\% que nos indica que tengo poco error. $\Rightarrow$ low bias,
                 \item \textbf{Variance=Test\_Score - Bias=} 2.89\%  $\Rightarrow$ low variance.
@@ -626,47 +608,36 @@ Análisis socioeducativo de los habitantes de la Ciudad de Buenos Aires}}
 
         \subsubsection{Segundo modelo}
 
-            Esta vez al correr el modelo, utilizaremos el ``DecisionTreeClassifier'' solo con el parametro random\_state = 50. Que nos da como resultado:  
+            Esta vez al correr el modelo, utilizaremos el ``DecisionTreeClassifier'' solo con los parametros:
+            \begin{itemize}
+                \item random\_state = 50,
+                \item cirterion='entropy'.
+            \end{itemize}
+            Que nos da como resultado:  
 
             \begin{table}[!ht]
                 \centering
                 \begin{tabular}{rrrrr}
-                    ~ & precision & recall & f1-score & suppo \\ 
+                    ~ & precision & recall & f1-score & suppo \\
                     & & & & \\
-                    1 & 0.822429906542056 & 0.7892376681614349 & 0.8054919908466819 & 446 \\ 
-                    2 & 0.46496815286624205 & 0.22392638036809817 & 0.30227743271221535 & 978 \\ 
-                    3 & 0.5658379373848987 & 0.6939582156973462 & 0.6233832107532337 & 1771 \\ 
-                    4 & 0.38504464285714285 & 0.44689119170984454 & 0.4136690647482014 & 772 \\ 
+                    1 & 0.83 & 0.79 & 0.81 & 446 \\
+                    2 & 0.45 & 0.26 & 0.33 & 978 \\
+                    3 & 0.56 & 0.66 & 0.60 & 1771 \\
+                    4 & 0.39 & 0.45 & 0.42 & 772 \\
                     & & & & \\
-                    accuracy & & & 0.5407108646332242 & 3967 \\ 
-                    macro avg & 0.559570159912585 & 0.5385033639841809 & 0.5362054247650831 & 3967 \\ 
-                    weighted avg & 0.5346347474704592 & 0.5407108646332242 & 0.5238822640130464 & 3967 \\ 
+                    accuracy & & & 0.53 & 3967 \\
+                    macro avg & 0.56 & 0.59 & 0.54 & 3967 \\
+                    weighted avg & 0.53 & 0.53 & 0.52 & 3967 \\
                 \end{tabular}
             \end{table}
 
-            El promedio de score en el train es  1.00000
-            
-            El score minimo es 0.497
-            
-            El maximo score es 0.638
-            
-            Cross validation score es  0.56310 ± 0.03
-            
-            El test score es  0.54147 
-            
-            ------------------------------------------
-            
-            La varianza tiene un valor de 0.4585
-            
-            El sesgo tiene un valor de 1.0
-
-            \textbf{Conclusiones:}
+            Luego, analizamos el sesgo y la varianza:
             \begin{itemize}
-                \item \textbf{Bias o sesgo:} 100\% que nos indica que tengo poco error. $\Rightarrow$ low bias,
-                \item \textbf{Variance=Test\_Score - Bias=} 44.97\% $\Rightarrow$ high variance,
+                \item \textbf{Bias o sesgo:} 99.78\% que nos indica que tengo poco error. $\Rightarrow$ low bias,
+                \item \textbf{Variance=Test\_Score - Bias=} 46.39\% $\Rightarrow$ high variance,
             \end{itemize}
             
-            \textbf{OVERFITTING}
+            Lo que nos da como resultado, que noesto modelo esta haciendo \textbf{OVERFITTING}.
 
             Por lo que se observa, el árbol performa bastante peor sin esta variable, aumentando especialmente la varianza. Por lo tanto optamos probar mejorar nuestro modelo con un grid search.
         
@@ -675,55 +646,41 @@ Análisis socioeducativo de los habitantes de la Ciudad de Buenos Aires}}
             En la grilla de parametros para el Gridsearch elegimos los siguientes:
             \begin{itemize}
                 \item 'max\_depth': range(5,11),
-                \item 'max\_features': range(1,14);
+                \item 'max\_features': range(1,14),
+                \item 'criterion': ['gini','entropy','log\_loss'];
             \end{itemize}
             como estimador el ``DecisionTreeClassifier'' con el random\_state=50, con el cross-validation =10,  usando todos los precesadores.
 
-            Y nos da como resultado, que el mejor arbol de decisión posible obtiene 0.642. Y para eso el arbol debe tener una profundidad de  6  y utilizar  10  variables.
+            Y nos da como resultado, que el mejor arbol de decisión posible obtiene 0.642. Y para eso el arbol debe tener una profundidad de  6, utilizar  10  variables y usar el método ``gini''.
 
             Entonces, entrenamos el modelo bajo estos mismos parametros y obtenemos el siguiente reporte de clasificación:
 
             \begin{table}[H]
                 \centering
                 \begin{tabular}{rrrrr}
-                    ~ & precision & recall & f1-score & support \\ 
+                    ~ & precision & recall & f1-score & suppo \\
                     & & & & \\
-                    1 & 0.993993993993994 & 0.742152466367713 & 0.8498074454428755 & 446 \\ 
-                    2 & 0.4940898345153664 & 0.21370143149284254 & 0.2983583154889365 & 978 \\ 
-                    3 & 0.5450017787264319 & 0.8650479954827781 & 0.6687036228721082 & 1771 \\ 
-                    4 & 0.7825 & 0.405440414507772 & 0.5341296928327646 & 772 \\ 
-                    & & & & \\
-                    accuracy & & & 0.601209982354424 & 39 \\ 
-                    macro avg & 0.703896401808948 & 0.5565855769627764 & 0.5877497691591711 & 3967 \\ 
-                    weighted avg & 0.6291478017650266 & 0.601209982354424 & 0.5715731767555079 & 3967 \\ 
+                    1 & 0.99 & 0.74 & 0.85 & 446 \\
+                    2 & 0.49 & 0.21 & 0.30 & 978 \\
+                    3 & 0.55 & 0.87 & 0.69 & 1771 \\
+                    4 & 0.78 & 0.41 & 0.54 & 772 \\
+                    accuracy & & & 0.60 & 3967 \\
+                    macro avg & 0.70 & 0.56 & 0.59 & 3967 \\
+                    weighted avg & 0.63 & 0.60 & 0.57 & 3967 \\
                 \end{tabular}
             \end{table}
 
-            El promedio de score en el train es  0.65266
-            
-            El score minimo es 0.508
-
-            El maximo score es 0.724
-
-            Cross validation score es  0.63742 ± 0.04
-
-            El test score es  0.60121 
-
-            ------------------------------------------
-
-            La varianza tiene un valor de 0.0514
-
-            El sesgo tiene un valor de 0.6527
+            Luego, analizamos el sesgo y la varianza:
             \begin{itemize}
-                \item \textbf{Bias o sesgo:} 61.8\% que nos indica que tengo bastantes errores $\Rightarrow$ high bias,
-                \item \textbf{Variance=Test\_Score - Bias==} 3.67\%  $\Rightarrow$ low variance.
+                \item \textbf{Bias o sesgo:} 65.27\% que nos indica que tengo bastantes errores $\Rightarrow$ high bias,
+                \item \textbf{Variance=Test\_Score - Bias==} 5.14\%  $\Rightarrow$ low variance.
             \end{itemize}
 
-            \textbf{UNDERFITTING}
+            Por lo tanto, el modelo esta haciendo \textbf{UNDERFITTING}
 
-            \textbf{Conclusiones}
+            \textbf{Conclusón}
             
-            Utilizar el grid search nos permitió mejorar bastante el modelo que había perdido bastante accuracy al retirar los años de escolaridad. La métrica que más pudimos mejorar con este método fue la varianza, que pasó de 45\% a 5\%.
+            Utilizar el grid search nos permitió mejorar bastante el modelo que había perdido bastante accuracy al retirar los años de escolaridad. La métrica que más pudimos mejorar con este método fue la varianza, que pasó de 44.97\% a 5.14\%, pero en contra parte nuestro acuracy bajo de 100\% a 65.27\%.
 
     \subsection{Random Forest Classifier}
         
@@ -735,28 +692,34 @@ Análisis socioeducativo de los habitantes de la Ciudad de Buenos Aires}}
             \begin{itemize}
                 \item n\_estimators=200,
                 \item max\_depth=15,
-                \item random\_state=50.
+                \item random\_state=50,
+                \item criterion='gini.
             \end{itemize}
 
             Que nos da los siguientes resultados:
             \begin{table}[H]
                 \centering
                 \begin{tabular}{rrrrr}
-                \hline
-                    ~ & precision & recall & f1-score & support \\ 
+                    ~ & precision & recall & f1-score & suppo \\
                     & & & & \\
-                    1 & 1.0 & 0.9596412556053812 & 0.9794050343249427 & 446\\ 
-                    2 & 0.8585951940850277 & 0.9498977505112475 & 0.9019417475728155 & 978\\ 
-                    3 & 0.9055982436882547 & 0.9316770186335404 & 0.9184525466184248 & 1771\\ 
-                    4 & 0.9244094488188976 & 0.7603626943005182 & 0.8343994314143568 & 772\\ 
+                    1 & 1.00 & 0.96 & 0.98 & 446 \\
+                    2 & 0.86 & 0.95 & 0.90 & 978 \\
+                    3 & 0.91 & 0.93 & 0.9 & 1771 \\
+                    4 & 0.92 & 0.76 & 0.83 & 772 \\
                     & & & & \\
-                    accuracy & & & 0.9059742878749685 & 3967 \\ 
-                    macro avg & 0.9221507216480451 & 0.9003946797626718 & 0.9085496899826351 & 3967\\ 
-                    weighted avg & 0.9082845182443269 & 0.9059742878749685 & 0.904877614204248 & 3967\\ 
+                    accuracy & & & 0.91 & 3967 \\
+                    macro avg & 0.92 & 0.90 & 0.91 & 3967 \\
+                    weighted avg & 0.91 & 0.91 & 0.90 & 3967 \\
                 \end{tabular}
             \end{table}
 
-            El random forest performa bastante bien, de todas maneras buscamos cuales son las variables más importantes, y encontramos que los años de escolaridad redujo la enorme importancia (a un 41\%) que tenía en el random tree. Sin embargo, sigue correspondiendo quitarla del modelo.
+             El random forest performa bastante bien, con, muchi mejor que los modelos anteriores:
+             \begin{itemize}
+                \item \textbf{Bias o sesgo:} 97.80\% que nos indica que tengo bastantes errores $\Rightarrow$ high bias,
+                \item \textbf{Variance=Test\_Score - Bias==} 7.20\%  $\Rightarrow$ low variance.
+             \end{itemize}
+             
+             De todas maneras buscamos cuales son las variables más importantes, y encontramos que los años de escolaridad redujo la enorme importancia (a un 43.58\%) que tenía en el random tree. Sin embargo, sigue correspondiendo quitarla del modelo.
 
         \subsubsection{Segundo modelo}
 
@@ -764,43 +727,34 @@ Análisis socioeducativo de los habitantes de la Ciudad de Buenos Aires}}
             \begin{itemize}
                 \item n\_estimators=200,
                 \item max\_depth=10,
-                \item random\_state=50.
+                \item random\_state=50,
+                \item criterion='gini'.
             \end{itemize}
 
             Dondonos por resultado los siguientes medidas de desempeño:
             \begin{table}[H]
                 \centering
                 \begin{tabular}{rrrrr}
-                    ~ & precision & recall & f1-score & support \\ 
+                    ~ & precision & recall & f1-score & suppo \\
                     & & & & \\
-                    1 & 0.9486486486486486 & 0.7869955156950673 & 0.8602941176470589 & 446 \\
-                    2 & 0.570694087403599 & 0.22699386503067484 & 0.3247988295537673 & 978 \\
-                    3 & 0.5623014472290858 & 0.8994918125352908 & 0.6920069504778453 & 1771 \\
-                    4 & 0.832 & 0.40414507772020725 & 0.5440278988666085 & 772 \\
+                    1 & 0.95 & 0.78 & 0.86 & 446 \\
+                    2 & 0.54 & 0.23 & 0.32 & 978 \\
+                    3 & 0.56 & 0.88 & 0.69 & 1771 \\
+                    4 & 0.80 & 0.40 & 0.53 & 772 \\
                     & & & & \\
-                    accuracy & 0.624653390471389 & & & 3967 \\
-                    macro avg & 0.7284110458203333 & 0.5794065677453101 & 0.60528194913632 & 3967 \\
-                    weighted avg & 0.6602913984927472 & 0.624653390471389 & 0.5916002719928053 & 3967 \\
+                    accuracy & & & 0.62 & 3967 \\
+                    macro avg & 0.71 & 0.57 & 0.60 & 3967 \\
+                    weighted avg & 0.65 & 0.62 & 0.59 & 3967 \\
                 \end{tabular}
             \end{table}
 
-            El promedio de score en el train es  0.73552
-            
-            El score minimo es 0.535
-            
-            El maximo score es 0.724
-            
-            Cross validation score es  0.66065 ± 0.04
-            
-            El test score es  0.62465 
-            
-            ------------------------------------------
-            
-            La varianza tiene un valor de 0.1109
-            
-            El sesgo tiene un valor de 0.7355
+            En este caso  obtuvimos los siguientes valores del sesgo y la varianza:
+            \begin{itemize}
+                \item \textbf{Bias o sesgo:} 89.11\% que nos indica que tengo bastantes errores $\Rightarrow$ high bias,
+                \item \textbf{Variance=Test\_Score - Bias==} 27.4\%  $\Rightarrow$ low variance.
+             \end{itemize}
 
-            El modelo empeora su accuracy pero está muy cercano al mejor modelo de Random Tree. Probemos mejorándolo con grid search.
+            El modelo empeora su accuracy pero está muy cercano al mejor modelo de Random Tree, miestras que crece mucho la varianza a un 27.4\% (unos 20 puntos). Ahora, al igual que con el el DesicionTree, vamos a probar mejorándolo con grid search.
 
         \subsubsection{Gridsearch con CV}
 
@@ -808,13 +762,14 @@ Análisis socioeducativo de los habitantes de la Ciudad de Buenos Aires}}
             \begin{itemize}
                 \item 'max\_depth': [5,7,10,15,None],
                 \item 'max\_features': [5,8,10,30,41],
-                \item 'n\_estimators': [200,300,500].
+                \item 'n\_estimators': [200,300,500],
+                \item 'criterion': ['gini','entropy','log\_loss'].
             \end{itemize}
             como estimador el ``RandomTreeClassifier'' que utlizamos en el último modelo, con el cross-validation =10 y  usando todos los precesadores.
 
             Y nos da como resultado, que el mejor random forest posible obtiene 0.668. 
 
-            Y para eso el arbol debe tener una profundidad de  15 , utilizar  10  variables y tener  300  estimadores
+            Y para eso el arbol debe tener una profundidad de  15 , utilizar  10  variables, tener  300  estimadores y utilizar el método ``gini''.
             
             Entonces, entrenamos el modelo bajo estos mismos parametros y obtenemos el siguiente reporte de clasificación:
 
@@ -823,38 +778,23 @@ Análisis socioeducativo de los habitantes de la Ciudad de Buenos Aires}}
                 \begin{tabular}{rrrrr}
                     ~ & precision & recall & f1-score & support \\
                     & & & & \\
-                    1 & 0.9486486486486486 & 0.7869955156950673 & 0.8602941176470589 & 446 \\
-                    2 & 0.5612745098039216 & 0.23415132924335377 & 0.3304473304473304 & 978 \\
-                    3 & 0.5618298784846318 & 0.8876341050254094 & 0.6881155613919895 & 1771 \\
-                    4 & 0.7979539641943734 & 0.40414507772020725 & 0.5365434221840069 & 772 \\
+                    1 & 0.95 & 0.79 & 0.86 & 446 \\
+                    2 & 0.56 & 0.23 & 0.33 & 978 \\
+                    3 & 0.56 & 0.89 & 0.69 & 1771 \\
+                    4 & 0.80 & 0.40 & 0.54 & 772 \\
                     & & & & \\
-                    accuracy & & & 3967 \\
-                    macro avg & 0.7174267502828938 & 0.5782315069210094 & 0.6038501079175964 & 3967 \\
-                    weighted avg & 0.6511330837004972 & 0.6211242752709857 & 0.5897990538944653 & 3967 \\
+                    accuracy & & & 0.62 & 3967 \\
+                    macro avg & 0.72 & 0.58 & 0.60 & 3967 \\
+                    weighted avg & 0.65 & 0.62 & 0.59 & 3967 \\
                 \end{tabular}
             \end{table}
-
-            El promedio de score en el train es  0.90655
             
-            El score minimo es 0.630
-            
-            El maximo score es 0.706
-            
-            Cross validation score es  0.66454 ± 0.02
-            
-            El test score es  0.62112 
-            
-            ------------------------------------------
-            
-            La varianza tiene un valor de 0.2854
-            
-            El sesgo tiene un valor de 0.9065
-            
-            \textbf{Conclusiones:}
             \begin{itemize}
                 \item \textbf{Bias o sesgo:} 90.65\% que nos indica que tengo bastantes errores $\Rightarrow$ low bias
-                \item \textbf{Variance=Test\_Score - Bias==} 28\% $\Rightarrow$ high variance
+                \item \textbf{Variance=Test\_Score - Bias:} 28.54\% $\Rightarrow$ high variance
             \end{itemize} 
+
+            \textbf{OVERFITING}
 
 \section{Conclusiones}
 
@@ -865,21 +805,21 @@ Análisis socioeducativo de los habitantes de la Ciudad de Buenos Aires}}
         \begin{tabular}{|l|r|r|r|}
         \hline
             modelo & accuracy & sesgo & varianza \\ \hline
-            arbol\_default & 0.5407108646332242 & 0.9978392394122731 & 0.4571 \\ \hline
-            arbol\_mejorado & 0.601209982354424 & 0.6526577355229041 & 0.0514 \\ \hline
-            bosque\_default & 0.624653390471389 & 0.7355229040622299 & 0.1109 \\ \hline
-            bosque\_mejorado & 0.6211242752709857 & 0.9065471045808124 & 0.2854 \\ \hline
+            arbol\_default & 0.5339 & 0.9978 & 0.4639 \\ \hline
+            arbol\_mejorado & 0.6012 & 0.6527 & 0.0514 \\ \hline
+            bosque\_default & 0.6117 & 0.8911 & 0.2740 \\ \hline
+            bosque\_mejorado & 0.6211 & 0.9065 & 0.2854 \\ \hline
         \end{tabular}
     \end{table}
 
     Con esta información podemos decidir qué modelo nos conviene usar:
     \begin{itemize}
         \item El arbol default tiene el mejor resultado con respecto al sesgo, pero su varianza lo deja afuera de la competencia.
-        \item Por el contrario, el arbol mejorado tiene una varianza insuperable de 3\%, aunque con el menor puntaje con respecto al sesgo.
+        \item Por el contrario, el arbol mejorado tiene una varianza insuperable de 5\%, aunque con el menor puntaje con respecto al sesgo.
         \item El bosque default tiene resultados mixtos en ambas categorías.
         \item El bosque mejorado destaca por bajo sesgo pero su varianza es la segunda peor.
     \end{itemize}
-    Como era de esperarse, los finalistas son el arbol y el bosque mejorado. Sorprendentemente, ambos performan muy bien pero en étricas diferentes. A su vez, el accuracy de ambos difiere en apenas un 4%.
+    Como era de esperarse, los finalistas son el arbol y el bosque mejorado. Sorprendentemente, ambos performan muy bien pero en étricas diferentes. A su vez, el accuracy de ambos difiere en apenas un 2%.
 
     En nuestra opinión, es el arbol mejorado el ganador, ya que tiene la robustez suficiente para poder generalizar en caso de agregar nuevos datos al modelo.
         
