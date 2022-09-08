@@ -73,7 +73,7 @@ Análisis socioeducativo de los habitantes de la Ciudad de Buenos Aires}}
 
         Y por último intentaremos generar un modelo de predicción aplicado a nuestra variable target ``Nivel Máximo Educativo’’, esto lo haremos implementando los siguientes modelos de clasificación:
         \begin{itemize}
-            \item \textbf{Árbol de dicisión:} que construye un árbol durante el entrenamiento que es el que aplica a la hora de realizar la predicción.
+            \item \textbf{Árbol de decisión:} que construye un árbol durante el entrenamiento que es el que aplica a la hora de realizar la predicción.
             \item \textbf{Bosque Aleatorio:} que es un conjunto (ensemble) de árboles de decisión combinados con bagging.
         \end{itemize}
 
@@ -93,7 +93,7 @@ Análisis socioeducativo de los habitantes de la Ciudad de Buenos Aires}}
         Este trabajo se ha dividido en 3 partes:
         \begin{enumerate}
             \item \textbf{Introducción a las variables del problema:} Se realiza un análisis de las variables del dataset. En el mismo se busca conocer su performance dentro del dataset. A la vez, se investiga cómo las variables interactúan entre sí. Esta parte es lo que se conoce como análisis univariado, bivariado y multivariado
-            \item \textbf{Modelos análiticos:} En esta sección se llevan a cabo diversos modelos análiticos y algoritmos que sirven para alcanzar los objetivos seteados para el presente proyecto. Como la variable objetivo es categórica, se realizan diversos modelos de clasificación.
+            \item \textbf{Modelos analíticos:} En esta sección se llevan a cabo diversos modelos analíticos y algoritmos que sirven para alcanzar los objetivos seteados para el presente proyecto. Como la variable objetivo es categórica, se realizan diversos modelos de clasificación.
             \item \textbf{Conclusión:} Se alcanzan conclusiones finales sobre los hallazgos. Además, se discuten posibles limitaciones y se plantean futuras líneas de análisis, a partir del análisis presente.
             
         \end{enumerate}
@@ -116,7 +116,7 @@ Análisis socioeducativo de los habitantes de la Ciudad de Buenos Aires}}
     5  & edad                        & 14319 non-null & int64 \\
     6  & sexo                        & 14319 non-null & object \\
     7  & parentesco\_jefe             & 14319 non-null & object \\
-    8  & situacion\_conyugal          & 14318 non-null & object \\
+    8  & situación\_conyugal          & 14318 non-null & object \\
     9  & num\_miembro\_padre           & 14319 non-null & object \\
     10 & num\_miembro\_madre           & 14319 non-null & object \\
     11 & estado\_ocupacional          & 14319 non-null & object \\
@@ -146,11 +146,11 @@ Análisis socioeducativo de los habitantes de la Ciudad de Buenos Aires}}
        
     Ahora, en base a los datos arrojados por la tabla de arriba, generamos diversas transformaciones de variables, así como la creación de la variable ``Target'', pues es la que usaremos para todo el análisis:
     \begin{itemize}
-        \item Creamos la variable ``Target'' y le asignamos la varibale ``nivel\_max\_educativo''.
+        \item Creamos la variable ``Target'' y le asignamos la variable ``nivel\_max\_educativo''.
         \item En la variable ``Target'', reducimos su dimensionalidad intercambiando los valores:
             \begin{itemize}
-                \item ``Secundario/medio comun'' y ``EGB (1° a 9° año)'' por ``sec\_completo'',
-                \item ``Primario especial'' y ``Primario comun'' por ``prim\_completo'',
+                \item ``Secundario/medio común'' y ``EGB (1° a 9° año)'' por ``sec\_completo'',
+                \item ``Primario especial'' y ``Primario común'' por ``prim\_completo'',
                 \item ``Sala de 5'' por ``incial'',
                 \item ``Otras escuelas especiales" por ``superior'',
                 \item y por último a ``No corresponde'' por nulos.
@@ -174,7 +174,7 @@ Análisis socioeducativo de los habitantes de la Ciudad de Buenos Aires}}
         \item \textbf{``comuna''}                        : Comuna donde reside la persona encuestada,
         \item \textbf{``edad''}                          : Edad de la persona encuestada,
         \item \textbf{``sexo''}                          : Sexo de la persona encuestada,
-        \item \textbf{``parentesco\_jefe''}              : Parentesco entre la persona encuestada y el jefe d'' hoga,
+        \item \textbf{``parentesco\_jefe''}              : Parentesco entre la persona encuestada y el jefe de hogar,
         \item \textbf{``situacion\_conyugal''}           : Situación conyugal de la persona encuestada,
         \item \textbf{``num\_miembro\_padre''}           : Número de miembro que corresponde al padre,
         \item \textbf{``num\_miembro\_madre''}           : Número de miembro que corresponde a la madre,
@@ -182,14 +182,14 @@ Análisis socioeducativo de los habitantes de la Ciudad de Buenos Aires}}
         \item \textbf{``cat\_ocupacional''}              : Categoría ocupacional de la persona encuestada,
         \item \textbf{``calidad\_ingresos\_lab''}        : Calidad de la declaración de ingresos laborales totales,
         \item \textbf{``ingreso\_total\_lab''}           : Ingreso total laboral percibido el mes anterior,
-        \item \textbf{``calidad\_ingresos\_no\_lab''}    : Calidad de la declaración de ingresos no laborale totales",
+        \item \textbf{``calidad\_ingresos\_no\_lab''}    : Calidad de la declaración de ingresos no laborable totales",
         \item \textbf{``ingreso\_total\_no\_lab''}       : Ingreso total no laboral percibido el mes anterior,
         \item \textbf{``calidad\_ingresos\_totales''}    : Calidad de ingresos totales individuales,
         \item \textbf{``ingresos\_totales''}             : Ingreso total individual percibido el mes anterior,
         \item \textbf{``calidad\_ingresos\_familiares''} : Calidad de ingresos totales familiares,
         \item \textbf{``ingresos\_familiares''}          : Ingresos totales familiares percibido el mes anterior,
         \item \textbf{``ing\_per\_cap\_familiar''}       : Ingreso familiar per capita percibido el mes anterior,
-        \item \textbf{``estado\_educativo''}             : Asistencia (pasada o presente) o no a algú establecimiento educativo",
+        \item \textbf{``estado\_educativo''}             : Asistencia (pasada o presente) o no a algún establecimiento educativo",
         \item \textbf{``sector\_educativo''}             : Sector al que pertenece el establecimiento educativo a que asiste",
         \item \textbf{``nivel\_actual''}                 : Nivel cursado al momento de la encuesta,
         \item \textbf{``nivel\_max\_educativo''}         : Máximo nivel educativo que se cursó,
@@ -204,7 +204,7 @@ Análisis socioeducativo de los habitantes de la Ciudad de Buenos Aires}}
  
     \newpage
 
-    Y comenzamos el analisis EDA del mismo, primero analizando los nulos:
+    Y comenzamos el análisis EDA del mismo, primero analizando los nulos:
 
     \begin{center}
         \includegraphics[scale=0.25]{Imagenes/NullsDS.png}
@@ -284,12 +284,12 @@ Análisis socioeducativo de los habitantes de la Ciudad de Buenos Aires}}
  
         A simple vista, no se observan fuertes correlaciones.
  
-        Podemos notar que la variable ``años\_escolaridad'' correlaciona moderadamente bien con variablres relacionadas al ingreso.
+        Podemos notar que la variable ``años\_escolaridad'' correlaciona moderadamente bien con variables relacionadas al ingreso.
  
         La principal correlación positiva es ``años\_escolaridad'' con ingreso familiar per cápita (``ing\_per\_cap\_familiar''), lo cual hace sentido teórico.
  
         Ahora, utilizando el método para solo graficar en base a un threshold vemos que los años de escolaridad alcanzados por los entrevistados tienen algo relación $(66\%$) con la variable ``ingresos\_totales''
-        % Estaria bien solo utilizar el grafico de la derecha.
+        % Estaría bien solo utilizar el gráfico de la derecha.
 
         \begin{center}
             \includegraphics[scale=0.4]{Imagenes/ABThreshold.png}
@@ -330,7 +330,7 @@ Análisis socioeducativo de los habitantes de la Ciudad de Buenos Aires}}
  
         \subsubsection{Comparación de variables categóricas con numéricas}
  
-            Adicionalmente, vamos a comparar algunas variables con nuestro target, comenzando con los ingresos totales, pero primero veamos como se relacionan algunas categorias con el genero de los encuestados:
+            Adicionalmente, vamos a comparar algunas variables con nuestro target, comenzando con los ingresos totales, pero primero veamos como se relacionan algunas categorías con el genero de los encuestados:
  
             \begin{center}
                 \includegraphics[scale=0.2295]{Imagenes/ABCatVsNum1.png}
@@ -399,7 +399,7 @@ Análisis socioeducativo de los habitantes de la Ciudad de Buenos Aires}}
             \includegraphics[scale=0.65]{Imagenes/AMIngVsAnosEsc.png}
         \end{center}
  
-        Al visualizar el grafico podemos observar que:
+        Al visualizar el gráfico podemos observar que:
  
         \begin{itemize}
             \item Hasta los 6 años, como era esperable, todos los casos llegan al nivel inicial.
@@ -415,7 +415,7 @@ Análisis socioeducativo de los habitantes de la Ciudad de Buenos Aires}}
         
         \newpage
 
-        Luego, observamos los ingresos familiares segun el máximo nivel educativo alcanzado:
+        Luego, observamos los ingresos familiares según el máximo nivel educativo alcanzado:
         \begin{center}
             \includegraphics[scale=0.6]{Imagenes/AMIngVsComuna.png}
         \end{center}
@@ -712,7 +712,7 @@ Análisis socioeducativo de los habitantes de la Ciudad de Buenos Aires}}
 
             Por lo tanto, el modelo esta haciendo \textbf{UNDERFITTING}
 
-            \textbf{Conclusón}
+            \textbf{Conclusión}
             
             Utilizar el grid search nos permitió mejorar bastante el modelo que había perdido bastante accuracy al retirar los años de escolaridad. La métrica que más pudimos mejorar con este método fue la varianza, que pasó de 44.97\% a 5.14\%, pero en contra parte nuestro acuracy bajo de 100\% a 65.27\%.
 
