@@ -62,20 +62,12 @@ Análisis socioeducativo de los habitantes de la Ciudad de Buenos Aires}}
         
         En concreto, con este proyecto se plantea el análisis de variables que podrían contribuir al nivel máximo educativo alcanzado por cada individuo en CABA. Las mismas se estudian tanto de forma independiente como entrelazadas. El alcance de dicho objetivo permitiría identificar posibles causas que derivan en la desigualdad de acceso educativo, y, en última instancia, generar políticas públicas eficaces que permitan subsanar dicha problemática. 
 
-        De este objetivo principal se desprenden los siguientes objetivos específicos:
-        \begin{itemize}
-            \item Determinar si la ubicación geográfica del encuestado es determinante para alcanzar ciertos niveles educativos. De este objetivo se desprende determinar la relación entre el nivel educativo y la comuna del encuestado, así como la relación entre la misma variable y el hecho de que el encuestado habite en una villa de emergencia.
-            \item Establecer la fuerza con la que el nivel socioeconómico afecta la variable target.
-            \item Explorar la relación del target con otras variables, como el sexo del encuestado, la cantidad de hijos, la afiliación de salud o la edad.
-        \end{itemize}
-
-        % COMENTARIO DE HECTOR. Añadir el objetivo del modelo de clasificación, así como los modelos implementados.
-
         Y por último intentaremos generar un modelo de predicción aplicado a nuestra variable target ``Nivel Máximo Educativo’’, esto lo haremos implementando los siguientes modelos de clasificación:
         \begin{itemize}
             \item \textbf{Árbol de decisión:} que construye un árbol durante el entrenamiento que es el que aplica a la hora de realizar la predicción.
             \item \textbf{Bosque Aleatorio:} que es un conjunto (ensemble) de árboles de decisión combinados con bagging.
         \end{itemize}
+        A partir de la obtención del mejor árbol de decisión y el mejor bosque aleatorio tomaremos la decisión de cuál de los dos es el mejor algoritmo para lograr los objetivos de este trabajo.
 
     \subsection{Definición de la fuente de información}
 
@@ -92,8 +84,8 @@ Análisis socioeducativo de los habitantes de la Ciudad de Buenos Aires}}
 
         Este trabajo se ha dividido en 3 partes:
         \begin{enumerate}
-            \item \textbf{Introducción a las variables del problema:} Se realiza un análisis de las variables del dataset. En el mismo se busca conocer su performance dentro del dataset. A la vez, se investiga cómo las variables interactúan entre sí. Esta parte es lo que se conoce como análisis univariado, bivariado y multivariado
-            \item \textbf{Modelos analíticos:} En esta sección se llevan a cabo diversos modelos analíticos y algoritmos que sirven para alcanzar los objetivos seteados para el presente proyecto. Como la variable objetivo es categórica, se realizan diversos modelos de clasificación.
+            \item \textbf{Introducción a las variables del problema:} Se realiza un análisis de las variables del dataset. En el mismo se busca conocer su performance dentro del dataset. A la vez, se investiga cómo las variables interactúan entre sí. Esta parte es lo que se conoce como análisis univariado, bivariado y multivariado.
+            \item \textbf{Modelos analíticos:} En esta sección se entrenan diversos modelos analíticos y algoritmos que sirven para alcanzar los objetivos seteados para el presente proyecto. Como la variable objetivo es categórica, se realizan modelos de clasificación.
             \item \textbf{Conclusión:} Se alcanzan conclusiones finales sobre los hallazgos. Además, se discuten posibles limitaciones y se plantean futuras líneas de análisis, a partir del análisis presente.
             
         \end{enumerate}
@@ -855,8 +847,8 @@ Análisis socioeducativo de los habitantes de la Ciudad de Buenos Aires}}
         \item El bosque default tiene resultados mixtos en ambas categorías.
         \item El bosque mejorado destaca por bajo sesgo pero su varianza es la segunda peor.
     \end{itemize}
-    Como era de esperarse, los finalistas son el árbol y el bosque mejorado. Sorprendentemente, ambos performan muy bien pero en métricas diferentes. A su vez, el accuracy de ambos difiere en apenas un 2%.
+    Como era de esperarse, los finalistas son el árbol y el bosque mejorado. Sorprendentemente, ambos performan muy bien pero en métricas diferentes. A su vez, el accuracy de ambos difiere en apenas un 2\%.
 
-    En nuestra opinión, es el árbol mejorado el ganador, ya que tiene la robustez suficiente para poder generalizar en caso de agregar nuevos datos al modelo.
+    En nuestra opinión, es el árbol mejorado el ganador, ya que tiene la robustez suficiente para poder generalizar en caso de agregar nuevos datos al modelo. Otra ventaja frente al bosque aleatorio es su mayor velocidad de entrenamiento, asì como su capacidad de ser visualizada en un gráfico.
         
 \end{document}
