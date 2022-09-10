@@ -30,5 +30,5 @@
 28,afiliacion_salud,object,14315
 29,hijos_nacidos_vivos,object,6535
 30,cant_hijos_nac_vivos,int64,14319
-31,Target,Int64,0
+31,Target,Int64,13223
 32,region,object,14319
