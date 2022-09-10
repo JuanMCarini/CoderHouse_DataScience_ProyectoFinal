@@ -4,6 +4,8 @@
 *.fls
 *.log
 *.synctex.gz
+*.synctex(buzy)
 *.out
 *.toc
 *.vscode
+.nav
