@@ -1,31 +1,20 @@
-# Análisis socioeducativo de los habitantes de la Ciudad de Buenos Aires
+# Resumen
  
- **Conformación del equipo**
-- Lucía Hukovsky
-- Juan Martín Carini
-- Lucía Buzzeo
-- José Saint Germain
+A lo largo de este proyecto, se ha trabajado sobre una _Encuesta Anual de Hogares_ realizada por el Gobierno de la Ciudad de Buenos Aires para el año 2019. Sobre dicho dataset se ha realizado un análisis de datos exploratorio, definiendo y analizando sus variables y estableciendo correlaciones a nivel binario y multivariable. Finalmente, en pos de alcanzar los objetivos específicos del proyecto, se han utilizado modelos de clasificación.
 
-## Presentación del problema
+El objetivo de aplicar modelos de clasificación ha sido encontrar el modelo que traiga mejores resultados a fin de poder predecir la variable Target, el Nivel Máximo Educativo, utilizando al resto de las variables.
 
-Nos es de gran de interés vivir en una comunidad con políticas públicas eficaces que mejoren las condiciones de vida de las personas. En este sentido, hemos decidido analizar los diferentes ejes que en nuestro país se rigen por políticas publicas. Al respecto, encontramos una gran limitación en el eje de educación al reconocer que su acceso dista de ser equitativo. Este aspecto no nos resultó una novedad, sin embargo, nos dio el pie para comenzar una investigación que permita dar una explicación teórica a la problemática.
+En ese sentido, se ha implementado un árbol de clasificación y un bosque aleatorio, parametrizando, en cada uno de los casos, ciertas variables convenientes. Asimismo, para ambos modelos, se ha implementado algoritmos de optimización  a fin de seleccionar los mejores parámetros para el problema de optimización y mitigar el overfitting del los modelos de partida. 
 
-En concreto, nos ha permitido conocer mejor la situación educativa actual de CABA y descubrir las principales variables que afectan el nivel educativo.
+Con respecto a las conclusiones alcanzadas, se han visto buenos resultados en los modelos optimizados con hiperparámetros, los cuales han performado de manera esperada, alcanzando modelos robustos.
 
-El análisis realizado en el marco del presente proyecto podría establecer una base de requerimientos que permitan generar políticas públicas efectivas, no solo en el ámbito educativo, sino en el económico, cultural, social y geográfico, entre otros.
+# Abstract
 
-## Definición de la fuente de información
+Throughout this project, we have worked on an _Annual Household Survey_ conducted by the Government of the City of Buenos Aires for the year 2019. An exploratory data analysis has been carried out on this dataset, defining and analyzing its variables and establishing correlations between them. Finally, in order to achieve the specific objectives of the project, classification models have been used.
 
-Para trabajar esta problemática, hemos decidido recurrir a la [Encuesta Anual de Hogares](https://www.estadisticaciudad.gob.ar/eyc/?page_id=702) del Gobierno de la Ciudad de Buenos Aires para el año 2019. El mismo está disponible en la base de [datos abiertos](https://data.buenosaires.gob.ar/dataset/encuesta-anual-hogares/resource/3a45c563-396d-42de-ba93-8a93729e0723) del GCBA.
+The objective of applying classification models has been to find the model that brings the best results to predict the Target, the Highest Level of Education, using the rest of the variables.
 
-Esta encuesta contiene información demográfica, social, económica, educativa y de salud de 14319 habitantes de la Ciudad, la cual es una muestra representativa que permite obtener un vistazo de la población de la Ciudad.
+In this sense, a classification tree and a random forest have been implemented, parameterizing, in each case, certain variables. Likewise, for both models, optimization algorithms have been implemented in order to select the best parameters for the optimization problem and mitigate the overfitting of the starting models. 
 
-Nuestro objetivo principal ha sido descubrir las principales variables intervinientes en el nivel máximo educativo alcanzado por la población de la Ciudad Autónoma de Buenos Aires (CABA).
+Regarding the conclusions reached, good results have been seen in the models optimized with hyperparameters, which have performed as expected, reaching robust models.
 
-## Preguntas y objetivos de la investigación
-
-De este objetivo principal se desprenden los siguientes objetivos especificos:
-
-- Determinar si la ubicación geográfica del encuestado es determinante para alcanzar ciertos niveles educativos. De este objetivo se desprende determinar la relación entre el nivel educativo y la comuna del encuestado, así como la relación entre la misma variable y el hecho de que el encuestado habite en una villa de emergencia.
-- Establecer la fuerza con la que el nivel socioeconómico afecta la variable target.
-- Explorar la relación del target con otras variables, como el sexo del encuestado, la cantidad de hijos, la afiliación de salud o la edad
