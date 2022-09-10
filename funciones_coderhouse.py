@@ -269,16 +269,3 @@ def print_scores(model ,X_train , Y_train,y_test,predictions):
     print(f"La varianza tiene un valor de {varianza}")
     print(f"El sesgo tiene un valor de {sesgo}")
     return sesgo, varianza
-
-def predictores(df:pd.DataFrame,modelo,threshold:int):
-    print("Importancia de los predictores en el modelo")
-    print("-------------------------------------------")
-    feature_importances_df = pd.DataFrame(
-        {"feature": list(df.columns), "importance": modelo.feature_importances_}
-    ).sort_values("importance", ascending=False)
-
-    #variables que dan 0 de importancia, las usaremos para quitarlas del próximo modelo y ahorrar tiempo de cómputo
-    sin_imp = feature_importances_df[feature_importances_df['importance']==0]['feature'].to_list()
-
-    # Mostrar
-    return feature_importances_df[feature_importances_df['importance']>threshold] , sin_imp
