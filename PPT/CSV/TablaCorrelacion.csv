@@ -1,8 +1,0 @@
-,Variable_1,Variable_2,corr_value
-3,ingreso_total_lab,ingresos_totales,0.8108395980942242
-7,ingresos_familiares,ing_per_cap_familiar,0.7693564092938642
-6,ingresos_totales,años_escolaridad,0.6568802583344577
-5,ingresos_totales,ing_per_cap_familiar,0.5989967379793182
-4,ingreso_total_lab,años_escolaridad,0.5796143035479634
-1,edad,ingreso_total_no_lab,0.5785319851570628
-2,edad,ingresos_totales,0.5705209040718662

@@ -8,4 +8,8 @@
 *.out
 *.toc
 *.vscode
-.nav
+*.pyc
+*.json
+*.pycs
+*.nav
+*.snm
