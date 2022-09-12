@@ -393,6 +393,14 @@
 %             Por parte de las variables de ingreso, no parece haber nada disruptivo. La distribución por ingreso y años de escolaridad pareciera ocurrir pero no en un orden lineal.
  
 %             Llama la atención la variable ``sexo'': que por algún motivo, todos los encuestados hombres figuran sin hijos nacidos vivos. Alternativamente, se podría investigar la metodología de la encuesta para ver si hay alguna respuesta. Adicionalmente, los hombres parecieran tener ingresos totales y familiares mayores que las mujeres, pero no pareciera que haya distribuciones desiguales en los años de escolaridad.
+
+\begin{frame}{Análisis bivariado}
+
+    \begin{center}
+        \includegraphics[scale=0.21]{../Informe/Imagenes/ABCatVsNum3Bis.png}
+    \end{center}
+    Parece que para el nivel inicial la remoción de outliers en otra categoría sigue siendo insuficiente para mostrar la distribución real de la variable. Echemos un vistazo a los valores de esta categoría:
+\end{frame}
  
 %             \begin{center}
 %                 \includegraphics[scale=0.3]{Imagenes/ABCatVsNum3Bis.png}
@@ -400,92 +408,135 @@
  
 %             Parece que para el nivel inicial la remoción de outliers en otra categoría sigue siendo insuficiente para mostrar la distribución real de la variable. Echemos un vistazo a los valores de esta categoría:
  
-%             \begin{center}
-%                 \includegraphics[scale=0.8]{Imagenes/ABCatVsNum4.png}
-%             \end{center}
- 
-%             Lógicamente, la enorme mayoría de los ingresos tienen el valor inicial de 0, puesto que incluye a personas que en ese momento estaban cursando su educación inicial, por lo que tenían entre 2 y 6 años.
+\begin{frame}{Análisis bivariado}
+    \footnotesize
 
-%             Entonces, es correspondiente analizar como se distribuyen los ingresos familiares con respecto a nuestro target:
- 
-%             \begin{center}
-%                 \includegraphics[scale=0.3]{Imagenes/ABCatVsNum5.png}
-%             \end{center}
- 
-%             En definitiva, se observa un corrimiento de los valores centrales (dentro de la caja) hacia la izquierda a medida que aumenta el nivel educativo.
+    \begin{center}
+        \includegraphics[scale=0.5]{../Informe/Imagenes/ABCatVsNum4.png}
+    \end{center}
 
-%         \newpage
- 
-%         \subsubsection{Variable numéricas con comuna}
+    Lógicamente, la enorme mayoría de los ingresos tienen el valor inicial de 0, puesto que incluye a personas que en ese momento estaban cursando su educación inicial, por lo que tenían entre 2 y 6 años.
 
-%             En primer lugar, analizaremos la relación de nuestro target con cada comuna: 
- 
-%             \begin{center}
-%                 \includegraphics[scale=0.65]{Imagenes/ABCatVsNum6.png}
-%             \end{center}
- 
-%             Se observa que en el sur de la ciudad hay  mayor cantidad de encuestados con niveles de inicial, primario y secundario completo, mientras que el norte (particularmente el barrio de Palermo) tiene mayor cantidad de personas con estudios superiores. En menor medida también las comunas del este (comúnmente llamado el ``centro de la ciudad'') destacan por la cantidad de encuestados con nivel superior.
+\end{frame}
 
-%             \begin{center}
-%                 \includegraphics[scale=0.65]{Imagenes/ABCatVsNum7.png}
-%             \end{center}
- 
-%             Lo que podemos observar en los últimos dos gráficos es una clara división geográfica del nivel educativo:
-%             \begin{itemize}
-%                 \item Las comunas del norte son las que tienen mayor nivel educativo.
-%                 \item Las comunas del centro tienen niveles medios.
-%                 \item Las comunas del sur (con las comuna 6 en el centro de la ciudad como outlier) y la comuna 1 en el este son las que tienen niveles más bajos.
-%             \end{itemize}
+\begin{frame}{Análisis bivariado}
+
+    Entonces, es correspondiente analizar como se distribuyen los ingresos familiares con respecto a nuestro target:
+
+    \begin{center}
+        \includegraphics[scale=0.21]{../Informe/Imagenes/ABCatVsNum5.png}
+    \end{center}
+
+    En definitiva, se observa un corrimiento de los valores centrales (dentro de la caja) hacia la izquierda a medida que aumenta el nivel educativo.
+
+
+\end{frame}
+
+    \subsubsection{Variable numéricas con comuna}
+
+\begin{frame}{Análisis bivariado}
+    \footnotesize
     
-%     \newpage
+    En primer lugar, analizaremos la relación de nuestro target con cada comuna: 
+    \newline
+
+    \begin{wrapfigure}{l}{0.55\textwidth}
+        \centering
+        \includegraphics[scale=0.25]{../Informe/Imagenes/ABCatVsNum6.png}
+    \end{wrapfigure}
     
-%     \subsection{Análisis multivariado}
- 
-%         Probamos de cruzar años de escolaridad, nivel máximo educativo y los ingresos totales.
- 
-%         \begin{center}
-%             \includegraphics[scale=0.65]{Imagenes/AMIngVsAnosEsc.png}
-%         \end{center}
- 
-%         Al visualizar el gráfico podemos observar que:
- 
-%         \begin{itemize}
-%             \item Hasta los 6 años, como era esperable, todos los casos llegan al nivel inicial.
-%             \item Vemos dos años en que aparece el primario completo: 7 y 12 años. Estimamos que se debe a la división entre los que comenzaron su educación en la primaria y los que comenzaron en el nivel inicial.
-%             \item A partir de los 12 años vemos un aumento consistente de los ingresos totales.
-%         \end{itemize}
- 
-%         \begin{center}
-%             \includegraphics[scale=0.255]{Imagenes/AMIngVSTargetBis.png}
-%         \end{center}
- 
-%         Aquí obtuvimos un descubrimiento interesante: no importa el nivel máximo educativo, los casos que no provienen de villas de emergencia (dominio=``villas\_de\_emergencia'') obtienen en promedio ingresos más altos en todos los niveles educativos. El alcanzar estudios superiores no parece homogeneizar ambos conjuntos. Esto se puede observar en el segundo gráfico, ya que el violín naranja acumula mayor cantidad de casos hacia la derecha, en comparación con los violines azules que tienen una mayor distribución.
-        
-%         \newpage
+    Se observa que en el sur de la ciudad hay  mayor cantidad de encuestados con niveles de inicial, primario y secundario completo, mientras que el norte (particularmente el barrio de Palermo) tiene mayor cantidad de personas con estudios superiores. En menor medida también las comunas del este (comúnmente llamado el ``centro de la ciudad'') destacan por la cantidad de encuestados con nivel superior.
 
-%         Luego, observamos los ingresos familiares según el máximo nivel educativo alcanzado:
-%         \begin{center}
-%             \includegraphics[scale=0.6]{Imagenes/AMIngVsComuna.png}
-%         \end{center}
- 
-%         Aquí, podemos observar que a medida que avanza el nivel educativo máximo se atenúan levemente las diferencias de ingresos familiares entre comunas. Queda pendiente cruzar estos datos con la edad, para saber si el hecho de incluir a menores de edad está sesgando los valores para nivel inicial, primario y secundario.
- 
-% \newpage
+\end{frame}    
 
-% \section{Modelos analíticos}
+\begin{frame}{Análisis bivariado}
+    \footnotesize
 
-%     Comenzamos transformando algunas variables para poder trabajar con los algoritmos:
-%     \begin{itemize}
-%         \item recategorizando la variables ``Target'' en variables numéricas, es decir, a cada nivel educativo le asignamos un valor numérico del 1 al 4:
-%         \begin{itemize}
-%             \item \textbf{inicial=} 1,
-%             \item \textbf{prim\_completo=} 2,
-%             \item \textbf{sec\_completo=} 3,
-%             \item \textbf{superior=} 4,
-%         \end{itemize}
-%         \item reagrupamos la variable ``comuna'' por regiones para reducir la dimensionalidad (en norte, centro, sur y oeste),
-%         \item y por último renombramos algunas variables para que sean más cortas.
-%     \end{itemize}
+    \begin{wrapfigure}{l}{0.5\textwidth}
+        \includegraphics[scale=0.23]{../Informe/Imagenes/ABCatVsNum7.png}
+    \end{wrapfigure}
+
+    Lo que podemos observar en los últimos dos gráficos es una clara división geográfica del nivel educativo:
+    \begin{itemize}
+        \item Las comunas del norte son las que tienen mayor nivel educativo.
+        \item Las comunas del centro tienen niveles medios.
+        \item Las comunas del sur (con las comuna 6 en el centro de la ciudad como outlier) y la comuna 1 en el este son las que tienen niveles más bajos.
+    \end{itemize}
+
+\end{frame}
+
+    \subsection{Análisis multivariado}
+
+\begin{frame}{Análisis multivariado}
+    \footnotesize
+
+    Probamos de cruzar años de escolaridad, nivel máximo educativo y los ingresos totales.
+
+    \begin{wrapfigure}{l}{0.6\textwidth}
+        \includegraphics[scale=0.3]{../Informe/Imagenes/AMIngVsAnosEsc.png}
+    \end{wrapfigure}
+
+    Al visualizar el gráfico podemos observar que:
+
+    \begin{itemize}
+        \item Hasta los 6 años, como era esperable, todos los casos llegan al nivel inicial.
+        \item Vemos dos años en que aparece el primario completo: 7 y 12 años. Estimamos que se debe a la división entre los que comenzaron su educación en la primaria y los que comenzaron en el nivel inicial.
+        \item A partir de los 12 años vemos un aumento consistente de los ingresos totales.
+    \end{itemize}
+
+\end{frame} 
+
+\begin{frame}{Análisis multivariado}
+
+    \begin{center}
+        \includegraphics[scale=0.17]{../Informe/Imagenes/AMIngVSTargetBis.png}
+    \end{center}
+
+\end{frame}
+
+\begin{frame}{Análisis multivariado}
+
+    Aquí obtuvimos un descubrimiento interesante: no importa el nivel máximo educativo, los casos que no provienen de villas de emergencia (dominio=``villas\_de\_emergencia'') obtienen en promedio ingresos más altos en todos los niveles educativos. El alcanzar estudios superiores no parece homogeneizar ambos conjuntos. Esto se puede observar en el segundo gráfico, ya que el violín naranja acumula mayor cantidad de casos hacia la derecha, en comparación con los violines azules que tienen una mayor distribución.
+
+\end{frame}
+    
+
+
+\begin{frame}{Análisis multivariado}
+    \footnotesize
+
+    Luego, observamos los ingresos familiares según el máximo nivel educativo alcanzado:
+    \begin{wrapfigure}{l}{0.7\textwidth}
+        \includegraphics[scale=0.275]{../Informe/Imagenes/AMIngVsComuna.png}
+    \end{wrapfigure}
+
+    Aquí, podemos observar que a medida que avanza el nivel educativo máximo se atenúan levemente las diferencias de ingresos familiares entre comunas. Queda pendiente cruzar estos datos con la edad, para saber si el hecho de incluir a menores de edad está sesgando los valores para nivel inicial, primario y secundario.
+
+\end{frame}
+
+\section{Modelos analíticos}
+
+\begin{frame}{Modelos analíticos}
+
+    Comenzamos transformando algunas variables para poder trabajar con los algoritmos:
+    \begin{itemize}
+        \item recategorizando la variables ``Target'' en variables numéricas, es decir, a cada nivel educativo le asignamos un valor numérico del 1 al 4:
+        \begin{itemize}
+            \item \textbf{inicial=} 1,
+            \item \textbf{prim\_completo=} 2,
+            \item \textbf{sec\_completo=} 3,
+            \item \textbf{superior=} 4,
+        \end{itemize}
+        \item reagrupamos la variable ``comuna'' por regiones para reducir la dimensionalidad (en norte, centro, sur y oeste),
+        \item y por último renombramos algunas variables para que sean más cortas.
+    \end{itemize}
+    
+\end{frame}
+
+
+\begin{frame}{Modelos analíticos}
+
+\end{frame}
 
 %     Como resultado nos quedan las siguientes variables:
     
