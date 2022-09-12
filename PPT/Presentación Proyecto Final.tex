@@ -499,8 +499,6 @@
     Aquí obtuvimos un descubrimiento interesante: no importa el nivel máximo educativo, los casos que no provienen de villas de emergencia (dominio=``villas\_de\_emergencia'') obtienen en promedio ingresos más altos en todos los niveles educativos. El alcanzar estudios superiores no parece homogeneizar ambos conjuntos. Esto se puede observar en el segundo gráfico, ya que el violín naranja acumula mayor cantidad de casos hacia la derecha, en comparación con los violines azules que tienen una mayor distribución.
 
 \end{frame}
-    
-
 
 \begin{frame}{Análisis multivariado}
     \footnotesize
@@ -531,11 +529,6 @@
         \item y por último renombramos algunas variables para que sean más cortas.
     \end{itemize}
     
-\end{frame}
-
-
-\begin{frame}{Modelos analíticos}
-
 \end{frame}
 
 %     Como resultado nos quedan las siguientes variables:
@@ -584,42 +577,41 @@
 %         \end{tabular}
 %     \end{table}
 
-%     \subsection{Tratados de nulos}
+    \subsection{Tratados de nulos}
 
-%         En primer lugar, armamos una función para tener una lista limpia de variables con nulos, que nos da como resultado:
+\begin{frame}{Modelos analíticos}
 
-%         \begin{table}[H]
-%             \begin{tabular}{lr}
-%                 situacion\_conyugal & 1 \\ 
-%                 lugar\_nacimiento & 1 \\ 
-%                 sector\_educativo & 3 \\ 
-%                 afiliacion\_salud & 4 \\ 
-%                 años\_escolaridad & 62 \\ 
-%                 nivel\_max\_educativo & 1054 \\ 
-%                 Target & 1096 \\ 
-%                 hijos\_nacidos\_vivos & 7784 \\ 
-%             \end{tabular}
-%         \end{table}
+    \begin{Large}
+        \textbf{Tratados de nulos}
+    \end{Large}
+    \newline
 
-%         Entonces, para eliminar los valores nulos de la variable ``años\_escolaridad'' reemplazamos los nulos con la mediana por comuna y sexo.
+    Luego, armamos una función para tener una lista limpia de variables con nulos, que nos da como resultado:
 
-%         Por otro lado, a los nulos las variables:
-%         \begin{itemize}
-%             \item ``lugar\_nacimiento'',
-%             \item ``situacion\_conyugal'',
-%             \item ``afiliacion\_salud'',
-%             \item ``sector\_educativo''
-%             \item ``hijos\_nacidos\_vivos''
-%         \end{itemize}
-%         los reemplazamos con la moda.
-        
-%         Luego, eliminamos la variable ``nivel\_max\_educativo'' ya que no la vamos a utilizar y por último eliminamos los nulos de nuestro target y pasamos el tipo de dato de la misma a entero. 
-        
-
-%     \subsection{Target}
-
-%         \subsubsection{Borrado de variables}
+    \begin{table}[H]
+        \begin{tabular}{lrl}
+            \textbf{Variable}                & \textbf{Nulos} & \textbf{Acción} \\
+            situacion\_conyugal     & 1     & Reemplazamos con la moda\\ 
+            lugar\_nacimiento       & 1     & Reemplazamos con la moda\\ 
+            sector\_educativo       & 3     & Reemplazamos con la moda\\ 
+            afiliacion\_salud       & 4     & Reemplazamos con la moda\\ 
+            años\_escolaridad       & 62    & Reemplazamos con la \\
+                                    &       & mediana por comuna y sexo\\ 
+            nivel\_max\_educativo   & 1054  & Eliminamos la variable\\ 
+            Target                  & 1096  & Eliminamos sus nulos y transformamos\\
+                                    &       & su tipo a entero\\ 
+            hijos\_nacidos\_vivos   & 7784  & Reemplazamos con la moda\\ 
+        \end{tabular}
+    \end{table}
     
+\end{frame}
+
+    \subsection{Target}
+
+        \subsubsection{Borrado de variables}
+
+\begin{frame}{Modelos analíticos}
+    \scriptsize
 %         Hay muchas variables que consideramos que no es necesario sumarlas al algoritmo de clasificación dado que brindan información repetida o que no suma para la clasificación. A continuación se comparten las categoría que se descartarán para correr el algoritmo: 
 %         \begin{itemize}
 %             \item \textbf{id:} no suma información para la clasificación,
@@ -639,323 +631,444 @@
 %             \item \textbf{comuna:} variable ya abordada en la variable 'región'.
 %         \end{itemize}
 
-%         Y como resultado, tenemos nuestro dataset listo para el procesamiento:
+    Por último eliminamos algunas variables que no tienen importancia, y tenemos nuestro dataset listo para el procesamiento:
 
-%         \begin{table}[H]
-%             \centering
-%             \begin{tabular}{clll}
-%                 \multicolumn{4}{l}{RangeIndex: 14319 entries, 0 to 14318} \\
-%                 \multicolumn{4}{l}{Data columns (total 18 columns):} \\
-%                 \# & features & types & non\_null\_counts \\ \hline
-%                 0 & dominio & object & 13223 \\ 
-%                 1 & edad & int64 & 13223 \\ 
-%                 2 & sexo & object & 13223 \\ 
-%                 3 & situacion\_conyugal & object & 13223 \\ 
-%                 4 & estado\_ocupacional & object & 13223 \\ 
-%                 5 & ingreso\_total\_lab & int64 & 13223 \\ 
-%                 6 & ingreso\_total\_no\_lab & int64 & 13223 \\ 
-%                 7 & ingresos\_totales & int64 & 13223 \\ 
-%                 8 & ingresos\_familiares & int64 & 13223 \\ 
-%                 9 & ing\_per\_cap\_familiar & int64 & 13223 \\ 
-%                 10 & sector\_educativo & object & 13223 \\ 
-%                 11 & años\_escolaridad & float64 & 13223 \\ 
-%                 12 & lugar\_nacimiento & object & 13223 \\ 
-%                 13 & afiliacion\_salud & object & 13223 \\ 
-%                 14 & cant\_hijos\_nac\_vivos & int64 & 13223 \\ 
-%                 15 & Target & int32 & 13223 \\ 
-%                 16 & region & object & 13223 \\ 
-%                 \multicolumn{4}{l}{dtypes: Int64(1), float64(1), int64(7), object(8)} \\
-%                 \multicolumn{4}{l}{memory usage: 2.0+ MB} 
-%             \end{tabular}
-%         \end{table}
-%     \subsection{Procesamiento}
+    \begin{table}[H]
+        \centering
+        \begin{tabular}{clll}
+            \multicolumn{4}{l}{RangeIndex: 14319 entries, 0 to 14318} \\
+            \# & features & types & non\_null\_counts \\ \hline
+            0 & dominio & object & 13223 \\ 
+            1 & edad & int64 & 13223 \\ 
+            2 & sexo & object & 13223 \\ 
+            3 & situacion\_conyugal & object & 13223 \\ 
+            4 & estado\_ocupacional & object & 13223 \\ 
+            5 & ingreso\_total\_lab & int64 & 13223 \\ 
+            6 & ingreso\_total\_no\_lab & int64 & 13223 \\ 
+            7 & ingresos\_totales & int64 & 13223 \\ 
+            8 & ingresos\_familiares & int64 & 13223 \\ 
+            9 & ing\_per\_cap\_familiar & int64 & 13223 \\ 
+            10 & sector\_educativo & object & 13223 \\ 
+            11 & años\_escolaridad & float64 & 13223 \\ 
+            12 & lugar\_nacimiento & object & 13223 \\ 
+            13 & afiliacion\_salud & object & 13223 \\ 
+            14 & cant\_hijos\_nac\_vivos & int64 & 13223 \\ 
+            15 & Target & int32 & 13223 \\ 
+            16 & region & object & 13223 \\ 
+            \multicolumn{4}{l}{dtypes: Int64(1), float64(1), int64(7), object(8)} \\
+            \multicolumn{4}{l}{memory usage: 2.0+ MB} 
+        \end{tabular}
+    \end{table}
 
-%         Para preparar los datos para el modelado generamos una función que:
-%         \begin{itemize}
-%             \item  Divide el dataframe en X\_train, y\_train, X\_test e y\_test, haciendo la división entre test y el train en un 30\% y un 70\% respectivamente, con una semilla especifica.
-%             \item  Procesa el X\_train y el X\_test con un pipeline generado previamente, el cual convierte las variable numéricas con el minmaxscaler y las categóricas con one hot encoding.
-%         \end{itemize}
+\end{frame}
 
-%         Una vez aplicada dicha función a nuestro dataframe, tenemos ya lista la partición (con la misma cantidad de columnas) del mismo en X\_train, y\_train, X\_test e y\_test.
+        \subsection{Procesamiento}
 
-%     \subsection{Árbol de decisión}
+\begin{frame}{Modelos analíticos}
 
-%         \subsubsection{Primer modelo}
+    \begin{Large}
+        \textbf{Procesamiento}
+    \end{Large}
+    \newline
 
-%             Como primera aproximación, vamos a usar un árbol de clasificación usando con parámetros:
-%             \begin{itemize}
-%                 \item random\_state = 50,
-%                 \item max\_depth=8,
-%                 \item criterion='gini',
-%             \end{itemize}
-%             para saber como performa y mejorarlo a partir de ahí.
+    Para preparar los datos para el modelado generamos una función que:
+    \begin{itemize}
+        \item  Divide el dataframe en X\_train, y\_train, X\_test e y\_test, haciendo la división entre test y el train en un 30\% y un 70\% respectivamente, con una semilla especifica.
+        \item  Procesa el X\_train y el X\_test con un pipeline generado previamente, el cual convierte las variable numéricas con el minmaxscaler y las categóricas con one hot encoding.
+    \end{itemize}
 
-%             Como resultado obtenemos que el Accuracy score para el test es de: 0.940 y la matriz de confusión nos da:
-%             \begin{table}[H]
-%                 \centering
-%                 \begin{tabular}{|l|c|c|c|c|}
-%                 \hline
-%                     ~ & Predicc. Inicial & Predicc. Primario & Predicc. Secundario & Predicc. Superior \\ \hline
-%                     Inicial & 445 & 0 & 1 & 0 \\ \hline
-%                     Primario & 0 & 961 & 8 & 9 \\ \hline
-%                     Secundario & 0 & 19 & 1693 & 59 \\ \hline
-%                     Superior & 1 & 57 & 84 & 630 \\ \hline
-%                 \end{tabular}
-%             \end{table}
+    Una vez aplicada dicha función a nuestro dataframe, tenemos ya lista la partición (con la misma cantidad de columnas) del mismo en X\_train, y\_train, X\_test e y\_test.
 
-%             Y obtenemos las siguientes métricas:
+\end{frame}
 
-%             \begin{table}[H]
-%                 \centering
-%                 \begin{tabular}{rrrrr}
-%                     ~ & precision & recall & f1-score & support \\ 
-%                     & & & & \\
-%                     1 & 1.00& 1.00 & 1.0 & 446 \\ 
-%                     2 & 0.93 & 0.99 & 0.95 & 978 \\ 
-%                     3 & 0.95 & 0.96 & 0.95 & 1771 \\ 
-%                     4 & 0.90 & 0.82 & 0.86 & 772 \\ 
-%                     & & & & \\
-%                     accuracy & & & 0.94 & 3967 \\ 
-%                     macro avg & 0.94 & 0.94 & 0.94 & 3967 \\ 
-%                     weighted avg & 0.94 & 0.94 & 0.94 & 3967 \\ 
-%                 \end{tabular}
-%             \end{table}
+    \subsection{Árbol de decisión}
 
-%             A simple vista, parece que el modelo performa muy bien, dado su accuracy. Veamos más en detalle y calculemos su sesgo y su varianza:
-%             \begin{itemize}
-%                 \item \textbf{Bias o sesgo:} 96.89\% que nos indica que tengo poco error, lo que indica que tenemos un sesgo bajo,
-%                 \item \textbf{Variance=Test\_Score - Bias=} 2.89\%, lo que nos indica que la varianza también es baja.
-%             \end{itemize}
+        \subsubsection{Primer modelo}
 
-%             Entonces, el modelo tiene una \textbf{buena relación} de sesgo y varianza.
+\begin{frame}{Modelos analíticos}
 
-%             De aquí, vemos necesario ver cuáles son las variables más importantes para el armado del modelo. Esto nos permitirá volver el modelo más robusto, al quitar las mismas. 
+    \begin{Large}
+        \textbf{Árbol de decisión}
+    \end{Large}
 
-%             Y como resultado, tenemos que la variable ``años\_escolaridad'' tiene una importancia del 84\%, por mucho superior al resto de variables.
+    Como primera aproximación, vamos a usar un árbol de clasificación usando con parámetros:
+    \begin{itemize}
+        \item random\_state = 50,
+        \item max\_depth=8,
+        \item criterion='gini',
+    \end{itemize}
+    para saber como performa y mejorarlo a partir de ahí.
 
-%             % Tendríamos que agregar algo relacionado a la diferencia que tenemos con los resultado del EDA.
+    Como resultado obtenemos que el Accuracy score para el test es de: 0.940 y la matriz de confusión nos da:
 
-%             Por lo tanto, vamos a tener que desarrollar un nuevo modelo sin esta variable. El principal motivo es que los años de escolaridad es un dato que puede constatarse de forma conjunta con el nivel máximo educativo, por lo que tiene sentido que si no tenes la variable target, tampoco tengas la variable de los años de escolaridad.
+    \begin{table}[H]
+        \scriptsize
+        \centering
+        \begin{tabular}{|l|c|c|c|c|}
+        \hline
+            ~ & Pred. Inicial & Pred. Primario & Pred. Secundario & Pred. Superior \\ \hline
+            Inicial & 445 & 0 & 1 & 0 \\ \hline
+            Primario & 0 & 961 & 8 & 9 \\ \hline
+            Secundario & 0 & 19 & 1693 & 59 \\ \hline
+            Superior & 1 & 57 & 84 & 630 \\ \hline
+        \end{tabular}
+    \end{table}
 
-%             Así, creamos un dataset nuevo (llamado ``df2'') sin la variable ``años\_escolaridad'', para volver a aplicar la función ``procesador'' para dividir nuevamente el mismo y generar nuevos modelos.
+\end{frame}
 
-%         \subsubsection{Segundo modelo}
+\begin{frame}{Modelos analíticos}
 
-%             Esta vez al correr el modelo, utilizaremos el ``DecisionTreeClassifier'' solo con los parámetros:
-%             \begin{itemize}
-%                 \item random\_state = 50,
-%                 \item cirterion='entropy'.
-%             \end{itemize}
-%             Que nos da como resultado:  
 
-%             \begin{table}[!ht]
-%                 \centering
-%                 \begin{tabular}{rrrrr}
-%                     ~ & precision & recall & f1-score & suppo \\
-%                     & & & & \\
-%                     1 & 0.83 & 0.79 & 0.81 & 446 \\
-%                     2 & 0.45 & 0.26 & 0.33 & 978 \\
-%                     3 & 0.56 & 0.66 & 0.60 & 1771 \\
-%                     4 & 0.39 & 0.45 & 0.42 & 772 \\
-%                     & & & & \\
-%                     accuracy & & & 0.53 & 3967 \\
-%                     macro avg & 0.56 & 0.59 & 0.54 & 3967 \\
-%                     weighted avg & 0.53 & 0.53 & 0.52 & 3967 \\
-%                 \end{tabular}
-%             \end{table}
+    Y obtenemos las siguientes métricas:
 
-%             Luego, analizamos el sesgo y la varianza:
-%             \begin{itemize}
-%                 \item \textbf{Bias o sesgo:} 99.78\% que nos indica que tengo poco error, es decir, un sesgo bajo,
-%                 \item \textbf{Variance=Test\_Score - Bias=} 46.39\%, lo que nos indica un nivel de varianza alto,
-%             \end{itemize}
-            
-%             Lo que nos da como resultado, que este modelo esta haciendo \textbf{OVERFITTING}.
+    \begin{table}[H]
+        \scriptsize
+        \centering
+        \begin{tabular}{rrrrr}
+            ~ & precision & recall & f1-score & support \\ 
+            & & & & \\
+            1 & 1.00& 1.00 & 1.0 & 446 \\ 
+            2 & 0.93 & 0.99 & 0.95 & 978 \\ 
+            3 & 0.95 & 0.96 & 0.95 & 1771 \\ 
+            4 & 0.90 & 0.82 & 0.86 & 772 \\ 
+            & & & & \\
+            accuracy & & & 0.94 & 3967 \\ 
+            macro avg & 0.94 & 0.94 & 0.94 & 3967 \\ 
+            weighted avg & 0.94 & 0.94 & 0.94 & 3967 \\ 
+        \end{tabular}
+    \end{table}
 
-%             Por lo que se observa, el árbol performa bastante peor sin esta variable, aumentando especialmente la varianza. Por lo tanto optamos probar mejorar nuestro modelo con un grid search.
-        
-%         \subsubsection{Gridsearch con CV}
-            
-%             En la grilla de parámetros para el Gridsearch elegimos los siguientes:
-%             \begin{itemize}
-%                 \item 'max\_depth': range(5,11),
-%                 \item 'max\_features': range(1,14),
-%                 \item 'criterion': ['gini','entropy','log\_loss'];
-%             \end{itemize}
-%             como estimador el ``DecisionTreeClassifier'' con el random\_state=50, con el cross-validation =10,  usando todos los procesadores.
+    A simple vista, parece que el modelo performa muy bien, dado su accuracy. Veamos más en detalle y calculemos su sesgo y su varianza:
+    \begin{itemize}
+        \item \textbf{Bias o sesgo:} 96.89\% que nos indica que tengo poco error, lo que indica que tenemos un sesgo bajo,
+        \item \textbf{Variance=Test\_Score - Bias=} 2.89\%, lo que nos indica que la varianza también es baja.
+    \end{itemize}
 
-%             Y nos da como resultado, que el mejor árbol de decisión posible obtiene 0.642. Y para eso el árbol debe tener una profundidad de  6, utilizar  10  variables y usar el método ``gini''.
+\end{frame}
 
-%             Entonces, entrenamos el modelo bajo estos mismos parámetros y obtenemos el siguiente reporte de clasificación:
+\begin{frame}{Modelos analíticos}
+    Entonces, el modelo tiene una \textbf{buena relación} de sesgo y varianza.
 
-%             \begin{table}[H]
-%                 \centering
-%                 \begin{tabular}{rrrrr}
-%                     ~ & precision & recall & f1-score & suppo \\
-%                     & & & & \\
-%                     1 & 0.99 & 0.74 & 0.85 & 446 \\
-%                     2 & 0.49 & 0.21 & 0.30 & 978 \\
-%                     3 & 0.55 & 0.87 & 0.69 & 1771 \\
-%                     4 & 0.78 & 0.41 & 0.54 & 772 \\
-%                     accuracy & & & 0.60 & 3967 \\
-%                     macro avg & 0.70 & 0.56 & 0.59 & 3967 \\
-%                     weighted avg & 0.63 & 0.60 & 0.57 & 3967 \\
-%                 \end{tabular}
-%             \end{table}
+    De aquí, vemos necesario ver cuáles son las variables más importantes para el armado del modelo. Esto nos permitirá volver el modelo más robusto, al quitar las mismas. 
 
-%             Luego, analizamos el sesgo y la varianza:
-%             \begin{itemize}
-%                 \item \textbf{Bias o sesgo:} 65.27\% que nos indica que tengo bastantes errores $\Rightarrow$ high bias,
-%                 \item \textbf{Variance=Test\_Score - Bias==} 5.14\%  $\Rightarrow$ low variance.
-%             \end{itemize}
+    Y como resultado, tenemos que la variable ``años\_escolaridad'' tiene una importancia del 84\%, por mucho superior al resto de variables.
 
-%             Por lo tanto, el modelo esta haciendo \textbf{UNDERFITTING}
+    % Tendríamos que agregar algo relacionado a la diferencia que tenemos con los resultado del EDA.
 
-%             \textbf{Conclusión}
-            
-%             Utilizar el grid search nos permitió mejorar bastante el modelo que había perdido bastante accuracy al retirar los años de escolaridad. La métrica que más pudimos mejorar con este método fue la varianza, que pasó de 44.97\% a 5.14\%, pero en contra parte nuestro acuracy bajo de 100\% a 65.27\%.
+    Por lo tanto, vamos a tener que desarrollar un nuevo modelo sin esta variable. El principal motivo es que los años de escolaridad es un dato que puede constatarse de forma conjunta con el nivel máximo educativo, por lo que tiene sentido que si no tenes la variable target, tampoco tengas la variable de los años de escolaridad.
 
-%     \subsection{Random Forest Classifier}
-        
-%         Ahora vamos a trabajar con random forest, para saber si este algoritmo nos arroja mejores resultados. Y teniendo en cuento todo el dataset incluido la variable con los años de escolaridad. 
+    Así, creamos un dataset nuevo (llamado ``df2'') sin la variable ``años\_escolaridad'', para volver a aplicar la función ``procesador'' para dividir nuevamente el mismo y generar nuevos modelos.
 
-%         \subsubsection{Primer modelo}
+\end{frame}
 
-%             Como primer modelo con el Random Forest Classifier, elegimos los siguientes parámetros:
-%             \begin{itemize}
-%                 \item n\_estimators=200,
-%                 \item max\_depth=15,
-%                 \item random\_state=50,
-%                 \item criterion='gini.
-%             \end{itemize}
+        \subsubsection{Segundo modelo}
 
-%             Que nos da los siguientes resultados en cuanto a las métricas:
-%             \begin{table}[H]
-%                 \centering
-%                 \begin{tabular}{rrrrr}
-%                     ~ & precision & recall & f1-score & suppo \\
-%                     & & & & \\
-%                     1 & 1.00 & 0.96 & 0.98 & 446 \\
-%                     2 & 0.86 & 0.95 & 0.90 & 978 \\
-%                     3 & 0.91 & 0.93 & 0.9 & 1771 \\
-%                     4 & 0.92 & 0.76 & 0.83 & 772 \\
-%                     & & & & \\
-%                     accuracy & & & 0.91 & 3967 \\
-%                     macro avg & 0.92 & 0.90 & 0.91 & 3967 \\
-%                     weighted avg & 0.91 & 0.91 & 0.90 & 3967 \\
-%                 \end{tabular}
-%             \end{table}
+\begin{frame}{Modelos analíticos}
 
-%              El random forest performa bastante bien, es decir, mucho mejor que los modelos anteriores:
-%              \begin{itemize}
-%                 \item \textbf{Bias o sesgo:} 97.80\% que nos indica que tengo bastantes errores, es decir tenemos un sesgo alto,
-%                 \item \textbf{Variance=Test\_Score - Bias==} 7.20\%, que nos indica que la varianza es baja.
-%              \end{itemize}
+    Esta vez al correr el modelo, utilizaremos el ``DecisionTreeClassifier'' solo con los parámetros:
+    \begin{itemize}
+        \item random\_state = 50,
+        \item cirterion='entropy'.
+    \end{itemize}
+    Que nos da como resultado:  
 
-%              En conclusión obtenemos un buen modelo. De todas maneras buscamos cuales son las variables más importantes, y encontramos que los años de escolaridad redujo la enorme importancia (a un 43.58\%) que tenía en el random tree. Sin embargo, sigue correspondiendo quitarla del modelo.
+    \begin{table}[!ht]
+        \scriptsize
+        \centering
+        \begin{tabular}{rrrrr}
+            ~ & precision & recall & f1-score & suppo \\
+            & & & & \\
+            1 & 0.83 & 0.79 & 0.81 & 446 \\
+            2 & 0.45 & 0.26 & 0.33 & 978 \\
+            3 & 0.56 & 0.66 & 0.60 & 1771 \\
+            4 & 0.39 & 0.45 & 0.42 & 772 \\
+            & & & & \\
+            accuracy & & & 0.53 & 3967 \\
+            macro avg & 0.56 & 0.59 & 0.54 & 3967 \\
+            weighted avg & 0.53 & 0.53 & 0.52 & 3967 \\
+        \end{tabular}
+    \end{table}
 
-%         \subsubsection{Segundo modelo}
+\end{frame}
 
-%             En este caso elegimos los siguientes parámetros:
-%             \begin{itemize}
-%                 \item n\_estimators=200,
-%                 \item max\_depth=10,
-%                 \item random\_state=50,
-%                 \item criterion='gini'.
-%             \end{itemize}
+\begin{frame}{Modelos analíticos}
 
-%             Dándonos por resultado los siguientes medidas de desempeño:
-%             \begin{table}[H]
-%                 \centering
-%                 \begin{tabular}{rrrrr}
-%                     ~ & precision & recall & f1-score & suppo \\
-%                     & & & & \\
-%                     1 & 0.95 & 0.78 & 0.86 & 446 \\
-%                     2 & 0.54 & 0.23 & 0.32 & 978 \\
-%                     3 & 0.56 & 0.88 & 0.69 & 1771 \\
-%                     4 & 0.80 & 0.40 & 0.53 & 772 \\
-%                     & & & & \\
-%                     accuracy & & & 0.62 & 3967 \\
-%                     macro avg & 0.71 & 0.57 & 0.60 & 3967 \\
-%                     weighted avg & 0.65 & 0.62 & 0.59 & 3967 \\
-%                 \end{tabular}
-%             \end{table}
+    Luego, analizamos el sesgo y la varianza:
+    \begin{itemize}
+        \item \textbf{Bias o sesgo:} 99.78\% que nos indica que tengo poco error, es decir, un sesgo bajo,
+        \item \textbf{Variance=Test\_Score - Bias=} 46.39\%, lo que nos indica un nivel de varianza alto,
+    \end{itemize}
 
-%             En este caso  obtuvimos los siguientes valores del sesgo y la varianza:
-%             \begin{itemize}
-%                 \item \textbf{Bias o sesgo:} 89.11\% que nos indica que tengo bastantes errores, es decir, que el sesgo es alto,
-%                 \item \textbf{Variance=Test\_Score - Bias==} 27.4\%, esto indica que tenemos un valor alto en la varianza.
-%              \end{itemize}
+    Lo que nos da como resultado, que este modelo esta haciendo \textbf{OVERFITTING}.
 
-%             El modelo empeora su accuracy pero está muy cercano al mejor modelo de Random Tree, mientras que crece mucho la varianza a un 27.4\% (unos 20 puntos). Ahora, al igual que con el el DesicionTree, vamos a probar mejorándolo con grid search.
+    Por lo que se observa, el árbol performa bastante peor sin esta variable, aumentando especialmente la varianza. Por lo tanto optamos probar mejorar nuestro modelo con un grid search.
 
-%         \subsubsection{Gridsearch con CV}
+\end{frame}
 
-%             En la grilla de parámetros para el Gridsearch elegimos los siguientes:
-%             \begin{itemize}
-%                 \item 'max\_depth': [5,7,10,15,None],
-%                 \item 'max\_features': [5,8,10,30,41],
-%                 \item 'n\_estimators': [200,300,500],
-%                 \item 'criterion': ['gini','entropy','log\_loss'].
-%             \end{itemize}
-%             como estimador el ``RandomTreeClassifier'' que utilizamos en el último modelo, con el cross-validation =10 y  usando todos los procesadores.
+\subsubsection{Gridsearch con CV}
 
-%             Y nos da como resultado, que el mejor random forest posible obtiene 0.668. 
+\begin{frame}{Modelos analíticos}
 
-%             Y para eso el árbol debe tener una profundidad de 15 , utilizar  10  variables, tener  300  estimadores y utilizar el método ``gini''.
-            
-%             Entonces, entrenamos el modelo bajo estos mismos parámetros y obtenemos el siguiente reporte de clasificación:
-
-%             \begin{table}[!ht]
-%                 \centering
-%                 \begin{tabular}{rrrrr}
-%                     ~ & precision & recall & f1-score & support \\
-%                     & & & & \\
-%                     1 & 0.95 & 0.79 & 0.86 & 446 \\
-%                     2 & 0.56 & 0.23 & 0.33 & 978 \\
-%                     3 & 0.56 & 0.89 & 0.69 & 1771 \\
-%                     4 & 0.80 & 0.40 & 0.54 & 772 \\
-%                     & & & & \\
-%                     accuracy & & & 0.62 & 3967 \\
-%                     macro avg & 0.72 & 0.58 & 0.60 & 3967 \\
-%                     weighted avg & 0.65 & 0.62 & 0.59 & 3967 \\
-%                 \end{tabular}
-%             \end{table}
-            
-%             \begin{itemize}
-%                 \item \textbf{Bias o sesgo:} 90.65\% que nos indica que tengo bastantes errores, es decir, el sesgo es alto,
-%                 \item \textbf{Variance=Test\_Score - Bias:} 28.54\% $\Rightarrow$, y nuestra varianza también es alta. 
-%             \end{itemize} 
-
-%             Lo que nos indica que nuestro modelo esta haciendo \textbf{OVERFITING}.
-
-% \newpage
-
-% \section{Conclusiones}
-
-%     Finalmente, nos queda elegir el mejor modelo para realizar nuestras predicciones. Para eso vamos a tomar las métricas de cada uno de ellos y hacer un cuadro comparativo:
+    \begin{Large}
+        \textbf{Gridsearch con CV}
+    \end{Large}
+    \newline
     
-%     \begin{table}[H]
-%         \centering
-%         \begin{tabular}{|l|r|r|r|r|r|r|r|r|}
-%             \hline
-%             modelo & accuracy & sesgo & varianza & f1\_inicial & f1\_primario & f1\_secundario & f1\_superior \\ \hline
-%             árbol\_default & 0.53 & 1.00 & 0.46 & 0.81 & 0.33 & 0.60 & 0.42 \\ \hline
-%             árbol\_mejorado & 0.60 & 0.65 & 0.05 & 0.85 & 0.30 & 0.69 & 0.53 \\ \hline
-%             bosque\_default & 0.62 & 0.89 & 0.27 & 0.86 & 0.32 & 0.69 & 0.53 \\ \hline
-%             bosque\_mejorado & 0.62 & 0.91 & 0.29 & 0.86 & 0.33 & 0.69 & 0.54 \\ \hline
-%         \end{tabular}
-%     \end{table}
+    En la grilla de parámetros para el Gridsearch elegimos los siguientes:
+    \begin{itemize}
+        \item 'max\_depth': range(5,11),
+        \item 'max\_features': range(1,14),
+        \item 'criterion': ['gini','entropy','log\_loss'];
+    \end{itemize}
+    como estimador el ``DecisionTreeClassifier'' con el random\_state=50, con el cross-validation =10,  usando todos los procesadores.
 
-%     Con esta información podemos decidir qué modelo nos conviene usar:
-%     \begin{itemize}
-%         \item El árbol default tiene el mejor resultado con respecto al sesgo, pero su varianza lo deja afuera de la competencia.
-%         \item Por el contrario, el árbol mejorado tiene una varianza insuperable de 5\%, aunque con el menor puntaje con respecto al sesgo.
-%         \item El bosque default tiene resultados mixtos en ambas categorías.
-%         \item El bosque mejorado destaca por bajo sesgo pero su varianza es la segunda peor.
-%     \end{itemize}
-%     Como era de esperarse, los finalistas son el árbol y el bosque mejorado. Sorprendentemente, ambos performan muy bien pero en métricas diferentes. A su vez, el accuracy de ambos difiere en apenas un 2\%.
+    Y nos da como resultado, que el mejor árbol de decisión posible obtiene 0.642. Y para eso el árbol debe tener una profundidad de  6, utilizar  10  variables y usar el método ``gini''.
 
-%     En nuestra opinión, es el árbol mejorado el ganador, ya que tiene la robustez suficiente para poder generalizar en caso de agregar nuevos datos al modelo. Otra ventaja frente al bosque aleatorio es su mayor velocidad de entrenamiento, asì como su capacidad de ser visualizada en un gráfico.
+\end{frame}
+
+\begin{frame}{Modelos analíticos}
+
+    Entonces, entrenamos el modelo bajo estos mismos parámetros y obtenemos el siguiente reporte de clasificación:
+
+    \begin{table}[H]
+        \scriptsize
+        \centering
+        \begin{tabular}{rrrrr}
+            ~ & precision & recall & f1-score & suppo \\
+            & & & & \\
+            1 & 0.99 & 0.74 & 0.85 & 446 \\
+            2 & 0.49 & 0.21 & 0.30 & 978 \\
+            3 & 0.55 & 0.87 & 0.69 & 1771 \\
+            4 & 0.78 & 0.41 & 0.54 & 772 \\
+            accuracy & & & 0.60 & 3967 \\
+            macro avg & 0.70 & 0.56 & 0.59 & 3967 \\
+            weighted avg & 0.63 & 0.60 & 0.57 & 3967 \\
+        \end{tabular}
+    \end{table}
+
+    Luego, analizamos el sesgo y la varianza:
+    \begin{itemize}
+        \item \textbf{Bias o sesgo:} 65.27\% que nos indica que tengo bastantes errores $\Rightarrow$ high bias,
+        \item \textbf{Variance=Test\_Score - Bias==} 5.14\%  $\Rightarrow$ low variance.
+    \end{itemize}
+
+    Por lo tanto, el modelo esta haciendo \textbf{UNDERFITTING}
+
+\end{frame}
+
+\begin{frame}{Modelos analíticos}
+
+    \begin{Large}
+        \textbf{Conclusión}
+    \end{Large}
+    \newline
+    
+    Utilizar el grid search nos permitió mejorar bastante el modelo que había perdido bastante accuracy al retirar los años de escolaridad. La métrica que más pudimos mejorar con este método fue la varianza, que pasó de 44.97\% a 5.14\%, pero en contra parte nuestro acuracy bajo de 100\% a 65.27\%.
+
+\end{frame}
+
+    \subsection{Random Forest Classifier}
+
+\begin{frame}{Modelos analíticos}
+
+    
+    \begin{Large}
+        \textbf{Random Forest Classifier}
+    \end{Large}
+
+    Ahora vamos a trabajar con random forest, para saber si este algoritmo nos arroja mejores resultados. Y teniendo en cuento todo el dataset incluido la variable con los años de escolaridad. 
+
+    \subsubsection{Primer modelo}
+    \begin{Large}
+        \textbf{Primer modelo}
+    \end{Large}
+
+    Como primer modelo con el Random Forest Classifier, elegimos los siguientes parámetros:
+    \begin{itemize}
+        \item n\_estimators=200,
+        \item max\_depth=15,
+        \item random\_state=50,
+        \item criterion='gini.
+    \end{itemize}
+
+\end{frame}
+
+\begin{frame}{Modelos analíticos}
+
+        Que nos da los siguientes resultados en cuanto a las métricas:
+        \begin{table}[H]
+            \scriptsize
+            \centering
+            \begin{tabular}{rrrrr}
+                ~ & precision & recall & f1-score & suppo \\
+                & & & & \\
+                1 & 1.00 & 0.96 & 0.98 & 446 \\
+                2 & 0.86 & 0.95 & 0.90 & 978 \\
+                3 & 0.91 & 0.93 & 0.9 & 1771 \\
+                4 & 0.92 & 0.76 & 0.83 & 772 \\
+                & & & & \\
+                accuracy & & & 0.91 & 3967 \\
+                macro avg & 0.92 & 0.90 & 0.91 & 3967 \\
+                weighted avg & 0.91 & 0.91 & 0.90 & 3967 \\
+            \end{tabular}
+        \end{table}
+
+    El random forest performa bastante bien, es decir, mucho mejor que los modelos anteriores:
+    \begin{itemize}
+    \item \textbf{Bias o sesgo:} 97.80\% que nos indica que tengo bastantes errores, es decir tenemos un sesgo alto,
+    \item \textbf{Variance=Test\_Score - Bias==} 7.20\%, que nos indica que la varianza es baja.
+    \end{itemize}
+
+\end{frame}
+
+\begin{frame}{Modelos analíticos}
+
+    \begin{Large}
+        \textbf{Conclusión}
+    \end{Large}
+    \newline
+
+    En conclusión obtenemos un buen modelo. De todas maneras buscamos cuales son las variables más importantes, y encontramos que los años de escolaridad redujo la enorme importancia (a un 43.58\%) que tenía en el random tree. Sin embargo, sigue correspondiendo quitarla del modelo.
+
+\end{frame}
+
+\subsubsection{Segundo modelo}
+
+\begin{frame}{Modelos analíticos}
+
+    \begin{Large}
+        \textbf{Segundo modelo}
+    \end{Large}
+    \newline
+
+    En este caso elegimos los siguientes parámetros:
+    \begin{itemize}
+        \item n\_estimators=200,
+        \item max\_depth=10,
+        \item random\_state=50,
+        \item criterion='gini'.
+    \end{itemize}
+
+    Dándonos por resultado los siguientes medidas de desempeño:
+    \begin{table}[H]
+        \scriptsize
+        \centering
+        \begin{tabular}{rrrrr}
+            ~ & precision & recall & f1-score & suppo \\
+            & & & & \\
+            1 & 0.95 & 0.78 & 0.86 & 446 \\
+            2 & 0.54 & 0.23 & 0.32 & 978 \\
+            3 & 0.56 & 0.88 & 0.69 & 1771 \\
+            4 & 0.80 & 0.40 & 0.53 & 772 \\
+            & & & & \\
+            accuracy & & & 0.62 & 3967 \\
+            macro avg & 0.71 & 0.57 & 0.60 & 3967 \\
+            weighted avg & 0.65 & 0.62 & 0.59 & 3967 \\
+        \end{tabular}
+    \end{table}
+
+\end{frame}
+
+\begin{frame}{Modelos analíticos}
+
+    En este caso  obtuvimos los siguientes valores del sesgo y la varianza:
+    \begin{itemize}
+        \item \textbf{Bias o sesgo:} 89.11\% que nos indica que tengo bastantes errores, es decir, que el sesgo es alto,
+        \item \textbf{Variance=Test\_Score - Bias==} 27.4\%, esto indica que tenemos un valor alto en la varianza.
+        \end{itemize}
+
+    El modelo empeora su accuracy pero está muy cercano al mejor modelo de Random Tree, mientras que crece mucho la varianza a un 27.4\% (unos 20 puntos). Ahora, al igual que con el el DesicionTree, vamos a probar mejorándolo con grid search.
+
+\end{frame}
+
+    \subsubsection{Gridsearch con CV}
+
+\begin{frame}{Modelos analíticos}
+
+    \begin{Large}
+        \textbf{Gridsearch con CV}
+    \end{Large}
+    \newline
+
+    En la grilla de parámetros para el Gridsearch elegimos los siguientes:
+    \begin{itemize}
+        \item 'max\_depth': [5,7,10,15,None],
+        \item 'max\_features': [5,8,10,30,41],
+        \item 'n\_estimators': [200,300,500],
+        \item 'criterion': ['gini','entropy','log\_loss'].
+    \end{itemize}
+    como estimador el ``RandomTreeClassifier'' que utilizamos en el último modelo, con el cross-validation =10 y  usando todos los procesadores.
+
+    Y nos da como resultado, que el mejor random forest posible obtiene 0.668. 
+
+    Y para eso el árbol debe tener una profundidad de 15 , utilizar  10  variables, tener  300  estimadores y utilizar el método ``gini''.
+
+\end{frame}
+
+\begin{frame}{Modelos analíticos}            
+
+        Entonces, entrenamos el modelo bajo estos mismos parámetros y obtenemos el siguiente reporte de clasificación:
+
+    \begin{table}[!ht]
+        \scriptsize
+        \centering
+        \begin{tabular}{rrrrr}
+            ~ & precision & recall & f1-score & support \\
+            & & & & \\
+            1 & 0.95 & 0.79 & 0.86 & 446 \\
+            2 & 0.56 & 0.23 & 0.33 & 978 \\
+            3 & 0.56 & 0.89 & 0.69 & 1771 \\
+            4 & 0.80 & 0.40 & 0.54 & 772 \\
+            & & & & \\
+            accuracy & & & 0.62 & 3967 \\
+            macro avg & 0.72 & 0.58 & 0.60 & 3967 \\
+            weighted avg & 0.65 & 0.62 & 0.59 & 3967 \\
+        \end{tabular}
+    \end{table}
+    
+    \begin{itemize}
+        \item \textbf{Bias o sesgo:} 90.65\% que nos indica que tengo bastantes errores, es decir, el sesgo es alto,
+        \item \textbf{Variance=Test\_Score - Bias:} 28.54\% $\Rightarrow$, y nuestra varianza también es alta. 
+    \end{itemize} 
+
+    Lo que nos indica que nuestro modelo esta haciendo \textbf{OVERFITING}.
+
+\end{frame}
+
+\section{Conclusiones}
+
+\begin{frame}{Conclusiones}
+
+    Finalmente, nos queda elegir el mejor modelo para realizar nuestras predicciones. Para eso vamos a tomar las métricas de cada uno de ellos y hacer un cuadro comparativo:
+    
+    \begin{table}[H]
+        \scriptsize
+        \centering
+        \begin{tabular}{|l|r|r|r|r|r|r|r|r|}
+            \hline
+            modelo & accuracy & sesgo & varianza & f1\_inicial & f1\_pri & f1\_sec & f1\_sup \\ \hline
+            árbol\_default & 0.53 & 1.00 & 0.46 & 0.81 & 0.33 & 0.60 & 0.42 \\ \hline
+            árbol\_mejorado & 0.60 & 0.65 & 0.05 & 0.85 & 0.30 & 0.69 & 0.53 \\ \hline
+            bosque\_default & 0.62 & 0.89 & 0.27 & 0.86 & 0.32 & 0.69 & 0.53 \\ \hline
+            bosque\_mejorado & 0.62 & 0.91 & 0.29 & 0.86 & 0.33 & 0.69 & 0.54 \\ \hline
+        \end{tabular}
+    \end{table}
+
+\end{frame}
+
+\begin{frame}{Conclusiones}
+
+    Con esta información podemos decidir qué modelo nos conviene usar:
+    \begin{itemize}
+        \item El árbol default tiene el mejor resultado con respecto al sesgo, pero su varianza lo deja afuera de la competencia.
+        \item Por el contrario, el árbol mejorado tiene una varianza insuperable de 5\%, aunque con el menor puntaje con respecto al sesgo.
+        \item El bosque default tiene resultados mixtos en ambas categorías.
+        \item El bosque mejorado destaca por bajo sesgo pero su varianza es la segunda peor.
+    \end{itemize}
+    Como era de esperarse, los finalistas son el árbol y el bosque mejorado. Sorprendentemente, ambos performan muy bien pero en métricas diferentes. A su vez, el accuracy de ambos difiere en apenas un 2\%.
+
+    En nuestra opinión, es el árbol mejorado el ganador, ya que tiene la robustez suficiente para poder generalizar en caso de agregar nuevos datos al modelo. Otra ventaja frente al bosque aleatorio es su mayor velocidad de entrenamiento, asì como su capacidad de ser visualizada en un gráfico.
+
+\end{frame}
         
 \end{document}
