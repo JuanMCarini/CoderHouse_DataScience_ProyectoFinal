@@ -18,7 +18,7 @@
 \usepackage{hyperref}%Links
 \hypersetup{  %formato link
     colorlinks=true,
-    linkcolor=blue,
+    linkcolor=green,
     filecolor=blue,      
     urlcolor=blue}
 
@@ -27,6 +27,8 @@
   \def\\{}%
   \def\vspace{}%
 }
+
+\usepackage{wrapfig} %para acomodar gráficos con texto.
 
 \title[Curso Data Science]{\textbf{Análisis socioeducativo de los habitantes de la Ciudad de Buenos Aires}}
 
@@ -39,7 +41,7 @@
 \begin{frame}
 
     \begin{center}
-        \includegraphics[scale=0.2]{Imagenes/Coder.png}
+        \includegraphics[scale=0.2]{../Informe/Imagenes/Coder2.png}
     \end{center}
 
     \titlepage
@@ -110,7 +112,7 @@
 
 \section{Introducción a las variables: Análisis exploratorio de los datos}
 
-\begin{frame}{Análisis exploratorio de los datos}
+\begin{frame}{Análisis exploratorio de los datos (EDA)}
     
 \end{frame}
  
@@ -233,7 +235,7 @@
     Comenzamos con un pantallazo general sobre las primeras cualidades de los datos, como muestra representativa para la EPH, sobre quiénes son los ciudadanos representados en el dataset.
 
     \begin{center}
-        \includegraphics[scale=0.315]{Imagenes/AUGenero.png}
+        \includegraphics[scale=0.315]{../Informe/Imagenes/AUGenero.png}
     \end{center}
 
     En la variable género los datos parecen equilibrados en las categorías. Para el caso de la variable ``edad'', la distribución se asemeja a la de una normal.
@@ -241,26 +243,30 @@
 \end{frame}
               
     \subsubsection{Comuna}
+
+\begin{frame}{Análisis univariado}
+
+    Seguimos observando la variable ``comuna'':
+    \begin{center}
+        \includegraphics[scale=0.236]{../Informe/Imagenes/AUComuna.png}    
+    \end{center}
+    Observando ambos gráficos vemos que las comunas 1,4,7 y 8 tienen mayor cantidad de casos.
+    
+\end{frame}
            
-%             Seguimos observando la variable ``comuna''. En la misma se muestra la comuna de la Ciudad de Buenos Aires del entrevistado, de manera de tener una ubicación geográfica. Consideramos importante revisar esta variable ya que tenemos como hipótesis que el nivel educativo alcanzado puede estar dependiendo de la zona geográfica de la ciudad en la que se encuentra el entrevistado.
-           
-%             Para esto vamos a generar un mapa, así que utilizaremos el mapa de comunas de la Ciudad de Buenos Aires, transformamos las variables que vamos a usar para joinear el mapa con la base de manera que coincidan, transformamos la base para contabilizar la frecuencia con la que aparece cada comuna en la base. Y por último unimos ambos datasets y generamos una nueva variable con las coordenadas para poder agregar etiquetas en el centro geográfico de cada comuna, que nos da como resultado los siguientes gráficos:
-           
-%             \begin{center}
-%                 \includegraphics[scale=0.30]{Imagenes/AUComuna.png}    
-%             \end{center}
- 
-%             Observando ambos gráficos vemos que las comunas 1,4,7 y 8 tienen mayor cantidad de casos. Queda por verse si en posteriores análisis es necesario abordar esta diferencia para evitar sesgos. Para eso, será necesario tomar en cuenta el porcentaje de la población total de cada comuna.
-           
-%             \subsubsection{Ingreso familiar per cápita}
-           
+    \subsubsection{Ingreso familiar per cápita}
+
+\begin{frame}{Análisis univariado}
+
+    \begin{center}
+        \includegraphics[scale=0.236]{../Informe/Imagenes/AUIngFam.png}
+    \end{center}
+
+\end{frame}
+
 %             Ahora probamos con observar los ingresos familiares. Creemos que puede ser un indicador interesante del nivel educativo.
            
 %             Para esto, armamos una función para graficar y jugar con el nivel del filtrado de la variable y obtener un histograma que permita apreciar mejor la distribución de la variable sin tantos outliers:
-           
-%             \begin{center}
-%                 \includegraphics[scale=0.325]{Imagenes/AUIngFam.png}
-%             \end{center}
            
 %             % Y como hay muchos outliers que impiden ver la distribución correctamente, los quitamos de los gráficos:
            
@@ -278,30 +284,35 @@
            
 %             A simple vista se observan tres "picos": en el valor mínimo, alrededor del 7.5 y alrededor del 12.5. Podemos inferir que estos tres casos corresponden a no tener estudios, solo haber transcurrido el primario y haber transcurrido hasta la educación secundaria, respectivamente.
            
-%             \subsubsection{Máximo nivel educativo (Target)}
-           
-%             \begin{center}
-%                 \includegraphics[scale=0.3]{Imagenes/AUTarget.png}    
-%             \end{center}
-           
-%             Podemos observar que el nivel máximo educativo más alcanzado es el secundario completo, seguido por el primario. Contrario de lo que habíamos intuido anteriormente, el nivel superior quedó en tercer lugar. Adicionalmente, el nivel secundario y primario explican casi el 77\% de los datos.
+    \subsubsection{Máximo nivel educativo (Target)}
+    
+\begin{frame}{Análisis univariado}
 
+    \begin{center}
+        \includegraphics[scale=0.225]{../Informe/Imagenes/AUTarget.png}    
+    \end{center}
+
+    Podemos observar que el nivel máximo educativo más alcanzado es el secundario completo, seguido por el primario. Contrario de lo que habíamos intuido anteriormente, el nivel superior quedó en tercer lugar. Adicionalmente, el nivel secundario y primario explican casi el 77\% de los datos.
+
+\end{frame}
     
-%     \newpage
+    \subsection{Análisis bivariado}
+
+\begin{frame}{Análisis bivariado}
     
-%     \subsection{Análisis bivariado}
- 
-%         Para comenzar el análisis bivariado del problema, realizamos diferentes heat maps para ver si algo nos llama la atención entre las variables numéricas.        
-       
-%         \begin{center}
-%             \includegraphics[scale=0.65]{Imagenes/ABSpearman.png}
-%         \end{center}
- 
-%         A simple vista, no se observan fuertes correlaciones.
- 
-%         Podemos notar que la variable ``años\_escolaridad'' correlaciona moderadamente bien con variables relacionadas al ingreso.
- 
-%         La principal correlación positiva es ``años\_escolaridad'' con ingreso familiar per cápita (``ing\_per\_cap\_familiar''), lo cual hace sentido teórico.
+    Para comenzar el análisis bivariado del problema, realizamos diferentes heat maps para ver si algo nos llama la atención entre las variables numéricas.
+    \begin{wrapfigure}{l}{0.6\textwidth}
+        \centering
+        \includegraphics[width=0.75\linewidth]{../Informe/Imagenes/ABSpearman.png}
+    \end{wrapfigure}
+     \begin{itemize}
+        \footnotesize
+        \item No se observan fuertes correlaciones.
+        \item ``años\_escolaridad'' correlaciona moderadamente bien con variables relacionadas al ingreso.
+        \item La principal correlación positiva es ``años\_escolaridad'' con ingreso familiar per cápita (``ing\_per\_cap\_familiar'').
+    \end{itemize}
+
+\end{frame}
  
 %         Ahora, utilizando el método para solo graficar en base a un threshold vemos que los años de escolaridad alcanzados por los entrevistados tienen algo relación $(66\%$) con la variable ``ingresos\_totales''
 %         % Estaría bien solo utilizar el gráfico de la derecha.
@@ -310,47 +321,69 @@
 %             \includegraphics[scale=0.4]{Imagenes/ABThreshold.png}
 %         \end{center}
  
-%         Por último corremos una tabla de correlación y filtramos las de valores más altos
+\begin{frame}{Análisis bivariado}
+
+    Corremos una tabla de correlación y filtramos las de valores más altos:
  
-%         \begin{table}[H]
-%             \centering
-%             \begin{tabular}{|l|l|l|l|}
-%             \hline
-%                 ~ & Variable 1 & Variable 2 & Correlación \\ \hline
-%                 2 & ingreso\_total\_lab & ingresos\_totales & 0.80 \\ \hline
-%                 6 & ingresos\_familiares & ing\_per\_cap\_familiar & 0.76 \\ \hline
-%                 4 & ingresos\_totales & ing\_per\_cap\_familiar & 0.62 \\ \hline
-%                 5 & ingresos\_totales & años\_escolaridad & 0.60 \\ \hline
-%                 1 & edad & ingreso\_total\_no\_lab & 0.57 \\ \hline
-%                 7 & años\_escolaridad & Target & 0.57 \\ \hline
-%                 3 & ingreso\_total\_lab & años\_escolaridad & 0.54 \\ \hline
-%             \end{tabular}
-%         \end{table}
+    \begin{table}[H]
+        \centering
+        \begin{tabular}{|l|l|l|l|}
+        \hline
+            ~ & Variable 1 & Variable 2 & Correlación \\ \hline
+            2 & ingreso\_total\_lab & ingresos\_totales & 0.80 \\ \hline
+            6 & ingresos\_familiares & ing\_per\_cap\_familiar & 0.76 \\ \hline
+            4 & ingresos\_totales & ing\_per\_cap\_familiar & 0.62 \\ \hline
+            5 & ingresos\_totales & años\_escolaridad & 0.60 \\ \hline
+            1 & edad & ingreso\_total\_no\_lab & 0.57 \\ \hline
+            7 & años\_escolaridad & Target & 0.57 \\ \hline
+            3 & ingreso\_total\_lab & años\_escolaridad & 0.54 \\ \hline
+        \end{tabular}
+    \end{table}
+
+    \begin{itemize}
+        \item Como es esperable, hay alta correlación entre las variables relacionadas al ingreso.
+        \item A su vez, encontramos una alta correlación (66\%) entre los ingresos y los años de escolaridad.
+        \item Y también observamos una relación positiva entre la edad y los ingresos totales.
+    \end{itemize}
+
+\end{frame}
  
-%         En conclusión podemos ver que:
-%         \begin{itemize}
-%             \item Como es esperable, hay alta correlación entre las variables relacionadas al ingreso.
-%             \item A su vez, encontramos una alta correlación (66\%) entre los ingresos y los años de escolaridad.
-%             \item Y también observamos una relación positiva entre la edad y los ingresos totales.
-%         \end{itemize}
+    \subsubsection{Comparación entre variables numéricas}
+
+\begin{frame}{Análisis bivariado}
+
+    Observaremos la relación entre los ingresos totales de cada hogar y los ingresos familiares por edad:
+    \begin{center}
+        \includegraphics[scale=0.15]{../Informe/Imagenes/ABCompVarNum.png}
+    \end{center}
+    Se puede ver que desde los 30 años en adelante el ingreso total de la persona se corresponde con el ingreso familiar. Por ende suele haber un único ingreso fuerte por grupo familiar.
+
+\end{frame}
  
-%         \subsubsection{Comparación entre variables numéricas}
- 
-%             En primer lugar, observaremos la relación entre los ingresos totales de cada hogar y los ingresos familiares por edad:
-%             \begin{center}
-%                 \includegraphics[scale=0.2275]{Imagenes/ABCompVarNum.png}
-%             \end{center}
- 
-%             Se puede ver que desde los 30 años en adelante el ingreso total de la persona se corresponde con el ingreso familiar. Por ende suele haber un único ingreso fuerte por grupo familiar.
- 
-%         \subsubsection{Comparación de variables categóricas con numéricas}
- 
+    \subsubsection{Comparación de variables categóricas con numéricas}
+
+\begin{frame}{Análisis bivariado}
+
+
+\end{frame}
+
 %             Adicionalmente, vamos a comparar algunas variables con nuestro target, comenzando con los ingresos totales, pero primero veamos como se relacionan algunas categorías con el genero de los encuestados:
  
 %             \begin{center}
 %                 \includegraphics[scale=0.2295]{Imagenes/ABCatVsNum1.png}
 %             \end{center}
  
+\begin{frame}{Análisis bivariado}
+    \footnotesize
+
+    Veamos como se relacionan las categorías de ingresos con el genero de los encuestados:
+    \begin{center}
+        \includegraphics[scale=0.295]{../Informe/Imagenes/ABCatVsNum2.png}
+    \end{center}
+    Y resulta que con las variables de ingreso, no parece haber nada disruptivo. Salvo que los hombres parecieran tener ingresos totales y familiares mayores que las mujeres, pero no pareciera que haya distribuciones desiguales en los años de escolaridad.
+
+\end{frame}
+
 %             Probemos quitando outliers, a excepción de la cantidad de hijos nacidos vivos (puesto que no arrojará ningún dato nuevo) y de años de escolaridad (que no tiene outliers)
  
 %             \begin{center}

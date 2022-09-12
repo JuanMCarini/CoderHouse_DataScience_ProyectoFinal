@@ -73,7 +73,8 @@ def hist_box(DataFrame:pd.DataFrame, #dataset
              x, #variable del gráfico
              limite,# frecuencia del rango para la etiqueta del eje x
              bins,
-             titulo:str):
+             titulo:str,
+             ruta:str):
     '''
     +Armamos una función para graficar y jugar con el nivel del filtrado de la variable y obtener un histograma 
     que permita apreciar mejor la distribución de la variable sin tantos outliers   
@@ -82,6 +83,7 @@ def hist_box(DataFrame:pd.DataFrame, #dataset
     limite -> frecuencia del rango para la etiqueta del eje x
     bins -> divisiones del  histograma
     titulo -> título superior del gráfico
+    ruta -> ruta donde se guardara la imagen
     '''
     fig, ax = plt.subplots(figsize=(20,10),nrows=2,ncols=1,sharex=True)
     sns.histplot(x=x,
@@ -95,7 +97,7 @@ def hist_box(DataFrame:pd.DataFrame, #dataset
     ax[0].set_title(f"{titulo} menor a {limite}",size=25)
     ax[1].set_title("")
     ax[0].set(xticks=range(0,limite+1,int(limite/20)))
-    #fig.savefig('Informe/Imagenes/AUIngFam.png')
+    fig.savefig(ruta)
 
 
 def freq_table(df:pd.DataFrame, col):
