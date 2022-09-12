@@ -15,16 +15,24 @@
 
 \usepackage{csvsimple} %csv to table
 
-\title[Data Science]{\textbf{Análisis socioeducativo de los habitantes de la Ciudad de Buenos Aires}}
+\usepackage{hyperref}%Links
+\hypersetup{  %formato link
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=blue,      
+    urlcolor=blue}
+
+% Para evitar errores de compilación en \author
+\pdfstringdefDisableCommands{%
+  \def\\{}%
+  \def\vspace{}%
+}
+
+\title[Curso Data Science]{\textbf{Análisis socioeducativo de los habitantes de la Ciudad de Buenos Aires}}
 
 \author[Coderhouse]{\textbf{Profesor:} Damian Dapueto \\ \vspace{0.1cm} \textbf{Tutor:} Héctor Alonso \\ \vspace{0.1cm} \textbf{Grupo de Trabajo:} Lucia Buzzeo, Lucia Hukovsky,\\ Jose Saint German, Juan Martín Carini}
 
 \date{}
-
-% \author[Data Science]{\textbf{Profesor:} Damian Dapueto \\ \textbf{Tutor:} Héctor Alonso }
-
-% \date{\textbf{Grupo de Trabajo:} Lucia Buzzeo, Lucia Hukovsky,\\ Jose Saint German, Juan Martín Carini}
-
 
 \begin{document}
 
@@ -42,9 +50,11 @@
 
     \subsection{Resumen del proyecto}
 
-    \begin{frame}{Introducción}
+\begin{frame}{Introdución}
+    
+    
 
-    \end{frame}
+\end{frame}
 
 %         La ciudadanía es un concepto jurídico, filosófico y político que ha sido creado para designar a una persona física que constituye una sociedad o entidad territorial. Para las personas que forman parte de una comunidad, ciudadanos, resulta de suma importancia sentirse representados por los demás integrantes de la misma, mediante políticas públicas que abarquen sus necesidades y requerimientos. 
 
@@ -60,53 +70,49 @@
 
     \subsection{Objetivos del proyecto}
 
-    \begin{frame}{Objetivos}
+\begin{frame}{Objetivos}
 
-    \end{frame}
+    \begin{itemize}
+        \item Descubrir las principales variables intervinientes en el nivel máximo educativo alcanzado por la población de la Ciudad Autónoma de Buenos Aires (CABA).
+        \item Generar un modelo de predicción aplicado a nuestra variable target ``Nivel Máximo Educativo’’, esto lo haremos implementando los siguientes modelos de clasificación:
+        \begin{itemize}
+            \item \textbf{Árbol de decisión:} que construye un árbol durante el entrenamiento que es el que aplica a la hora de realizar la predicción.
+            \item \textbf{Bosque Aleatorio:} que es un conjunto (ensemble) de árboles de decisión combinados con bagging.
+        \end{itemize}
+    \end{itemize}
 
-%         En el presente proyecto se persigue el objetivo de descubrir las principales variables intervinientes en el nivel máximo educativo alcanzado por la población de la Ciudad Autónoma de Buenos Aires (CABA).
-        
-%         En concreto, con este proyecto se plantea el análisis de variables que podrían contribuir al nivel máximo educativo alcanzado por cada individuo en CABA. Las mismas se estudian tanto de forma independiente como entrelazadas. El alcance de dicho objetivo permitiría identificar posibles causas que derivan en la desigualdad de acceso educativo, y, en última instancia, generar políticas públicas eficaces que permitan subsanar dicha problemática. 
+\end{frame}
 
-%         De este objetivo principal se desprenden los siguientes objetivos específicos:
-%         \begin{itemize}
-%             \item Determinar si la ubicación geográfica del encuestado es determinante para alcanzar ciertos niveles educativos. De este objetivo se desprende determinar la relación entre el nivel educativo y la comuna del encuestado, así como la relación entre la misma variable y el hecho de que el encuestado habite en una villa de emergencia.
-%             \item Establecer la fuerza con la que el nivel socioeconómico afecta la variable target.
-%             \item Explorar la relación del target con otras variables, como el sexo del encuestado, la cantidad de hijos, la afiliación de salud o la edad.
-%         \end{itemize}
+    \subsection{Definición de la fuente de información}
 
-%         % COMENTARIO DE HECTOR. Añadir el objetivo del modelo de clasificación, así como los modelos implementados.
+\begin{frame}{Fuente de información}
 
-%         Y por último intentaremos generar un modelo de predicción aplicado a nuestra variable target ``Nivel Máximo Educativo’’, esto lo haremos implementando los siguientes modelos de clasificación:
-%         \begin{itemize}
-%             \item \textbf{Árbol de dicisión:} que construye un árbol durante el entrenamiento que es el que aplica a la hora de realizar la predicción.
-%             \item \textbf{Bosque Aleatorio:} que es un conjunto (ensemble) de árboles de decisión combinados con bagging.
-%         \end{itemize}
+    Para trabajar esta problemática, se ha recurrido a la \href{https://data.buenosaires.gob.ar/dataset/encuesta-anual-hogares/resource/3a45c563-396d-42de-ba93-8a93729e0723}{Encuesta Anual de Hogares} del Gobierno de la Ciudad de Buenos Aires para el año 2019. El dataset está disponible en la base de datos abiertos del GCBA.
 
-%     \subsection{Definición de la fuente de información}
+    Esta encuesta contiene información demográfica, social, económica, educativa y de salud de 14319 habitantes de la Ciudad, la cual es una muestra representativa que permite obtener un vistazo de la población de la Ciudad.
 
-%         Para trabajar esta problemática, se ha recurrido a la \href{https://data.buenosaires.gob.ar/dataset/encuesta-anual-hogares/resource/3a45c563-396d-42de-ba93-8a93729e0723}{Encuesta Anual de Hogares} del Gobierno de la Ciudad de Buenos Aires para el año 2019. El dataset está disponible en la base de datos abiertos del GCBA.
+\end{frame}
 
-%         Esta encuesta contiene información demográfica, social, económica, educativa y de salud de 14319 habitantes de la Ciudad, la cual es una muestra representativa que permite obtener un vistazo de la población de la Ciudad.
+\section{Planificación}
 
+    \subsection*{Estructura de los trabajos}
 
-% \newpage
+\begin{frame}{Estructura de los trabajos}
 
-% \section{Planificación}
+    Este trabajo se ha dividido en 3 partes:
+    \begin{enumerate}
+        \item \textbf{Introducción a las variables del problema:} Se realiza un análisis de las variables del dataset. En el mismo se busca conocer su performance dentro del dataset. A la vez, se investiga cómo las variables interactúan entre sí. Esta parte es lo que se conoce como análisis univariado, bivariado y multivariado.
+        \item \textbf{Modelos analíticos:} En esta sección se entrenan diversos modelos analíticos y algoritmos que sirven para alcanzar los objetivos seteados para el presente proyecto. Como la variable objetivo es categórica, se realizan modelos de clasificación.
+        \item \textbf{Conclusión:} Se alcanzan conclusiones finales sobre los hallazgos. Además, se discuten posibles limitaciones y se plantean futuras líneas de análisis, a partir del análisis presente.
+    \end{enumerate}
 
-%     \subsection*{Estructura de los trabajos}
+\end{frame}
 
-%         Este trabajo se ha dividido en 3 partes:
-%         \begin{enumerate}
-%             \item \textbf{Introducción a las variables del problema:} Se realiza un análisis de las variables del dataset. En el mismo se busca conocer su performance dentro del dataset. A la vez, se investiga cómo las variables interactúan entre sí. Esta parte es lo que se conoce como análisis univariado, bivariado y multivariado
-%             \item \textbf{Modelos análiticos:} En esta sección se llevan a cabo diversos modelos análiticos y algoritmos que sirven para alcanzar los objetivos seteados para el presente proyecto. Como la variable objetivo es categórica, se realizan diversos modelos de clasificación.
-%             \item \textbf{Conclusión:} Se alcanzan conclusiones finales sobre los hallazgos. Además, se discuten posibles limitaciones y se plantean futuras líneas de análisis, a partir del análisis presente.
-            
-%         \end{enumerate}
+\section{Introducción a las variables: Análisis exploratorio de los datos}
 
-% \newpage
-
-% \section{Introducción a las variables: Análisis exploratorio de los datos}
+\begin{frame}{Análisis exploratorio de los datos}
+    
+\end{frame}
  
 %     Una ves cargado el dataset con el que vamos a trabajar, miramos sus variable, el tipo que son y si tienen nulls:
 %     \begin{table}[H]\begin{center}
@@ -122,7 +128,7 @@
 %     5  & edad                        & 14319 non-null & int64 \\
 %     6  & sexo                        & 14319 non-null & object \\
 %     7  & parentesco\_jefe             & 14319 non-null & object \\
-%     8  & situacion\_conyugal          & 14318 non-null & object \\
+%     8  & situación\_conyugal          & 14318 non-null & object \\
 %     9  & num\_miembro\_padre           & 14319 non-null & object \\
 %     10 & num\_miembro\_madre           & 14319 non-null & object \\
 %     11 & estado\_ocupacional          & 14319 non-null & object \\
@@ -152,11 +158,11 @@
        
 %     Ahora, en base a los datos arrojados por la tabla de arriba, generamos diversas transformaciones de variables, así como la creación de la variable ``Target'', pues es la que usaremos para todo el análisis:
 %     \begin{itemize}
-%         \item Creamos la variable ``Target'' y le asignamos la varibale ``nivel\_max\_educativo''.
+%         \item Creamos la variable ``Target'' y le asignamos la variable ``nivel\_max\_educativo''.
 %         \item En la variable ``Target'', reducimos su dimensionalidad intercambiando los valores:
 %             \begin{itemize}
-%                 \item ``Secundario/medio comun'' y ``EGB (1° a 9° año)'' por ``sec\_completo'',
-%                 \item ``Primario especial'' y ``Primario comun'' por ``prim\_completo'',
+%                 \item ``Secundario/medio común'' y ``EGB (1° a 9° año)'' por ``sec\_completo'',
+%                 \item ``Primario especial'' y ``Primario común'' por ``prim\_completo'',
 %                 \item ``Sala de 5'' por ``incial'',
 %                 \item ``Otras escuelas especiales" por ``superior'',
 %                 \item y por último a ``No corresponde'' por nulos.
@@ -180,7 +186,7 @@
 %         \item \textbf{``comuna''}                        : Comuna donde reside la persona encuestada,
 %         \item \textbf{``edad''}                          : Edad de la persona encuestada,
 %         \item \textbf{``sexo''}                          : Sexo de la persona encuestada,
-%         \item \textbf{``parentesco\_jefe''}              : Parentesco entre la persona encuestada y el jefe d'' hoga,
+%         \item \textbf{``parentesco\_jefe''}              : Parentesco entre la persona encuestada y el jefe de hogar,
 %         \item \textbf{``situacion\_conyugal''}           : Situación conyugal de la persona encuestada,
 %         \item \textbf{``num\_miembro\_padre''}           : Número de miembro que corresponde al padre,
 %         \item \textbf{``num\_miembro\_madre''}           : Número de miembro que corresponde a la madre,
@@ -188,14 +194,14 @@
 %         \item \textbf{``cat\_ocupacional''}              : Categoría ocupacional de la persona encuestada,
 %         \item \textbf{``calidad\_ingresos\_lab''}        : Calidad de la declaración de ingresos laborales totales,
 %         \item \textbf{``ingreso\_total\_lab''}           : Ingreso total laboral percibido el mes anterior,
-%         \item \textbf{``calidad\_ingresos\_no\_lab''}    : Calidad de la declaración de ingresos no laborale totales",
+%         \item \textbf{``calidad\_ingresos\_no\_lab''}    : Calidad de la declaración de ingresos no laborable totales",
 %         \item \textbf{``ingreso\_total\_no\_lab''}       : Ingreso total no laboral percibido el mes anterior,
 %         \item \textbf{``calidad\_ingresos\_totales''}    : Calidad de ingresos totales individuales,
 %         \item \textbf{``ingresos\_totales''}             : Ingreso total individual percibido el mes anterior,
 %         \item \textbf{``calidad\_ingresos\_familiares''} : Calidad de ingresos totales familiares,
 %         \item \textbf{``ingresos\_familiares''}          : Ingresos totales familiares percibido el mes anterior,
 %         \item \textbf{``ing\_per\_cap\_familiar''}       : Ingreso familiar per capita percibido el mes anterior,
-%         \item \textbf{``estado\_educativo''}             : Asistencia (pasada o presente) o no a algú establecimiento educativo",
+%         \item \textbf{``estado\_educativo''}             : Asistencia (pasada o presente) o no a algún establecimiento educativo",
 %         \item \textbf{``sector\_educativo''}             : Sector al que pertenece el establecimiento educativo a que asiste",
 %         \item \textbf{``nivel\_actual''}                 : Nivel cursado al momento de la encuesta,
 %         \item \textbf{``nivel\_max\_educativo''}         : Máximo nivel educativo que se cursó,
@@ -210,7 +216,7 @@
  
 %     \newpage
 
-%     Y comenzamos el analisis EDA del mismo, primero analizando los nulos:
+%     Y comenzamos el análisis EDA del mismo, primero analizando los nulos:
 
 %     \begin{center}
 %         \includegraphics[scale=0.25]{Imagenes/NullsDS.png}
@@ -218,20 +224,23 @@
  
 %     Así, detectamos que nuestra variable target tiene 1054 valores nulos. Es importante tener este dato presente cuando queramos correr un algoritmo de clasificación.
 
-%     \subsection{Análisis univariado}
- 
-%         \subsubsection{Género y edad}
-           
-%             Comenzamos con un pantallazo general sobre las primeras cualidades de los datos, como muestra representativa para la EPH, sobre quiénes son los ciudadanos representados en el dataset.
-           
-%             \begin{center}
-%                 \includegraphics[scale=0.45]{Imagenes/AUGenero.png}    
-%             \end{center}
-           
- 
-%             En la variable género los datos parecen equilibrados en las categorías. Para el caso de la variable ``edad'', la distribución se asemeja a la de una normal.
-           
-%             \subsubsection{Comuna}
+\subsection{Análisis univariado}
+
+    \subsubsection{Género y edad}
+
+\begin{frame}{Análisis univariado}
+
+    Comenzamos con un pantallazo general sobre las primeras cualidades de los datos, como muestra representativa para la EPH, sobre quiénes son los ciudadanos representados en el dataset.
+
+    \begin{center}
+        \includegraphics[scale=0.315]{Imagenes/AUGenero.png}
+    \end{center}
+
+    En la variable género los datos parecen equilibrados en las categorías. Para el caso de la variable ``edad'', la distribución se asemeja a la de una normal.
+
+\end{frame}
+              
+    \subsubsection{Comuna}
            
 %             Seguimos observando la variable ``comuna''. En la misma se muestra la comuna de la Ciudad de Buenos Aires del entrevistado, de manera de tener una ubicación geográfica. Consideramos importante revisar esta variable ya que tenemos como hipótesis que el nivel educativo alcanzado puede estar dependiendo de la zona geográfica de la ciudad en la que se encuentra el entrevistado.
            
@@ -290,12 +299,12 @@
  
 %         A simple vista, no se observan fuertes correlaciones.
  
-%         Podemos notar que la variable ``años\_escolaridad'' correlaciona moderadamente bien con variablres relacionadas al ingreso.
+%         Podemos notar que la variable ``años\_escolaridad'' correlaciona moderadamente bien con variables relacionadas al ingreso.
  
 %         La principal correlación positiva es ``años\_escolaridad'' con ingreso familiar per cápita (``ing\_per\_cap\_familiar''), lo cual hace sentido teórico.
  
 %         Ahora, utilizando el método para solo graficar en base a un threshold vemos que los años de escolaridad alcanzados por los entrevistados tienen algo relación $(66\%$) con la variable ``ingresos\_totales''
-%         % Estaria bien solo utilizar el grafico de la derecha.
+%         % Estaría bien solo utilizar el gráfico de la derecha.
 
 %         \begin{center}
 %             \includegraphics[scale=0.4]{Imagenes/ABThreshold.png}
@@ -336,7 +345,7 @@
  
 %         \subsubsection{Comparación de variables categóricas con numéricas}
  
-%             Adicionalmente, vamos a comparar algunas variables con nuestro target, comenzando con los ingresos totales, pero primero veamos como se relacionan algunas categorias con el genero de los encuestados:
+%             Adicionalmente, vamos a comparar algunas variables con nuestro target, comenzando con los ingresos totales, pero primero veamos como se relacionan algunas categorías con el genero de los encuestados:
  
 %             \begin{center}
 %                 \includegraphics[scale=0.2295]{Imagenes/ABCatVsNum1.png}
@@ -405,7 +414,7 @@
 %             \includegraphics[scale=0.65]{Imagenes/AMIngVsAnosEsc.png}
 %         \end{center}
  
-%         Al visualizar el grafico podemos observar que:
+%         Al visualizar el gráfico podemos observar que:
  
 %         \begin{itemize}
 %             \item Hasta los 6 años, como era esperable, todos los casos llegan al nivel inicial.
@@ -421,7 +430,7 @@
         
 %         \newpage
 
-%         Luego, observamos los ingresos familiares segun el máximo nivel educativo alcanzado:
+%         Luego, observamos los ingresos familiares según el máximo nivel educativo alcanzado:
 %         \begin{center}
 %             \includegraphics[scale=0.6]{Imagenes/AMIngVsComuna.png}
 %         \end{center}
@@ -642,7 +651,7 @@
 
 %             % Tendríamos que agregar algo relacionado a la diferencia que tenemos con los resultado del EDA.
 
-%             Por lo tanto, vamos a tener que desarrollar un nuevo modelo sin esta variable. El principal motivo es que los años de escolaridad es un dato que puede contastarse de forma conjunta con el nivel máximo educativo, por lo que tiene sentido que si no tenes la variable target, tampoco tengas la variable de los años de escolaridad.
+%             Por lo tanto, vamos a tener que desarrollar un nuevo modelo sin esta variable. El principal motivo es que los años de escolaridad es un dato que puede constatarse de forma conjunta con el nivel máximo educativo, por lo que tiene sentido que si no tenes la variable target, tampoco tengas la variable de los años de escolaridad.
 
 %             Así, creamos un dataset nuevo (llamado ``df2'') sin la variable ``años\_escolaridad'', para volver a aplicar la función ``procesador'' para dividir nuevamente el mismo y generar nuevos modelos.
 
@@ -718,7 +727,7 @@
 
 %             Por lo tanto, el modelo esta haciendo \textbf{UNDERFITTING}
 
-%             \textbf{Conclusón}
+%             \textbf{Conclusión}
             
 %             Utilizar el grid search nos permitió mejorar bastante el modelo que había perdido bastante accuracy al retirar los años de escolaridad. La métrica que más pudimos mejorar con este método fue la varianza, que pasó de 44.97\% a 5.14\%, pero en contra parte nuestro acuracy bajo de 100\% a 65.27\%.
 
@@ -844,13 +853,13 @@
     
 %     \begin{table}[H]
 %         \centering
-%         \begin{tabular}{|l|r|r|r|}
-%         \hline
-%             modelo & accuracy & sesgo & varianza \\ \hline
-%             árbol\_default & 0.5339 & 0.9978 & 0.4639 \\ \hline
-%             árbol\_mejorado & 0.6012 & 0.6527 & 0.0514 \\ \hline
-%             bosque\_default & 0.6117 & 0.8911 & 0.2740 \\ \hline
-%             bosque\_mejorado & 0.6211 & 0.9065 & 0.2854 \\ \hline
+%         \begin{tabular}{|l|r|r|r|r|r|r|r|r|}
+%             \hline
+%             modelo & accuracy & sesgo & varianza & f1\_inicial & f1\_primario & f1\_secundario & f1\_superior \\ \hline
+%             árbol\_default & 0.53 & 1.00 & 0.46 & 0.81 & 0.33 & 0.60 & 0.42 \\ \hline
+%             árbol\_mejorado & 0.60 & 0.65 & 0.05 & 0.85 & 0.30 & 0.69 & 0.53 \\ \hline
+%             bosque\_default & 0.62 & 0.89 & 0.27 & 0.86 & 0.32 & 0.69 & 0.53 \\ \hline
+%             bosque\_mejorado & 0.62 & 0.91 & 0.29 & 0.86 & 0.33 & 0.69 & 0.54 \\ \hline
 %         \end{tabular}
 %     \end{table}
 
@@ -861,8 +870,8 @@
 %         \item El bosque default tiene resultados mixtos en ambas categorías.
 %         \item El bosque mejorado destaca por bajo sesgo pero su varianza es la segunda peor.
 %     \end{itemize}
-%     Como era de esperarse, los finalistas son el árbol y el bosque mejorado. Sorprendentemente, ambos performan muy bien pero en métricas diferentes. A su vez, el accuracy de ambos difiere en apenas un 2%.
+%     Como era de esperarse, los finalistas son el árbol y el bosque mejorado. Sorprendentemente, ambos performan muy bien pero en métricas diferentes. A su vez, el accuracy de ambos difiere en apenas un 2\%.
 
-%     En nuestra opinión, es el árbol mejorado el ganador, ya que tiene la robustez suficiente para poder generalizar en caso de agregar nuevos datos al modelo.
+%     En nuestra opinión, es el árbol mejorado el ganador, ya que tiene la robustez suficiente para poder generalizar en caso de agregar nuevos datos al modelo. Otra ventaja frente al bosque aleatorio es su mayor velocidad de entrenamiento, asì como su capacidad de ser visualizada en un gráfico.
         
 \end{document}
