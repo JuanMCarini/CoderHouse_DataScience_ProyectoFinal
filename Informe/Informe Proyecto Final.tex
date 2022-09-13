@@ -159,40 +159,44 @@ Análisis socioeducativo de los habitantes de la Ciudad de Buenos Aires}}
     \end{itemize}
  
     A continuación detallamos un diccionario de las variables:
-    \begin{itemize}
-        \item \textbf{``id''}                            : Clave que identifica la vivienda,
-        \item \textbf{``nhogar''}                        : La variable id + nhogar = clave que identifica a cad hogar",
-        \item \textbf{``miembro''}                       : Variables id + nhogar + miembro = clave que identifica  cada persona",
-        \item \textbf{``comuna''}                        : Comuna donde reside la persona encuestada,
-        \item \textbf{``edad''}                          : Edad de la persona encuestada,
-        \item \textbf{``sexo''}                          : Sexo de la persona encuestada,
-        \item \textbf{``parentesco\_jefe''}              : Parentesco entre la persona encuestada y el jefe de hogar,
-        \item \textbf{``situacion\_conyugal''}           : Situación conyugal de la persona encuestada,
-        \item \textbf{``num\_miembro\_padre''}           : Número de miembro que corresponde al padre,
-        \item \textbf{``num\_miembro\_madre''}           : Número de miembro que corresponde a la madre,
-        \item \textbf{``estado\_ocupacional''}           : Situación ocupacional de la persona encuestada,
-        \item \textbf{``cat\_ocupacional''}              : Categoría ocupacional de la persona encuestada,
-        \item \textbf{``calidad\_ingresos\_lab''}        : Calidad de la declaración de ingresos laborales totales,
-        \item \textbf{``ingreso\_total\_lab''}           : Ingreso total laboral percibido el mes anterior,
-        \item \textbf{``calidad\_ingresos\_no\_lab''}    : Calidad de la declaración de ingresos no laborable totales",
-        \item \textbf{``ingreso\_total\_no\_lab''}       : Ingreso total no laboral percibido el mes anterior,
-        \item \textbf{``calidad\_ingresos\_totales''}    : Calidad de ingresos totales individuales,
-        \item \textbf{``ingresos\_totales''}             : Ingreso total individual percibido el mes anterior,
-        \item \textbf{``calidad\_ingresos\_familiares''} : Calidad de ingresos totales familiares,
-        \item \textbf{``ingresos\_familiares''}          : Ingresos totales familiares percibido el mes anterior,
-        \item \textbf{``ing\_per\_cap\_familiar''}       : Ingreso familiar per capita percibido el mes anterior,
-        \item \textbf{``estado\_educativo''}             : Asistencia (pasada o presente) o no a algún establecimiento educativo",
-        \item \textbf{``sector\_educativo''}             : Sector al que pertenece el establecimiento educativo a que asiste",
-        \item \textbf{``nivel\_actual''}                 : Nivel cursado al momento de la encuesta,
-        \item \textbf{``nivel\_max\_educativo''}         : Máximo nivel educativo que se cursó,
-        \item \textbf{``años\_escolaridad''}             : Años de escolaridad alcanzados,
-        \item \textbf{``lugar\_nacimiento''}             : Lugar de nacimiento de la persona encuestada,
-        \item \textbf{``afiliacion\_salud''}             : Afiliación de salud de la persona encuestada,
-        \item \textbf{``hijos\_nacidos\_vivos''}         : Tiene o tuvo hijos nacidos vivos,
-        \item \textbf{``cant\_hijos\_nac\_vivos''}       : Cantidad de hijos nacidos vivos,
-        \item \textbf{``dominio''}                       : ¿La vivienda se ubica en una villa de emergencia?,
-        \item \textbf{``Target''}                        : Nivel máximo educativo.
-    \end{itemize}
+    \begin{table}[H]
+    \begin{tabular}{|l|l|}
+        \hline
+        \textbf{Variables}                     & \textbf{Descripción} \\ \hline
+        \textbf{id}                            & Clave que identifica la vivienda \\ \hline
+        \textbf{nhogar}                        & La variable id + nhogar = clave que identifica a cada hogar \\ \hline
+        \textbf{miembro}                       & Variables id + nhogar + miembro = clave que identifica  cada persona \\ \hline
+        \textbf{comuna}                        & Comuna donde reside la persona encuestada \\ \hline
+        \textbf{edad}                          & Edad de la persona encuestada \\ \hline
+        \textbf{sexo}                          & Sexo de la persona encuestada \\ \hline
+        \textbf{parentesco\_jefe}              & Parentesco entre la persona encuestada y el jefe de hogar \\ \hline
+        \textbf{situacion\_conyugal}           & Situación conyugal de la persona encuestada \\ \hline
+        \textbf{num\_miembro\_padre}           & Número de miembro que corresponde al padre \\ \hline
+        \textbf{num\_miembro\_madre}           & Número de miembro que corresponde a la madre \\ \hline
+        \textbf{estado\_ocupacional}           & Situación ocupacional de la persona encuestada \\ \hline
+        \textbf{cat\_ocupacional}              & Categoría ocupacional de la persona encuestada \\ \hline
+        \textbf{calidad\_ingresos\_lab}        & Calidad de la declaración de ingresos laborales totales \\ \hline
+        \textbf{ingreso\_total\_lab}           & Ingreso total laboral percibido el mes anterior \\ \hline
+        \textbf{calidad\_ingresos\_no\_lab}    & Calidad de la declaración de ingresos no laborable totales \\ \hline
+        \textbf{ingreso\_total\_no\_lab}       & Ingreso total no laboral percibido el mes anterior \\ \hline
+        \textbf{calidad\_ingresos\_totales}    & Calidad de ingresos totales individuales \\ \hline
+        \textbf{ingresos\_totales}             & Ingreso total individual percibido el mes anterior \\ \hline
+        \textbf{calidad\_ingresos\_familiares} & Calidad de ingresos totales familiares \\ \hline
+        \textbf{ingresos\_familiares}          & Ingresos totales familiares percibido el mes anterior \\ \hline
+        \textbf{ing\_per\_cap\_familiar}       & Ingreso familiar per capita percibido el mes anterior \\ \hline
+        \textbf{estado\_educativo}             & Asistencia (pasada o presente) o no a algún establecimiento educativo \\ \hline
+        \textbf{sector\_educativo}             & Sector al que pertenece el establecimiento educativo a que asiste \\ \hline
+        \textbf{nivel\_actual}                 & Nivel cursado al momento de la encuesta \\ \hline
+        \textbf{nivel\_max\_educativo}         & Máximo nivel educativo que se cursó \\ \hline
+        \textbf{años\_escolaridad}             & Años de escolaridad alcanzados \\ \hline
+        \textbf{lugar\_nacimiento}             & Lugar de nacimiento de la persona encuestada \\ \hline
+        \textbf{afiliacion\_salud}             & Afiliación de salud de la persona encuestada \\ \hline
+        \textbf{hijos\_nacidos\_vivos}         & Tiene o tuvo hijos nacidos vivos \\ \hline
+        \textbf{cant\_hijos\_nac\_vivos}       & Cantidad de hijos nacidos vivos \\ \hline
+        \textbf{dominio}                       & ¿La vivienda se ubica en una villa de emergencia? \\ \hline
+        \textbf{Target}                        & Nivel máximo educativo \\ \hline
+    \end{tabular}
+    \end{table}
  
     \newpage
 
