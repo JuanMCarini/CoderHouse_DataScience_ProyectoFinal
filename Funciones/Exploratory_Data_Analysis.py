@@ -96,6 +96,8 @@ def hist_box(DataFrame:pd.DataFrame, #dataset
     ax[0].boxplot(x=DataFrame[DataFrame[x]<limite][x],vert=False)
     ax[0].set_title(f"{titulo} menor a {limite}",size=25)
     ax[1].set_title("")
+    ax[1].set_xlabel("Ingreso per capita familiar", size=15)
+    ax[1].set_ylabel("Conteo", size=15)
     ax[0].set(xticks=range(0,limite+1,int(limite/20)))
     fig.savefig(ruta)
 
