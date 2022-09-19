@@ -3,12 +3,12 @@
 \usepackage[utf8]{inputenc}
 \usepackage[spanish]{babel}
 
+\usepackage{ragged2e} % Paquete para trabajar texto.
+
 \mode<presentation>
 
 \usepackage{lmodern}
 \usetheme{Madrid} 
-
-\usepackage{graphicx}
 
 \usepackage{float} %para fijar tablas
 \usepackage{multirow} %Para tablas
@@ -29,6 +29,7 @@
 }
 
 \usepackage{wrapfig} %para acomodar gráficos con texto.
+\usepackage{graphicx} % para combinar gráficos con listas
 
 \title[Curso Data Science]{\textbf{Análisis socioeducativo de los habitantes de la Ciudad de Buenos Aires}}
 
@@ -37,6 +38,7 @@
 \date{}
 
 \begin{document}
+\justifying
 
 \begin{frame}
 
@@ -52,23 +54,39 @@
 
     \subsection{Resumen del proyecto}
 
-\begin{frame}{Introdución}
-    
-    
+% \begin{frame}{Introdución}
+
+%     % \begin{wrapfigure}{r}[R]{0.5\textwidth}
+%     %     \centering
+%     %     \includegraphics[scale=0.1]{../Informe/Imagenes/Mapa_comunas.jpg}    
+%     % \end{wrapfigure}
+
+%     \begin{itemize}
+%         \justifying
+%         \item Para los ciudadanos, resulta de suma importancia sentirse representados por los demás integrantes de la misma, mediante políticas públicas que abarquen sus necesidades y requerimientos. 
+%         \item La toma de datos demográficos y la estadística son dos herramientas primordiales a la hora de identificar requerimientos de los integrantes de una comunidad.
+%         \item En el caso particular de Argentina, el Instituto Nacional de Estadística y Censos (INDEC) es el organismo público que ejerce la dirección superior de todas las actividades estadísticas oficiales que se realizan en el país.
+%         \item Al adentrarse y estudiar los índices correspondientes a uno de los ejes principales, educación, en un territorio delimitado, Ciudad Autónoma de Buenos Aires, se ha encontrado una gran limitación relacionada con su acceso inequitativo para los diferentes actores de la sociedad. 
+%         \item Este hecho tiene consecuencias de índole social y económico para la población. Sin embargo, la principal problemática se da a nivel individual, y radica en el impedimento al acceso educativo para un porcentaje de la sociedad. Esto no ha resultado una novedad para el grupo, pero sí ha dado el pie a la búsqueda de una respuesta teórica a dicha disparidad, en concreto, a descubrir las principales variables que afectan el nivel educativo.
+%         \item El análisis realizado en el marco del presente proyecto podría establecer una base de requerimientos que permitan generar políticas públicas efectivas, no solo en el ámbito educativo, sino en el económico, cultural, social y geográfico, entre otros.
+
+%     \end{itemize}
+
+% \end{frame}
+
+    \subsection{Definición de la fuente de información}
+
+\begin{frame}{Fuente de información}
+
+    Para trabajar esta problemática, se ha recurrido a la \href{https://data.buenosaires.gob.ar/dataset/encuesta-anual-hogares/resource/3a45c563-396d-42de-ba93-8a93729e0723}{Encuesta Anual de Hogares} del Gobierno de la Ciudad de Buenos Aires para el año 2019. El dataset está disponible en la base de datos abiertos del GCBA.
+
+    Esta encuesta contiene información demográfica, social, económica, educativa y de salud de 14319 habitantes de la Ciudad, la cual es una muestra representativa que permite obtener un vistazo de la población de la Ciudad.
+    \begin{figure}
+        \centering
+        \includegraphics[scale=0.5]{../Informe/Imagenes/GobCiuBsAs.jpg}
+    \end{figure}
 
 \end{frame}
-
-        % La ciudadanía es un concepto jurídico, filosófico y político que ha sido creado para designar a una persona física que constituye una sociedad o entidad territorial. Para las personas que forman parte de una comunidad, ciudadanos, resulta de suma importancia sentirse representados por los demás integrantes de la misma, mediante políticas públicas que abarquen sus necesidades y requerimientos. 
-
-        % La toma de datos demográficos y la estadística son dos herramientas primordiales a la hora de identificar requerimientos de los integrantes de una comunidad. Dichas herramientas describen, de forma cuantitativa, a la sociedad bajo estudio. Precisamente, los censos y la estadística son la fuente primaria de información para la planificación económica y social de una población, por parte de sus representantes.
-
-        % En el caso particular de Argentina, el Instituto Nacional de Estadística y Censos (INDEC) es el organismo público que ejerce la dirección superior de todas las actividades estadísticas oficiales que se realizan en el país. La información que produce el INDEC es una herramienta básica para la planificación de políticas públicas, así como para las investigaciones y proyecciones que se realizan en los ámbitos académico y privado.
-
-        % Al adentrarse y estudiar los índices correspondientes a uno de los ejes principales, educación, en un territorio delimitado, Ciudad Autónoma de Buenos Aires, se ha encontrado una gran limitación relacionada con su acceso inequitativo para los diferentes actores de la sociedad. 
-
-        % Este hecho tiene consecuencias de índole social y económico para la población. Sin embargo, la principal problemática se da a nivel individual, y radica en el impedimento al acceso educativo para un porcentaje de la sociedad. Esto no ha resultado una novedad para el grupo, pero sí ha dado el pie a la búsqueda de una respuesta teórica a dicha disparidad, en concreto, a descubrir las principales variables que afectan el nivel educativo.
-
-        % El análisis realizado en el marco del presente proyecto podría establecer una base de requerimientos que permitan generar políticas públicas efectivas, no solo en el ámbito educativo, sino en el económico, cultural, social y geográfico, entre otros.
 
     \subsection{Objetivos del proyecto}
 
@@ -82,20 +100,6 @@
             \item \textbf{Bosque Aleatorio:} que es un conjunto (ensemble) de árboles de decisión combinados con bagging.
         \end{itemize}
     \end{itemize}
-
-\end{frame}
-
-    \subsection{Definición de la fuente de información}
-
-\begin{frame}{Fuente de información}
-
-    Para trabajar esta problemática, se ha recurrido a la \href{https://data.buenosaires.gob.ar/dataset/encuesta-anual-hogares/resource/3a45c563-396d-42de-ba93-8a93729e0723}{Encuesta Anual de Hogares} del Gobierno de la Ciudad de Buenos Aires para el año 2019. El dataset está disponible en la base de datos abiertos del GCBA.
-
-    Esta encuesta contiene información demográfica, social, económica, educativa y de salud de 14319 habitantes de la Ciudad, la cual es una muestra representativa que permite obtener un vistazo de la población de la Ciudad.
-    \begin{figure}
-        \centering
-        \includegraphics[scale=0.5]{../Informe/Imagenes/GobCiuBsAs.jpg}
-    \end{figure}
 
 \end{frame}
 
@@ -117,7 +121,8 @@
 \section{Introducción a las variables: Análisis exploratorio de los datos}
 
 \begin{frame}{Análisis exploratorio de los datos (EDA)}
-    
+
+
 \end{frame}
  
 %     Una ves cargado el dataset con el que vamos a trabajar, miramos sus variable, el tipo que son y si tienen nulls:
@@ -368,25 +373,24 @@
 
 \begin{frame}{Análisis bivariado}
 
+    Adicionalmente, vamos a comparar algunas variables con nuestro target, comenzando con los ingresos totales, pero primero veamos como se relacionan algunas categorías con el genero de los encuestados:
 
-\end{frame}
-
-%             Adicionalmente, vamos a comparar algunas variables con nuestro target, comenzando con los ingresos totales, pero primero veamos como se relacionan algunas categorías con el genero de los encuestados:
- 
-%             \begin{center}
-%                 \includegraphics[scale=0.2295]{Imagenes/ABCatVsNum1.png}
-%             \end{center}
- 
-\begin{frame}{Análisis bivariado}
-    \footnotesize
-
-    Veamos como se relacionan las categorías de ingresos con el genero de los encuestados:
     \begin{center}
-        \includegraphics[scale=0.295]{../Informe/Imagenes/ABCatVsNum2.png}
+        \includegraphics[scale=0.157]{../Informe/Imagenes/ABCatVsNum1.png}
     \end{center}
-    Y resulta que con las variables de ingreso, no parece haber nada disruptivo. Salvo que los hombres parecieran tener ingresos totales y familiares mayores que las mujeres, pero no pareciera que haya distribuciones desiguales en los años de escolaridad.
 
 \end{frame}
+
+% \begin{frame}{Análisis bivariado}
+%     \footnotesize
+
+%     Veamos como se relacionan las categorías de ingresos con el genero de los encuestados:
+%     \begin{center}
+%         \includegraphics[scale=0.295]{../Informe/Imagenes/ABCatVsNum2.png}
+%     \end{center}
+%     Y resulta que con las variables de ingreso, no parece haber nada disruptivo. Salvo que los hombres parecieran tener ingresos totales y familiares mayores que las mujeres, pero no pareciera que haya distribuciones desiguales en los años de escolaridad.
+
+% \end{frame}
 
 %             Probemos quitando outliers, a excepción de la cantidad de hijos nacidos vivos (puesto que no arrojará ningún dato nuevo) y de años de escolaridad (que no tiene outliers)
  
@@ -441,15 +445,21 @@
 \begin{frame}{Análisis bivariado}
     \footnotesize
     
-    En primer lugar, analizaremos la relación de nuestro target con cada comuna: 
-    \newline
+    En primer lugar, analizaremos la relación de nuestro target con cada comuna:
 
-    \begin{wrapfigure}{l}{0.55\textwidth}
-        \centering
+    \begin{minipage}{0.55\textwidth}
+        \vspace{10pt}
         \includegraphics[scale=0.25]{../Informe/Imagenes/ABCatVsNum6.png}
-    \end{wrapfigure}
-    
-    Se observa que en el sur de la ciudad hay  mayor cantidad de encuestados con niveles de inicial, primario y secundario completo, mientras que el norte (particularmente el barrio de Palermo) tiene mayor cantidad de personas con estudios superiores. En menor medida también las comunas del este (comúnmente llamado el ``centro de la ciudad'') destacan por la cantidad de encuestados con nivel superior.
+    \end{minipage}
+    \begin{minipage}{0.4\textwidth}
+        \begin{itemize}
+            \vspace{-10pt}
+            \justifying
+            \item en el sur de la ciudad hay mayor cantidad de encuestados con niveles de inicial, primario y secundario completo,
+            \item mientras que el norte (particularmente el barrio de Palermo) tiene mayor cantidad de personas con estudios superiores,
+            \item en menor medida también las comunas del este (comúnmente llamado el ``centro de la ciudad'') destacan por la cantidad de encuestados con nivel superior.
+        \end{itemize}
+    \end{minipage}
 
 \end{frame}    
 
@@ -505,14 +515,20 @@
 \end{frame}
 
 \begin{frame}{Análisis multivariado}
-    \footnotesize
 
     Luego, observamos los ingresos familiares según el máximo nivel educativo alcanzado:
-    \begin{wrapfigure}{l}{0.7\textwidth}
-        \includegraphics[scale=0.275]{../Informe/Imagenes/AMIngVsComuna.png}
-    \end{wrapfigure}
 
-    Aquí, podemos observar que a medida que avanza el nivel educativo máximo se atenúan levemente las diferencias de ingresos familiares entre comunas. Queda pendiente cruzar estos datos con la edad, para saber si el hecho de incluir a menores de edad está sesgando los valores para nivel inicial, primario y secundario.
+    \begin{minipage}{0.55\textwidth}
+        \vspace{10pt}
+        \includegraphics[scale=0.26]{../Informe/Imagenes/AMIngVsComuna.png}
+    \end{minipage}
+    \begin{minipage}{0.38\textwidth}
+        \begin{itemize}
+            \justifying
+            \item a medida que avanza el nivel educativo máximo se atenúan levemente las diferencias de ingresos familiares entre comunas,
+            \item queda pendiente cruzar estos datos con la edad, para saber si el hecho de incluir a menores de edad está sesgando los valores para nivel inicial, primario y secundario.
+        \end{itemize}
+    \end{minipage}
 
 \end{frame}
 
@@ -588,7 +604,7 @@
     \begin{Large}
         \textbf{Tratados de nulos}
     \end{Large}
-    \newline
+    \vspace{4pt}
 
     Luego, armamos una función para tener una lista limpia de variables con nulos, que nos da como resultado:
 
@@ -673,10 +689,11 @@
     \begin{Large}
         \textbf{Procesamiento}
     \end{Large}
-    \newline
+    \vspace{4pt}
 
     Para preparar los datos para el modelado generamos una función que:
     \begin{itemize}
+        \justifying
         \item  Divide el dataframe en X\_train, y\_train, X\_test e y\_test, haciendo la división entre test y el train en un 30\% y un 70\% respectivamente, con una semilla especifica.
         \item  Procesa el X\_train y el X\_test con un pipeline generado previamente, el cual convierte las variable numéricas con el minmaxscaler y las categóricas con one hot encoding.
     \end{itemize}
@@ -761,8 +778,6 @@
 
     Por lo tanto, vamos a tener que desarrollar un nuevo modelo sin esta variable. El principal motivo es que los años de escolaridad es un dato que puede constatarse de forma conjunta con el nivel máximo educativo, por lo que tiene sentido que si no tenes la variable target, tampoco tengas la variable de los años de escolaridad.
 
-    Así, creamos un dataset nuevo (llamado ``df2'') sin la variable ``años\_escolaridad'', para volver a aplicar la función ``procesador'' para dividir nuevamente el mismo y generar nuevos modelos.
-
 \end{frame}
 
         \subsubsection{Segundo modelo}
@@ -816,7 +831,7 @@
     \begin{Large}
         \textbf{Gridsearch con CV}
     \end{Large}
-    \newline
+    \vspace{6pt}
     
     En la grilla de parámetros para el Gridsearch elegimos los siguientes:
     \begin{itemize}
@@ -865,7 +880,7 @@
     \begin{Large}
         \textbf{Conclusión}
     \end{Large}
-    \newline
+    \vspace{6pt}
     
     Utilizar el grid search nos permitió mejorar bastante el modelo que había perdido bastante accuracy al retirar los años de escolaridad. La métrica que más pudimos mejorar con este método fue la varianza, que pasó de 44.97\% a 5.14\%, pero en contra parte nuestro acuracy bajo de 100\% a 65.27\%.
 
@@ -930,7 +945,7 @@
     \begin{Large}
         \textbf{Conclusión}
     \end{Large}
-    \newline
+    \vspace{6pt}
 
     En conclusión obtenemos un buen modelo. De todas maneras buscamos cuales son las variables más importantes, y encontramos que los años de escolaridad redujo la enorme importancia (a un 43.58\%) que tenía en el random tree. Sin embargo, sigue correspondiendo quitarla del modelo.
 
@@ -943,7 +958,7 @@
     \begin{Large}
         \textbf{Segundo modelo}
     \end{Large}
-    \newline
+    \vspace{6pt}
 
     En este caso elegimos los siguientes parámetros:
     \begin{itemize}
@@ -992,7 +1007,7 @@
     \begin{Large}
         \textbf{Gridsearch con CV}
     \end{Large}
-    \newline
+    \vspace{6pt}
 
     En la grilla de parámetros para el Gridsearch elegimos los siguientes:
     \begin{itemize}
