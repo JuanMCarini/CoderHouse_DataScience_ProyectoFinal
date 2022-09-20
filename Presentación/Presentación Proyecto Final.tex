@@ -54,25 +54,25 @@
 
     \subsection{Resumen del proyecto}
 
-% \begin{frame}{Introdución}
+\begin{frame}{Introdución}
 
-%     % \begin{wrapfigure}{r}[R]{0.5\textwidth}
-%     %     \centering
-%     %     \includegraphics[scale=0.1]{../Informe/Imagenes/Mapa_comunas.jpg}    
-%     % \end{wrapfigure}
+    % \begin{wrapfigure}{r}[R]{0.5\textwidth}
+    %     \centering
+    %     \includegraphics[scale=0.1]{../Informe/Imagenes/Mapa_comunas.jpg}    
+    % \end{wrapfigure}
 
-%     \begin{itemize}
-%         \justifying
-%         \item Para los ciudadanos, resulta de suma importancia sentirse representados por los demás integrantes de la misma, mediante políticas públicas que abarquen sus necesidades y requerimientos. 
-%         \item La toma de datos demográficos y la estadística son dos herramientas primordiales a la hora de identificar requerimientos de los integrantes de una comunidad.
-%         \item En el caso particular de Argentina, el Instituto Nacional de Estadística y Censos (INDEC) es el organismo público que ejerce la dirección superior de todas las actividades estadísticas oficiales que se realizan en el país.
-%         \item Al adentrarse y estudiar los índices correspondientes a uno de los ejes principales, educación, en un territorio delimitado, Ciudad Autónoma de Buenos Aires, se ha encontrado una gran limitación relacionada con su acceso inequitativo para los diferentes actores de la sociedad. 
-%         \item Este hecho tiene consecuencias de índole social y económico para la población. Sin embargo, la principal problemática se da a nivel individual, y radica en el impedimento al acceso educativo para un porcentaje de la sociedad. Esto no ha resultado una novedad para el grupo, pero sí ha dado el pie a la búsqueda de una respuesta teórica a dicha disparidad, en concreto, a descubrir las principales variables que afectan el nivel educativo.
-%         \item El análisis realizado en el marco del presente proyecto podría establecer una base de requerimientos que permitan generar políticas públicas efectivas, no solo en el ámbito educativo, sino en el económico, cultural, social y geográfico, entre otros.
+    \begin{itemize}
+        \justifying
+        \item Para los ciudadanos, resulta de suma importancia sentirse representados por los demás integrantes de la misma, mediante políticas públicas que abarquen sus necesidades y requerimientos. 
+        % \item La toma de datos demográficos y la estadística son dos herramientas primordiales a la hora de identificar requerimientos de los integrantes de una comunidad.
+        % \item En el caso particular de Argentina, el Instituto Nacional de Estadística y Censos (INDEC) es el organismo público que ejerce la dirección superior de todas las actividades estadísticas oficiales que se realizan en el país.
+        % \item Al adentrarse y estudiar los índices correspondientes a uno de los ejes principales, educación, en un territorio delimitado, Ciudad Autónoma de Buenos Aires, se ha encontrado una gran limitación relacionada con su acceso inequitativo para los diferentes actores de la sociedad. 
+        % \item Este hecho tiene consecuencias de índole social y económico para la población. Sin embargo, la principal problemática se da a nivel individual, y radica en el impedimento al acceso educativo para un porcentaje de la sociedad. Esto no ha resultado una novedad para el grupo, pero sí ha dado el pie a la búsqueda de una respuesta teórica a dicha disparidad, en concreto, a descubrir las principales variables que afectan el nivel educativo.
+        % \item El análisis realizado en el marco del presente proyecto podría establecer una base de requerimientos que permitan generar políticas públicas efectivas, no solo en el ámbito educativo, sino en el económico, cultural, social y geográfico, entre otros.
 
-%     \end{itemize}
+    \end{itemize}
 
-% \end{frame}
+\end{frame}
 
     \subsection{Definición de la fuente de información}
 
@@ -93,9 +93,11 @@
 \begin{frame}{Objetivos}
 
     \begin{itemize}
+        \justifying
         \item Descubrir las principales variables intervinientes en el nivel máximo educativo alcanzado por la población de la Ciudad Autónoma de Buenos Aires (CABA).
         \item Generar un modelo de predicción aplicado a nuestra variable target ``Nivel Máximo Educativo’’, esto lo haremos implementando los siguientes modelos de clasificación:
         \begin{itemize}
+            \justifying
             \item \textbf{Árbol de decisión:} que construye un árbol durante el entrenamiento que es el que aplica a la hora de realizar la predicción.
             \item \textbf{Bosque Aleatorio:} que es un conjunto (ensemble) de árboles de decisión combinados con bagging.
         \end{itemize}
@@ -111,9 +113,13 @@
 
     Este trabajo se ha dividido en 3 partes:
     \begin{enumerate}
+        \justifying
         \item \textbf{Introducción a las variables del problema:} Se realiza un análisis de las variables del dataset. En el mismo se busca conocer su performance dentro del dataset. A la vez, se investiga cómo las variables interactúan entre sí. Esta parte es lo que se conoce como análisis univariado, bivariado y multivariado.
         \item \textbf{Modelos analíticos:} En esta sección se entrenan diversos modelos analíticos y algoritmos que sirven para alcanzar los objetivos seteados para el presente proyecto. Como la variable objetivo es categórica, se realizan modelos de clasificación.
-        \item \textbf{Conclusión:} Se alcanzan conclusiones finales sobre los hallazgos. Además, se discuten posibles limitaciones y se plantean futuras líneas de análisis, a partir del análisis presente.
+        \item \textbf{Conclusión:} Se alcanzan conclusiones finales sobre los hallazgos.
+        
+        Además, se discuten posibles limitaciones y se plantean futuras líneas de análisis, a partir del análisis presente.
+
     \end{enumerate}
 
 \end{frame}
@@ -310,16 +316,19 @@
 \begin{frame}{Análisis bivariado}
     
     Para comenzar el análisis bivariado del problema, realizamos diferentes heat maps para ver si algo nos llama la atención entre las variables numéricas.
-    \begin{wrapfigure}{l}{0.6\textwidth}
-        \centering
-        \includegraphics[width=0.75\linewidth]{../Informe/Imagenes/ABSpearman.png}
-    \end{wrapfigure}
-     \begin{itemize}
-        \footnotesize
-        \item No se observan fuertes correlaciones.
-        \item ``años\_escolaridad'' correlaciona moderadamente bien con variables relacionadas al ingreso.
-        \item La principal correlación positiva es ``años\_escolaridad'' con ingreso familiar per cápita (``ing\_per\_cap\_familiar'').
-    \end{itemize}
+
+    \begin{minipage}{0.5\textwidth}
+        \vspace{10pt}
+        \includegraphics[scale=0.22]{../Informe/Imagenes/ABSpearman.png}
+    \end{minipage}
+    \begin{minipage}{0.46\textwidth}
+        \begin{itemize}
+            \justifying
+            \item No se observan fuertes correlaciones.
+            \item ``años\_escolaridad'' correlaciona moderadamente bien con variables relacionadas al ingreso.
+            \item La principal correlación positiva es ``años\_escolaridad'' con ingreso familiar per cápita (``ing\_per\_cap\_familiar'').
+        \end{itemize}
+    \end{minipage}
 
 \end{frame}
  
@@ -350,6 +359,7 @@
     \end{table}
 
     \begin{itemize}
+        \justifying
         \item Como es esperable, hay alta correlación entre las variables relacionadas al ingreso.
         \item A su vez, encontramos una alta correlación (66\%) entre los ingresos y los años de escolaridad.
         \item Y también observamos una relación positiva entre la edad y los ingresos totales.
@@ -464,18 +474,20 @@
 \end{frame}    
 
 \begin{frame}{Análisis bivariado}
-    \footnotesize
-
-    \begin{wrapfigure}{l}{0.5\textwidth}
-        \includegraphics[scale=0.23]{../Informe/Imagenes/ABCatVsNum7.png}
-    \end{wrapfigure}
-
+    
     Lo que podemos observar en los últimos dos gráficos es una clara división geográfica del nivel educativo:
-    \begin{itemize}
-        \item Las comunas del norte son las que tienen mayor nivel educativo.
-        \item Las comunas del centro tienen niveles medios.
-        \item Las comunas del sur (con las comuna 6 en el centro de la ciudad como outlier) y la comuna 1 en el este son las que tienen niveles más bajos.
-    \end{itemize}
+
+    \begin{minipage}{0.44\textwidth}
+        \includegraphics[scale=0.23]{../Informe/Imagenes/ABCatVsNum7.png}
+    \end{minipage}
+    \begin{minipage}{0.51\textwidth}
+        \begin{itemize}
+            \justifying
+            \item Las comunas del norte son las que tienen mayor nivel educativo.
+            \item Las comunas del centro tienen niveles medios.
+            \item Las comunas del sur (con las comuna 6 en el centro de la ciudad como outlier) y la comuna 1 en el este son las que tienen niveles más bajos.
+        \end{itemize}
+    \end{minipage}
 
 \end{frame}
 
