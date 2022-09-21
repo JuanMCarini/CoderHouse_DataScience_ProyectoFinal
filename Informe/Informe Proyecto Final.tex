@@ -112,7 +112,8 @@ Análisis socioeducativo de los habitantes de la Ciudad de Buenos Aires}}
 
 \section{Introducción a las variables: Análisis exploratorio de los datos}
  
-    Una ves cargado el dataset con el que vamos a trabajar, miramos sus variable, el tipo que son y si tienen nulls:
+    En el análisis explotarotio de los datos se ha buscado definir las variables que componen el dataset. En ese sentido, luego de cargar el dataset, se ha comenzado por conocer los tipos de datos y si existían nulls.
+   
     \begin{table}[H]\begin{center}
     \begin{tabular}{clll}
     \multicolumn{4}{l}{Tamaño del set de datos: 14319 entadas, 0 a 14318} \\
@@ -152,12 +153,15 @@ Análisis socioeducativo de los habitantes de la Ciudad de Buenos Aires}}
     \multicolumn{4}{l}{Tipos de datos: int64(10), object(21)}  \\
     \multicolumn{4}{l}{Memoria usada: 3.4+ MB} \\
     \end{tabular}\end{center}
+    \caption{Análisis preliminar de variables del dataset.}
+    \label{Preliminar dataset analysis}
     \end{table}
        
-    Ahora, en base a los datos arrojados por la tabla de arriba, generamos diversas transformaciones de variables, así como la creación de la variable ``Target'', pues es la que usaremos para todo el análisis:
+    Se puede observar que se cuenta con 10 variables numéricas y 31 variables categóricas. 
+    En base a los datos arrojados por la tabla de arriba, se han generado diversas transformaciones de variables, así como la creación de la variable ``Target'', pues es la que se usará para todo el análisis:
     \begin{itemize}
-        \item Creamos la variable ``Target'' y le asignamos la variable ``nivel\_max\_educativo''.
-        \item En la variable ``Target'', reducimos su dimensionalidad intercambiando los valores:
+        \item Creación de la variable ``Target'' definida por la variable ``nivel\_max\_educativo''.
+        \item En la variable ``Target'', se ha reducido su dimensionalidad intercambiando los valores:
             \begin{itemize}
                 \item ``Secundario/medio común'' y ``EGB (1° a 9° año)'' por ``sec\_completo'',
                 \item ``Primario especial'' y ``Primario común'' por ``prim\_completo'',
@@ -165,10 +169,10 @@ Análisis socioeducativo de los habitantes de la Ciudad de Buenos Aires}}
                 \item ``Otras escuelas especiales" por ``superior'',
                 \item y por último a ``No corresponde'' por nulos.
             \end{itemize}
-        \item Remplazamos los valores de ``años\_escolaridad'' para que todos sean numéricos.
-        \item En la variable ``cantidad\_hijos\_nac\_vivos'' cambiamos el valor ``no corresponde'' como nulo, para luego cambiar el tipo de variable a entero.
-        \item Las variables ``comuna'', ``id'', ``nhogar'' y ``miembro'' son de tipo numérico, pero deberían ser categóricas, por lo tanto transformamos su tipo a string.
-        \item Por último renombramos algunas variables para que sean más cortas:
+        \item Reemplazo de los valores de ``años\_escolaridad'' para que todos sean numéricos.
+        \item En la variable ``cantidad\_hijos\_nac\_vivos'' se ha cambiado el valor ``no corresponde'' a nulo, para luego cambiar el tipo de variable a entero.
+        \item Las variables ``comuna'', ``id'', ``nhogar'' y ``miembro'' son de tipo numérico, pero deberían ser categóricas, por lo tanto se ha transformado su tipo a string.
+        \item Por último, se han renombrado algunas variables para mejorar la comprensión de su función:
             \begin{itemize}
                 \item ``dominio\_Villas\_de\_emergencia'' por ``dominio\_villas'',
                 \item ``ingreso\_per\_capita\_familiar" por ``ing\_per\_cap\_familiar'',
@@ -176,7 +180,7 @@ Análisis socioeducativo de los habitantes de la Ciudad de Buenos Aires}}
             \end{itemize}
     \end{itemize}
 
-    A continuación detallamos un diccionario de las variables:
+    Por lo tanto, se detalla el diccionario de las variables actualizadas según los cambios indicados previamente:
     \begin{table}[H]
     \begin{tabular}{|l|l|}
         \hline
@@ -214,98 +218,147 @@ Análisis socioeducativo de los habitantes de la Ciudad de Buenos Aires}}
         \textbf{dominio}                       & ¿La vivienda se ubica en una villa de emergencia? \\ \hline
         \textbf{Target}                        & Nivel máximo educativo \\ \hline
     \end{tabular}
+    \caption{Diccionarios de variables actualizadas}
+    \label{dictionary}
     \end{table}
  
     \newpage
 
-    Y comenzamos el análisis EDA del mismo, primero analizando los nulos:
-
-    \begin{center}
+    Continuando con el análisis exploratorio de datos, se ha analizado la presencia de nulos en el dataset. Para visualizarlo se ha utilizado un gráfico de barras que incluye a todas las variables. 
+   
+    \begin{figure}[H]
+        \centering
         \includegraphics[scale=0.25]{Imagenes/NullsDS.png}
-    \end{center}
+        \caption{Nulos.}
+        \label{nulls}
+    \end{figure}
  
-    Así, detectamos que nuestra variable target tiene 1054 valores nulos. Es importante tener este dato presente cuando queramos correr un algoritmo de clasificación.
+    A partir del gráfico de barras, se ha identificado que la variable target posee 1054 valores nulos. Es importante tener este dato presente al momento de correr un algoritmo de clasificación.
+
+    Por otro lado, los nulos correspondientes a la variable "hijos nacidos vivos" se dan ya que los hijos se cuentan siempre a la madre y no al padre para no duplicar sus valores.
 
     \subsection{Análisis univariado}
- 
+
+    Durante el apartado de análisis univariado se han aunado esfuerzos para analizar las variables de manera aislada. El foco principal se ha puesto en definir las variables que aportan información sobre los individuos que forman parte del dataset.
         \subsubsection{Género y edad}
            
-            Comenzamos con un pantallazo general sobre las primeras cualidades de los datos, como muestra representativa para la EPH, sobre quiénes son los ciudadanos representados en el dataset.
+            Se comienza con un pantallazo general sobre las primeras cualidades de los datos, como muestra representativa para la EPH, sobre quiénes son los ciudadanos representados en el dataset.
            
-            \begin{center}
-                \includegraphics[scale=0.45]{Imagenes/AUGenero.png}    
-            \end{center}
-           
- 
+            \begin{figure}[H]
+                \centering
+                \includegraphics[scale=0.45]{Imagenes/AUGenero.png}
+                \caption{Análisis de genero y edad.}
+                \label{AU genre and age}
+            \end{figure}
+            
             En la variable ``género'' los datos parecen equilibrados en ambas categorías. Para el caso de la variable ``edad'', la distribución se asemeja a la de una normal.
            
             \subsubsection{Comuna}
            
-            Seguimos observando la variable ``comuna''. En la misma se muestra la comuna de la Ciudad de Buenos Aires del entrevistado, de manera de tener una ubicación geográfica. Consideramos importante revisar esta variable ya que tenemos como hipótesis que el nivel educativo alcanzado puede estar dependiendo de la zona geográfica de la ciudad en la que se encuentra el entrevistado.
+            Se ha continuado por evaluar la variable ``comuna''. En la misma se muestra la comuna de la Ciudad de Buenos Aires del entrevistado, de manera de tener una ubicación geográfica. Se ha considerado primordial revisar esta variable a fin de corroborar que exista un balanceo de datos de cantidad de entrevistados pos comuna.
            
-            Para esto vamos a generar un mapa, así que utilizaremos el mapa de comunas de la Ciudad de Buenos Aires, transformamos las variables que vamos a usar para joinear el mapa con la base de manera que coincidan, transformamos la base para contabilizar la frecuencia con la que aparece cada comuna en la base. Y por último unimos ambos datasets y generamos una nueva variable con las coordenadas para poder agregar etiquetas en el centro geográfico de cada comuna, que nos da como resultado los siguientes gráficos:
+            Para ello, se ha generado un mapa. En concreto se ha partido del mapa de comunas de la Ciudad de Buenos Aires y se han transformado las variables para fusionar el mapa con la base de datos de manera que coincidan.
            
-            \begin{center}
-                \includegraphics[scale=0.30]{Imagenes/AUComuna.png}    
-            \end{center}
+            \begin{figure}  [H]
+                \centering
+                \includegraphics[scale=0.30]{Imagenes/AUComuna.png}  
+                \caption{Encuestados por comuna.}
+                \label{AU comuna}
+            \end{figure}
  
-            Observando ambos gráficos vemos que las comunas 1,4,7 y 8 tienen mayor cantidad de casos. Queda por verse si en posteriores análisis es necesario abordar esta diferencia para evitar sesgos. Para eso, será necesario tomar en cuenta el porcentaje de la población total de cada comuna.
+            Al observar estos gráficos se determina que las comunas 1,4,7 y 8 tienen mayor cantidad de casos. Queda por verse si en posteriores análisis será necesario abordar esta diferencia para evitar sesgos. Para eso, será necesario tomar en cuenta el porcentaje de la población total de cada comuna.
            
-            \subsubsection{Ingreso familiar per cápita}
+
+            \subsubsection{Años de escolaridad}
            
-            Ahora probamos con observar los ingresos familiares. Creemos que puede ser un indicador interesante del nivel educativo. Para esto, armamos una función para graficar y jugar con el nivel del filtrado de la variable y obtener un histograma que permita apreciar mejor la distribución de la variable sin tantos outliers:
+            En este apartado, mediante un gráfico de barras, se han analizado los años de escolaridad alcanzados por los encuestados:
            
-            \begin{center}
+            \begin{figure}[H]
+                \centering
+                \includegraphics[scale=0.6]{Imagenes/AUAnosEsc.png}
+                \caption{Años de escolaridad alcanzados.}
+                \label{AU years of scholarship}
+            \end{figure}
+           
+            A simple vista se observan tres ``picos'': en el valor mínimo, alrededor del 7.5 y alrededor del 12.5. Se ha inferido que estos tres casos corresponden a no tener estudios, solo haber transcurrido el primario y haber transcurrido hasta la educación secundaria, respectivamente.
+           
+            \subsubsection{Máximo nivel educativo (Target)}
+            
+            Asimismo, se ha definido analizar el balance de los datos propios del Target. Se presentan los gráficos correspondientes.
+            
+            \begin{figure}[H]
+                \centering
+                \includegraphics[scale=0.3]{Imagenes/AUTarget.png} 
+                \caption{Distribución de datos del target.}
+                \label{AU Target}
+            \end{figure}
+           
+            Con respecto a la distribución de los datos del Target se determina que el nivel máximo educativo alcanzado con mayor frecuencia es el secundario completo, seguido por el primario. Adicionalmente, el nivel secundario y primario explican casi el 77\% de los datos, por lo tanto hay un gran desbalance en el Target. Esto se debe tener en cuenta al momento de alcanzar las conclusiones del proyecto.
+           
+           \subsubsection{Ingreso familiar per cápita}
+           
+            Finalmente, se ha definido evaluar una variable que pone como objeto de estudio al grupo familiar en vez del individuo, ingresos familiares. Al respecto, se ha armado una función para graficar y modificar con el nivel del filtrado de la variable y obtener un histograma que permita apreciar mejor la distribución de la variable sin tantos outliers:
+           
+            \begin{figure}[H]
+                \centering
                 \includegraphics[scale=0.325]{Imagenes/AUIngFam.png}
-            \end{center}
+                \caption{Análisis ingreso familiar.}
+                \label{AU Family income}
+            \end{figure}
            
             % Y como hay muchos outliers que impiden ver la distribución correctamente, los quitamos de los gráficos:
            
             % \includegraphics[scale=0.4]{Graf5.png}
  
-            Y como se puede ver, la distribución de los ingresos familiares esta \textbf{sesgada}.
+            % Y como se puede ver, la distribución de los ingresos familiares esta \textbf{sesgada}.
 
-            \subsubsection{Años de escolaridad}
+            % \subsubsection{Años de escolaridad}
            
-            Analizamos mediante un gráfico de barras los años de escolaridad alcanzados por los encuestados:
+            % Analizamos mediante un gráfico de barras los años de escolaridad alcanzados por los encuestados:
            
-            \begin{center}
-                \includegraphics[scale=0.6]{Imagenes/AUAnosEsc.png}
-            \end{center}
+            % \begin{center}
+            %     \includegraphics[scale=0.6]{Imagenes/AUAnosEsc.png}
+            % \end{center}
            
-            A simple vista se observan tres ``picos'': en el valor mínimo, alrededor del 7.5 y alrededor del 12.5. Podemos inferir que estos tres casos corresponden a no tener estudios, solo haber transcurrido el primario y haber transcurrido hasta la educación secundaria, respectivamente.
+            % A simple vista se observan tres ``picos'': en el valor mínimo, alrededor del 7.5 y alrededor del 12.5. Podemos inferir que estos tres casos corresponden a no tener estudios, solo haber transcurrido el primario y haber transcurrido hasta la educación secundaria, respectivamente.
            
-            \subsubsection{Máximo nivel educativo (Target)}
+            % \subsubsection{Máximo nivel educativo (Target)}
            
-            \begin{center}
-                \includegraphics[scale=0.3]{Imagenes/AUTarget.png}    
-            \end{center}
+            % \begin{center}
+            %     \includegraphics[scale=0.3]{Imagenes/AUTarget.png}    
+            % \end{center}
            
-            Podemos observar que el nivel máximo educativo más alcanzado es el secundario completo, seguido por el primario. Contrario de lo que habíamos intuido anteriormente, el nivel superior quedó en tercer lugar. Adicionalmente, el nivel secundario y primario explican casi el 77\% de los datos.
+            % Podemos observar que el nivel máximo educativo más alcanzado es el secundario completo, seguido por el primario. Contrario de lo que habíamos intuido anteriormente, el nivel superior quedó en tercer lugar. Adicionalmente, el nivel secundario y primario explican casi el 77\% de los datos.
+             Como se puede ver en la figura, la distribución de los ingresos familiares se encuentra \textbf{sesgada}, existe un desbalanceo de datos.
 
     
     \newpage
     
     \subsection{Análisis bivariado}
+        \subsubsection{Análisis de variables numéricas}
  
-        Para comenzar el análisis bivariado del problema, realizamos diferentes heat maps para ver si algo nos llama la atención entre las variables numéricas.        
+        Para comenzar el análisis bivariado del problema se han realizado diferentes heat maps para analizar, en primera instancia, la correlación entre las variables numéricas.        
        
-        \begin{center}
+        \begin{figure}[H]
+                \centering
             \includegraphics[scale=0.65]{Imagenes/ABSpearman.png}
-        \end{center}
+            \caption{Correlación entre variables por método de Spearman.}
+            \label{AB Spearman Correlation}
+        \end{figure}
  
-        A simple vista, no se observan fuertes correlaciones.
+        En primera instancia, no se observan fuertes correlaciones. Sin embargo, se puede apreciar que la variable ``años\_escolaridad'' correlaciona moderadamente bien con variables relacionadas al ingreso.
  
-        Podemos notar que la variable ``años\_escolaridad'' correlaciona moderadamente bien con variables relacionadas al ingreso.
- 
-        La principal correlación positiva es ``años\_escolaridad'' con ingreso familiar per cápita (``ing\_per\_cap\_familiar''), lo cual hace sentido teórico.
- 
-        Ahora, utilizando el método para solo graficar en base a un threshold vemos que los años de escolaridad alcanzados por los entrevistados tienen algo de relación $(66\%$) con la variable ``ingresos\_totales''
+        En concreto, la principal correlación positiva es ``años\_escolaridad'' con ingreso familiar per cápita, lo cual hace sentido teórico.
+        
+        Por otra parte, al graficar en base a un threshold se puede observar que los años de escolaridad alcanzados por los entrevistados tienen una relación de $66\%$ con la variable ``ingresos\_totales''
         % Estaría bien solo utilizar el gráfico de la derecha.
 
-        \begin{center}
-            \includegraphics[scale=0.4]{Imagenes/ABThreshold.png}
-        \end{center}
+        \begin{figure}[H]
+            \centering
+            \includegraphics[scale=0.38]{Imagenes/ABThreshold.png}
+            \caption{Correlación entre variables mayor a 0,6(izq) y 0,5(der).}
+            \label{AB Treshold Correlation}
+        \end{figure}
  
         Por último corremos una tabla de correlación y filtramos las de valores más altos
  
@@ -319,122 +372,159 @@ Análisis socioeducativo de los habitantes de la Ciudad de Buenos Aires}}
                 ingresos\_totales & ing\_per\_cap\_familiar & 0.62 \\ \hline
                 ingresos\_totales & años\_escolaridad & 0.60 \\ \hline
                 edad & ingreso\_total\_no\_lab & 0.57 \\ \hline
-                años\_escolaridad & Target & 0.57 \\ \hline
                 ingreso\_total\_lab & años\_escolaridad & 0.54 \\ \hline
             \end{tabular}
+            \caption{Tabla de correlaciones.}
+            \label{AB Correlation Table}
         \end{table}
  
-        En conclusión podemos ver que:
+        A modo de conclusión del análisis preliminar bivariado, se puede identificar que:
         \begin{itemize}
-            \item Como es esperable, hay alta correlación entre las variables relacionadas al ingreso.
-            \item A su vez, encontramos una alta correlación (66\%) entre los ingresos y los años de escolaridad.
-            \item Y también observamos una relación positiva entre la edad y los ingresos totales.
+            \item Existe una alta correlación entre las variables relacionadas al ingreso.
+            \item Existe una alta correlación entre los ingresos y los años de escolaridad.
+            \item Existe una relación positiva entre la edad y los ingresos totales.
         \end{itemize}
- 
-        \subsubsection{Comparación entre variables numéricas}
- 
-            En primer lugar, observaremos la relación entre los ingresos totales de cada hogar y los ingresos familiares por edad:
-            \begin{center}
+ \vspace{1cm}
+            Finalmente, se ha analizado la relación entre los ingresos totales de cada hogar y los ingresos familiares por edad:
+            \begin{figure}[H]
+                \centering
                 \includegraphics[scale=0.2275]{Imagenes/ABCompVarNum.png}
-            \end{center}
+                \caption{Ingresos totales y familiares por edad.}
+                \label{AB Income and age relationship}
+            \end{figure}
  
             Se puede ver que desde los 30 años en adelante el ingreso total de la persona se corresponde con el ingreso familiar. Por ende suele haber un único ingreso fuerte por grupo familiar.
  
         \subsubsection{Comparación de variables categóricas con numéricas}
  
-            Adicionalmente, vamos a comparar algunas variables con nuestro target, comenzando con los ingresos totales, pero primero veamos como se relacionan algunas categorías con el genero de los encuestados:
+            Dentro de esta sección se han comparado variables numéricas con otras categóricas, como es el caso del Target. Se ha comenzado por establecer la relación entre el sexo y variables numéricas propias de las categorías de ingreso, características de los encuestados y educación.
  
-            \begin{center}
+            \begin{figure}[H]
+                \centering
                 \includegraphics[scale=0.2295]{Imagenes/ABCatVsNum1.png}
-            \end{center}
+                \caption{Correlación entre sexo y variables numéricas.}
+                \label{AB genre and numeric variables}
+            \end{figure}
  
-            Probemos quitando outliers, a excepción de la cantidad de hijos nacidos vivos (puesto que no arrojará ningún dato nuevo) y de años de escolaridad (que no tiene outliers)
+            Como se adelantó previamente, los encuestados varones figuran sin hijos ya que los mismos se asignan unicamente a la madre a fin de no duplicarlos en el dataset. Por otro lado, las distribuciones de la variable años de escolaridad son similares para varones y mujeres.
+            Respecto a las variables relacionadas con el ingreso, se ha decidido quitar outliers de las correlaciones anteriores a fin de establecer relaciones claras.
  
-            \begin{center}
+            \begin{figure}[H]
+                \centering
                 \includegraphics[scale=0.425]{Imagenes/ABCatVsNum2.png}
-            \end{center}
+                \caption{Correlación entre sexo y variables numéricas sin outliers.}
+                \label{AB genre and numeric variables without outliers}
+            \end{figure}
  
-            Por parte de las variables de ingreso, no parece haber nada disruptivo. La distribución por ingreso y años de escolaridad pareciera ocurrir pero no en un orden lineal.
+            Mediante el análisis de las figuras se determina que en el caso de los ingresos totales individuales los varones perciben mayores ingresos, sin embargo, la diferencia no es significativa. En el caso de los ingresos familiares la distribución se da de manera similar. 
  
-            Llama la atención la variable ``sexo'': que por algún motivo, todos los encuestados hombres figuran sin hijos nacidos vivos. Alternativamente, se podría investigar la metodología de la encuesta para ver si hay alguna respuesta. Adicionalmente, los hombres parecieran tener ingresos totales y familiares mayores que las mujeres, pero no pareciera que haya distribuciones desiguales en los años de escolaridad.
- 
-            \begin{center}
+ \vspace{1cm}
+
+          Luego del análisis bivariado preliminar realizado para enriquecer la descripción del dataset, se ha decidido correlacionar al Target con los ingresos.
+            \begin{figure}[H]
+            \centering
                 \includegraphics[scale=0.3]{Imagenes/ABCatVsNum3Bis.png}
-            \end{center}
+                \caption{Correlación entre ingresos totales y Target}
+                \label{AB Target and Total Incomes}
+            \end{figure}
  
-            Parece que para el nivel inicial la remoción de outliers en otra categoría sigue siendo insuficiente para mostrar la distribución real de la variable. Echemos un vistazo a los valores de esta categoría:
+            A simple vista puede apreciarse que, para el nivel inicial, la remoción de outliers en otra categoría sigue siendo insuficiente para mostrar la distribución real de la variable. Por lo tanto se han analizado con mayor profundidad los valores de esta categoría:
  
-            \begin{center}
+            \begin{figure}[H]
+            \centering
                 \includegraphics[scale=0.8]{Imagenes/ABCatVsNum4.png}
-            \end{center}
+                \caption{Ingresos totales para encuestados de nivel inicial}
+                \label{AB Total Incomes for Initial level}
+            \end{figure}
  
             Lógicamente, la enorme mayoría de los ingresos tienen el valor inicial de 0, puesto que incluye a personas que en ese momento estaban cursando su educación inicial, por lo que tenían entre 2 y 6 años.
 
-            Entonces, es correspondiente analizar como se distribuyen los ingresos familiares con respecto a nuestro target:
+            Entonces, ha resultado correspondiente analizar como se distribuyen los ingresos familiares con respecto al Target:
  
-            \begin{center}
-                \includegraphics[scale=0.3]{Imagenes/ABCatVsNum5.png}
-            \end{center}
- 
-            En definitiva, se observa un corrimiento de los valores centrales (dentro de la caja) hacia la izquierda a medida que aumenta el nivel educativo.
 
         \newpage
  
         \subsubsection{Variable numéricas con comuna}
 
-            En primer lugar, analizaremos la relación de nuestro target con cada comuna: 
+            Para relacionar variables numéricas con la comuna, se ha analizado la interacción entre la frecuencia para cada categoría del Target y las comunas mediante heat maps: 
  
-            \begin{center}
+            \begin{figure}[H]
+            \centering
                 \includegraphics[scale=0.65]{Imagenes/ABCatVsNum6.png}
-            \end{center}
+                \caption{Encuestados por nivel educativo y comuna}
+                \label{AB education level and location}
+            \end{figure}
  
-            Se observa que en el sur de la ciudad hay  mayor cantidad de encuestados con niveles de inicial, primario y secundario completo, mientras que el norte (particularmente el barrio de Palermo) tiene mayor cantidad de personas con estudios superiores. En menor medida también las comunas del este (comúnmente llamado el ``centro de la ciudad'') destacan por la cantidad de encuestados con nivel superior.
+            Se ha observado que en el sur de la ciudad hay  mayor cantidad de encuestados con niveles de inicial, primario y secundario completo, mientras que el norte (particularmente el barrio de Palermo) tiene mayor cantidad de personas con estudios superiores. En menor medida también las comunas del este (comúnmente llamado el ``centro de la ciudad'') destacan por la cantidad de encuestados con nivel superior.
 
-            \begin{center}
+\vspace{1cm}
+            A su vez, se presenta otro heat map que reúne en un único gráfico el promedio de años de escolaridad por comuna. Este gráfico refuerza la relación presentada en la figura anterior.
+
+            \begin{figure}[H]
+            \centering
                 \includegraphics[scale=0.65]{Imagenes/ABCatVsNum7.png}
-            \end{center}
+                \caption{Años de escolaridad por comuna}
+                \label{AB years of education and location}
+            \end{figure}
  
-            Lo que podemos observar en los últimos dos gráficos es una clara división geográfica del nivel educativo:
+            A partir de los últimos dos gráficos se ha establecido una clara división geográfica del nivel educativo:
             \begin{itemize}
                 \item Las comunas del norte son las que tienen mayor nivel educativo.
                 \item Las comunas del centro tienen niveles medios.
                 \item Las comunas del sur (con las comuna 6 en el centro de la ciudad como outlier) y la comuna 1 en el este son las que tienen niveles más bajos.
             \end{itemize}
+
+            Esta relación encontrada aporta gran información a la descripción del dataset en términos de relación entre el Target y la distribución geográfica d ela población.
     
     \newpage
     
     \subsection{Análisis multivariado}
  
-        Probamos de cruzar años de escolaridad, nivel máximo educativo y los ingresos totales.
+        Durante esta sección se ha trabajado a fin de establecer relaciones entre más de 2 variables. En concreto, se ha buscado relacionar al Target con variables de las categorías de ingresos, educación, geolocalización, entre otras.
+        En ese sentido, se ha comenzado por establecer la relación entre años de escolaridad, nivel máximo educativo (Target) y los ingresos totales.
  
-        \begin{center}
+        \begin{figure}[H]
+            \centering
             \includegraphics[scale=0.65]{Imagenes/AMIngVsAnosEsc.png}
-        \end{center}
+            \caption{Relación entre años de escolaridad, Target e ingresos totales}
+            \label{AM Scholar Years, Taget and Total Income}
+        \end{figure}
  
-        Al visualizar el gráfico podemos observar que:
+        Al visualizar se ha concluido que:
  
         \begin{itemize}
-            \item Hasta los 6 años, como era esperable, todos los casos llegan al nivel inicial.
-            \item Vemos dos años en que aparece el primario completo: 7 y 12 años. Estimamos que se debe a la división entre los que comenzaron su educación en la primaria y los que comenzaron en el nivel inicial.
-            \item A partir de los 12 años vemos un aumento consistente de los ingresos totales.
+            \item Hasta los 6 años todos los casos llegan al nivel inicial.
+            \item En dos años en que aparece el primario completo: 7 y 12 años. Se estima que se debe a la división entre los que comenzaron su educación en la primaria y los que comenzaron en el nivel inicial.
+            \item A partir de los 12 años se observa un aumento consistente de los ingresos totales.
         \end{itemize}
+        \vspace{1cm}
+
+        A su vez, se ha buscado relacionar el Target, con los ingresos y el dominio.
  
-        \begin{center}
+        \begin{figure}[H]
+            \centering
             \includegraphics[scale=0.255]{Imagenes/AMIngVSTargetBis.png}
-        \end{center}
+            \caption{Relación entre dominio, Target e ingresos familiares}
+            \label{AM Dominio, Taget and Familiar Income}
+        \end{figure}
+
  
-        Aquí obtuvimos un descubrimiento interesante: no importa el nivel máximo educativo, los casos que no provienen de villas de emergencia (dominio=``villas\_de\_emergencia'') obtienen en promedio ingresos más altos en todos los niveles educativos. El alcanzar estudios superiores no parece homogeneizar ambos conjuntos. Esto se puede observar en el segundo gráfico, ya que el violín naranja acumula mayor cantidad de casos hacia la derecha, en comparación con los violines azules que tienen una mayor distribución.
+        En este punto se ha alcanzado una conclusión interesante: no importa el nivel máximo educativo, los casos que no provienen de villas de emergencia (dominio=``villas\_de\_emergencia'') obtienen en promedio ingresos más altos en todos los niveles educativos. El alcanzar estudios superiores no parece homogeneizar ambos conjuntos. Esto se puede observar en el segundo gráfico, ya que el violín naranja acumula mayor cantidad de casos hacia la derecha, en comparación con los violines azules que tienen una mayor distribución.
         
         \newpage
 
-        Luego, observamos los ingresos familiares según el máximo nivel educativo alcanzado:
-        \begin{center}
+        Continuando con el análisis a nivel grupo familiar, se ha evaluado la relación entre ingresos familiares y comuna según el máximo nivel educativo alcanzado (Target):
+        \begin{figure}[H]
+            \centering
             \includegraphics[scale=0.6]{Imagenes/AMIngVsComuna.png}
-        \end{center}
+            \caption{Relación entre comuna, Target e ingresos familiares}
+            \label{AM Location, Taget and Familiar Income}
+        \end{figure}
  
-        Aquí, podemos observar que a medida que avanza el nivel educativo máximo se atenúan levemente las diferencias de ingresos familiares entre comunas. Queda pendiente cruzar estos datos con la edad, para saber si el hecho de incluir a menores de edad está sesgando los valores para nivel inicial, primario y secundario.
+        En esta instancia se ha visualizado que a medida que avanza el nivel educativo máximo (Target) se atenúan levemente las diferencias de ingresos familiares entre comunas. Queda pendiente cruzar estos datos con la edad, para saber si el hecho de incluir a menores de edad está sesgando los valores para nivel inicial, primario y secundario.
  
 \newpage
+
 
 \section{Modelos analíticos}
 
