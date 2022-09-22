@@ -384,7 +384,9 @@ Análisis socioeducativo de los habitantes de la Ciudad de Buenos Aires}}
             \item Existe una alta correlación entre los ingresos y los años de escolaridad.
             \item Existe una relación positiva entre la edad y los ingresos totales.
         \end{itemize}
+        
  \vspace{1cm}
+ 
             Finalmente, se ha analizado la relación entre los ingresos totales de cada hogar y los ingresos familiares por edad:
             \begin{figure}[H]
                 \centering
@@ -458,6 +460,7 @@ Análisis socioeducativo de los habitantes de la Ciudad de Buenos Aires}}
             Se ha observado que en el sur de la ciudad hay  mayor cantidad de encuestados con niveles de inicial, primario y secundario completo, mientras que el norte (particularmente el barrio de Palermo) tiene mayor cantidad de personas con estudios superiores. En menor medida también las comunas del este (comúnmente llamado el ``centro de la ciudad'') destacan por la cantidad de encuestados con nivel superior.
 
 \vspace{1cm}
+
             A su vez, se presenta otro heat map que reúne en un único gráfico el promedio de años de escolaridad por comuna. Este gráfico refuerza la relación presentada en la figura anterior.
 
             \begin{figure}[H]
@@ -528,20 +531,21 @@ Análisis socioeducativo de los habitantes de la Ciudad de Buenos Aires}}
 
 \section{Modelos analíticos}
 
-    Comenzamos transformando algunas variables para poder trabajar con los algoritmos:
+    En esta sección se ha trabajado en pos de utilizar algoritmos que modelen los datos de manera correcta y así poder alcanzar los objetivos propuestos para el proyecto. En concreto, se ha buscado clasificar el Target a partir de las variables restantes del dataset utilizando machine learning. 
+    No obstante, se ha comenzado por transformar algunas variables para poder trabajar con los algoritmos:
     \begin{itemize}
-        \item recategorizando la variables ``Target'' en variables numéricas, es decir, a cada nivel educativo le asignamos un valor numérico del 1 al 4:
+        \item Se ha rectegorizado la variables ``Target'' en variables numéricas, es decir, a cada nivel educativo le asignamos un valor numérico del 1 al 4:
         \begin{itemize}
             \item \textbf{inicial=} 1,
             \item \textbf{prim\_completo=} 2,
             \item \textbf{sec\_completo=} 3,
             \item \textbf{superior=} 4,
         \end{itemize}
-        \item reagrupamos la variable ``comuna'' por regiones para reducir la dimensionalidad (en norte, centro, sur y oeste),
-        \item y por último renombramos algunas variables para que sean más cortas.
+        \item Se ha reagrupado la variable ``comuna'' por regiones para reducir la dimensionalidad (en norte, centro, sur y oeste),
+        \item y por último se han renombrado algunas variables para que sean más cortas.
     \end{itemize}
 
-    Como resultado nos quedan las siguientes variables:
+    Como resultado han quedado las siguientes variables:
     
     \begin{table}[H]
         \centering
@@ -585,11 +589,13 @@ Análisis socioeducativo de los habitantes de la Ciudad de Buenos Aires}}
             \multicolumn{4}{l}{Tipos de datos: Int64(1), float64(1), int64(7), object(24)} \\
             \multicolumn{4}{l}{Memoria usada: 3.6+ MB } \\
         \end{tabular}
+        \caption{Tabla de variables modificadas}
+        \label{final table of inputs and Target}
     \end{table}
 
     \subsection{Tratados de nulos}
 
-        A la hora de eliminar los nulos de nuestro set de datos, armamos una función para tener una lista limpia de variables con nulos, que nos da como resultado:
+        A la hora de eliminar los nulos del set de datos, se ha definido armar una función para tener una lista limpia de variables con nulos, se comparten los resultados obtenidos:
 
         \begin{table}[H]
             \begin{tabular}{lr}
@@ -604,9 +610,15 @@ Análisis socioeducativo de los habitantes de la Ciudad de Buenos Aires}}
             \end{tabular}
         \end{table}
 
-        Entonces, para eliminar los valores nulos de la variable ``años\_escolaridad'' reemplazamos los nulos con la mediana por comuna y sexo.
+        Entonces, cada una de las variables se ha tratado de manera particular dependiendo los tipos de datos que aloja.
+        
+\vspace{1cm}
 
-        Por otro lado, a los nulos de las variables:
+        En ese sentido, para eliminar los valores nulos de la variable ``años\_escolaridad'', la cual tiene datos numéricos, se han reemplazado con la mediana por comuna y sexo.
+        
+\vspace{1cm}
+
+        Por otro lado, a los nulos de las variables categóricas:
         \begin{itemize}
             \item ``lugar\_nacimiento'',
             \item ``situacion\_conyugal'',
@@ -614,54 +626,48 @@ Análisis socioeducativo de los habitantes de la Ciudad de Buenos Aires}}
             \item ``sector\_educativo''
             \item ``hijos\_nacidos\_vivos''
         \end{itemize}
-        los reemplazamos con la moda.
+        se han reemplazado con la moda.
         
-        Luego, eliminamos la variable ``nivel\_max\_educativo'' ya que no la vamos a utilizar y por último eliminamos los nulos de nuestro target y pasamos el tipo de dato de la misma a entero. 
+ \vspace{1cm}    
+ 
+        Finalmente, se ha eliminado la variable ``nivel\_max\_educativo'' ya que no es de interes. Asimismo, se han eliminado los nulos del Target y se ha pasado el tipo de dato de la misma a entero. 
         
 
     \subsection{Target}
 
         \subsubsection{Borrado de variables}
     
-        Hay muchas variables que consideramos que no es necesario sumarlas al algoritmo de clasificación dado que brindan información repetida o que no suma para la clasificación. A continuación se comparten las categoría que se descartarán para correr el algoritmo: 
-        \begin{itemize}
-            \item \textbf{id:} no suma información para la clasificación,
-            \item \textbf{nhogar:} no suma información para la clasificación,
-            \item \textbf{parentesco\_jefe:} no suma información para la clasificación,
-            \item \textbf{miembro:} no suma información para la clasificación,
-            \item \textbf{num\_miembro\_padre:} no suma información para la clasificación,
-            \item \textbf{num\_miembro\_madre:} no suma información para la clasificación,
-            \item \textbf{cat\_ocupacional:} brinda la misma información que estado\_ocupacional,
-            \item \textbf{calidad\_ingresos\_lab:} brinda la misma información que ingreso\_total\_lab,
-            \item \textbf{calidad\_ingresos\_no\_lab:} brinda la misma información que ingreso\_total\_no\_lab,
-            \item \textbf{calidad\_ingresos\_totales:} brinda la misma información que ingresos\_totales,
-            \item \textbf{calidad\_ingresos\_familiares:} brinda la misma información que ingreso\_familiares,
-            \item \textbf{estado\_educativo:} no aporta información para la clasificación,
-            \item \textbf{nivel\_actual:} no aporta información para la clasificación,
-            \item \textbf{hijos\_nacidos\_vivos:} brinda la misma información que cant\_hijos\_nac\_vivos,
-            \item \textbf{comuna:} variable ya abordada en la variable 'región'.
-        \end{itemize}
+        Hay muchas variables que no se han considerado escenciales dado que no aportan información relevante en el algoritmo de clasificación. Precisamente, brindan información repetida. A continuación se comparten las categoría que se han descartado para correr el algoritmo: 
 
-        \begin{tabular}{rl}
-            \textbf{Variables}              & \textbf{Motivo de eliminación} \\ \hline
-            id:                             & no suma información para la clasificación, \\
-            nhogar:                         & no suma información para la clasificación, \\
-            parentesco\_jefe:               & no suma información para la clasificación, \\
-            miembro:                        & no suma información para la clasificación, \\
-            num\_miembro\_padre:            & no suma información para la clasificación, \\
-            num\_miembro\_madre:            & no suma información para la clasificación, \\
-            cat\_ocupacional:               & brinda la misma información que estado\_ocupacional, \\
-            calidad\_ingresos\_lab:         & brinda la misma información que ingreso\_total\_lab, \\
-            calidad\_ingresos\_no\_lab:     & brinda la misma información que ingreso\_total\_no\_lab, \\
-            calidad\_ingresos\_totales:     & brinda la misma información que ingresos\_totales, \\
-            calidad\_ingresos\_familiares:  & brinda la misma información que ingreso\_familiares, \\
-            estado\_educativo:              & no aporta información para la clasificación, \\
-            nivel\_actual:                  & no aporta información para la clasificación, \\
-            hijos\_nacidos\_vivos:          & brinda la misma información que cant\_hijos\_nac\_vivos, \\
-            comuna:                         & variable ya abordada en la variable 'región'. \\
-        \end{tabular}
 
-        Y como resultado, tenemos nuestro dataset listo para el procesamiento:
+
+        \begin{table}[H]
+            \centering
+            \begin{tabular}{rl}
+                \textbf{Variables}              & \textbf{Motivo de eliminación} \\ \hline
+                id:                             & no suma información para la clasificación, \\
+                nhogar:                         & no suma información para la clasificación, \\
+                parentesco\_jefe:               & no suma información para la clasificación, \\
+                miembro:                        & no suma información para la clasificación, \\
+                num\_miembro\_padre:            & no suma información para la clasificación, \\
+                num\_miembro\_madre:            & no suma información para la clasificación, \\
+                cat\_ocupacional:               & brinda la misma información que estado\_ocupacional, \\
+                calidad\_ingresos\_lab:         & brinda la misma información que ingreso\_total\_lab, \\
+                calidad\_ingresos\_no\_lab:     & brinda la misma información que ingreso\_total\_no\_lab, \\
+                calidad\_ingresos\_totales:     & brinda la misma información que ingresos\_totales, \\
+                calidad\_ingresos\_familiares:  & brinda la misma información que ingreso\_familiares, \\
+                estado\_educativo:              & no aporta información para la clasificación, \\
+                nivel\_actual:                  & no aporta información para la clasificación, \\
+                hijos\_nacidos\_vivos:          & brinda la misma información que cant\_hijos\_nac\_vivos, \\
+                comuna:                         & variable ya abordada en la variable 'región'. \\
+            \end{tabular}
+        \caption{Variables eliminadas}
+        \label{Deleted variables}
+    \end{table}
+
+ \vspace{1cm}
+ 
+Y como resultado, se tiene el dataset listo para el procesamiento:
 
         \begin{table}[H]
             \centering
@@ -689,22 +695,24 @@ Análisis socioeducativo de los habitantes de la Ciudad de Buenos Aires}}
                 \multicolumn{4}{l}{Tipos de datos: Int64(1), float64(1), int64(7), object(8)} \\
                 \multicolumn{4}{l}{Memoria usada: 2.0+ MB} 
             \end{tabular}
+            \caption{Dataset listo para el procesamiento}
+            \label{Final Dataset}
         \end{table}
     \subsection{Procesamiento}
 
-        Para preparar los datos para el modelado generamos una función que:
+        Para preparar los datos para el modelado se ha generado una función que:
         \begin{itemize}
             \item  Divide el dataframe en X\_train, y\_train, X\_test e y\_test, haciendo la división entre test y el train en un 30\% y un 70\% respectivamente, con una semilla especifica.
             \item  Procesa el X\_train y el X\_test con un pipeline generado previamente, el cual convierte las variable numéricas con el minmaxscaler y las categóricas con one hot encoding.
         \end{itemize}
 
-        Una vez aplicada dicha función a nuestro dataframe, tenemos ya lista la partición (con la misma cantidad de columnas) del mismo en X\_train, y\_train, X\_test e y\_test.
+        Una vez aplicada dicha función al dataframe, se ha tenido lista la partición (con la misma cantidad de columnas) del mismo en X\_train, y\_train, X\_test e y\_test.
 
     \subsection{Árbol de decisión}
 
         \subsubsection{Primer modelo}
 
-            Como primera aproximación, vamos a usar un árbol de clasificación usando con parámetros:
+            Como primera aproximación, se ha utilizado un árbol de clasificación usando con parámetros:
             \begin{itemize}
                 \item random\_state = 50,
                 \item max\_depth=8,
@@ -712,7 +720,9 @@ Análisis socioeducativo de los habitantes de la Ciudad de Buenos Aires}}
             \end{itemize}
             para saber como performa y mejorarlo a partir de ahí.
 
-            Como resultado obtenemos que el Accuracy score para el test es de: 0.940 y la matriz de confusión nos da:
+ \vspace{1cm}
+ 
+            Como resultado se ha oservaddo que el Accuracy score para el test ha sido de: 0.940 y la matriz de confusión ha dado:
             \begin{table}[H]
                 \centering
                 \begin{tabular}{|l|c|c|c|c|}
@@ -723,9 +733,11 @@ Análisis socioeducativo de los habitantes de la Ciudad de Buenos Aires}}
                     Secundario & 0 & 19 & 1693 & 59 \\ \hline
                     Superior & 1 & 57 & 84 & 630 \\ \hline
                 \end{tabular}
+                \caption{Matriz de confusión primer modelo}
+                \label{First model confusion matrix}
             \end{table}
 
-            Y obtenemos las siguientes métricas:
+            Por lo tanto, se han alcanzado las siguientes métricas:
 
             \begin{table}[H]
                 \centering
@@ -741,12 +753,14 @@ Análisis socioeducativo de los habitantes de la Ciudad de Buenos Aires}}
                     macro avg & 0.94 & 0.94 & 0.94 & 3967 \\ 
                     weighted avg & 0.94 & 0.94 & 0.94 & 3967 \\ 
                 \end{tabular}
+                \caption{Metricas primer modelo}
+                \label{First model metrics}
             \end{table}
 
-            A simple vista, parece que el modelo performa muy bien, dado su accuracy (solo cave acotar que se observa una diferencia de 14 puntos en el f1-score del la categoría superior con respecto a la incial, mientras que para las otras dos categorías es solo de 5 puntos). Veamos más en detalle y calculemos su sesgo y su varianza:
+            A simple vista, se aprecia que el modelo performa muy bien, dado su accuracy. Cabe destacar que se observa una diferencia de 14 puntos en el f1-score del la categoría superior con respecto a la incial, mientras que para las otras dos categorías es solo de 5 puntos. Asimismo, se ha calculado su sesgo y su varianza:
             \begin{itemize}
-                \item \textbf{Bias o sesgo:} 96.89\% que nos indica poco error, es decir, que tenemos un sesgo bajo,
-                \item \textbf{Variance=Test\_Score - Bias:} 2.89\%, lo que nos indica que la varianza también es baja.
+                \item \textbf{Bias o sesgo:} 96.89\% lo cual indica poco error, es decir, un sesgo bajo,
+                \item \textbf{Variance=Test\_Score - Bias:} 2.89\%, lo que indica que la varianza también es baja.
             \end{itemize}
 
 
@@ -754,24 +768,24 @@ Análisis socioeducativo de los habitantes de la Ciudad de Buenos Aires}}
 
             Entonces, el modelo tiene una \textbf{buena relación} de sesgo y varianza.
 
-            De aquí, vemos necesario ver cuáles son las variables más importantes para el armado del modelo. Esto nos permitirá volver el modelo más robusto, al quitar las mismas. Obtenemos que la variable ``años\_escolaridad'' tiene una importancia del 84\%, por mucho superior al resto de variables.
+            De aquí, ha sido necesario ver cuáles eran las variables más importantes para el armado del modelo. Esto permite volver el modelo más robusto, al quitar las mismas. se ha determinado que la variable ``años\_escolaridad'' tiene una importancia del 84\%, por mucho superior al resto de variables.
 
-            % Tendríamos que agregar algo relacionado a la diferencia que tenemos con los resultado del EDA:
+            Este hecho resulta contradictorio dado que, durante el análisis EDA, no se ha visto un resultado que indique tal relación, por otro lado, si se analiza la relación conceptual entre ambas variables, resulta evidente.
 
-            Esto nos llama la atención dado que durante el análisis EDA no obtuvimos un resultado que nos indicara tal relación, por otro lado, si analizamos la relación conceptual entre ambas variables resulta evidente.
+            Por lo tanto, se ha definido desarrollar un nuevo modelo sin esta variable. El principal motivo es que los años de escolaridad es un dato que puede constatarse de forma conjunta con el nivel máximo educativo, por lo que tiene sentido que si no se cuenta con la variable target, tampoco se tenga en consideración la variable de los años de escolaridad.
 
-            Por lo tanto, vamos a tener que desarrollar un nuevo modelo sin esta variable. El principal motivo es que los años de escolaridad es un dato que puede constatarse de forma conjunta con el nivel máximo educativo, por lo que tiene sentido que si no tenes la variable target, tampoco tengas la variable de los años de escolaridad.
-
-            Así, creamos un dataset nuevo (llamado ``df2'') sin la variable ``años\_escolaridad'', para volver a aplicar la función ``procesador'' para dividir nuevamente el mismo y generar nuevos modelos.
+            Así, se ha creado un dataset nuevo (llamado ``df2'') sin la variable ``años\_escolaridad'', para volver a aplicar la función ``procesador'' para dividir nuevamente el mismo y generar nuevos modelos.
 
         \subsubsection{Segundo modelo}
 
-            Esta vez al correr el modelo, utilizando el nuevo dataset (``df2''), utilizaremos el ``DecisionTreeClassifier'' solo con los parámetros:
+            Esta vez al correr el modelo, utilizando el nuevo dataset (``df2''), se ha definido aplicar el ``DecisionTreeClassifier'' solo con los parámetros:
             \begin{itemize}
                 \item random\_state = 50,
                 \item cirterion=`entropy'.
             \end{itemize}
-            Que nos da como resultado:  
+
+\vspace{1cm}
+            Esto ha dado como resultado:  
 
             \begin{table}[!ht]
                 \centering
@@ -787,31 +801,35 @@ Análisis socioeducativo de los habitantes de la Ciudad de Buenos Aires}}
                     macro avg & 0.56 & 0.59 & 0.54 & 3967 \\
                     weighted avg & 0.53 & 0.53 & 0.52 & 3967 \\
                 \end{tabular}
+                \caption{Matriz de confusión segundo modelo.}
+                \label{Second model confusion matriz}
             \end{table}
 
-            Luego, analizamos el sesgo y la varianza:
+            Luego, se ha evaluado el sesgo y la varianza:
             \begin{itemize}
-                \item \textbf{Bias o sesgo:} 99.78\% que nos indica que tenemos poco error, es decir, un sesgo bajo,
-                \item \textbf{Variance=Test\_Score - Bias:} 46.39\%, lo que nos indica un nivel de varianza alto,
+                \item \textbf{Bias o sesgo:} 99.78\% que indica poco error, es decir, un sesgo bajo,
+                \item \textbf{Variance=Test\_Score - Bias:} 46.39\%, lo que indica un nivel de varianza alto,
             \end{itemize}
             
-            Lo que nos da como resultado, que este modelo esta haciendo \textbf{OVERFITTING}, y tiene un rendimiento bastante pobre cuando se mira el f1-score.
+            Analizando lo observado, se ha determinado que este modelo hacía \textbf{OVERFITTING}, y tenía un rendimiento bastante pobre respecto al f1-score.
 
-            Por lo que se observa, el árbol performa bastante peor sin esta variable, aumentando especialmente la varianza. Por lo tanto optamos probar mejorar nuestro modelo con un grid search.
+            En consecuencia, el árbol performa peor sin esta variable, aumentando, especialmente, la varianza. Por lo tanto se ha optado por probar con un grid search.
         
         \subsubsection{Gridsearch con CV}
             
-            En la grilla de parámetros para el Gridsearch elegimos los siguientes:
+            Entre la grilla de parámetros para el Gridsearch se han elegido los siguientes:
             \begin{itemize}
                 \item max\_depth: range(5,11),
                 \item max\_features: range(1,14),
                 \item criterion: [`gini',`entropy',`log\_loss'];
             \end{itemize}
             como estimador el ``DecisionTreeClassifier'' con el random\_state=50, con el cross-validation =10 y usando todos los procesadores.
+            
+\vspace{1cm}
 
-            Y nos da como resultado, que el mejor árbol de decisión posible obtiene 0.642. Y para eso el árbol debe tener una profundidad de  6, utilizar  10  variables y usar el método ``gini''.
+           Esto ha mostrado que el mejor árbol de decisión posible obtiene 0.642. Para alcanzarlo, el árbol debe tener una profundidad de  6, utilizar  10  variables y usar el método ``gini''.
 
-            Entonces, entrenamos el modelo bajo estos mismos parámetros y obtenemos el siguiente reporte de clasificación:
+            Por lo tanto, se ha entrenado el modelo bajo estos mismos parámetros y obtenido el siguiente reporte de clasificación:
 
             \begin{table}[H]
                 \centering
@@ -826,27 +844,29 @@ Análisis socioeducativo de los habitantes de la Ciudad de Buenos Aires}}
                     macro avg & 0.70 & 0.56 & 0.59 & 3967 \\
                     weighted avg & 0.63 & 0.60 & 0.57 & 3967 \\
                 \end{tabular}
+                \caption{Matriz de confusión segundo modelo mejorado.}
+                \label{Neww Second model confusion matriz}
             \end{table}
 
-            Luego, analizamos el sesgo y la varianza:
+            Luego, se han investigado el sesgo y la varianza:
             \begin{itemize}
-                \item \textbf{Bias o sesgo:} 65.27\% que nos indica que tenemos bastantes errores, es decir, un bias alto,
+                \item \textbf{Bias o sesgo:} 65.27\% que indica que se tienen muchos errores, es decir, un bias alto,
                 \item \textbf{Variance=Test\_Score - Bias:} 5.14\%, por el otro lado la varianza es baja.
             \end{itemize}
 
-            Por lo tanto, el modelo esta haciendo \textbf{UNDERFITTING}, y no se nota gran mejoría en cuanto al f1-score.
+            Por lo cual, el modelo hizo \textbf{UNDERFITTING}, y no se han notado grandes mejoríaa en cuanto al f1-score.
 
             \subsubsection*{Resultados}
 
-            Utilizar el grid search nos permitió mejorar bastante el modelo que había perdido bastante accuracy al retirar los años de escolaridad. La métrica que más pudimos mejorar con este método fue la varianza, que pasó de 44.97\% a 5.14\%, pero en contra parte nuestro acuracy bajo de 100\% a 65.27\%.
+            El utilizar el grid search ha permitido mejorar bastante el modelo, el cual había perdido bastante accuracy al retirar los años de escolaridad. La métrica que más se ha podido mejorar con este método fue la varianza, que pasó de 44.97\% a 5.14\%, pero en contra parte el acuracy bajo de 100\% a 65.27\%.
 
     \subsection{Random Forest Classifier}
         
-        Ahora vamos a trabajar con random forest, para saber si este algoritmo nos arroja mejores resultados. Y teniendo en cuento todo el dataset incluido la variable con los años de escolaridad. 
+        En una instancia posterior, se ha trabajado con random forest con el propósito de analizar los resultados que arroja este algoritmo. Se ha comenzado teniendo en cuenta todo el dataset, incluido la variable con los años de escolaridad. 
 
         \subsubsection{Tercer modelo}
 
-            Como tercer modelo con el Random Forest Classifier, elegimos los siguientes parámetros:
+            Como tercer modelo con el Random Forest Classifier, se han elegido los siguientes parámetros:
             \begin{itemize}
                 \item n\_estimators=200,
                 \item max\_depth=15,
@@ -854,7 +874,7 @@ Análisis socioeducativo de los habitantes de la Ciudad de Buenos Aires}}
                 \item criterion=`gini'.
             \end{itemize}
 
-            Que nos da los siguientes resultados en cuanto a las métricas:
+            Se han obtenido los siguientes resultados en cuanto a las métricas:
             \begin{table}[H]
                 \centering
                 \begin{tabular}{rrrrr}
@@ -869,21 +889,23 @@ Análisis socioeducativo de los habitantes de la Ciudad de Buenos Aires}}
                     macro avg & 0.92 & 0.90 & 0.91 & 3967 \\
                     weighted avg & 0.91 & 0.91 & 0.90 & 3967 \\
                 \end{tabular}
+                \caption{Matriz de confusión tercer modelo}
+                \label{Thrid model cofusion matrix}
             \end{table}
 
-             El random forest performa bastante bien, es decir, mucho mejor que los modelos anteriores:
+             El random forest ha performado bastante bien, es decir, mucho mejor que los modelos anteriores:
              \begin{itemize}
-                \item \textbf{Bias o sesgo:} 97.80\% que nos indica que tengo bastantes errores, es decir tenemos un sesgo alto,
-                \item \textbf{Variance=Test\_Score - Bias:} 7.20\%, que nos indica que la varianza es baja.
+                \item \textbf{Bias o sesgo:} 97.80\% indica que existen bastantes errores, es decir hay un sesgo alto,
+                \item \textbf{Variance=Test\_Score - Bias:} 7.20\%, que indica que la varianza es baja.
              \end{itemize}
 
             \subsubsection*{Resultados}
 
-             Obtenemos un buen modelo, que no tiene grandes diferencias al mirar el f1-score. De todas maneras buscamos cuales son las variables más importantes, y encontramos que los años de escolaridad redujo la enorme importancia (a un 43.58\%) que tenía en el random tree. Sin embargo, para poder comparar sigue correspondiendo quitarla del modelo. Por lo que volveremos a probar un segundo modelo que no contenga la variable años de escolaridad. 
+             Se ha obtenido un buen modelo, que no tiene grandes diferencias al mirar el f1-score. De todas maneras, se han buscado cuales eran las variables más importantes. En ese sentido, se ha encontrado que la variable años de escolaridad redujo la enorme importancia (a un 43.58\%) que tenía en el random tree. Sin embargo, para poder comparar, sigue correspondiendo quitarla del modelo. Posteriormente, se ha probado un modelo alternativo sin la variable años de escolaridad. 
 
         \subsubsection{Cuarto modelo}
 
-            En este cuarto caso elegimos los siguientes parámetros:
+            En este cuarto caso se han elegido los siguientes parámetros:
             \begin{itemize}
                 \item n\_estimators=200,
                 \item max\_depth=10,
@@ -891,7 +913,7 @@ Análisis socioeducativo de los habitantes de la Ciudad de Buenos Aires}}
                 \item criterion=`gini'.
             \end{itemize}
 
-            Dándonos por resultado los siguientes medidas de desempeño:
+            Se muestran los resultados de las medidas de desempeño:
             \begin{table}[H]
                 \centering
                 \begin{tabular}{rrrrr}
@@ -906,32 +928,35 @@ Análisis socioeducativo de los habitantes de la Ciudad de Buenos Aires}}
                     macro avg & 0.71 & 0.57 & 0.60 & 3967 \\
                     weighted avg & 0.65 & 0.62 & 0.59 & 3967 \\
                 \end{tabular}
+                \caption{Matriz de confusión cuarto modelo}
+                \label{Fourth model cofusion matrix}
             \end{table}
 
-            Y en este caso obtuvimos los siguientes valores del sesgo y la varianza:
+            Para este caso tambien se han buscado los valores del sesgo y la varianza:
             \begin{itemize}
-                \item \textbf{Bias o sesgo:} 89.11\% que nos indica que tenemos pocos errores, es decir, que el sesgo es bastante bajo,
-                \item \textbf{Variance=Test\_Score - Bias:} 27.4\%, esto indica que tenemos un valor alto en la varianza.
+                \item \textbf{Bias o sesgo:} 89.11\% que indica que se tienen pocos errores, es decir, que el sesgo es bastante bajo,
+                \item \textbf{Variance=Test\_Score - Bias:} 27.4\%, esto indica que existe un valor alto en la varianza.
              \end{itemize}
 
-            Entonces, el modelo empeora su accuracy pero está muy cercano al mejor modelo de Random Tree, mientras que crece mucho la varianza a un 27.4\% (unos 20 puntos). Ahora, al igual que con el el DesicionTree, vamos a probar mejorándolo con grid search.
+            A modo de conclusión, respecto al tercer modelo, ha emperoado su accuracy pero está muy cercano al mejor modelo de Decision Tree, mientras que crece mucho la varianza a un 27.4\% (unos 20 puntos). 
+            Al igual que con el el DesicionTree, se ha probado mejorándolo con grid search.
 
         \subsubsection{Gridsearch con CV}
 
-            En la grilla de parámetros para el Gridsearch elegimos los siguientes:
+            En la grilla de parámetros para el Gridsearch se han elegido los siguientes:
             \begin{itemize}
                 \item max\_depth: [5,7,10,15,None],
                 \item max\_features: [5,8,10,30,41],
                 \item n\_estimators: [200,300,500],
                 \item criterion: [`gini',`entropy',`log\_loss'];
             \end{itemize}
-            como estimador el ``RandomTreeClassifier'' que utilizamos en el último modelo, con el cross-validation=10 y  usando todos los procesadores.
+            como estimador el ``RandomTreeClassifier'' que se ha utilizado en el último modelo, con el cross-validation=10 y  usando todos los procesadores.
 
-            Dándonos como resultado, que el mejor random forest posible obtiene 0.668. 
+           Como parte de los resultado, el mejor random forest posible ha obtenido 0.668. 
 
-            Y para eso el árbol debe tener una profundidad de 15, utilizar  10  variables, tener  300  estimadores y utilizar el método ``gini''.
+            Y para eso, el árbol ha tenido una profundidad de 15, utilizado  10  variables,  300  estimadores y utilizado el método ``gini''.
             
-            Entonces, entrenamos el modelo bajo estos mismos parámetros y obtenemos el siguiente reporte de clasificación:
+            Entonces, se ha entrenado el modelo bajo estos mismos parámetros y se ha obtenido el siguiente reporte de clasificación:
 
             \begin{table}[!ht]
                 \centering
@@ -947,40 +972,44 @@ Análisis socioeducativo de los habitantes de la Ciudad de Buenos Aires}}
                     macro avg & 0.72 & 0.58 & 0.60 & 3967 \\
                     weighted avg & 0.65 & 0.62 & 0.59 & 3967 \\
                 \end{tabular}
+                \caption{Matriz de confusión cuarto modelo mejorado.}
+                \label{New foruth model confusion matrix}
             \end{table}
             
             \begin{itemize}
-                \item \textbf{Bias o sesgo:} 90.65\% que nos indica que tengo pocos errores, es decir, el sesgo es bajo,
-                \item \textbf{Variance=Test\_Score - Bias:} 28.54\% $\Rightarrow$, y nuestra varianza también es alta. 
+                \item \textbf{Bias o sesgo:} 90.65\% que indica que hay pocos errores, es decir, el sesgo es bajo,
+                \item \textbf{Variance=Test\_Score - Bias:} 28.54\% $\Rightarrow$, y la varianza también es alta. 
             \end{itemize} 
 
-            Lo que nos indica que nuestro modelo esta haciendo \textbf{OVERFITING} y siguen sin desempañarse bien cuando miramos el f1-score.
+            Esto denota que este modelo está haciendo \textbf{OVERFITING} y continua desempeñandose mal al ver el f1-score.
             
             \subsubsection*{Resultados}
             
-             Al utilizar random forest  hemos podido mejorar el sesgo y disminuir el underfitting en 2 puntos porcentuales aproximadamente.
+             Al utilizar random forest  se ha podido mejorar el sesgo y disminuir el underfitting en 2 puntos porcentuales aproximadamente.
     
-            Sin embargo, se vio afectada la varianza en estos modelos, que pasó de estar alrededor del 5\% en el árbol de decisión mejorado a 28\%.
+            No obstante, se ha visto afectada la varianza en estos modelos, que pasó de estar alrededor del 5\% en el árbol de decisión mejorado a 28\%.
 
 \newpage
 
 \section{Conclusiones Finales}
 
-    Finalmente, nos queda elegir el mejor modelo para realizar nuestras predicciones. Para eso vamos a tomar las métricas de cada uno de ellos, siempre teniendo en cuenta los modelos que no contienen la variable ``años\_escolaridad'', y hacer un cuadro comparativo:
+    Finalmente, resta elegir el mejor modelo para realizar las predicciones. Para eso se han evaluado las métricas de cada uno de ellos, siempre teniendo en cuenta los modelos que no contienen la variable ``años\_escolaridad'', y hacer un cuadro comparativo:
     
     \begin{table}[H]
         \centering
         \begin{tabular}{|l|r|r|r|r|r|r|r|r|}
             \hline
-            modelo & accuracy & sesgo & varianza & f1\_inicial & f1\_primario & f1\_secundario & f1\_superior \\ \hline
-            Árbol default & 0.53 & 1.00 & 0.46 & 0.81 & 0.33 & 0.60 & 0.42 \\ \hline
-            Árbol mejorado & 0.60 & 0.65 & 0.05 & 0.85 & 0.30 & 0.69 & 0.53 \\ \hline
-            Bosque default & 0.62 & 0.89 & 0.27 & 0.86 & 0.32 & 0.69 & 0.53 \\ \hline
-            Bosque mejorado & 0.62 & 0.91 & 0.29 & 0.86 & 0.33 & 0.69 & 0.54 \\ \hline
+           N°modelo & modelo & accuracy & sesgo & varianza & f1\_inicial & f1\_primario & f1\_secundario & f1\_superior \\ \hline
+           2 & Árbol default & 0.53 & 1.00 & 0.46 & 0.81 & 0.33 & 0.60 & 0.42 \\ \hline
+           2 &  Árbol mejorado & 0.60 & 0.65 & 0.05 & 0.85 & 0.30 & 0.69 & 0.53 \\ \hline
+           4 & Bosque default & 0.62 & 0.89 & 0.27 & 0.86 & 0.32 & 0.69 & 0.53 \\ \hline
+           4 & Bosque mejorado & 0.62 & 0.91 & 0.29 & 0.86 & 0.33 & 0.69 & 0.54 \\ \hline
         \end{tabular}
+        \caption{Tabla general de resultados}
+        \label{Result table}
     \end{table}
 
-    Con esta información podemos decidir qué modelo nos conviene usar:
+    Con esta información se ha definido qué modelo nos conviene usar:
     \begin{itemize}
         \item El árbol default tiene el mejor resultado con respecto al sesgo, pero su varianza lo deja afuera de consideración.
         \item Por el contrario, el árbol mejorado tiene una varianza insuperable de 5\%, aunque con el menor puntaje con respecto al sesgo.
@@ -988,8 +1017,16 @@ Análisis socioeducativo de los habitantes de la Ciudad de Buenos Aires}}
         \item El bosque mejorado destaca por bajo sesgo pero su varianza es la segunda más alta.
     \end{itemize}
     
-    Consideramos que son los finalistas son el árbol mejorado y el bosque mejorado. Llamativamente, ambos performan muy bien pero en métricas diferentes. A su vez, el accuracy de ambos difiere en apenas un 2\%. Por un lado, ambos modelos tienen un F1 Score similar, de 85\% y 86\% respectivamente. Sin embargo, el arbol mejorado presenta signos de underfitting cuando lo comparamos con el otro modelo. A la inversa, el bosque mejorado muestra un escenario de overfitting con mayor varianza en la predicción. Cabe mencionar que aunque el bosque default tiene el mismo valor de F1 Score que el bosque mejorados, posee una probabilidad levemente mayor de underfitting. 
+    Se considera que son los finalistas son el árbol mejorado y el bosque mejorado. Llamativamente, ambos performan muy bien pero en métricas diferentes. A su vez, el accuracy de ambos difiere en apenas un 2\%. Por un lado, ambos modelos tienen un F1 Score similar, de 85\% y 86\% respectivamente. Sin embargo, el arbol mejorado presenta signos de underfitting cuando se lo compara con el otro modelo. A la inversa, el bosque mejorado muestra un escenario de overfitting con mayor varianza en la predicción. Cabe mencionar que aunque el bosque default tiene el mismo valor de F1 Score que el bosque mejorados, posee una probabilidad levemente mayor de underfitting. 
+
+\vspace{1cm}
     
-    En nuestra opinión, la mejor elección de modelo es el árbol mejorado, ya que tiene la mayor robustez  para poder generalizar en caso de agregar nuevos datos al modelo que difieran en gran medida con los existentes dentro del modelo, a comparación de los otros modelos, ya que presenta muy bajo overfitting. Otra ventaja frente al bosque aleatorio es su mayor velocidad de entrenamiento, asì como su capacidad de ser visualizada en un gráfico.
+    En conclusión, en nuestra opinión, la mejor elección de modelo es el árbol mejorado, ya que tiene la mayor robustez  para poder generalizar en caso de agregar nuevos datos al modelo que difieran en gran medida con los existentes dentro del modelo, a comparación de los otros modelos, ya que presenta muy bajo overfitting. Otra ventaja frente al bosque aleatorio es su mayor velocidad de entrenamiento, asì como su capacidad de ser visualizada en un gráfico.
+
+\vspace{1cm}
+
+    En futuras líneas de investigación se debería investigar en profundidad el desbalanceo de datos propio del Target. Como se ha visto en la etapa de EDA, el Target tiene un importante desequilibrio en el volumen de datos de cada categoría. De continuar con el proyecto, se indagaría acerca de dicho desbalance y se mitigaría la problemática agregando datos en categorías con deficit y eliminando datos de categorías en exceso
+
+    
     
 \end{document}
