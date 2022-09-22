@@ -12,6 +12,7 @@
 
 \usepackage{float} %para fijar tablas
 \usepackage{multirow} %Para tablas
+\usepackage{booktabs}
 
 \usepackage{csvsimple} %csv to table
 
@@ -30,6 +31,8 @@
 
 \usepackage{wrapfig} %para acomodar gráficos con texto.
 \usepackage{graphicx} % para combinar gráficos con listas
+\usepackage{graphbox}   % allows to add keys to \includegraphics
+\usepackage{lipsum}     % only for testing purposes
 
 \title[Curso Data Science]{\textbf{Análisis socioeducativo de los habitantes de la Ciudad de Buenos Aires}}
 
@@ -38,7 +41,7 @@
 \date{}
 
 \begin{document}
-\justifying
+\justifying{ 
 
 \begin{frame}
 
@@ -46,7 +49,7 @@
         \includegraphics[scale=0.2]{../Informe/Imagenes/Coder2.jpg}
     \end{center}
 
-    \titlepage
+    \titlepage%
 
 \end{frame}
 
@@ -63,18 +66,16 @@
 
 \textbf{Principales hitos:} 
     \begin{itemize}
-        \justifying
+        \justifying{
         %\item Es de gran importancia desarrollar  políticas públicas que abarquen las necesidades y requerimientos de los ciudadanos. 
         %\item Mediante datos demográficos y la estadística son de gran ayuda para lograr estos fines. El Instituto Nacional de Estadística y Censos (INDEC) es el organismo público que ejerce la dirección superior de todas las actividades estadísticas oficiales que se realizan en Argentina.
         \item Al estudiar los índices correspondientes a uno de los ejes de mayor importancia para la sociedad, educación, en la Ciudad Autónoma de Buenos Aires, se ha encontrado una gran limitación relacionada con su acceso inequitativo para los diferentes actores de la sociedad. 
         % \item Este hecho tiene consecuencias de índole social y económico para la población. Sin embargo, la principal problemática se da a nivel individual, y radica en el impedimento al acceso educativo para un porcentaje de la sociedad. Esto no ha resultado una novedad para el grupo, pero sí ha dado el pie a la búsqueda de una respuesta teórica a dicha disparidad, en concreto, a descubrir las principales variables que afectan el nivel educativo.
         % \item El análisis realizado en el marco del presente proyecto podría establecer una base de requerimientos que permitan generar políticas públicas efectivas, no solo en el ámbito educativo, sino en el económico, cultural, social y geográfico, entre otros.
-
         \item Para trabajar esta problemática, se ha recurrido a la \href{https://data.buenosaires.gob.ar/dataset/encuesta-anual-hogares/resource/3a45c563-396d-42de-ba93-8a93729e0723}{Encuesta Anual de Hogares} del Gobierno de la Ciudad de Buenos Aires para el año 2019. 
-
-         \item Esta encuesta contiene información demográfica, social, económica, educativa y de salud de 14319 habitantes de la Ciudad, la cual es una muestra representativa que permite obtener un vistazo de la población de la Ciudad.
-         
-            \end{itemize}
+        \item Esta encuesta contiene información demográfica, social, económica, educativa y de salud de 14319 habitantes de la Ciudad, la cual es una muestra representativa que permite obtener un vistazo de la población de la Ciudad.
+        } 
+    \end{itemize}
 
    \begin{figure}
         % \centering
@@ -88,11 +89,11 @@
 \begin{frame}{Objetivos}
 
     \begin{itemize}
-        \justifying
+        \justifying%
         \item Descubrir las principales variables intervinientes en el nivel máximo educativo alcanzado por la población de la Ciudad Autónoma de Buenos Aires (CABA).
         \item Generar un modelo de predicción aplicado a nuestra variable target ``Nivel Máximo Educativo’’, esto lo haremos implementando los siguientes modelos de clasificación:
         \begin{itemize}
-            \justifying
+            \justifying%
             \item \textbf{Árbol de decisión:} que construye un árbol durante el entrenamiento que es el que aplica a la hora de realizar la predicción.
             \item \textbf{Bosque Aleatorio:} que es un conjunto (ensemble) de árboles de decisión combinados con bagging.
         \end{itemize}
@@ -108,7 +109,7 @@
 
     Este trabajo se ha dividido en 3 partes:
     \begin{enumerate}
-        \justifying
+        \justifying%
         \item \textbf{Introducción a las variables del problema:} Se realiza un análisis EDA de las variables del dataset para  conocer su performance dentro del dataset y cómo interactúan entre sí. 
         \item \textbf{Modelos analíticos:} En esta sección se entrenan diversos modelos analíticos y algoritmos que sirven para alcanzar los objetivos seteados para el proyecto. Como la variable objetivo es categórica, se realizan modelos de clasificación.
         \item \textbf{Conclusión:} Se extraen conclusiones finales sobre los hallazgos.
@@ -318,17 +319,20 @@ Encontramos 31 variables dentro de dataset, de las cuales 10 son numéricas y 21
     \subsection{Análisis bivariado}
 
 \begin{frame}{Análisis bivariado}
-\textbf{Variable numéricas:}
-    
+    \vspace{-20pt}
+    \textbf{Variable numéricas:}
+    \vspace{4pt}
+
     Realizamos diferentes heat maps para ver la interacción entre las variables.
 
-    \begin{minipage}{0.5\textwidth}
+    \begin{minipage}{0.46\textwidth}
         \vspace{10pt}
         \includegraphics[scale=0.22]{../Informe/Imagenes/ABSpearman.png}
     \end{minipage}
     \begin{minipage}{0.46\textwidth}
+        \vspace{4pt}
         \begin{itemize}
-            \justifying
+            \justifying%
             \item No se observan fuertes correlaciones.
             \item ``años\_escolaridad'' correlaciona moderadamente bien con variables relacionadas al ingreso.
             \item La principal correlación positiva es ``años\_escolaridad'' con ingreso familiar per cápita (``ing\_per\_cap\_familiar'').
@@ -387,7 +391,9 @@ Encontramos 31 variables dentro de dataset, de las cuales 10 son numéricas y 21
     \subsubsection{Comparación de variables categóricas con numéricas}
 
 \begin{frame}{Análisis bivariado}
-\textbf{Variable numéricas y categóricas}
+
+    \textbf{Variable numéricas y categóricas}
+    \vspace{6pt}
 
     Adicionalmente, comparamos algunas variables con nuestro target, comenzando con los ingresos totales.
 
@@ -418,13 +424,17 @@ Encontramos 31 variables dentro de dataset, de las cuales 10 son numéricas y 21
  
 %             Llama la atención la variable ``sexo'': que por algún motivo, todos los encuestados hombres figuran sin hijos nacidos vivos. Alternativamente, se podría investigar la metodología de la encuesta para ver si hay alguna respuesta. Adicionalmente, los hombres parecieran tener ingresos totales y familiares mayores que las mujeres, pero no pareciera que haya distribuciones desiguales en los años de escolaridad.
 
-% \begin{frame}{Análisis bivariado}
+    \begin{figure}
+        \includegraphics[
+                         width=13cm,
+                         height=4cm
+                         ]{../Informe/Imagenes/ABCatVsNum3Bis.png}
+    \end{figure}
 
-    \begin{center}
-        \includegraphics[width=13cm, height=4cm]{../Informe/Imagenes/ABCatVsNum3Bis.png}
-    \end{center}
-    % Parece que para el nivel inicial la remoción de outliers en otra categoría sigue siendo insuficiente para mostrar la distribución real de la variable. Echemos un vistazo a los valores de esta categoría:
 \end{frame}
+
+
+    % Parece que para el nivel inicial la remoción de outliers en otra categoría sigue siendo insuficiente para mostrar la distribución real de la variable. Echemos un vistazo a los valores de esta categoría:
  
 %             \begin{center}
 %                 \includegraphics[scale=0.3]{Imagenes/ABCatVsNum3Bis.png}
@@ -470,7 +480,7 @@ Encontramos 31 variables dentro de dataset, de las cuales 10 son numéricas y 21
     \begin{minipage}{0.4\textwidth}
         \begin{itemize}
             \vspace{-10pt}
-            \justifying
+            \justifying%
             \item En el sur de la ciudad hay mayor cantidad de encuestados con niveles de inicial, primario y secundario completo,
             \item Mientras que el norte (particularmente el barrio de Palermo) tiene mayor cantidad de personas con estudios superiores,
             \item En menor medida también las comunas del este (comúnmente llamado el ``centro de la ciudad'') destacan por la cantidad de encuestados con nivel superior.
@@ -503,15 +513,19 @@ Encontramos 31 variables dentro de dataset, de las cuales 10 son numéricas y 21
     \footnotesize
 
     Probamos de cruzar años de escolaridad, nivel máximo educativo y los ingresos totales.
+    \vspace{10pt}
 
     \begin{minipage}{0.6\textwidth}
         \includegraphics[scale=0.3]{../Informe/Imagenes/AMIngVsAnosEsc.png}
     \end{minipage}
 \begin{minipage}{0.39\textwidth}
+
+
     Al visualizar el gráfico podemos observar que:
 
     \begin{itemize}
-    \justifying
+        \footnotesize
+        \justifying%
         \item Hasta los 6 años, como era esperable, todos los casos llegan al nivel inicial.
         \item Vemos dos años en que aparece el primario completo: 7 y 12 años. Estimamos que se debe a la división entre los que comenzaron su educación en la primaria y los que comenzaron en el nivel inicial.
         \item A partir de los 12 años vemos un aumento consistente de los ingresos totales.
@@ -520,13 +534,19 @@ Encontramos 31 variables dentro de dataset, de las cuales 10 son numéricas y 21
 \end{frame} 
 
 \begin{frame}{Análisis multivariado}
-Añadimos una variable más: dominio =``villas\_de\_emergencia''
-% \vspace{-15pt}
-% \noindent
-    \begin{figure} 
-        \includegraphics[scale=0.177]{../Informe/Imagenes/AMIngVSTargetBis.png}
+
+    \footnotesize
+
+    Añadimos una variable más: dominio =``villas\_de\_emergencia'':
+    \vspace{-5pt}
+
+    \begin{figure}[H]
+        \includegraphics[width=\textwidth,
+                         height=7cm]{../Informe/Imagenes/AMIngVSTargetBis.png}
     \end{figure}
-Podemos ver que los casos que no provienen de villas de emergencia  obtienen en promedio ingresos más altos en todos los niveles educativos. El alcanzar estudios superiores no parece homogeneizar ambos conjuntos. 
+    \vspace{-18pt}
+    
+    Podemos ver que los casos que no provienen de villas de emergencia  obtienen en promedio ingresos más altos en todos los niveles educativos. El alcanzar estudios superiores no parece homogeneizar ambos conjuntos. 
 
 \end{frame}
 
@@ -536,7 +556,7 @@ Podemos ver que los casos que no provienen de villas de emergencia  obtienen en 
     Luego, observamos los ingresos familiares según el máximo nivel educativo alcanzado:
 
     \begin{minipage}{0.55\textwidth}
-        \vspace{10pt}
+        % \vspace{5pt}
         \begin{figure} 
         \includegraphics[scale=0.26]{../Informe/Imagenes/AMIngVsComuna.png}
         \caption{Figure X}
@@ -544,7 +564,7 @@ Podemos ver que los casos que no provienen de villas de emergencia  obtienen en 
     \end{minipage}
     \begin{minipage}{0.38\textwidth}
         \begin{itemize}
-            \justifying
+            \justifying%
             \item a medida que avanza el nivel educativo máximo se atenúan levemente las diferencias de ingresos familiares entre comunas,
             \item queda pendiente cruzar estos datos con la edad, para saber si el hecho de incluir a menores de edad está sesgando los valores para nivel inicial, primario y secundario.
         \end{itemize}
@@ -631,7 +651,8 @@ Podemos ver que los casos que no provienen de villas de emergencia  obtienen en 
 
     \begin{table}[H]
         \begin{tabular}{lrl}
-            \textbf{Variable}                & \textbf{Nulos} & \textbf{Acción} \\
+            \toprule
+            \textbf{Variable}                & \textbf{Nulos} & \textbf{Acción} \\ \midrule
             situacion\_conyugal     & 1     & Reemplazamos con la moda\\ 
             lugar\_nacimiento       & 1     & Reemplazamos con la moda\\ 
             sector\_educativo       & 3     & Reemplazamos con la moda\\ 
@@ -642,6 +663,7 @@ Podemos ver que los casos que no provienen de villas de emergencia  obtienen en 
             Target                  & 1096  & Eliminamos sus nulos y transformamos\\
                                     &       & su tipo a entero\\ 
             hijos\_nacidos\_vivos   & 7784  & Reemplazamos con la moda\\ 
+            \bottomrule
         \end{tabular}
     \end{table}
     
@@ -714,7 +736,7 @@ Podemos ver que los casos que no provienen de villas de emergencia  obtienen en 
 
     Para preparar los datos para el modelado generamos una función que:
     \begin{itemize}
-        \justifying
+        \justifying%
         \item  Divide el dataframe en X\_train, y\_train, X\_test e y\_test, haciendo la división entre test y el train en un 30\% y un 70\% respectivamente, con una semilla especifica.
         \item  Procesa el X\_train y el X\_test con un pipeline generado previamente, el cual convierte las variable numéricas con el minmaxscaler y las categóricas con one hot encoding.
     \end{itemize}
@@ -746,13 +768,14 @@ Podemos ver que los casos que no provienen de villas de emergencia  obtienen en 
     \begin{table}[H]
         \scriptsize
         \centering
-        \begin{tabular}{|l|c|c|c|c|}
-        \hline
-            ~ & Pred. Inicial & Pred. Primario & Pred. Secundario & Pred. Superior \\ \hline
-            Inicial    & 445 & 0 & 1 & 0 \\ \hline
-            Primario   & 0 & 961 & 8 & 9 \\ \hline
-            Secundario & 0 & 19 & 1693 & 59 \\ \hline
-            Superior   & 1 & 57 & 84 & 630 \\ \hline
+        \begin{tabular}{lcccc}
+            \toprule
+             & Pred. Inicial & Pred. Primario & Pred. Secundario & Pred. Superior \\ \midrule
+            Inicial    & 445 & 0 & 1 & 0 \\                                          
+            Primario   & 0 & 961 & 8 & 9 \\                                          
+            Secundario & 0 & 19 & 1693 & 59 \\                                       
+            Superior   & 1 & 57 & 84 & 630 \\                                        
+            \bottomrule
         \end{tabular}
     \end{table}
 
@@ -766,9 +789,9 @@ Podemos ver que los casos que no provienen de villas de emergencia  obtienen en 
     \begin{table}[H]
         \scriptsize
         \centering
-        \begin{tabular}{rrrrr}
-            ~ & precision & recall & f1-score & support \\ 
-            & & & & \\
+        \begin{tabular}{rcccc}
+            \toprule
+             & precision & recall & f1-score & support \\ \midrule
             Inicial    & 1.00& 1.00 & 1.0 & 446 \\ 
             Primario   & 0.93 & 0.99 & 0.95 & 978 \\ 
             Secundario & 0.95 & 0.96 & 0.95 & 1771 \\ 
@@ -777,13 +800,14 @@ Podemos ver que los casos que no provienen de villas de emergencia  obtienen en 
             accuracy & & & 0.94 & 3967 \\ 
             macro avg & 0.94 & 0.94 & 0.94 & 3967 \\ 
             weighted avg & 0.94 & 0.94 & 0.94 & 3967 \\ 
+            \bottomrule
         \end{tabular}
     \end{table}
 
     A simple vista, parece que el modelo performa muy bien, dado su accuracy. Veamos más en detalle y calculemos su sesgo y su varianza:
     \begin{itemize}
         \item \textbf{Bias o sesgo:} 96.89\% que nos indica que tengo poco error, lo que indica que tenemos un sesgo bajo,
-        \item \textbf{Variance=Test\_Score - Bias=} 2.89\%, lo que nos indica que la varianza también es baja.
+        \item \textbf{Variance=Test\_Score $-$ Bias=} 2.89\%, lo que nos indica que la varianza también es baja.
     \end{itemize}
 
 \end{frame}
@@ -821,9 +845,9 @@ Sin embargo, tenemos que la variable ``años\_escolaridad'' tiene una importanci
     \begin{table}[!ht]
         \scriptsize
         \centering
-        \begin{tabular}{rrrrr}
-            ~ & precision & recall & f1-score & suppo \\
-            & & & & \\
+        \begin{tabular}{rcccc}
+            \toprule
+             & precision & recall & f1-score & suppo \\ \midrule
             Inicial    & 0.83 & 0.79 & 0.81 & 446 \\
             Primario   & 0.45 & 0.26 & 0.33 & 978 \\
             Secundario & 0.56 & 0.66 & 0.60 & 1771 \\
@@ -832,6 +856,7 @@ Sin embargo, tenemos que la variable ``años\_escolaridad'' tiene una importanci
             accuracy & & & 0.53 & 3967 \\
             macro avg & 0.56 & 0.59 & 0.54 & 3967 \\
             weighted avg & 0.53 & 0.53 & 0.52 & 3967 \\
+            \bottomrule
         \end{tabular}
     \end{table}
 
@@ -842,7 +867,7 @@ Sin embargo, tenemos que la variable ``años\_escolaridad'' tiene una importanci
     Luego, analizamos el sesgo y la varianza:
     \begin{itemize}
         \item \textbf{Bias o sesgo:} 99.78\% que nos indica que tengo poco error, es decir, un sesgo bajo,
-        \item \textbf{Variance=Test\_Score - Bias=} 46.39\%, lo que nos indica un nivel de varianza bastante alto,
+        \item \textbf{Variance=Test\_Score $-$ Bias=} 46.39\%, lo que nos indica un nivel de varianza bastante alto,
     \end{itemize}
 
     Lo que nos da como resultado, que este modelo esta haciendo \textbf{OVERFITTING}.
@@ -864,9 +889,9 @@ Sin embargo, tenemos que la variable ``años\_escolaridad'' tiene una importanci
     
     En la grilla de parámetros para el Gridsearch elegimos los siguientes:
     \begin{itemize}
-        \item 'max\_depth': range(5,11),
-        \item 'max\_features': range(1,14),
-        \item 'criterion': ['gini','entropy','log\_loss'];
+        \item max\_depth: $range(5,11)$,
+        \item max\_features: $range(1,14)$,
+        \item criterion: [`gini', `entropy',`log\_loss'];
     \end{itemize}
     como estimador el ``DecisionTreeClassifier'' con el random\_state=50, con el cross-validation =10,  usando todos los procesadores.
 
@@ -883,9 +908,9 @@ Sin embargo, tenemos que la variable ``años\_escolaridad'' tiene una importanci
     \begin{table}[H]
         \scriptsize
         \centering
-        \begin{tabular}{rrrrr}
-            ~ & precision & recall & f1-score & suppo \\
-            & & & & \\
+        \begin{tabular}{rcccc}
+            \toprule
+             & precision & recall & f1-score & suppo \\ \midrule
             Inicial    & 0.99 & 0.74 & 0.85 & 446 \\
             Primario   & 0.49 & 0.21 & 0.30 & 978 \\
             Secundario & 0.55 & 0.87 & 0.69 & 1771 \\
@@ -893,13 +918,14 @@ Sin embargo, tenemos que la variable ``años\_escolaridad'' tiene una importanci
             accuracy & & & 0.60 & 3967 \\
             macro avg & 0.70 & 0.56 & 0.59 & 3967 \\
             weighted avg & 0.63 & 0.60 & 0.57 & 3967 \\
+            \bottomrule
         \end{tabular}
     \end{table}
 
     Luego, analizamos el sesgo y la varianza:
     \begin{itemize}
         \item \textbf{Bias o sesgo:} 65.27\% que nos indica que tengo bastantes errores $\Rightarrow$ high bias,
-        \item \textbf{Variance=Test\_Score - Bias==} 5.14\%  $\Rightarrow$ low variance.
+        \item \textbf{Variance=Test\_Score $-$ Bias:} 5.14\%  $\Rightarrow$ low variance.
     \end{itemize}
 
     Por lo tanto, el modelo esta haciendo \textbf{UNDERFITTING}
@@ -953,9 +979,9 @@ Sin embargo, tenemos que la variable ``años\_escolaridad'' tiene una importanci
         \begin{table}[H]
             \scriptsize
             \centering
-            \begin{tabular}{rrrrr}
-                ~ & precision & recall & f1-score & suppo \\
-                & & & & \\
+            \begin{tabular}{rcccc}
+                \toprule
+                 & precision & recall & f1-score & suppo \\ \midrule
                 Inicial    & 1.00 & 0.96 & 0.98 & 446 \\
                 Primario   & 0.86 & 0.95 & 0.90 & 978 \\
                 Secundario & 0.91 & 0.93 & 0.9 & 1771 \\
@@ -964,13 +990,14 @@ Sin embargo, tenemos que la variable ``años\_escolaridad'' tiene una importanci
                 accuracy & & & 0.91 & 3967 \\
                 macro avg & 0.92 & 0.90 & 0.91 & 3967 \\
                 weighted avg & 0.91 & 0.91 & 0.90 & 3967 \\
+                \bottomrule
             \end{tabular}
         \end{table}
 
     El random forest performa bastante bien, es decir, mucho mejor que los modelos anteriores:
     \begin{itemize}
     \item \textbf{Bias o sesgo:} 97.80\% que nos indica que tengo bastantes errores, es decir tenemos un sesgo alto,
-    \item \textbf{Variance=Test\_Score - Bias==} 7.20\%, que nos indica que la varianza es baja.
+    \item \textbf{Variance=Test\_Score $-$ Bias:} 7.20\%, que nos indica que la varianza es baja.
     \end{itemize}
 
 \end{frame}
@@ -1011,9 +1038,9 @@ Sin embargo, tenemos que la variable ``años\_escolaridad'' tiene una importanci
     \begin{table}[H]
         \scriptsize
         \centering
-        \begin{tabular}{rrrrr}
-            ~ & precision & recall & f1-score & suppo \\
-            & & & & \\
+        \begin{tabular}{rcccc}
+            \toprule
+             & precision & recall & f1-score & suppo \\ \midrule
             Inicial    & 0.95 & 0.78 & 0.86 & 446 \\
             Primario   & 0.54 & 0.23 & 0.32 & 978 \\
             Secundario & 0.56 & 0.88 & 0.69 & 1771 \\
@@ -1022,6 +1049,7 @@ Sin embargo, tenemos que la variable ``años\_escolaridad'' tiene una importanci
             accuracy & & & 0.62 & 3967 \\
             macro avg & 0.71 & 0.57 & 0.60 & 3967 \\
             weighted avg & 0.65 & 0.62 & 0.59 & 3967 \\
+            \bottomrule
         \end{tabular}
     \end{table}
 
@@ -1032,7 +1060,7 @@ Sin embargo, tenemos que la variable ``años\_escolaridad'' tiene una importanci
     En este caso  obtuvimos los siguientes valores del sesgo y la varianza:
     \begin{itemize}
         \item \textbf{Bias o sesgo:} 89.11\% que nos indica que tengo pocos errores, es decir, que el sesgo es bastante bajo,
-        \item \textbf{Variance=Test\_Score - Bias==} 27.4\%, esto indica que tenemos un valor alto en la varianza.
+        \item \textbf{Variance=Test\_Score $-$ Bias=} 27.4\%, esto indica que tenemos un valor alto en la varianza.
         \end{itemize}
 
     El modelo empeora su accuracy pero está muy cercano al mejor modelo de Random Tree, mientras que crece mucho la varianza a un 27.4\% (unos 20 puntos). Ahora, al igual que con el el DesicionTree, vamos a probar mejorándolo con grid search.
@@ -1050,16 +1078,16 @@ Sin embargo, tenemos que la variable ``años\_escolaridad'' tiene una importanci
 
     En la grilla de parámetros para el Gridsearch elegimos los siguientes:
     \begin{itemize}
-        \item 'max\_depth': [5,7,10,15,None],
-        \item 'max\_features': [5,8,10,30,41],
-        \item 'n\_estimators': [200,300,500],
-        \item 'criterion': ['gini','entropy','log\_loss'].
+        \item max\_depth: [5,7,10,15,None],
+        \item max\_features: [5,8,10,30,41],
+        \item n\_estimators: [200,300,500],
+        \item criterion: [`gini',`entropy',`log\_loss'].
     \end{itemize}
     como estimador el ``RandomTreeClassifier'' que utilizamos en el último modelo, con el cross-validation =10 y  usando todos los procesadores.
 
     Y nos da como resultado, que el mejor random forest posible obtiene 0.668. 
 
-    Y para eso el árbol debe tener una profundidad de 15 , utilizar  10  variables, tener  300  estimadores y utilizar el método ``gini''.
+    Y para eso el árbol debe tener una profundidad de 15, utilizar  10  variables, tener  300  estimadores y utilizar el método ``gini''.
 
 \end{frame}
 
@@ -1070,9 +1098,9 @@ Sin embargo, tenemos que la variable ``años\_escolaridad'' tiene una importanci
     \begin{table}[!ht]
         \scriptsize
         \centering
-        \begin{tabular}{rrrrr}
-            ~ & precision & recall & f1-score & support \\
-            & & & & \\
+        \begin{tabular}{rcccc}
+            \toprule
+             & precision & recall & f1-score & support \\ \midrule
             Inicial    & 0.95 & 0.79 & 0.86 & 446 \\
             Primario   & 0.56 & 0.23 & 0.33 & 978 \\
             Secundario & 0.56 & 0.89 & 0.69 & 1771 \\
@@ -1081,12 +1109,13 @@ Sin embargo, tenemos que la variable ``años\_escolaridad'' tiene una importanci
             accuracy & & & 0.62 & 3967 \\
             macro avg & 0.72 & 0.58 & 0.60 & 3967 \\
             weighted avg & 0.65 & 0.62 & 0.59 & 3967 \\
+            \bottomrule
         \end{tabular}
     \end{table}
     
     \begin{itemize}
         \item \textbf{Bias o sesgo:} 90.65\% que nos indica que tengo pocos errores, es decir, el sesgo es bajo,
-        \item \textbf{Variance=Test\_Score - Bias:} 28.54\% $\Rightarrow$, y nuestra varianza es alta. 
+        \item \textbf{Variance=Test\_Score $-$ Bias:} 28.54\% $\Rightarrow$, y nuestra varianza es alta. 
     \end{itemize} 
 
     Lo que nos indica que nuestro modelo esta haciendo \textbf{OVERFITING}.
@@ -1100,7 +1129,7 @@ Sin embargo, tenemos que la variable ``años\_escolaridad'' tiene una importanci
     \end{Large}
     \vspace{6pt}
 
-    Al utilizar random forest  hemos podidos mejorar el sesgo y disminuir el underfitting en 2 puntos porcentuales aproximadamente.
+    Al utilizar random forest  hemos podido mejorar el sesgo y disminuir el underfitting en 2 puntos porcentuales aproximadamente.
     
     \vspace{10pt}
     
@@ -1117,13 +1146,14 @@ Sin embargo, tenemos que la variable ``años\_escolaridad'' tiene una importanci
     \begin{table}[H]
         \scriptsize
         \centering
-        \begin{tabular}{|l|r|r|r|r|r|r|r|r|}
-            \hline
-            modelo & accuracy & sesgo & varianza & f1\_inicial & f1\_pri & f1\_sec & f1\_sup \\ \hline
-            árbol\_default & 0.53 & 1.00 & 0.46 & 0.81 & 0.33 & 0.60 & 0.42 \\ \hline
-            árbol\_mejorado & 0.60 & 0.65 & 0.05 & 0.85 & 0.30 & 0.69 & 0.53 \\ \hline
-            bosque\_default & 0.62 & 0.89 & 0.27 & 0.86 & 0.32 & 0.69 & 0.53 \\ \hline
-            bosque\_mejorado & 0.62 & 0.91 & 0.29 & 0.86 & 0.33 & 0.69 & 0.54 \\ \hline
+        \begin{tabular}{ lccccccc }
+            \toprule
+            modelo & accuracy & sesgo & varianza & f1\_inicial & f1\_pri & f1\_sec & f1\_sup \\ \midrule
+            árbol\_default & 0.53 & 1.00 & 0.46 & 0.81 & 0.33 & 0.60 & 0.42 \\  
+            árbol\_mejorado & 0.60 & 0.65 & 0.05 & 0.85 & 0.30 & 0.69 & 0.53 \\ 
+            bosque\_default & 0.62 & 0.89 & 0.27 & 0.86 & 0.32 & 0.69 & 0.53 \\ 
+            bosque\_mejorado & 0.62 & 0.91 & 0.29 & 0.86 & 0.33 & 0.69 & 0.54 \\
+            \bottomrule
         \end{tabular}
     \end{table}
 
@@ -1151,5 +1181,5 @@ Sin embargo, tenemos que la variable ``años\_escolaridad'' tiene una importanci
     En nuestra opinión, es el árbol mejorado el ganador, ya que tiene la robustez suficiente para poder generalizar en caso de agregar nuevos datos al modelo. Otra ventaja frente al bosque aleatorio es su mayor velocidad de entrenamiento, asì como su capacidad de ser visualizada en un gráfico.
 
 \end{frame}
-        
+}
 \end{document}
