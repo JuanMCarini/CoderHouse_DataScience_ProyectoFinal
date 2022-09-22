@@ -749,11 +749,12 @@ Análisis socioeducativo de los habitantes de la Ciudad de Buenos Aires}}
                 \item \textbf{Variance=Test\_Score - Bias:} 2.89\%, lo que nos indica que la varianza también es baja.
             \end{itemize}
 
+
+            \subsubsection*{Resultados}
+
             Entonces, el modelo tiene una \textbf{buena relación} de sesgo y varianza.
 
-            De aquí, vemos necesario ver cuáles son las variables más importantes para el armado del modelo. Esto nos permitirá volver el modelo más robusto, al quitar las mismas. 
-
-            Como resultado, obtenemos que la variable ``años\_escolaridad'' tiene una importancia del 84\%, por mucho superior al resto de variables.
+            De aquí, vemos necesario ver cuáles son las variables más importantes para el armado del modelo. Esto nos permitirá volver el modelo más robusto, al quitar las mismas. Obtenemos que la variable ``años\_escolaridad'' tiene una importancia del 84\%, por mucho superior al resto de variables.
 
             % Tendríamos que agregar algo relacionado a la diferencia que tenemos con los resultado del EDA:
 
@@ -765,7 +766,7 @@ Análisis socioeducativo de los habitantes de la Ciudad de Buenos Aires}}
 
         \subsubsection{Segundo modelo}
 
-            Esta vez al correr el modelo, utilizaremos el ``DecisionTreeClassifier'' solo con los parámetros:
+            Esta vez al correr el modelo, utilizando el nuevo dataset (``df2''), utilizaremos el ``DecisionTreeClassifier'' solo con los parámetros:
             \begin{itemize}
                 \item random\_state = 50,
                 \item cirterion=`entropy'.
@@ -835,7 +836,7 @@ Análisis socioeducativo de los habitantes de la Ciudad de Buenos Aires}}
 
             Por lo tanto, el modelo esta haciendo \textbf{UNDERFITTING}, y no se nota gran mejoría en cuanto al f1-score.
 
-            \subsubsection*{Conclusión}
+            \subsubsection*{Resultados}
 
             Utilizar el grid search nos permitió mejorar bastante el modelo que había perdido bastante accuracy al retirar los años de escolaridad. La métrica que más pudimos mejorar con este método fue la varianza, que pasó de 44.97\% a 5.14\%, pero en contra parte nuestro acuracy bajo de 100\% a 65.27\%.
 
@@ -843,9 +844,9 @@ Análisis socioeducativo de los habitantes de la Ciudad de Buenos Aires}}
         
         Ahora vamos a trabajar con random forest, para saber si este algoritmo nos arroja mejores resultados. Y teniendo en cuento todo el dataset incluido la variable con los años de escolaridad. 
 
-        \subsubsection{Primer modelo}
+        \subsubsection{Tercer modelo}
 
-            Como primer modelo con el Random Forest Classifier, elegimos los siguientes parámetros:
+            Como tercer modelo con el Random Forest Classifier, elegimos los siguientes parámetros:
             \begin{itemize}
                 \item n\_estimators=200,
                 \item max\_depth=15,
@@ -876,11 +877,13 @@ Análisis socioeducativo de los habitantes de la Ciudad de Buenos Aires}}
                 \item \textbf{Variance=Test\_Score - Bias:} 7.20\%, que nos indica que la varianza es baja.
              \end{itemize}
 
-             En conclusión obtenemos un buen modelo, que no tiene grandes diferencias al mirar el f1-score. De todas maneras buscamos cuales son las variables más importantes, y encontramos que los años de escolaridad redujo la enorme importancia (a un 43.58\%) que tenía en el random tree. Sin embargo, sigue correspondiendo quitarla del modelo.
+            \subsubsection*{Resultados}
 
-        \subsubsection{Segundo modelo}
+             Obtenemos un buen modelo, que no tiene grandes diferencias al mirar el f1-score. De todas maneras buscamos cuales son las variables más importantes, y encontramos que los años de escolaridad redujo la enorme importancia (a un 43.58\%) que tenía en el random tree. Sin embargo, para poder comparar sigue correspondiendo quitarla del modelo. Por lo que volveremos a probar un segundo modelo que no contenga la variable años de escolaridad. 
 
-            En este caso elegimos los siguientes parámetros:
+        \subsubsection{Cuarto modelo}
+
+            En este cuarto caso elegimos los siguientes parámetros:
             \begin{itemize}
                 \item n\_estimators=200,
                 \item max\_depth=10,
@@ -907,7 +910,7 @@ Análisis socioeducativo de los habitantes de la Ciudad de Buenos Aires}}
 
             Y en este caso obtuvimos los siguientes valores del sesgo y la varianza:
             \begin{itemize}
-                \item \textbf{Bias o sesgo:} 89.11\% que nos indica que tenemos bastantes errores, es decir, que el sesgo es alto,
+                \item \textbf{Bias o sesgo:} 89.11\% que nos indica que tenemos pocos errores, es decir, que el sesgo es bastante bajo,
                 \item \textbf{Variance=Test\_Score - Bias:} 27.4\%, esto indica que tenemos un valor alto en la varianza.
              \end{itemize}
 
@@ -920,7 +923,7 @@ Análisis socioeducativo de los habitantes de la Ciudad de Buenos Aires}}
                 \item max\_depth: [5,7,10,15,None],
                 \item max\_features: [5,8,10,30,41],
                 \item n\_estimators: [200,300,500],
-                \item criterion: [`gini',`entropy',`log\_loss'].
+                \item criterion: [`gini',`entropy',`log\_loss'];
             \end{itemize}
             como estimador el ``RandomTreeClassifier'' que utilizamos en el último modelo, con el cross-validation=10 y  usando todos los procesadores.
 
@@ -947,17 +950,23 @@ Análisis socioeducativo de los habitantes de la Ciudad de Buenos Aires}}
             \end{table}
             
             \begin{itemize}
-                \item \textbf{Bias o sesgo:} 90.65\% que nos indica que tengo bastantes errores, es decir, el sesgo es alto,
+                \item \textbf{Bias o sesgo:} 90.65\% que nos indica que tengo pocos errores, es decir, el sesgo es bajo,
                 \item \textbf{Variance=Test\_Score - Bias:} 28.54\% $\Rightarrow$, y nuestra varianza también es alta. 
             \end{itemize} 
 
             Lo que nos indica que nuestro modelo esta haciendo \textbf{OVERFITING} y siguen sin desempañarse bien cuando miramos el f1-score.
+            
+            \subsubsection*{Resultados}
+            
+             Al utilizar random forest  hemos podidos mejorar el sesgo y disminuir el underfitting en 2 puntos porcentuales aproximadamente.
+    
+            Sin embargo, se vio afectada la varianza en estos modelos, que pasó de estar alrededor del 5\% en el árbol de decisión mejorado a 28\%.
 
 \newpage
 
-\section{Conclusiones}
+\section{Conclusiones Finales}
 
-    Finalmente, nos queda elegir el mejor modelo para realizar nuestras predicciones. Para eso vamos a tomar las métricas de cada uno de ellos y hacer un cuadro comparativo:
+    Finalmente, nos queda elegir el mejor modelo para realizar nuestras predicciones. Para eso vamos a tomar las métricas de cada uno de ellos, siempre teniendo en cuenta los modelos que no contienen la variable ``años\_escolaridad'', y hacer un cuadro comparativo:
     
     \begin{table}[H]
         \centering
@@ -973,15 +982,14 @@ Análisis socioeducativo de los habitantes de la Ciudad de Buenos Aires}}
 
     Con esta información podemos decidir qué modelo nos conviene usar:
     \begin{itemize}
-        \item El árbol default tiene el mejor resultado con respecto al sesgo, pero su varianza lo deja afuera de la competencia.
+        \item El árbol default tiene el mejor resultado con respecto al sesgo, pero su varianza lo deja afuera de consideración.
         \item Por el contrario, el árbol mejorado tiene una varianza insuperable de 5\%, aunque con el menor puntaje con respecto al sesgo.
         \item El bosque default tiene resultados mixtos en ambas categorías.
-        \item El bosque mejorado destaca por bajo sesgo pero su varianza es la segunda peor.
+        \item El bosque mejorado destaca por bajo sesgo pero su varianza es la segunda más alta.
     \end{itemize}
-    Como era de esperarse, los finalistas son el árbol y el bosque mejorado. Sorprendentemente, ambos performan muy bien pero en métricas diferentes. A su vez, el accuracy de ambos difiere en apenas un 2\%.
-
-    En nuestra opinión, es el árbol mejorado el ganador, ya que tiene la robustez suficiente para poder generalizar en caso de agregar nuevos datos al modelo. Otra ventaja frente al bosque aleatorio es su mayor velocidad de entrenamiento, asì como su capacidad de ser visualizada en un gráfico.
     
-    Trabajo grupal
-        
+    Consideramos que son los finalistas son el árbol mejorado y el bosque mejorado. Llamativamente, ambos performan muy bien pero en métricas diferentes. A su vez, el accuracy de ambos difiere en apenas un 2\%. Por un lado, ambos modelos tienen un F1 Score similar, de 85\% y 86\% respectivamente. Sin embargo, el arbol mejorado presenta signos de underfitting cuando lo comparamos con el otro modelo. A la inversa, el bosque mejorado muestra un escenario de overfitting con mayor varianza en la predicción. Cabe mencionar que aunque el bosque default tiene el mismo valor de F1 Score que el bosque mejorados, posee una probabilidad levemente mayor de underfitting. 
+    
+    En nuestra opinión, la mejor elección de modelo es el árbol mejorado, ya que tiene la mayor robustez  para poder generalizar en caso de agregar nuevos datos al modelo que difieran en gran medida con los existentes dentro del modelo, a comparación de los otros modelos, ya que presenta muy bajo overfitting. Otra ventaja frente al bosque aleatorio es su mayor velocidad de entrenamiento, asì como su capacidad de ser visualizada en un gráfico.
+    
 \end{document}
