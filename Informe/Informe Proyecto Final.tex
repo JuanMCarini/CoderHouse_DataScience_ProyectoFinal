@@ -119,7 +119,8 @@ Análisis socioeducativo de los habitantes de la Ciudad de Buenos Aires}}
     \begin{tabular}{clll}
     \multicolumn{4}{l}{Tamaño del set de datos: 14319 entadas, 0 a 14318} \\
     \multicolumn{4}{l}{Con un total 31 columnas:}  \\
-    \#  & Columnas                   & Entradas No Vacías & Tipo de Dato \\ \hline
+    \toprule
+    \#  & Columnas                   & Entradas No Vacías & Tipo de Dato \\ \midrule
     0  & id                          & 14319 non-null & int64 \\
     1  & nhogar                      & 14319 non-null & int64 \\
     2  & miembro                     & 14319 non-null & int64 \\
@@ -151,6 +152,7 @@ Análisis socioeducativo de los habitantes de la Ciudad de Buenos Aires}}
     28 & afiliacion\_salud            & 14315 non-null & object \\
     29 & hijos\_nacidos\_vivos         & 6535 non-null  & object \\
     30 & cantidad\_hijos\_nac\_vivos    & 14319 non-null & object \\
+    \bottomrule
     \multicolumn{4}{l}{Tipos de datos: int64(10), object(21)}  \\
     \multicolumn{4}{l}{Memoria usada: 3.4+ MB} \\
     \end{tabular}\end{center}
@@ -183,41 +185,42 @@ Análisis socioeducativo de los habitantes de la Ciudad de Buenos Aires}}
 
     Por lo tanto, se detalla el diccionario de las variables actualizadas según los cambios indicados previamente:
     \begin{table}[H]
-    \begin{tabular}{|l|l|}
-        \hline
-        \textbf{Variables}                     & \textbf{Descripción} \\ \hline
-        \textbf{id}                            & Clave que identifica la vivienda \\ \hline
-        \textbf{nhogar}                        & La variable id + nhogar = clave que identifica a cada hogar \\ \hline
-        \textbf{miembro}                       & Variables id + nhogar + miembro = clave que identifica  cada persona \\ \hline
-        \textbf{comuna}                        & Comuna donde reside la persona encuestada \\ \hline
-        \textbf{edad}                          & Edad de la persona encuestada \\ \hline
-        \textbf{sexo}                          & Sexo de la persona encuestada \\ \hline
-        \textbf{parentesco\_jefe}              & Parentesco entre la persona encuestada y el jefe de hogar \\ \hline
-        \textbf{situacion\_conyugal}           & Situación conyugal de la persona encuestada \\ \hline
-        \textbf{num\_miembro\_padre}           & Número de miembro que corresponde al padre \\ \hline
-        \textbf{num\_miembro\_madre}           & Número de miembro que corresponde a la madre \\ \hline
-        \textbf{estado\_ocupacional}           & Situación ocupacional de la persona encuestada \\ \hline
-        \textbf{cat\_ocupacional}              & Categoría ocupacional de la persona encuestada \\ \hline
-        \textbf{calidad\_ingresos\_lab}        & Calidad de la declaración de ingresos laborales totales \\ \hline
-        \textbf{ingreso\_total\_lab}           & Ingreso total laboral percibido el mes anterior \\ \hline
-        \textbf{calidad\_ingresos\_no\_lab}    & Calidad de la declaración de ingresos no laborable totales \\ \hline
-        \textbf{ingreso\_total\_no\_lab}       & Ingreso total no laboral percibido el mes anterior \\ \hline
-        \textbf{calidad\_ingresos\_totales}    & Calidad de ingresos totales individuales \\ \hline
-        \textbf{ingresos\_totales}             & Ingreso total individual percibido el mes anterior \\ \hline
-        \textbf{calidad\_ingresos\_familiares} & Calidad de ingresos totales familiares \\ \hline
-        \textbf{ingresos\_familiares}          & Ingresos totales familiares percibido el mes anterior \\ \hline
-        \textbf{ing\_per\_cap\_familiar}       & Ingreso familiar per capita percibido el mes anterior \\ \hline
-        \textbf{estado\_educativo}             & Asistencia (pasada o presente) o no a algún establecimiento educativo \\ \hline
-        \textbf{sector\_educativo}             & Sector al que pertenece el establecimiento educativo a que asiste \\ \hline
-        \textbf{nivel\_actual}                 & Nivel cursado al momento de la encuesta \\ \hline
-        \textbf{nivel\_max\_educativo}         & Máximo nivel educativo que se cursó \\ \hline
-        \textbf{años\_escolaridad}             & Años de escolaridad alcanzados \\ \hline
-        \textbf{lugar\_nacimiento}             & Lugar de nacimiento de la persona encuestada \\ \hline
-        \textbf{afiliacion\_salud}             & Afiliación de salud de la persona encuestada \\ \hline
-        \textbf{hijos\_nacidos\_vivos}         & Tiene o tuvo hijos nacidos vivos \\ \hline
-        \textbf{cant\_hijos\_nac\_vivos}       & Cantidad de hijos nacidos vivos \\ \hline
-        \textbf{dominio}                       & ¿La vivienda se ubica en una villa de emergencia? \\ \hline
-        \textbf{Target}                        & Nivel máximo educativo \\ \hline
+    \begin{tabular}{ll}
+        \toprule
+        \textbf{Variables}                     & \textbf{Descripción} \\ \midrule
+        \textbf{id}                            & Clave que identifica la vivienda \\                            
+        \textbf{nhogar}                        & La variable id + nhogar = clave que identifica a cada hogar \\ 
+        \textbf{miembro}                       & Variables id + nhogar + miembro = clave que identifica  cada persona \\ 
+        \textbf{comuna}                        & Comuna donde reside la persona encuestada \\ 
+        \textbf{edad}                          & Edad de la persona encuestada \\             
+        \textbf{sexo}                          & Sexo de la persona encuestada \\             
+        \textbf{parentesco\_jefe}              & Parentesco entre la persona encuestada y el jefe de hogar \\ 
+        \textbf{situacion\_conyugal}           & Situación conyugal de la persona encuestada \\               
+        \textbf{num\_miembro\_padre}           & Número de miembro que corresponde al padre \\                
+        \textbf{num\_miembro\_madre}           & Número de miembro que corresponde a la madre \\   
+        \textbf{estado\_ocupacional}           & Situación ocupacional de la persona encuestada \\ 
+        \textbf{cat\_ocupacional}              & Categoría ocupacional de la persona encuestada \\ 
+        \textbf{calidad\_ingresos\_lab}        & Calidad de la declaración de ingresos laborales totales \\ |
+        \textbf{ingreso\_total\_lab}           & Ingreso total laboral percibido el mes anterior \\         |
+        \textbf{calidad\_ingresos\_no\_lab}    & Calidad de la declaración de ingresos no laborable totales \\
+        \textbf{ingreso\_total\_no\_lab}       & Ingreso total no laboral percibido el mes anterior \\ 
+        \textbf{calidad\_ingresos\_totales}    & Calidad de ingresos totales individuales \\ 
+        \textbf{ingresos\_totales}             & Ingreso total individual percibido el mes anterior \\
+        \textbf{calidad\_ingresos\_familiares} & Calidad de ingresos totales familiares \\ 
+        \textbf{ingresos\_familiares}          & Ingresos totales familiares percibido el mes anterior \\ 
+        \textbf{ing\_per\_cap\_familiar}       & Ingreso familiar per capita percibido el mes anterior \\ 
+        \textbf{estado\_educativo}             & Asistencia (pasada o presente) o no a algún establecimiento educativo \\ 
+        \textbf{sector\_educativo}             & Sector al que pertenece el establecimiento educativo a que asiste \\     
+        \textbf{nivel\_actual}                 & Nivel cursado al momento de la encuesta \\                               
+        \textbf{nivel\_max\_educativo}         & Máximo nivel educativo que se cursó \\                                   
+        \textbf{años\_escolaridad}             & Años de escolaridad alcanzados \\                                        
+        \textbf{lugar\_nacimiento}             & Lugar de nacimiento de la persona encuestada \\                          
+        \textbf{afiliacion\_salud}             & Afiliación de salud de la persona encuestada \\                          
+        \textbf{hijos\_nacidos\_vivos}         & Tiene o tuvo hijos nacidos vivos \\                                      
+        \textbf{cant\_hijos\_nac\_vivos}       & Cantidad de hijos nacidos vivos \\                                       
+        \textbf{dominio}                       & ¿La vivienda se ubica en una villa de emergencia? \\                     
+        \textbf{Target}                        & Nivel máximo educativo \\  
+        \midrule                                         
     \end{tabular}
     \caption{Diccionarios de variables actualizadas}
     \label{dictionary}
@@ -262,7 +265,7 @@ Análisis socioeducativo de los habitantes de la Ciudad de Buenos Aires}}
            
             \begin{figure}  [H]
                 \centering
-                \includegraphics[scale=0.30]{Imagenes/AUComuna.png}  
+                \includegraphics[scale=0.34]{Imagenes/AUComuna.png}  
                 \caption{Encuestados por comuna.}
                 \label{AU comuna}
             \end{figure}
@@ -365,15 +368,16 @@ Análisis socioeducativo de los habitantes de la Ciudad de Buenos Aires}}
  
         \begin{table}[H]
             \centering
-            \begin{tabular}{|l|l|l|}
-            \hline
-                Variable 1 & Variable 2 & Correlación \\ \hline
-                ingreso\_total\_lab & ingresos\_totales & 0.80 \\ \hline
-                ingresos\_familiares & ing\_per\_cap\_familiar & 0.76 \\ \hline
-                ingresos\_totales & ing\_per\_cap\_familiar & 0.62 \\ \hline
-                ingresos\_totales & años\_escolaridad & 0.60 \\ \hline
-                edad & ingreso\_total\_no\_lab & 0.57 \\ \hline
-                ingreso\_total\_lab & años\_escolaridad & 0.54 \\ \hline
+            \begin{tabular}{llc}
+                \toprule
+                Variable 1 & Variable 2 & Correlación \\ \midrule
+                ingreso\_total\_lab & ingresos\_totales & 0.80 \\        
+                ingresos\_familiares & ing\_per\_cap\_familiar & 0.76 \\ 
+                ingresos\_totales & ing\_per\_cap\_familiar & 0.62 \\    
+                ingresos\_totales & años\_escolaridad & 0.60 \\          
+                edad & ingreso\_total\_no\_lab & 0.57 \\                 
+                ingreso\_total\_lab & años\_escolaridad & 0.54 \\
+                \bottomrule
             \end{tabular}
             \caption{Tabla de correlaciones.}
             \label{AB Correlation Table}
@@ -537,10 +541,10 @@ Análisis socioeducativo de los habitantes de la Ciudad de Buenos Aires}}
     \begin{itemize}
         \item Se ha recategorizando la variables ``Target'' en variables numéricas, es decir, a cada nivel educativo le asignamos un valor numérico del 1 al 4:
         \begin{itemize}
-            \item \textbf{inicial=} 1,
-            \item \textbf{prim\_completo=} 2,
-            \item \textbf{sec\_completo=} 3,
-            \item \textbf{superior=} 4,
+            \item \textbf{inicial =} 1,
+            \item \textbf{prim\_completo =} 2,
+            \item \textbf{sec\_completo =} 3,
+            \item \textbf{superior =} 4,
         \end{itemize}
         \item Se ha reagrupado la variable ``comuna'' por regiones para reducir la dimensionalidad (en norte, centro, sur y oeste),
         \item y por último se han renombrado algunas variables para que sean más cortas.
@@ -553,7 +557,8 @@ Análisis socioeducativo de los habitantes de la Ciudad de Buenos Aires}}
         \begin{tabular}{clll}
             \multicolumn{4}{l}{Tamaño del set de datos: 14319 entries, 0 to 14318} \\
             \multicolumn{4}{l}{Con un total 31 columnas: (total 33 columns):} \\
-            \#  & Columnas & Tipo de Dato & Entradas No Vacías \\ \hline
+            \toprule
+            \#  & Columnas & Tipo de Dato & Entradas No Vacías \\ \midrule
             0   & id & object & 14319 \\ 
             1   & nhogar & object & 14319 \\ 
             2   & miembro & object & 14319 \\ 
@@ -587,6 +592,7 @@ Análisis socioeducativo de los habitantes de la Ciudad de Buenos Aires}}
             30  & cant\_hijos\_nac\_vivos & int64 & 14319 \\ 
             31  & Target & Int64 & 13223 \\ 
             32  & region & object & 14319 \\
+            \bottomrule
             \multicolumn{4}{l}{Tipos de datos: Int64(1), float64(1), int64(7), object(24)} \\
             \multicolumn{4}{l}{Memoria usada: 3.6+ MB } \\
         \end{tabular}
@@ -644,7 +650,9 @@ Análisis socioeducativo de los habitantes de la Ciudad de Buenos Aires}}
 
         \begin{table}[H]
             \centering
+            \vspace{-6pt}
             \begin{tabular}{rl}
+                \toprule
                 \textbf{Variables}              & \textbf{Motivo de eliminación} \\ \hline
                 id:                             & no suma información para la clasificación, \\
                 nhogar:                         & no suma información para la clasificación, \\
@@ -661,6 +669,7 @@ Análisis socioeducativo de los habitantes de la Ciudad de Buenos Aires}}
                 nivel\_actual:                  & no aporta información para la clasificación, \\
                 hijos\_nacidos\_vivos:          & brinda la misma información que cant\_hijos\_nac\_vivos, \\
                 comuna:                         & variable ya abordada en la variable 'región'. \\
+                \bottomrule
             \end{tabular}
         \caption{Variables eliminadas}
         \label{Deleted variables}
@@ -675,6 +684,7 @@ Y como resultado, se tiene el dataset listo para el procesamiento:
             \begin{tabular}{clll}
                 \multicolumn{4}{l}{Tamaño del set de datos: 14319 entries, 0 to 14318} \\
                 \multicolumn{4}{l}{Con un total 31 columnas: (total 18 columnas):} \\
+                \toprule
                 \#  & Columnas & Tipo de Dato & Entradas No Vacías \\ \hline
                 0 & dominio & object & 13223 \\ 
                 1 & edad & int64 & 13223 \\ 
@@ -693,6 +703,7 @@ Y como resultado, se tiene el dataset listo para el procesamiento:
                 14 & cant\_hijos\_nac\_vivos & int64 & 13223 \\ 
                 15 & Target & int32 & 13223 \\ 
                 16 & region & object & 13223 \\ 
+                \bottomrule
                 \multicolumn{4}{l}{Tipos de datos: Int64(1), float64(1), int64(7), object(8)} \\
                 \multicolumn{4}{l}{Memoria usada: 2.0+ MB} 
             \end{tabular}
@@ -716,8 +727,8 @@ Y como resultado, se tiene el dataset listo para el procesamiento:
             Como primera aproximación, se ha utilizado un árbol de clasificación usando con parámetros:
             \begin{itemize}
                 \item random\_state = 50,
-                \item max\_depth=8,
-                \item criterion=`gini',
+                \item max\_depth = 8,
+                \item criterion = `gini',
             \end{itemize}
             para saber como performa y mejorarlo a partir de ahí.
 
@@ -726,13 +737,14 @@ Y como resultado, se tiene el dataset listo para el procesamiento:
             Como resultado se ha observado que el Accuracy score para el test ha sido de: 0.940 y la matriz de confusión ha dado:
             \begin{table}[H]
                 \centering
-                \begin{tabular}{|l|c|c|c|c|}
-                \hline
-                    ~ & Predicc. Inicial & Predicc. Primario & Predicc. Secundario & Predicc. Superior \\ \hline
-                    Inicial & 445 & 0 & 1 & 0 \\ \hline
-                    Primario & 0 & 961 & 8 & 9 \\ \hline
-                    Secundario & 0 & 19 & 1693 & 59 \\ \hline
-                    Superior & 1 & 57 & 84 & 630 \\ \hline
+                \begin{tabular}{lcccc}
+                    \toprule
+                    ~ & Predicc. Inicial & Predicc. Primario & Predicc. Secundario & Predicc. Superior \\ \midrule
+                    Inicial & 445 & 0 & 1 & 0 \\       
+                    Primario & 0 & 961 & 8 & 9 \\      
+                    Secundario & 0 & 19 & 1693 & 59 \\ 
+                    Superior & 1 & 57 & 84 & 630 \\    
+                    \bottomrule
                 \end{tabular}
                 \caption{Matriz de confusión primer modelo}
                 \label{First model confusion matrix}
@@ -743,9 +755,9 @@ Y como resultado, se tiene el dataset listo para el procesamiento:
             \begin{table}[H]
                 \centering
                 \begin{tabular}{rrrrr}
-                    ~ & precision & recall & f1-score & support \\ 
-                    & & & & \\
-                    Inicial    & 1.00& 1.00 & 1.0 & 446 \\ 
+                    \toprule
+                    ~ & precision & recall & f1-score & support \\ \midrule
+                    Inicial    & 1.00& 1.00 & 1.00 & 446 \\ 
                     Primario   & 0.93 & 0.99 & 0.95 & 978 \\ 
                     Secundario & 0.95 & 0.96 & 0.95 & 1771 \\ 
                     Superior   & 0.90 & 0.82 & 0.86 & 772 \\ 
@@ -753,6 +765,7 @@ Y como resultado, se tiene el dataset listo para el procesamiento:
                     accuracy & & & 0.94 & 3967 \\ 
                     macro avg & 0.94 & 0.94 & 0.94 & 3967 \\ 
                     weighted avg & 0.94 & 0.94 & 0.94 & 3967 \\ 
+                    \bottomrule
                 \end{tabular}
                 \caption{Métricas primer modelo}
                 \label{First model metrics}
@@ -791,8 +804,8 @@ Y como resultado, se tiene el dataset listo para el procesamiento:
             \begin{table}[!ht]
                 \centering
                 \begin{tabular}{rrrrr}
-                    ~ & precision & recall & f1-score & suppo \\
-                    & & & & \\
+                    \toprule
+                    ~ & precision & recall & f1-score & suppo \\ \midrule
                     Inicial    & 0.83 & 0.79 & 0.81 & 446 \\
                     Primario   & 0.45 & 0.26 & 0.33 & 978 \\
                     Secundario & 0.56 & 0.66 & 0.60 & 1771 \\
@@ -801,8 +814,9 @@ Y como resultado, se tiene el dataset listo para el procesamiento:
                     accuracy & & & 0.53 & 3967 \\
                     macro avg & 0.56 & 0.59 & 0.54 & 3967 \\
                     weighted avg & 0.53 & 0.53 & 0.52 & 3967 \\
+                    \bottomrule
                 \end{tabular}
-                \caption{Metricas segundo modelo.}
+                \caption{Métricas segundo modelo.}
                 \label{Second model metrics}
             \end{table}
 
@@ -835,8 +849,8 @@ Y como resultado, se tiene el dataset listo para el procesamiento:
             \begin{table}[H]
                 \centering
                 \begin{tabular}{rrrrr}
-                    ~ & precision & recall & f1-score & suppo \\
-                    & & & & \\
+                    \toprule
+                    ~ & precision & recall & f1-score & suppo \\ \midrule
                     Inicial    & 0.99 & 0.74 & 0.85 & 446 \\
                     Primario   & 0.49 & 0.21 & 0.30 & 978 \\
                     Secundario & 0.55 & 0.87 & 0.69 & 1771 \\
@@ -844,8 +858,9 @@ Y como resultado, se tiene el dataset listo para el procesamiento:
                     accuracy & & & 0.60 & 3967 \\
                     macro avg & 0.70 & 0.56 & 0.59 & 3967 \\
                     weighted avg & 0.63 & 0.60 & 0.57 & 3967 \\
+                    \bottomrule
                 \end{tabular}
-                \caption{Metricas segundo modelo mejorado.}
+                \caption{Métricas segundo modelo mejorado.}
                 \label{New Second model metrics}
             \end{table}
 
@@ -879,7 +894,8 @@ Y como resultado, se tiene el dataset listo para el procesamiento:
             \begin{table}[H]
                 \centering
                 \begin{tabular}{rrrrr}
-                    ~ & precision & recall & f1-score & suppo \\
+                    \toprule
+                    ~ & precision & recall & f1-score & suppo \\ \midrule
                     & & & & \\
                     Inicial    & 1.00 & 0.96 & 0.98 & 446 \\
                     Primario   & 0.86 & 0.95 & 0.90 & 978 \\
@@ -889,8 +905,9 @@ Y como resultado, se tiene el dataset listo para el procesamiento:
                     accuracy & & & 0.91 & 3967 \\
                     macro avg & 0.92 & 0.90 & 0.91 & 3967 \\
                     weighted avg & 0.91 & 0.91 & 0.90 & 3967 \\
+                    \bottomrule
                 \end{tabular}
-                \caption{Metricas tercer modelo}
+                \caption{Métricas tercer modelo}
                 \label{Thrid model metrics}
             \end{table}
 
@@ -930,7 +947,7 @@ Y como resultado, se tiene el dataset listo para el procesamiento:
                     weighted avg & 0.65 & 0.62 & 0.59 & 3967 \\
                     \bottomrule
                 \end{tabular}
-                \caption{Metricas cuarto modelo}
+                \caption{Métricas cuarto modelo}
                 \label{Fourth model metrics}
             \end{table}
 
@@ -963,8 +980,8 @@ Y como resultado, se tiene el dataset listo para el procesamiento:
             \begin{table}[!ht]
                 \centering
                 \begin{tabular}{rrrrr}
-                    ~ & precision & recall & f1-score & support \\
-                    & & & & \\
+                    \toprule
+                    ~ & precision & recall & f1-score & support \\ \midrule
                     Inicial    & 0.95 & 0.79 & 0.86 & 446 \\
                     Primario   & 0.56 & 0.23 & 0.33 & 978 \\
                     Secundario & 0.56 & 0.89 & 0.69 & 1771 \\
@@ -973,14 +990,15 @@ Y como resultado, se tiene el dataset listo para el procesamiento:
                     accuracy & & & 0.62 & 3967 \\
                     macro avg & 0.72 & 0.58 & 0.60 & 3967 \\
                     weighted avg & 0.65 & 0.62 & 0.59 & 3967 \\
+                    \bottomrule
                 \end{tabular}
-                \caption{Metricas cuarto modelo mejorado.}
+                \caption{Métricas cuarto modelo mejorado.}
                 \label{New fourth model metrics}
             \end{table}
             
             \begin{itemize}
                 \item \textbf{Bias o sesgo:} 90.65\% que indica que hay pocos errores, es decir, el sesgo es bajo,
-                \item \textbf{Variance=Test\_Score - Bias:} 28.54\% $\Rightarrow$, y la varianza también es alta. 
+                \item \textbf{Variance=Test\_Score - Bias:} 28.54\% por lo que la varianza también es alta. 
             \end{itemize} 
 
             Esto denota que este modelo está haciendo \textbf{OVERFITING} y continua desempeñándose mal al ver el f1-score.
