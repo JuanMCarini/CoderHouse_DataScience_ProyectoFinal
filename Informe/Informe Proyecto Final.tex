@@ -16,6 +16,7 @@
 
 \usepackage{float} %para fijar tablas
 \usepackage{multirow} %Para tablas
+\usepackage{booktabs}
 
 \usepackage{csvsimple} %csv to table
 
@@ -534,7 +535,7 @@ Análisis socioeducativo de los habitantes de la Ciudad de Buenos Aires}}
     En esta sección se ha trabajado en pos de utilizar algoritmos que modelen los datos de manera correcta y así poder alcanzar los objetivos propuestos para el proyecto. En concreto, se ha buscado clasificar el Target a partir de las variables restantes del dataset utilizando machine learning. 
     No obstante, se ha comenzado por transformar algunas variables para poder trabajar con los algoritmos:
     \begin{itemize}
-        \item Se ha rectegorizado la variables ``Target'' en variables numéricas, es decir, a cada nivel educativo le asignamos un valor numérico del 1 al 4:
+        \item Se ha recategorizando la variables ``Target'' en variables numéricas, es decir, a cada nivel educativo le asignamos un valor numérico del 1 al 4:
         \begin{itemize}
             \item \textbf{inicial=} 1,
             \item \textbf{prim\_completo=} 2,
@@ -630,14 +631,14 @@ Análisis socioeducativo de los habitantes de la Ciudad de Buenos Aires}}
         
  \vspace{1cm}    
  
-        Finalmente, se ha eliminado la variable ``nivel\_max\_educativo'' ya que no es de interes. Asimismo, se han eliminado los nulos del Target y se ha pasado el tipo de dato de la misma a entero. 
+        Finalmente, se ha eliminado la variable ``nivel\_max\_educativo'' ya que no es de interés. Asimismo, se han eliminado los nulos del Target y se ha pasado el tipo de dato de la misma a entero. 
         
 
     \subsection{Target}
 
         \subsubsection{Borrado de variables}
     
-        Hay muchas variables que no se han considerado escenciales dado que no aportan información relevante en el algoritmo de clasificación. Precisamente, brindan información repetida. A continuación se comparten las categoría que se han descartado para correr el algoritmo: 
+        Hay muchas variables que no se han considerado esenciales dado que no aportan información relevante en el algoritmo de clasificación. Precisamente, brindan información repetida. A continuación se comparten las categoría que se han descartado para correr el algoritmo: 
 
 
 
@@ -722,7 +723,7 @@ Y como resultado, se tiene el dataset listo para el procesamiento:
 
  \vspace{1cm}
  
-            Como resultado se ha oservaddo que el Accuracy score para el test ha sido de: 0.940 y la matriz de confusión ha dado:
+            Como resultado se ha observado que el Accuracy score para el test ha sido de: 0.940 y la matriz de confusión ha dado:
             \begin{table}[H]
                 \centering
                 \begin{tabular}{|l|c|c|c|c|}
@@ -753,7 +754,7 @@ Y como resultado, se tiene el dataset listo para el procesamiento:
                     macro avg & 0.94 & 0.94 & 0.94 & 3967 \\ 
                     weighted avg & 0.94 & 0.94 & 0.94 & 3967 \\ 
                 \end{tabular}
-                \caption{Metricas primer modelo}
+                \caption{Métricas primer modelo}
                 \label{First model metrics}
             \end{table}
 
@@ -854,7 +855,7 @@ Y como resultado, se tiene el dataset listo para el procesamiento:
                 \item \textbf{Variance=Test\_Score - Bias:} 5.14\%, por el otro lado la varianza es baja.
             \end{itemize}
 
-            Por lo cual, el modelo hizo \textbf{UNDERFITTING}, y no se han notado grandes mejoríaa en cuanto al f1-score.
+            Por lo cual, el modelo hizo \textbf{UNDERFITTING}, y no se han notado grandes mejorías en cuanto al f1-score.
 
             \subsubsection*{Resultados}
 
@@ -917,8 +918,8 @@ Y como resultado, se tiene el dataset listo para el procesamiento:
             \begin{table}[H]
                 \centering
                 \begin{tabular}{rrrrr}
-                    ~ & precision & recall & f1-score & suppo \\
-                    & & & & \\
+                    \toprule
+                    ~ & precision & recall & f1-score & suppo \\ \midrule
                     Inicial    & 0.95 & 0.78 & 0.86 & 446 \\
                     Primario   & 0.54 & 0.23 & 0.32 & 978 \\
                     Secundario & 0.56 & 0.88 & 0.69 & 1771 \\
@@ -927,18 +928,19 @@ Y como resultado, se tiene el dataset listo para el procesamiento:
                     accuracy & & & 0.62 & 3967 \\
                     macro avg & 0.71 & 0.57 & 0.60 & 3967 \\
                     weighted avg & 0.65 & 0.62 & 0.59 & 3967 \\
+                    \bottomrule
                 \end{tabular}
                 \caption{Matriz de confusión cuarto modelo}
                 \label{Fourth model cofusion matrix}
             \end{table}
 
-            Para este caso tambien se han buscado los valores del sesgo y la varianza:
+            Para este caso también se han buscado los valores del sesgo y la varianza:
             \begin{itemize}
                 \item \textbf{Bias o sesgo:} 89.11\% que indica que se tienen pocos errores, es decir, que el sesgo es bastante bajo,
                 \item \textbf{Variance=Test\_Score - Bias:} 27.4\%, esto indica que existe un valor alto en la varianza.
              \end{itemize}
 
-            A modo de conclusión, respecto al tercer modelo, ha emperoado su accuracy pero está muy cercano al mejor modelo de Decision Tree, mientras que crece mucho la varianza a un 27.4\% (unos 20 puntos). 
+            A modo de conclusión, respecto al tercer modelo, ha empeorado su accuracy pero está muy cercano al mejor modelo de Decision Tree, mientras que crece mucho la varianza a un 27.4\% (unos 20 puntos). 
             Al igual que con el el DesicionTree, se ha probado mejorándolo con grid search.
 
         \subsubsection{Gridsearch con CV}
@@ -981,7 +983,7 @@ Y como resultado, se tiene el dataset listo para el procesamiento:
                 \item \textbf{Variance=Test\_Score - Bias:} 28.54\% $\Rightarrow$, y la varianza también es alta. 
             \end{itemize} 
 
-            Esto denota que este modelo está haciendo \textbf{OVERFITING} y continua desempeñandose mal al ver el f1-score.
+            Esto denota que este modelo está haciendo \textbf{OVERFITING} y continua desempeñándose mal al ver el f1-score.
             
             \subsubsection*{Resultados}
             
@@ -997,13 +999,14 @@ Y como resultado, se tiene el dataset listo para el procesamiento:
     
     \begin{table}[H]
         \centering
-        \begin{tabular}{|l|r|r|r|r|r|r|r|r|}
-            \hline
-           N°modelo & modelo & accuracy & sesgo & varianza & f1\_inicial & f1\_primario & f1\_secundario & f1\_superior \\ \hline
-           2 & Árbol default & 0.53 & 1.00 & 0.46 & 0.81 & 0.33 & 0.60 & 0.42 \\ \hline
-           2 &  Árbol mejorado & 0.60 & 0.65 & 0.05 & 0.85 & 0.30 & 0.69 & 0.53 \\ \hline
-           4 & Bosque default & 0.62 & 0.89 & 0.27 & 0.86 & 0.32 & 0.69 & 0.53 \\ \hline
-           4 & Bosque mejorado & 0.62 & 0.91 & 0.29 & 0.86 & 0.33 & 0.69 & 0.54 \\ \hline
+        \begin{tabular}{ clccccccc }
+            \toprule
+           N° & Tipo de modelo & accuracy & sesgo & varianza & f1\_inicial & f1\_primario & f1\_secundario & f1\_superior \\ \midrule
+           2  & Árbol default & 0.53 & 1.00 & 0.46 & 0.81 & 0.33 & 0.60 & 0.42 \\ 
+           2  &  Árbol mejorado & 0.60 & 0.65 & 0.05 & 0.85 & 0.30 & 0.69 & 0.53 \\
+           4  & Bosque default & 0.62 & 0.89 & 0.27 & 0.86 & 0.32 & 0.69 & 0.53 \\ 
+           4  & Bosque mejorado & 0.62 & 0.91 & 0.29 & 0.86 & 0.33 & 0.69 & 0.54 \\
+           \bottomrule
         \end{tabular}
         \caption{Tabla general de resultados}
         \label{Result table}
