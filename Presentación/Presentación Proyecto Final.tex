@@ -127,11 +127,11 @@
 
 Encontramos 31 variables dentro de dataset, de las cuales 10 son numéricas y 21 son categóricas. A su vez estas se relaciona con:
 \begin{itemize} 
-    \item Relacionadas a ingresos
-    \item Relacionadas al sector educativo
-    \item Relacionadas a factores geográficos
-    \item Relacionadas a la salud
-    \item Relacionadas a la descripción del grupo familiar
+    \item Ingresos
+    \item Sector educativo
+    \item Factores geográficos
+    \item Salud
+    \item Descripción del grupo familiar
 \end{itemize}
  \vspace{4pt}
  \textbf{Identificación del Target:} En primer lugar transformamos la variable Target (nivel máximo educativo) para reducir su dimensionalidad. Quedando cuatro valores dentro de la variables:  \textbf{Inicial}, \textbf{Prim. Completo}, \textbf{Sec. Completo} y \textbf{Superior}
@@ -576,7 +576,7 @@ Encontramos 31 variables dentro de dataset, de las cuales 10 son numéricas y 21
 
 \begin{frame}{Modelos analíticos}
 
-    Comenzamos transformando algunas variables para poder trabajar con los algoritmos:
+    Transformamos variables para poder trabajar con los algoritmos:
     \begin{itemize}
         \item recategorizando la variables ``Target'' en variables numéricas, es decir, a cada nivel educativo le asignamos un valor numérico del 1 al 4:
         \begin{itemize}
@@ -587,7 +587,7 @@ Encontramos 31 variables dentro de dataset, de las cuales 10 son numéricas y 21
         \end{itemize}
         \item reagrupamos la variable ``comuna'' por regiones para reducir la dimensionalidad (en norte, centro, sur y oeste),
         \item eliminamos algunas variables que no resultan relevantes, 
-        \item y por último renombramos algunas variables para que sean más cortas.
+        \item renombramos algunas variables para que sean más cortas.
     \end{itemize}
     
 \end{frame}
@@ -647,7 +647,7 @@ Encontramos 31 variables dentro de dataset, de las cuales 10 son numéricas y 21
     \end{Large}
     \vspace{4pt}
 
-    Luego, armamos una función para tener una lista limpia de variables con nulos, que nos da como resultado:
+    Srmamos una función para tener una lista limpia de variables con nulos:
 
     \begin{table}[H]
         \begin{tabular}{lrl}
@@ -732,22 +732,26 @@ Encontramos 31 variables dentro de dataset, de las cuales 10 son numéricas y 21
     \begin{Large}
         \textbf{Procesamiento}
     \end{Large}
-    \vspace{4pt}
+    \vspace{6pt}
 
     Para preparar los datos para el modelado generamos una función que:
+    
+    \vspace{6pt}
     \begin{itemize}
         \justifying%
         \item  Divide el dataframe en X\_train, y\_train, X\_test e y\_test, haciendo la división entre test y el train en un 30\% y un 70\% respectivamente, con una semilla especifica.
+        
+        \vspace{6pt}
         \item  Procesa el X\_train y el X\_test con un pipeline generado previamente, el cual convierte las variable numéricas con el minmaxscaler y las categóricas con one hot encoding.
     \end{itemize}
 
-    Una vez aplicada dicha función a nuestro dataframe, tenemos ya lista la partición (con la misma cantidad de columnas) del mismo en X\_train, y\_train, X\_test e y\_test.
+
 
 \end{frame}
 
     \subsection{Árbol de decisión}
 
-        \subsubsection{Primer modelo}
+        
 
 \begin{frame}{Modelos analíticos}
 
@@ -755,36 +759,16 @@ Encontramos 31 variables dentro de dataset, de las cuales 10 son numéricas y 21
         \textbf{Árbol de decisión}
     \end{Large}
 
-    Como primera aproximación, vamos a usar un árbol de clasificación usando con parámetros:
+     \textbf{1) Primer modelo:}
+
+    Como punto de partida usamos un árbol de clasificación con parámetros:
     \begin{itemize}
         \item random\_state = 50,
         \item max\_depth=8,
         \item criterion='gini',
     \end{itemize}
-    para saber como performa y mejorarlo a partir de ahí.
 
-    Como resultado obtenemos que el Accuracy score para el test es de: 0.940 y la matriz de confusión nos da:
-
-    \begin{table}[H]
-        \scriptsize
-        \centering
-        \begin{tabular}{lcccc}
-            \toprule
-             & Pred. Inicial & Pred. Primario & Pred. Secundario & Pred. Superior \\ \midrule
-            Inicial    & 445 & 0 & 1 & 0 \\                                          
-            Primario   & 0 & 961 & 8 & 9 \\                                          
-            Secundario & 0 & 19 & 1693 & 59 \\                                       
-            Superior   & 1 & 57 & 84 & 630 \\                                        
-            \bottomrule
-        \end{tabular}
-    \end{table}
-
-\end{frame}
-
-\begin{frame}{Modelos analíticos}
-
-
-    Y obtenemos las siguientes métricas:
+    El Accuracy score para el test es de: 0.940 y las metricas
 
     \begin{table}[H]
         \scriptsize
@@ -803,19 +787,17 @@ Encontramos 31 variables dentro de dataset, de las cuales 10 son numéricas y 21
             \bottomrule
         \end{tabular}
     \end{table}
-
-    A simple vista, parece que el modelo performa muy bien, dado su accuracy. Veamos más en detalle y calculemos su sesgo y su varianza:
-    \begin{itemize}
-        \item \textbf{Bias o sesgo:} 96.89\% que nos indica que tengo poco error, lo que indica que tenemos un sesgo bajo,
-        \item \textbf{Variance=Test\_Score $-$ Bias=} 2.89\%, lo que nos indica que la varianza también es baja.
-    \end{itemize}
-
 \end{frame}
 
 \begin{frame}{Modelos analíticos}
- \begin{Large}
+    \begin{Large}
         \textbf{Resultados}
     \end{Large}
+     \begin{itemize}
+          \item \textbf{Bias o sesgo:} 96.89\% que nos indica que tengo poco error, lo que indica que tenemos un sesgo bajo,
+         \item \textbf{Variance=Test\_Score $-$ Bias=} 2.89\%, lo que nos indica que la varianza también es baja.
+     \end{itemize}
+
     \vspace{6pt}
     
     Entonces, el modelo tiene una \textbf{buena relación} de sesgo y varianza.
@@ -834,7 +816,8 @@ Sin embargo, tenemos que la variable ``años\_escolaridad'' tiene una importanci
         \subsubsection{Segundo modelo}
 
 \begin{frame}{Modelos analíticos}
-
+    \textbf{2) Segundo modelo:}
+    
     Esta vez al correr el modelo, utilizaremos el ``DecisionTreeClassifier'' solo con los parámetros:
     \begin{itemize}
         \item random\_state = 50,
@@ -864,13 +847,18 @@ Sin embargo, tenemos que la variable ``años\_escolaridad'' tiene una importanci
 
 \begin{frame}{Modelos analíticos}
 
-    Luego, analizamos el sesgo y la varianza:
+    \begin{Large}
+        \textbf{Resultados}
+    \end{Large}
+    \vspace{6pt}
     \begin{itemize}
         \item \textbf{Bias o sesgo:} 99.78\% que nos indica que tengo poco error, es decir, un sesgo bajo,
         \item \textbf{Variance=Test\_Score $-$ Bias=} 46.39\%, lo que nos indica un nivel de varianza bastante alto,
     \end{itemize}
 
-    Lo que nos da como resultado, que este modelo esta haciendo \textbf{OVERFITTING}.
+    Lo que nos da como resultado, que este modelo esta haciendo 
+    
+    \textbf{OVERFITTING}.
 
 \vspace{10pt}
 
@@ -881,7 +869,6 @@ Sin embargo, tenemos que la variable ``años\_escolaridad'' tiene una importanci
 \subsubsection{Gridsearch con CV}
 
 \begin{frame}{Modelos analíticos}
-
     \begin{Large}
         \textbf{Gridsearch con CV}
     \end{Large}
@@ -893,6 +880,8 @@ Sin embargo, tenemos que la variable ``años\_escolaridad'' tiene una importanci
         \item max\_features: $range(1,14)$,
         \item criterion: [`gini', `entropy',`log\_loss'];
     \end{itemize}
+
+\vspace{10pt}
     como estimador el ``DecisionTreeClassifier'' con el random\_state=50, con el cross-validation =10,  usando todos los procesadores.
 
 \vspace{10pt}
@@ -902,6 +891,12 @@ Sin embargo, tenemos que la variable ``años\_escolaridad'' tiene una importanci
 \end{frame}
 
 \begin{frame}{Modelos analíticos}
+    
+    \begin{Large}
+        \textbf{Gridsearch con CV}
+    \end{Large}
+
+\vspace{10pt}
 
     Entonces, entrenamos el modelo bajo estos mismos parámetros y obtenemos el siguiente reporte de clasificación:
 
@@ -921,15 +916,6 @@ Sin embargo, tenemos que la variable ``años\_escolaridad'' tiene una importanci
             \bottomrule
         \end{tabular}
     \end{table}
-
-    Luego, analizamos el sesgo y la varianza:
-    \begin{itemize}
-        \item \textbf{Bias o sesgo:} 65.27\% que nos indica que tengo bastantes errores $\Rightarrow$ high bias,
-        \item \textbf{Variance=Test\_Score $-$ Bias:} 5.14\%  $\Rightarrow$ low variance.
-    \end{itemize}
-
-    Por lo tanto, el modelo esta haciendo \textbf{UNDERFITTING}
-
 \end{frame}
 
 \begin{frame}{Modelos analíticos}
@@ -937,11 +923,22 @@ Sin embargo, tenemos que la variable ``años\_escolaridad'' tiene una importanci
     \begin{Large}
         \textbf{Resultados}
     \end{Large}
-    \vspace{6pt}
     
+\vspace{6pt}    
+    \begin{itemize}
+        \item \textbf{Bias o sesgo:} 65.27\% que nos indica que tengo bastantes errores $\Rightarrow$ high bias,
+        \item \textbf{Variance=Test\_Score $-$ Bias:} 5.14\%  $\Rightarrow$ low variance.
+    \end{itemize}
+    
+\vspace{6pt} 
+
+    Por lo tanto, el modelo esta haciendo \textbf{UNDERFITTING}
+    
+\vspace{6pt}    
+
     Utilizar el grid search nos permitió mejorar bastante el modelo que había perdido bastante accuracy al retirar los años de escolaridad. 
     
-    \vspace{10pt}
+\vspace{6pt}
     
     La métrica que más pudimos mejorar con este método fue la varianza, que pasó de 44.97\% a 5.14\%, pero en contra parte nuestro acuracy bajo de 100\% a 65.27\%.
 
@@ -956,12 +953,15 @@ Sin embargo, tenemos que la variable ``años\_escolaridad'' tiene una importanci
         \textbf{Random Forest Classifier}
     \end{Large}
 
-    Ahora vamos a trabajar con random forest, para saber si este algoritmo nos arroja mejores resultados. Y teniendo en cuento todo el dataset incluido la variable con los años de escolaridad. 
+\vspace{10pt}
 
-    \subsubsection{Tercer modelo}
-    \begin{Large}
-        \textbf{Tercer modelo}
-    \end{Large}
+    \textbf{3) Tercer modelo:}
+    
+\vspace{6pt}
+
+    En esta instancia hemos teniendo en cuenta todo el dataset incluido la variable con los años de escolaridad. 
+    
+\vspace{6pt}
 
     Como tercer modelo con el Random Forest Classifier, elegimos los siguientes parámetros:
     \begin{itemize}
@@ -975,6 +975,11 @@ Sin embargo, tenemos que la variable ``años\_escolaridad'' tiene una importanci
 
 \begin{frame}{Modelos analíticos}
 
+    \begin{Large}
+        \textbf{Random Forest Classifier}
+    \end{Large}
+\vspace{6pt}
+    
         Que nos da los siguientes resultados en cuanto a las métricas:
         \begin{table}[H]
             \scriptsize
@@ -994,12 +999,7 @@ Sin embargo, tenemos que la variable ``años\_escolaridad'' tiene una importanci
             \end{tabular}
         \end{table}
 
-    El random forest performa bastante bien, es decir, mucho mejor que los modelos anteriores:
-    \begin{itemize}
-    \item \textbf{Bias o sesgo:} 97.80\% que nos indica que tengo bastantes errores, es decir tenemos un sesgo alto,
-    \item \textbf{Variance=Test\_Score $-$ Bias:} 7.20\%, que nos indica que la varianza es baja.
-    \end{itemize}
-
+    El random forest performa bastante bien, es decir, mucho mejor que los modelos anteriores.
 \end{frame}
 
 \begin{frame}{Modelos analíticos}
@@ -1007,9 +1007,14 @@ Sin embargo, tenemos que la variable ``años\_escolaridad'' tiene una importanci
     \begin{Large}
         \textbf{Resultados}
     \end{Large}
-    \vspace{6pt}
+    \vspace{6pt}    
+    
+    \begin{itemize}
+    \item \textbf{Bias o sesgo:} 97.80\% que nos indica que tengo bastantes errores, es decir tenemos un sesgo alto,
+    \item \textbf{Variance=Test\_Score $-$ Bias:} 7.20\%, que nos indica que la varianza es baja.
+    \end{itemize}
 
-    En conclusión obtenemos un buen modelo. De todas maneras buscamos cuales son las variables más importantes, y encontramos que los años de escolaridad redujo la enorme importancia (a un 43.58\%) que tenía en el random tree. 
+    Obtuvimos un buen modelo. No obstante, buscamos cuales son las variables más importantes, y encontramos que los años de escolaridad redujo la enorme importancia (a un 43.58\%) que tenía en el random tree. 
     
     \vspace{10pt}
     
@@ -1021,10 +1026,9 @@ Sin embargo, tenemos que la variable ``años\_escolaridad'' tiene una importanci
 
 \begin{frame}{Modelos analíticos}
 
-    \begin{Large}
-        \textbf{Cuarto modelo}
-    \end{Large}
-    \vspace{6pt}
+    \textbf{4) Cuarto modelo:}
+   
+\vspace{6pt}
 
     En este caso elegimos los siguientes parámetros:
     \begin{itemize}
@@ -1056,7 +1060,11 @@ Sin embargo, tenemos que la variable ``años\_escolaridad'' tiene una importanci
 \end{frame}
 
 \begin{frame}{Modelos analíticos}
+    \begin{Large}
+        \textbf{Resultados}
+    \end{Large}
 
+\vspace{6pt}    
     En este caso  obtuvimos los siguientes valores del sesgo y la varianza:
     \begin{itemize}
         \item \textbf{Bias o sesgo:} 89.11\% que nos indica que tengo pocos errores, es decir, que el sesgo es bastante bajo,
@@ -1091,8 +1099,13 @@ Sin embargo, tenemos que la variable ``años\_escolaridad'' tiene una importanci
 
 \end{frame}
 
-\begin{frame}{Modelos analíticos}            
+\begin{frame}{Modelos analíticos}    
 
+    \begin{Large}
+        \textbf{Gridsearch con CV}
+    \end{Large}
+    
+    \vspace{6pt}
         Entonces, entrenamos el modelo bajo estos mismos parámetros y obtenemos el siguiente reporte de clasificación:
 
     \begin{table}[!ht]
@@ -1112,22 +1125,20 @@ Sin embargo, tenemos que la variable ``años\_escolaridad'' tiene una importanci
             \bottomrule
         \end{tabular}
     \end{table}
+\end{frame}
+
+\begin{frame}{Modelos analíticos}
+    \begin{Large}
+        \textbf{Resultados}
+    \end{Large}
     
+    \vspace{6pt}
     \begin{itemize}
         \item \textbf{Bias o sesgo:} 90.65\% que nos indica que tengo pocos errores, es decir, el sesgo es bajo,
         \item \textbf{Variance=Test\_Score $-$ Bias:} 28.54\% $\Rightarrow$, y nuestra varianza es alta. 
     \end{itemize} 
 
     Lo que nos indica que nuestro modelo esta haciendo \textbf{OVERFITING}.
-
-\end{frame}
-
-\begin{frame}{Modelos analíticos}
-
-    \begin{Large}
-        \textbf{Resultados}
-    \end{Large}
-    \vspace{6pt}
 
     Al utilizar random forest  hemos podido mejorar el sesgo y disminuir el underfitting en 2 puntos porcentuales aproximadamente.
     
@@ -1174,11 +1185,21 @@ Sin embargo, tenemos que la variable ``años\_escolaridad'' tiene una importanci
 
 \begin{frame}{Conclusiones Finales}
 
-    Como era de esperarse, los finalistas son el árbol y el bosque mejorado. Sorprendentemente, ambos performan muy bien pero en métricas diferentes. A su vez, el accuracy de ambos difiere en apenas un 2\%.
+    Los finalistas son el árbol y el bosque mejorado. Ambos performan muy bien pero en métricas diferentes. 
 
 \vspace{10pt} 
 
-    En nuestra opinión, es el árbol mejorado el ganador, ya que tiene la robustez suficiente para poder generalizar en caso de agregar nuevos datos al modelo. Otra ventaja frente al bosque aleatorio es su mayor velocidad de entrenamiento, asì como su capacidad de ser visualizada en un gráfico.
+    En nuestra opinión, es el árbol mejorado el ganador, ya que:
+    \begin{itemize}
+        \item Tiene la robustez suficiente para poder generalizar en caso de agregar nuevos datos al modelo. 
+        \item Tiene mayor velocidad de entrenamiento 
+        \item Tiene mayor capacidad de ser visualizada en un gráfico.
+    \end{itemize}
+
+\vspace{10pt} 
+
+    En futuras líneas de investigación se debería investigar en profundidad el desbalanceo de datos propio del Target y mitigar la problemática agregando datos en categorías con deficit y eliminando datos de categorías en exceso
+    
 
 \end{frame}
 }
