@@ -647,7 +647,7 @@ Encontramos 31 variables dentro de dataset, de las cuales 10 son numéricas y 21
     \end{Large}
     \vspace{4pt}
 
-    Srmamos una función para tener una lista limpia de variables con nulos:
+    Encontramos valores nulos en estas variables, por lo que para trabajar con el modelado los remplazamos con las siguientes métricas:
 
     \begin{table}[H]
         \begin{tabular}{lrl}
@@ -759,7 +759,7 @@ Encontramos 31 variables dentro de dataset, de las cuales 10 son numéricas y 21
         \textbf{Árbol de decisión}
     \end{Large}
 
-     \textbf{1) Primer modelo:}
+     \textbf{1. Primer modelo:}
 
     Como punto de partida usamos un árbol de clasificación con parámetros:
     \begin{itemize}
@@ -768,7 +768,7 @@ Encontramos 31 variables dentro de dataset, de las cuales 10 son numéricas y 21
         \item criterion='gini',
     \end{itemize}
 
-    El Accuracy score para el test es de: 0.940 y las metricas
+    El Accuracy score para el test es de: 0.940 y las métricas
 
     \begin{table}[H]
         \scriptsize
@@ -816,7 +816,7 @@ Sin embargo, tenemos que la variable ``años\_escolaridad'' tiene una importanci
         \subsubsection{Segundo modelo}
 
 \begin{frame}{Modelos analíticos}
-    \textbf{2) Segundo modelo:}
+    \textbf{2. Segundo modelo:}
     
     Esta vez al correr el modelo, utilizaremos el ``DecisionTreeClassifier'' solo con los parámetros:
     \begin{itemize}
@@ -955,7 +955,7 @@ Sin embargo, tenemos que la variable ``años\_escolaridad'' tiene una importanci
 
 \vspace{10pt}
 
-    \textbf{3) Tercer modelo:}
+    \textbf{3. Tercer modelo:}
     
 \vspace{6pt}
 
@@ -1026,7 +1026,7 @@ Sin embargo, tenemos que la variable ``años\_escolaridad'' tiene una importanci
 
 \begin{frame}{Modelos analíticos}
 
-    \textbf{4) Cuarto modelo:}
+    \textbf{4. Cuarto modelo:}
    
 \vspace{6pt}
 
