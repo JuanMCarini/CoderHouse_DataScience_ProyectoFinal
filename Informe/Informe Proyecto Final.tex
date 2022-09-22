@@ -749,11 +749,12 @@ Análisis socioeducativo de los habitantes de la Ciudad de Buenos Aires}}
                 \item \textbf{Variance=Test\_Score - Bias:} 2.89\%, lo que nos indica que la varianza también es baja.
             \end{itemize}
 
+
+            \subsubsection*{Resultados}
+
             Entonces, el modelo tiene una \textbf{buena relación} de sesgo y varianza.
 
-            De aquí, vemos necesario ver cuáles son las variables más importantes para el armado del modelo. Esto nos permitirá volver el modelo más robusto, al quitar las mismas. 
-
-            Como resultado, obtenemos que la variable ``años\_escolaridad'' tiene una importancia del 84\%, por mucho superior al resto de variables.
+            De aquí, vemos necesario ver cuáles son las variables más importantes para el armado del modelo. Esto nos permitirá volver el modelo más robusto, al quitar las mismas. Obtenemos que la variable ``años\_escolaridad'' tiene una importancia del 84\%, por mucho superior al resto de variables.
 
             % Tendríamos que agregar algo relacionado a la diferencia que tenemos con los resultado del EDA:
 
@@ -835,7 +836,7 @@ Análisis socioeducativo de los habitantes de la Ciudad de Buenos Aires}}
 
             Por lo tanto, el modelo esta haciendo \textbf{UNDERFITTING}, y no se nota gran mejoría en cuanto al f1-score.
 
-            \subsubsection*{Conclusión}
+            \subsubsection*{Resultados}
 
             Utilizar el grid search nos permitió mejorar bastante el modelo que había perdido bastante accuracy al retirar los años de escolaridad. La métrica que más pudimos mejorar con este método fue la varianza, que pasó de 44.97\% a 5.14\%, pero en contra parte nuestro acuracy bajo de 100\% a 65.27\%.
 
@@ -843,9 +844,9 @@ Análisis socioeducativo de los habitantes de la Ciudad de Buenos Aires}}
         
         Ahora vamos a trabajar con random forest, para saber si este algoritmo nos arroja mejores resultados. Y teniendo en cuento todo el dataset incluido la variable con los años de escolaridad. 
 
-        \subsubsection{Primer modelo}
+        \subsubsection{Tercer modelo}
 
-            Como primer modelo con el Random Forest Classifier, elegimos los siguientes parámetros:
+            Como tercer modelo con el Random Forest Classifier, elegimos los siguientes parámetros:
             \begin{itemize}
                 \item n\_estimators=200,
                 \item max\_depth=15,
@@ -876,11 +877,13 @@ Análisis socioeducativo de los habitantes de la Ciudad de Buenos Aires}}
                 \item \textbf{Variance=Test\_Score - Bias:} 7.20\%, que nos indica que la varianza es baja.
              \end{itemize}
 
-             En conclusión obtenemos un buen modelo, que no tiene grandes diferencias al mirar el f1-score. De todas maneras buscamos cuales son las variables más importantes, y encontramos que los años de escolaridad redujo la enorme importancia (a un 43.58\%) que tenía en el random tree. Sin embargo, sigue correspondiendo quitarla del modelo. Por lo que volveremos a probar un segundo modelo que no contenga la variable años de escolaridad. 
+            \subsubsection*{Resultados}
 
-        \subsubsection{Segundo modelo}
+             Obtenemos un buen modelo, que no tiene grandes diferencias al mirar el f1-score. De todas maneras buscamos cuales son las variables más importantes, y encontramos que los años de escolaridad redujo la enorme importancia (a un 43.58\%) que tenía en el random tree. Sin embargo, para poder comparar sigue correspondiendo quitarla del modelo. Por lo que volveremos a probar un segundo modelo que no contenga la variable años de escolaridad. 
 
-            En este caso elegimos los siguientes parámetros:
+        \subsubsection{Cuarto modelo}
+
+            En este cuarto caso elegimos los siguientes parámetros:
             \begin{itemize}
                 \item n\_estimators=200,
                 \item max\_depth=10,
@@ -952,10 +955,16 @@ Análisis socioeducativo de los habitantes de la Ciudad de Buenos Aires}}
             \end{itemize} 
 
             Lo que nos indica que nuestro modelo esta haciendo \textbf{OVERFITING} y siguen sin desempañarse bien cuando miramos el f1-score.
+            
+            \subsubsection*{Resultados}
+            
+             Al utilizar random forest  hemos podidos mejorar el sesgo y disminuir el underfitting en 2 puntos porcentuales aproximadamente.
+    
+            Sin embargo, se vio afectada la varianza en estos modelos, que pasó de estar alrededor del 5\% en el árbol de decisión mejorado a 28\%.
 
 \newpage
 
-\section{Conclusiones}
+\section{Conclusiones Finales}
 
     Finalmente, nos queda elegir el mejor modelo para realizar nuestras predicciones. Para eso vamos a tomar las métricas de cada uno de ellos, siempre teniendo en cuenta los modelos que no contienen la variable ``años\_escolaridad'', y hacer un cuadro comparativo:
     
