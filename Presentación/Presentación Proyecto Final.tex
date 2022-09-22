@@ -789,15 +789,21 @@ Podemos ver que los casos que no provienen de villas de emergencia  obtienen en 
 \end{frame}
 
 \begin{frame}{Modelos analíticos}
+ \begin{Large}
+        \textbf{Resultados}
+    \end{Large}
+    \vspace{6pt}
+    
     Entonces, el modelo tiene una \textbf{buena relación} de sesgo y varianza.
 
-    De aquí, vemos necesario ver cuáles son las variables más importantes para el armado del modelo. Esto nos permitirá volver el modelo más robusto, al quitar las mismas. 
-
-    Y como resultado, tenemos que la variable ``años\_escolaridad'' tiene una importancia del 84\%, por mucho superior al resto de variables.
+\vspace{10pt}
+    
+Sin embargo, tenemos que la variable ``años\_escolaridad'' tiene una importancia del 84\%, por mucho superior al resto de variables.
 
     % Tendríamos que agregar algo relacionado a la diferencia que tenemos con los resultado del EDA.
+\vspace{10pt}
 
-    Por lo tanto, vamos a tener que desarrollar un nuevo modelo sin esta variable. El principal motivo es que los años de escolaridad es un dato que puede constatarse de forma conjunta con el nivel máximo educativo, por lo que tiene sentido que si no tenes la variable target, tampoco tengas la variable de los años de escolaridad.
+    Por lo tanto, desarrollamos un nuevo modelo sin esta variable. 
 
 \end{frame}
 
@@ -836,10 +842,12 @@ Podemos ver que los casos que no provienen de villas de emergencia  obtienen en 
     Luego, analizamos el sesgo y la varianza:
     \begin{itemize}
         \item \textbf{Bias o sesgo:} 99.78\% que nos indica que tengo poco error, es decir, un sesgo bajo,
-        \item \textbf{Variance=Test\_Score - Bias=} 46.39\%, lo que nos indica un nivel de varianza alto,
+        \item \textbf{Variance=Test\_Score - Bias=} 46.39\%, lo que nos indica un nivel de varianza bastante alto,
     \end{itemize}
 
     Lo que nos da como resultado, que este modelo esta haciendo \textbf{OVERFITTING}.
+
+\vspace{10pt}
 
     Por lo que se observa, el árbol performa bastante peor sin esta variable, aumentando especialmente la varianza. Por lo tanto optamos probar mejorar nuestro modelo con un grid search.
 
@@ -861,6 +869,8 @@ Podemos ver que los casos que no provienen de villas de emergencia  obtienen en 
         \item 'criterion': ['gini','entropy','log\_loss'];
     \end{itemize}
     como estimador el ``DecisionTreeClassifier'' con el random\_state=50, con el cross-validation =10,  usando todos los procesadores.
+
+\vspace{10pt}
 
     Y nos da como resultado, que el mejor árbol de decisión posible obtiene 0.642. Y para eso el árbol debe tener una profundidad de  6, utilizar  10  variables y usar el método ``gini''.
 
@@ -899,11 +909,15 @@ Podemos ver que los casos que no provienen de villas de emergencia  obtienen en 
 \begin{frame}{Modelos analíticos}
 
     \begin{Large}
-        \textbf{Conclusión}
+        \textbf{Resultados}
     \end{Large}
     \vspace{6pt}
     
-    Utilizar el grid search nos permitió mejorar bastante el modelo que había perdido bastante accuracy al retirar los años de escolaridad. La métrica que más pudimos mejorar con este método fue la varianza, que pasó de 44.97\% a 5.14\%, pero en contra parte nuestro acuracy bajo de 100\% a 65.27\%.
+    Utilizar el grid search nos permitió mejorar bastante el modelo que había perdido bastante accuracy al retirar los años de escolaridad. 
+    
+    \vspace{10pt}
+    
+    La métrica que más pudimos mejorar con este método fue la varianza, que pasó de 44.97\% a 5.14\%, pero en contra parte nuestro acuracy bajo de 100\% a 65.27\%.
 
 \end{frame}
 
@@ -918,12 +932,12 @@ Podemos ver que los casos que no provienen de villas de emergencia  obtienen en 
 
     Ahora vamos a trabajar con random forest, para saber si este algoritmo nos arroja mejores resultados. Y teniendo en cuento todo el dataset incluido la variable con los años de escolaridad. 
 
-    \subsubsection{Primer modelo}
+    \subsubsection{Tercer modelo}
     \begin{Large}
-        \textbf{Primer modelo}
+        \textbf{Tercer modelo}
     \end{Large}
 
-    Como primer modelo con el Random Forest Classifier, elegimos los siguientes parámetros:
+    Como tercer modelo con el Random Forest Classifier, elegimos los siguientes parámetros:
     \begin{itemize}
         \item n\_estimators=200,
         \item max\_depth=15,
@@ -964,20 +978,24 @@ Podemos ver que los casos que no provienen de villas de emergencia  obtienen en 
 \begin{frame}{Modelos analíticos}
 
     \begin{Large}
-        \textbf{Conclusión}
+        \textbf{Resultados}
     \end{Large}
     \vspace{6pt}
 
-    En conclusión obtenemos un buen modelo. De todas maneras buscamos cuales son las variables más importantes, y encontramos que los años de escolaridad redujo la enorme importancia (a un 43.58\%) que tenía en el random tree. Sin embargo, sigue correspondiendo quitarla del modelo.
+    En conclusión obtenemos un buen modelo. De todas maneras buscamos cuales son las variables más importantes, y encontramos que los años de escolaridad redujo la enorme importancia (a un 43.58\%) que tenía en el random tree. 
+    
+    \vspace{10pt}
+    
+    Sin embargo, sigue correspondiendo quitarla del modelo.
 
 \end{frame}
 
-\subsubsection{Segundo modelo}
+\subsubsection{Cuarto modelo}
 
 \begin{frame}{Modelos analíticos}
 
     \begin{Large}
-        \textbf{Segundo modelo}
+        \textbf{Cuarto modelo}
     \end{Large}
     \vspace{6pt}
 
@@ -1013,7 +1031,7 @@ Podemos ver que los casos que no provienen de villas de emergencia  obtienen en 
 
     En este caso  obtuvimos los siguientes valores del sesgo y la varianza:
     \begin{itemize}
-        \item \textbf{Bias o sesgo:} 89.11\% que nos indica que tengo bastantes errores, es decir, que el sesgo es alto,
+        \item \textbf{Bias o sesgo:} 89.11\% que nos indica que tengo pocos errores, es decir, que el sesgo es bastante bajo,
         \item \textbf{Variance=Test\_Score - Bias==} 27.4\%, esto indica que tenemos un valor alto en la varianza.
         \end{itemize}
 
@@ -1067,19 +1085,34 @@ Podemos ver que los casos que no provienen de villas de emergencia  obtienen en 
     \end{table}
     
     \begin{itemize}
-        \item \textbf{Bias o sesgo:} 90.65\% que nos indica que tengo bastantes errores, es decir, el sesgo es alto,
-        \item \textbf{Variance=Test\_Score - Bias:} 28.54\% $\Rightarrow$, y nuestra varianza también es alta. 
+        \item \textbf{Bias o sesgo:} 90.65\% que nos indica que tengo pocos errores, es decir, el sesgo es bajo,
+        \item \textbf{Variance=Test\_Score - Bias:} 28.54\% $\Rightarrow$, y nuestra varianza es alta. 
     \end{itemize} 
 
     Lo que nos indica que nuestro modelo esta haciendo \textbf{OVERFITING}.
 
 \end{frame}
 
-\section{Conclusiones}
+\begin{frame}{Modelos analíticos}
+
+    \begin{Large}
+        \textbf{Resultados}
+    \end{Large}
+    \vspace{6pt}
+
+    Al utilizar random forest  hemos podidos mejorar el sesgo y disminuir el underfitting en 2 puntos porcentuales aproximadamente.
+    
+    \vspace{10pt}
+    
+    Sin embargo, se vio afectada la varianza en estos modelos, que pasó de estar alrededor del 5\% en el árbol de decisión mejorado a 28\%.
+
+\end{frame}
+
+\section{Conclusiones Finales}
 
 \begin{frame}{Conclusiones Finales}
 
-    Finalmente, nos queda elegir el mejor modelo para realizar nuestras predicciones. Para eso vamos a tomar las métricas de cada uno de ellos y hacer un cuadro comparativo:
+    Finalmente, tomamos las métricas de cada uno de ellos y hacemos un cuadro comparativo:
     
     \begin{table}[H]
         \scriptsize
@@ -1094,18 +1127,26 @@ Podemos ver que los casos que no provienen de villas de emergencia  obtienen en 
         \end{tabular}
     \end{table}
 
-\end{frame}
+% \end{frame}
 
-\begin{frame}{Conclusiones Finales}
+% \begin{frame}{Conclusiones Finales}
 
-    Con esta información podemos decidir qué modelo nos conviene usar:
+    % Con esta información podemos decidir qué modelo nos conviene usar:
     \begin{itemize}
         \item El árbol default tiene el mejor resultado con respecto al sesgo, pero su varianza lo deja afuera de la competencia.
         \item Por el contrario, el árbol mejorado tiene una varianza insuperable de 5\%, aunque con el menor puntaje con respecto al sesgo.
         \item El bosque default tiene resultados mixtos en ambas categorías.
         \item El bosque mejorado destaca por bajo sesgo pero su varianza es la segunda peor.
     \end{itemize}
+    
+\end{frame}
+
+
+\begin{frame}{Conclusiones Finales}
+
     Como era de esperarse, los finalistas son el árbol y el bosque mejorado. Sorprendentemente, ambos performan muy bien pero en métricas diferentes. A su vez, el accuracy de ambos difiere en apenas un 2\%.
+
+\vspace{10pt} 
 
     En nuestra opinión, es el árbol mejorado el ganador, ya que tiene la robustez suficiente para poder generalizar en caso de agregar nuevos datos al modelo. Otra ventaja frente al bosque aleatorio es su mayor velocidad de entrenamiento, asì como su capacidad de ser visualizada en un gráfico.
 
