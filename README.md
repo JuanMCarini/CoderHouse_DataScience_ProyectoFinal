@@ -20,15 +20,20 @@ Regarding the conclusions reached, good results have been seen in the models opt
 
 # Estructura de archivos
 * :ringed_planet: Proyecto Final.ipynb: Jupyter Notebook del proyecto final, con código en PYthon
-* :books: encuesta-anual-hogares-2019.csv: Base de datos con la que trabajaremos en el proyecto.
+
+* :books: encuesta-anual-hogares-2019.csv: Base de datos con la que trabajaremos en el proyecto
+
 * :world_map: comunas.geojson: Mapa con las comunas de la Ciudad Autónoma de Buenos Aires. Será útil para realizar gráficos
+
 * :hammer_and_wrench::snake: Funciones: Lista de funciones en formato .py para su uso en el jupyter notebook
     * Exploratory_Data_Analysis.py: Funciones para el análisis exploratorio de datos
     * Modelado.py: Funciones para la generación de modelos para su entrenamiento
+
 * :chart: Presentación
     * Presentación Proyecto Final: en formato .pdf y .tex
     * CSV: Tablas utilizadas para construcción de la presentación
     * Imágenes: Gráficos utilizados para la presentación
+    
 * :closed_book: Informe
     * Informe Proyecto Final: en formato .pdf y .tex
     * CSV: Tablas utilizadas para el informe
