@@ -29,7 +29,7 @@ Análisis socioeducativo de los habitantes de la Ciudad de Buenos Aires}}
 \maketitle
 
 \begin{center}
-    \includegraphics[scale=1.75]{Imagenes/Coder.png}
+    \includegraphics[scale=1.75]{Imagenes/Coder.jpg}
 \end{center}
  
 \thispagestyle{empty}
@@ -174,10 +174,9 @@ Análisis socioeducativo de los habitantes de la Ciudad de Buenos Aires}}
  
     \newpage
 
-    Ahora, en base a los datos arrojados por la tabla de arriba, generamos diversas transformaciones de variables, así como la creación de la variable ``Target'', pues es la que usaremos para todo el análisis:
-    \begin{itemize}
-        \item Creamos la variable ``Target'' y le asignamos la variable ``nivel\_max\_educativo''.
-        \item En la variable ``Target'', reducimos su dimensionalidad intercambiando los valores:
+    Ahora, en base a los datos arrojados por la tabla de arriba, generamos diversas transformaciones de variables:
+    \begin{enumerate}
+        \item En primer lugar generamos la variable Target, la cual es la variable nivel\_max\_educativo, pero con una reducción de su dimensionalidad:
             \begin{itemize}
                 \item ``Secundario/medio común'' y ``EGB (1° a 9° año)'' por ``sec\_completo'',
                 \item ``Primario especial'' y ``Primario común'' por ``prim\_completo'',
@@ -194,7 +193,7 @@ Análisis socioeducativo de los habitantes de la Ciudad de Buenos Aires}}
                 \item ``ingreso\_per\_capita\_familiar" por ``ing\_per\_cap\_familiar'',
                 \item ``cantidad\_hijos\_nac\_vivos'' por ``cant\_hijos\_nac\_vivos''.
             \end{itemize}
-    \end{itemize}
+    \end{enumerate}
 
     Y comenzamos el análisis EDA del mismo, primero analizando los nulos:
 
@@ -202,7 +201,7 @@ Análisis socioeducativo de los habitantes de la Ciudad de Buenos Aires}}
         \includegraphics[scale=0.25]{Imagenes/NullsDS.png}
     \end{center}
  
-    Así, detectamos que nuestra variable target tiene 1054 valores nulos. Es importante tener este dato presente cuando queramos correr un algoritmo de clasificación.
+    Así, detectamos que nuestra variable target tiene 1054 valores nulos. Es importante tener este dato presente para correr un algoritmo de clasificación.
 
     \subsection{Análisis univariado}
  
@@ -231,9 +230,7 @@ Análisis socioeducativo de los habitantes de la Ciudad de Buenos Aires}}
            
             \subsubsection{Ingreso familiar per cápita}
            
-            Ahora probamos con observar los ingresos familiares. Creemos que puede ser un indicador interesante del nivel educativo.
-           
-            Para esto, armamos una función para graficar y jugar con el nivel del filtrado de la variable y obtener un histograma que permita apreciar mejor la distribución de la variable sin tantos outliers:
+            Ahora probamos con observar los ingresos familiares. Creemos que puede ser un indicador interesante del nivel educativo. Para esto, armamos una función para graficar y jugar con el nivel del filtrado de la variable y obtener un histograma que permita apreciar mejor la distribución de la variable sin tantos outliers:
            
             \begin{center}
                 \includegraphics[scale=0.325]{Imagenes/AUIngFam.png}
@@ -274,11 +271,7 @@ Análisis socioeducativo de los habitantes de la Ciudad de Buenos Aires}}
             \includegraphics[scale=0.65]{Imagenes/ABSpearman.png}
         \end{center}
  
-        A simple vista, no se observan fuertes correlaciones.
- 
-        Podemos notar que la variable ``años\_escolaridad'' correlaciona moderadamente bien con variables relacionadas al ingreso.
- 
-        La principal correlación positiva es ``años\_escolaridad'' con ingreso familiar per cápita (``ing\_per\_cap\_familiar''), lo cual hace sentido teórico.
+        A simple vista, no se observan fuertes correlaciones. Podemos notar que la variable ``años\_escolaridad'' correlaciona moderadamente bien con variables relacionadas al ingreso. La principal correlación positiva es ``años\_escolaridad'' con ingreso familiar per cápita (``ing\_per\_cap\_familiar''), lo cual hace sentido teórico.
  
         Ahora, utilizando el método para solo graficar en base a un threshold vemos que los años de escolaridad alcanzados por los entrevistados tienen algo de relación $(66\%$) con la variable ``ingresos\_totales''
         % Estaría bien solo utilizar el gráfico de la derecha.
@@ -506,7 +499,7 @@ Análisis socioeducativo de los habitantes de la Ciudad de Buenos Aires}}
         \end{itemize}
         los reemplazamos con la moda.
         
-        Luego, eliminamos la variable ``nivel\_max\_educativo'' ya que no la vamos a utilizar y por último eliminamos los nulos de nuestro target y pasamos el tipo de dato de la misma a entero. 
+        Luego, eliminamos la variable ``nivel\_max\_educativo'' ya que no la vamos a utilizar y por último eliminamos los nulos de nuestro target. 
         
 
     \subsection{Target}
@@ -563,13 +556,13 @@ Análisis socioeducativo de los habitantes de la Ciudad de Buenos Aires}}
         \end{table}
     \subsection{Procesamiento}
 
-        Para preparar los datos para el modelado generamos una función que:
+        Para preparar los datos para el modelado:
         \begin{itemize}
-            \item  Divide el dataframe en X\_train, y\_train, X\_test e y\_test, haciendo la división entre test y el train en un 30\% y un 70\% respectivamente, con una semilla especifica.
-            \item  Procesa el X\_train y el X\_test con un pipeline generado previamente, el cual convierte las variable numéricas con el minmaxscaler y las categóricas con one hot encoding.
+            \item  Dividimos el dataframe en X\_train, y\_train, X\_test e y\_test, haciendo la división entre test y el train en un 30\% y un 70\% respectivamente, con una semilla especifica.
+            \item  Procesamos el X\_train y el X\_test con un pipeline generado previamente, el cual convierte las variable numéricas con el minmaxscaler y las categóricas con one hot encoding.
         \end{itemize}
 
-        Una vez aplicada dicha función a nuestro dataframe, tenemos ya lista la partición (con la misma cantidad de columnas) del mismo en X\_train, y\_train, X\_test e y\_test.
+        Con esta partición ya podemos comenzar a entrenar modelos de clasificación.
 
     \subsection{Árbol de decisión}
 
@@ -577,7 +570,7 @@ Análisis socioeducativo de los habitantes de la Ciudad de Buenos Aires}}
 
             Como primera aproximación, vamos a usar un árbol de clasificación usando con parámetros:
             \begin{itemize}
-                \item random\_state = 50,
+               % \item random\_state = 50,
                 \item max\_depth=8,
                 \item criterion='gini',
             \end{itemize}
@@ -634,12 +627,7 @@ Análisis socioeducativo de los habitantes de la Ciudad de Buenos Aires}}
 
         \subsubsection{Segundo modelo}
 
-            Esta vez al correr el modelo, utilizaremos el ``DecisionTreeClassifier'' solo con los parámetros:
-            \begin{itemize}
-                \item random\_state = 50,
-                \item cirterion='entropy'.
-            \end{itemize}
-            Que nos da como resultado:  
+            Esta vez al correr el modelo, utilizaremos el ``DecisionTreeClassifier'' solo con el parámetro criterion=entropy, que nos da como resultado:  
 
             \begin{table}[!ht]
                 \centering
@@ -671,13 +659,12 @@ Análisis socioeducativo de los habitantes de la Ciudad de Buenos Aires}}
             
             En la grilla de parámetros para el Gridsearch elegimos los siguientes:
             \begin{itemize}
-                \item 'max\_depth': range(5,11),
-                \item 'max\_features': range(1,14),
-                \item 'criterion': ['gini','entropy','log\_loss'];
+                \item 'max\_depth' (profundidad máxima del árbol): rango entre 5 y 10,
+                \item 'max\_features' (cantidad máxima de variables utilizadas): rango entre 1 y 13,
+                \item 'criterion' (criterio de partición de ramas): gini,entropy y log\_loss;
             \end{itemize}
-            como estimador el ``DecisionTreeClassifier'' con el random\_state=50, con el cross-validation =10,  usando todos los procesadores.
-
-            Y nos da como resultado, que el mejor árbol de decisión posible obtiene 0.642. Y para eso el árbol debe tener una profundidad de  6, utilizar  10  variables y usar el método ``gini''.
+            
+            A su vez, hacemos un cross validation de 10 particiones. Esto nos da como resultado que el mejor árbol de decisión posible obtiene 0.642. Y para eso el árbol debe tener una profundidad de  6, utilizar  10  variables y usar el método ``gini''.
 
             Entonces, entrenamos el modelo bajo estos mismos parámetros y obtenemos el siguiente reporte de clasificación:
 
@@ -716,9 +703,9 @@ Análisis socioeducativo de los habitantes de la Ciudad de Buenos Aires}}
 
             Como primer modelo con el Random Forest Classifier, elegimos los siguientes parámetros:
             \begin{itemize}
-                \item n\_estimators=200,
+                \item n\_estimators (número de árboles utilizados)=200,
                 \item max\_depth=15,
-                \item random\_state=50,
+                %\item random\_state=50,
                 \item criterion='gini.
             \end{itemize}
 
@@ -753,7 +740,7 @@ Análisis socioeducativo de los habitantes de la Ciudad de Buenos Aires}}
             \begin{itemize}
                 \item n\_estimators=200,
                 \item max\_depth=10,
-                \item random\_state=50,
+              %  \item random\_state=50,
                 \item criterion='gini'.
             \end{itemize}
 
@@ -786,16 +773,12 @@ Análisis socioeducativo de los habitantes de la Ciudad de Buenos Aires}}
 
             En la grilla de parámetros para el Gridsearch elegimos los siguientes:
             \begin{itemize}
-                \item 'max\_depth': [5,7,10,15,None],
-                \item 'max\_features': [5,8,10,30,41],
-                \item 'n\_estimators': [200,300,500],
-                \item 'criterion': ['gini','entropy','log\_loss'].
+                \item 'max\_depth': 5,7,10 y 15, agregando la posibilidad de no poner profundidad máxima,
+                \item 'max\_features': 5,8,10,30 y 41,
+                \item 'n\_estimators': 200,300 y 500,
+                \item 'criterion': gini, entropy y log\_loss
             \end{itemize}
-            como estimador el ``RandomTreeClassifier'' que utilizamos en el último modelo, con el cross-validation =10 y  usando todos los procesadores.
-
-            Y nos da como resultado, que el mejor random forest posible obtiene 0.668. 
-
-            Y para eso el árbol debe tener una profundidad de 15 , utilizar  10  variables, tener  300  estimadores y utilizar el método ``gini''.
+            A su vez, realizamos un cross validation con 10 particiones. Nos da como resultado que el mejor random forest posible obtiene 0.668. Para eso el árbol debe tener una profundidad de 15 , utilizar  10  variables, tener  300  estimadores y utilizar el método ``gini''.
             
             Entonces, entrenamos el modelo bajo estos mismos parámetros y obtenemos el siguiente reporte de clasificación:
 
