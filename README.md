@@ -1,8 +1,8 @@
-# Miembros del equipo
-* [Juan Martín Carini](@JuanMCarini)
+# Autores
+* [Juan Martín Carini](https://github.com/JuanMCarini)
 * [Lucía Buzzeo](https://github.com/luciabuzzeo)
-* Lucía Hukovsky @LHukovsky
-* José Saint Germain @josesg998
+* [Lucía Hukovsky](https://github.com/LHukovsky)
+* [José Saint Germain](https://github.com/josesg998)
 
 # Resumen
  
