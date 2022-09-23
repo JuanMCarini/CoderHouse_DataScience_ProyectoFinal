@@ -1,3 +1,9 @@
+# Miembros del equipo
+* Juan Martín Carini @JuanMCarini
+* Lucía Buzzeo @luciabuzzeo
+* Lucía Hukovsky @LHukovsky
+* José Saint Germain @josesg998
+
 # Resumen
  
 A lo largo de este proyecto, se ha trabajado sobre una _Encuesta Anual de Hogares_ realizada por el Gobierno de la Ciudad de Buenos Aires para el año 2019. Sobre dicho dataset se ha realizado un análisis de datos exploratorio, definiendo y analizando sus variables y estableciendo correlaciones a nivel binario y multivariable. Finalmente, en pos de alcanzar los objetivos específicos del proyecto, se han utilizado modelos de clasificación.
@@ -19,22 +25,22 @@ In this sense, a classification tree and a random forest have been implemented, 
 Regarding the conclusions reached, good results have been seen in the models optimized with hyperparameters, which have performed as expected, reaching robust models.
 
 # Estructura de archivos
-* :ringed_planet: Proyecto Final.ipynb: Jupyter Notebook del proyecto final, con código en PYthon
+* :ringed_planet: `Proyecto Final.ipynb:` Jupyter Notebook del proyecto final, con código en PYthon
 
-* :books: encuesta-anual-hogares-2019.csv: Base de datos con la que trabajaremos en el proyecto
+* :books: `encuesta-anual-hogares-2019.csv`: Base de datos con la que trabajaremos en el proyecto
 
-* :world_map: comunas.geojson: Mapa con las comunas de la Ciudad Autónoma de Buenos Aires. Será útil para realizar gráficos
+* :world_map: `comunas.geojson`: Mapa con las comunas de la Ciudad Autónoma de Buenos Aires. Será útil para realizar gráficos
 
-* :hammer_and_wrench::snake: Funciones: Lista de funciones en formato .py para su uso en el jupyter notebook
+* :hammer_and_wrench::snake: `Funciones`: Lista de funciones en formato .py para su uso en el jupyter notebook
     * Exploratory_Data_Analysis.py: Funciones para el análisis exploratorio de datos
     * Modelado.py: Funciones para la generación de modelos para su entrenamiento
 
-* :chart: Presentación
+* :chart: `Presentación`
     * Presentación Proyecto Final: en formato .pdf y .tex
     * CSV: Tablas utilizadas para construcción de la presentación
     * Imágenes: Gráficos utilizados para la presentación
-    
-* :closed_book: Informe
+
+* :closed_book: `Informe`
     * Informe Proyecto Final: en formato .pdf y .tex
     * CSV: Tablas utilizadas para el informe
     * Imágenes: Gráficos utilizados para el informe
