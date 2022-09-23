@@ -31,16 +31,16 @@ Regarding the conclusions reached, good results have been seen in the models opt
 
 * :world_map: `comunas.geojson`: Mapa con las comunas de la Ciudad Autónoma de Buenos Aires. Será útil para realizar gráficos
 
-* :hammer_and_wrench::snake: `Funciones`: Lista de funciones en formato .py para su uso en el jupyter notebook
+* :hammer_and_wrench::snake: `Funciones`: Lista de funciones en formato ``.py`` para su uso en el jupyter notebook
     * Exploratory_Data_Analysis.py: Funciones para el análisis exploratorio de datos
     * Modelado.py: Funciones para la generación de modelos para su entrenamiento
 
 * :chart: `Presentación`
-    * Presentación Proyecto Final: en formato .pdf y .tex
+    * Presentación Proyecto Final: en formato ``.pdf`` y ``.tex``
     * CSV: Tablas utilizadas para construcción de la presentación
     * Imágenes: Gráficos utilizados para la presentación
 
 * :closed_book: `Informe`
-    * Informe Proyecto Final: en formato .pdf y .tex
+    * Informe Proyecto Final: en formato ``.pdf`` y ``.tex``
     * CSV: Tablas utilizadas para el informe
     * Imágenes: Gráficos utilizados para el informe
