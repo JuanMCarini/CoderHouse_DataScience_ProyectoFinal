@@ -37,7 +37,6 @@ Regarding the conclusions reached, good results have been seen in the models opt
 
 * :chart: `Presentación`
     * Presentación Proyecto Final: en formato ``.pdf`` y ``.tex``
-    * CSV: Tablas utilizadas para construcción de la presentación
     * Imágenes: Gráficos utilizados para la presentación
 
 * :closed_book: `Informe`
