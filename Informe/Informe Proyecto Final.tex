@@ -754,7 +754,7 @@ Y como resultado, se tiene el dataset listo para el procesamiento:
             
             Analizando lo observado, se ha determinado que este modelo hacía \textbf{OVERFITTING}, y tenía un rendimiento bastante pobre respecto al f1-score. En consecuencia, el árbol performa peor sin esta variable, aumentando, especialmente, la varianza. Por lo tanto se ha optado por probar con un grid search.
         
-        \subsubsection{Gridsearch con CV}
+        \subsubsection{Gridsearch con CV y Tercer Modelo}
             
             Entre la grilla de parámetros para el Gridsearch se han elegido los siguientes:
             \begin{itemize}
@@ -767,6 +767,7 @@ Y como resultado, se tiene el dataset listo para el procesamiento:
             Esto ha mostrado que el mejor árbol de decisión posible obtiene 0.642. Para alcanzarlo, el árbol debe tener una profundidad de  6, utilizar  10  variables y usar el método ``gini''.
 
             Por lo tanto, se ha entrenado el modelo bajo estos mismos parámetros y obtenido el siguiente reporte de clasificación:
+
 
             \begin{table}[H]
                 \centering
@@ -802,7 +803,7 @@ Y como resultado, se tiene el dataset listo para el procesamiento:
         
         En una instancia posterior, se ha trabajado con random forest con el propósito de analizar los resultados que arroja este algoritmo. Se ha comenzado teniendo en cuenta todo el dataset, incluido la variable con los años de escolaridad. 
 
-        \subsubsection{Tercer modelo}
+        \subsubsection{Cuarto modelo}
 
             Como tercer modelo con el Random Forest Classifier, se han elegido los siguientes parámetros:
             \begin{itemize}
@@ -842,7 +843,7 @@ Y como resultado, se tiene el dataset listo para el procesamiento:
 
              Se ha obtenido un buen modelo, que no tiene grandes diferencias al mirar el f1-score. De todas maneras, se han buscado cuales eran las variables más importantes. En ese sentido, se ha encontrado que la variable años de escolaridad redujo la enorme importancia (a un 43.58\%) que tenía en el random tree. Sin embargo, para poder comparar, sigue correspondiendo quitarla del modelo. Posteriormente, se ha probado un modelo alternativo sin la variable años de escolaridad. 
 
-        \subsubsection{Cuarto modelo}
+        \subsubsection{Quinto modelo}
 
             En este cuarto caso se han elegido los siguientes parámetros:
             \begin{itemize}
@@ -880,7 +881,7 @@ Y como resultado, se tiene el dataset listo para el procesamiento:
             A modo de conclusión, respecto al tercer modelo, ha empeorado su accuracy pero está muy cercano al mejor modelo de Decision Tree, mientras que crece mucho la varianza a un 27.4\% (unos 20 puntos). 
             Al igual que con el el DesicionTree, se ha probado mejorándolo con grid search.
 
-        \subsubsection{Gridsearch con CV}
+        \subsubsection{Gridsearch con CV y Sexto Modelo}
 
             En la grilla de parámetros para el Gridsearch se han elegido los siguientes:
             \begin{itemize}
@@ -935,9 +936,9 @@ Y como resultado, se tiene el dataset listo para el procesamiento:
             \toprule
            N° & Tipo de modelo & accuracy & sesgo & varianza & f1\_inicial & f1\_primario & f1\_secundario & f1\_superior \\ \midrule
            2  & Árbol default & 0.53 & 1.00 & 0.46 & 0.81 & 0.33 & 0.60 & 0.42 \\ 
-           2  &  Árbol mejorado & 0.60 & 0.65 & 0.05 & 0.85 & 0.30 & 0.69 & 0.53 \\
-           4  & Bosque default & 0.62 & 0.89 & 0.27 & 0.86 & 0.32 & 0.69 & 0.53 \\ 
-           4  & Bosque mejorado & 0.62 & 0.91 & 0.29 & 0.86 & 0.33 & 0.69 & 0.54 \\
+           3  &  Árbol mejorado & 0.60 & 0.65 & 0.05 & 0.85 & 0.30 & 0.69 & 0.53 \\
+           5  & Bosque default & 0.62 & 0.89 & 0.27 & 0.86 & 0.32 & 0.69 & 0.53 \\ 
+           6  & Bosque mejorado & 0.62 & 0.91 & 0.29 & 0.86 & 0.33 & 0.69 & 0.54 \\
            \bottomrule
         \end{tabular}
         \caption{Tabla general de resultados}

@@ -465,7 +465,7 @@
 \begin{frame}{Modelos analíticos}
     
     \begin{Large}
-        \textbf{Gridsearch con CV}
+        \textbf{3.Tercer Modelo}
     \end{Large}
     \vspace{10pt}
 
@@ -521,7 +521,7 @@
     \end{Large}
     \vspace{10pt}
     
-    \textbf{3. Tercer modelo:}
+    \textbf{4. Cuarto modelo:}
     
     \vspace{6pt}
     En esta instancia volvemos a incluir la variable años de escolaridad.
@@ -590,7 +590,7 @@
 
 \begin{frame}{Modelos analíticos}
 
-    \textbf{4. Cuarto modelo:}
+    \textbf{5. Quinto modelo:}
     \vspace{10pt}
 
     En este caso elegimos los siguientes parámetros, quitando la variable años de escolaridad:
@@ -669,7 +669,7 @@
 \begin{frame}{Modelos analíticos}    
 
     \begin{Large}
-        \textbf{Gridsearch con CV}
+        \textbf{6. Sexto Modelo}
     \end{Large}
     \vspace{10pt}
 
@@ -726,11 +726,11 @@
         \centering
         \begin{tabular}{ lccccccc }
             \toprule
-            modelo & accuracy & sesgo & varianza & f1\_inicial & f1\_pri & f1\_sec & f1\_sup \\ \midrule
-            árbol\_default & 0.53 & 1.00 & 0.46 & 0.81 & 0.33 & 0.60 & 0.42 \\  
-            árbol\_mejorado & 0.60 & 0.65 & 0.05 & 0.85 & 0.30 & 0.69 & 0.53 \\ 
-            bosque\_default & 0.62 & 0.89 & 0.27 & 0.86 & 0.32 & 0.69 & 0.53 \\ 
-            bosque\_mejorado & 0.62 & 0.91 & 0.29 & 0.86 & 0.33 & 0.69 & 0.54 \\
+            Modelo & accuracy & sesgo & varianza & f1\_inicial & f1\_pri & f1\_sec & f1\_sup \\ \midrule
+            2. Árbol\_default & 0.53 & 1.00 & 0.46 & 0.81 & 0.33 & 0.60 & 0.42 \\  
+            3. Árbol\_mejorado & 0.60 & 0.65 & 0.05 & 0.85 & 0.30 & 0.69 & 0.53 \\ 
+            5. Bosque\_default & 0.62 & 0.89 & 0.27 & 0.86 & 0.32 & 0.69 & 0.53 \\ 
+            6. Bosque\_mejorado & 0.62 & 0.91 & 0.29 & 0.86 & 0.33 & 0.69 & 0.54 \\
             \bottomrule
         \end{tabular}
     \end{table}
