@@ -12,7 +12,7 @@ El objetivo de aplicar modelos de clasificación ha sido encontrar el modelo que
 
 En ese sentido, se ha implementado un árbol de clasificación y un bosque aleatorio, parametrizando, en cada uno de los casos, ciertas variables convenientes. Asimismo, para ambos modelos, se ha implementado algoritmos de optimización  a fin de seleccionar los mejores parámetros para el problema de optimización y mitigar el overfitting del los modelos de partida. 
 
-Con respecto a las conclusiones alcanzadas, se han visto buenos resultados en los modelos optimizados con hiperparámetros, los cuales han performado de manera esperada, alcanzando modelos robustos.
+Con respecto a las conclusiones alcanzadas, se han visto buenos resultados en los modelos optimizados con hiperparametros, los cuales han performado de manera esperada, alcanzando modelos robustos.
 
 # Abstract
 
@@ -31,16 +31,27 @@ Regarding the conclusions reached, good results have been seen in the models opt
 
 * :world_map: `comunas.geojson`: Mapa con las comunas de la Ciudad Autónoma de Buenos Aires. Será útil para realizar gráficos
 
+<<<<<<< HEAD
 * :hammer_and_wrench::snake: `Funciones`: Lista de funciones en formato ``.py`` para su uso en el jupyter notebook
+=======
+* :hammer_and_wrench::snake: `Funciones`: Lista de funciones en formato ``.py`` para su uso en el Jupyter notebook
+>>>>>>> 570bcdeb50e6da7d617a8d06d2ecc0449185929c
     * Exploratory_Data_Analysis.py: Funciones para el análisis exploratorio de datos
     * Modelado.py: Funciones para la generación de modelos para su entrenamiento
 
 * :chart: `Presentación`
     * Presentación Proyecto Final: en formato ``.pdf`` y ``.tex``
+<<<<<<< HEAD
     * CSV: Tablas utilizadas para construcción de la presentación
+=======
+>>>>>>> 570bcdeb50e6da7d617a8d06d2ecc0449185929c
     * Imágenes: Gráficos utilizados para la presentación
 
 * :closed_book: `Informe`
     * Informe Proyecto Final: en formato ``.pdf`` y ``.tex``
     * CSV: Tablas utilizadas para el informe
+<<<<<<< HEAD
     * Imágenes: Gráficos utilizados para el informe
+=======
+    * Imágenes: Gráficos utilizados para el informe
+>>>>>>> 570bcdeb50e6da7d617a8d06d2ecc0449185929c

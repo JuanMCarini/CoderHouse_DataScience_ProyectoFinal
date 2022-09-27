@@ -5,6 +5,8 @@
 
 \usepackage[top=2cm, bottom=1.5cm, right=1.5cm, left=2cm]{geometry}
 
+\setlength{\parskip}{3mm}
+
 \usepackage{graphicx}
 
 \usepackage{hyperref}%Links
@@ -69,6 +71,7 @@ Análisis socioeducativo de los habitantes de la Ciudad de Buenos Aires}}
         \end{itemize}
         A partir de la obtención del mejor árbol de decisión y el mejor bosque aleatorio tomaremos la decisión de cuál de los dos es el mejor algoritmo para lograr los objetivos de este trabajo.
 
+<<<<<<< HEAD
     \subsection{Definición de la fuente de información}
 
         Para trabajar esta problemática, se ha recurrido a la \href{https://data.buenosaires.gob.ar/dataset/encuesta-anual-hogares/resource/3a45c563-396d-42de-ba93-8a93729e0723}{Encuesta Anual de Hogares} del Gobierno de la Ciudad de Buenos Aires para el año 2019. El dataset está disponible en la base de datos abiertos del GCBA.
@@ -76,6 +79,8 @@ Análisis socioeducativo de los habitantes de la Ciudad de Buenos Aires}}
         Esta encuesta contiene información demográfica, social, económica, educativa y de salud de 14319 habitantes de la Ciudad, la cual es una muestra representativa que permite obtener un vistazo de la población de la Ciudad.
 
 
+=======
+>>>>>>> 570bcdeb50e6da7d617a8d06d2ecc0449185929c
 \newpage
 
 \section{Planificación}
@@ -97,6 +102,7 @@ Análisis socioeducativo de los habitantes de la Ciudad de Buenos Aires}}
     Para comenzar con el análisis de nuestros datos comenzaremos observando sus columnas, la cantidad de no nulos que contienen y el tipo de dato que contiene cada una (texto o número)
     \begin{table}[H]\begin{center}
     \begin{tabular}{clll}
+<<<<<<< HEAD
     Columna                     & Conteo de no nulos & Tipo de dato \\ \hline
     id                          & 14319 no nulos & número entero \\
     nhogar                      & 14319 no nulos & número entero \\
@@ -129,6 +135,45 @@ Análisis socioeducativo de los habitantes de la Ciudad de Buenos Aires}}
     afiliacion\_salud            & 14315 no nulos & texto \\
     hijos\_nacidos\_vivos         & 6535 no nulos  & texto \\
     cantidad\_hijos\_nac\_vivos    & 14319 no nulos & texto \\
+=======
+    \multicolumn{4}{l}{Tamaño del set de datos: 14319 entadas, 0 a 14318} \\
+    \multicolumn{4}{l}{Con un total 31 columnas:}  \\
+    \toprule
+    \#  & Columna                   & Entradas No Vacías & Tipo de Dato \\ \midrule
+    0  & id                            & 14319 no nulos & numérica \\
+    1  & nhogar                        & 14319 no nulos & numérica \\
+    2  & miembro                       & 14319 no nulos & numérica \\
+    3  & comuna                        & 14319 no nulos & numérica \\
+    4  & dominio                       & 14319 no nulos & objeto \\
+    5  & edad                          & 14319 no nulos & numérica \\
+    6  & sexo                          & 14319 no nulos & objeto \\
+    7  & parentesco\_jefe              & 14319 no nulos & objeto \\
+    8  & situación\_conyugal           & 14318 no nulos & objeto \\
+    9  & num\_miembro\_padre           & 14319 no nulos & objeto \\
+    10 & num\_miembro\_madre           & 14319 no nulos & objeto \\
+    11 & estado\_ocupacional           & 14319 no nulos & objeto \\
+    12 & cat\_ocupacional              & 14319 no nulos & objeto \\
+    13 & calidad\_ingresos\_lab        & 14319 no nulos & objeto \\
+    14 & ingreso\_total\_lab           & 14319 no nulos & numérica  \\
+    15 & calidad\_ingresos\_no\_lab    & 14319 no nulos & objeto \\
+    16 & ingreso\_total\_no\_lab       & 14319 no nulos & numérica  \\
+    17 & calidad\_ingresos\_totales    & 14319 no nulos & objeto \\
+    18 & ingresos\_totales             & 14319 no nulos & numérica  \\
+    19 & calidad\_ingresos\_familiares & 14319 no nulos & objeto \\
+    20 & ingresos\_familiares         & 14319 no nulos & numérica  \\
+    21 & ingreso\_per\_capita\_familiar & 14319 no nulos & numérica  \\
+    22 & estado\_educativo            & 14319 no nulos & objeto \\
+    23 & sector\_educativo            & 14316 no nulos & objeto \\
+    24 & nivel\_actual                & 14319 no nulos & objeto \\
+    25 & nivel\_max\_educativo         & 13265 no nulos & objeto \\
+    26 & años\_escolaridad            & 14257 no nulos & objeto \\
+    27 & lugar\_nacimiento            & 14318 no nulos & objeto \\
+    28 & afiliacion\_salud            & 14315 no nulos & objeto \\
+    29 & hijos\_nacidos\_vivos         & 6535 no nulos  & objeto \\
+    30 & cantidad\_hijos\_nac\_vivos    & 14319 no nulos & objeto \\
+    \bottomrule
+    \multicolumn{4}{l}{Tipos de datos: numéricas(10), objetos(21)}  \\
+>>>>>>> 570bcdeb50e6da7d617a8d06d2ecc0449185929c
     \end{tabular}\end{center}
     \end{table}
        
@@ -184,10 +229,17 @@ Análisis socioeducativo de los habitantes de la Ciudad de Buenos Aires}}
                 \item ``Otras escuelas especiales" por ``superior'',
                 \item y por último a ``No corresponde'' por nulos.
             \end{itemize}
+<<<<<<< HEAD
         \item Remplazamos los valores de ``años\_escolaridad'' para que todos sean numéricos.
         \item En la variable ``cantidad\_hijos\_nac\_vivos'' cambiamos el valor ``no corresponde'' como nulo, para luego cambiar el tipo de variable a entero.
         \item Las variables ``comuna'', ``id'', ``nhogar'' y ``miembro'' son de tipo numérico, pero deberían ser categóricas, por lo tanto transformamos su tipo a string.
         \item Por último renombramos algunas variables para que sean más cortas:
+=======
+        \item Reemplazo de los valores de ``años\_escolaridad'' para que todos sean numéricos.
+        \item En la variable ``cantidad\_hijos\_nac\_vivos'' se ha cambiado el valor ``no corresponde'' a nulo, para luego cambiar el tipo de variable a entero.
+        \item Las variables ``comuna'', ``id'', ``nhogar'' y ``miembro'' son de tipo numérico, pero deberían ser categóricas, por lo tanto se ha transformado su tipo a categórica.
+        \item Por último, se han renombrado algunas variables para mejorar la comprensión de su función:
+>>>>>>> 570bcdeb50e6da7d617a8d06d2ecc0449185929c
             \begin{itemize}
                 \item ``dominio\_Villas\_de\_emergencia'' por ``dominio\_villas'',
                 \item ``ingreso\_per\_capita\_familiar" por ``ing\_per\_cap\_familiar'',
@@ -195,19 +247,74 @@ Análisis socioeducativo de los habitantes de la Ciudad de Buenos Aires}}
             \end{itemize}
     \end{enumerate}
 
+<<<<<<< HEAD
     Y comenzamos el análisis EDA del mismo, primero analizando los nulos:
+=======
+    Por lo tanto, se detalla el diccionario de las variables actualizadas según los cambios indicados previamente:
+    \begin{table}[H]
+    \begin{tabular}{ll}
+        \toprule
+        \textbf{Variable}                     & \textbf{Descripción} \\ \midrule
+        \textbf{id}                            & Clave que identifica la vivienda \\                            
+        \textbf{nhogar}                        & La variable id + nhogar = clave que identifica a cada hogar \\ 
+        \textbf{miembro}                       & Variables id + nhogar + miembro = clave que identifica  cada persona \\ 
+        \textbf{comuna}                        & Comuna donde reside la persona encuestada \\ 
+        \textbf{edad}                          & Edad de la persona encuestada \\             
+        \textbf{sexo}                          & Sexo de la persona encuestada \\             
+        \textbf{parentesco\_jefe}              & Parentesco entre la persona encuestada y el jefe de hogar \\ 
+        \textbf{situacion\_conyugal}           & Situación conyugal de la persona encuestada \\               
+        \textbf{num\_miembro\_padre}           & Número de miembro que corresponde al padre \\                
+        \textbf{num\_miembro\_madre}           & Número de miembro que corresponde a la madre \\   
+        \textbf{estado\_ocupacional}           & Situación ocupacional de la persona encuestada \\ 
+        \textbf{cat\_ocupacional}              & Categoría ocupacional de la persona encuestada \\ 
+        \textbf{calidad\_ingresos\_lab}        & Calidad de la declaración de ingresos laborales totales \\ |
+        \textbf{ingreso\_total\_lab}           & Ingreso total laboral percibido el mes anterior \\         |
+        \textbf{calidad\_ingresos\_no\_lab}    & Calidad de la declaración de ingresos no laborable totales \\
+        \textbf{ingreso\_total\_no\_lab}       & Ingreso total no laboral percibido el mes anterior \\ 
+        \textbf{calidad\_ingresos\_totales}    & Calidad de ingresos totales individuales \\ 
+        \textbf{ingresos\_totales}             & Ingreso total individual percibido el mes anterior \\
+        \textbf{calidad\_ingresos\_familiares} & Calidad de ingresos totales familiares \\ 
+        \textbf{ingresos\_familiares}          & Ingresos totales familiares percibido el mes anterior \\ 
+        \textbf{ing\_per\_cap\_familiar}       & Ingreso familiar per capita percibido el mes anterior \\ 
+        \textbf{estado\_educativo}             & Asistencia (pasada o presente) o no a algún establecimiento educativo \\ 
+        \textbf{sector\_educativo}             & Sector al que pertenece el establecimiento educativo a que asiste \\     
+        \textbf{nivel\_actual}                 & Nivel cursado al momento de la encuesta \\                               
+        \textbf{nivel\_max\_educativo}         & Máximo nivel educativo que se cursó \\                                   
+        \textbf{años\_escolaridad}             & Años de escolaridad alcanzados \\                                        
+        \textbf{lugar\_nacimiento}             & Lugar de nacimiento de la persona encuestada \\                          
+        \textbf{afiliacion\_salud}             & Afiliación de salud de la persona encuestada \\                          
+        \textbf{hijos\_nacidos\_vivos}         & Tiene o tuvo hijos nacidos vivos \\                                      
+        \textbf{cant\_hijos\_nac\_vivos}       & Cantidad de hijos nacidos vivos \\                                       
+        \textbf{dominio}                       & ¿La vivienda se ubica en una villa de emergencia? \\                     
+        \textbf{Target}                        & Nivel máximo educativo \\  
+        \midrule                                         
+    \end{tabular}
+    \caption{Diccionarios de variables actualizadas}
+    \label{dictionary}
+    \end{table}
+ 
+    \newpage
+>>>>>>> 570bcdeb50e6da7d617a8d06d2ecc0449185929c
 
     \begin{center}
         \includegraphics[scale=0.25]{Imagenes/NullsDS.png}
     \end{center}
  
+<<<<<<< HEAD
     Así, detectamos que nuestra variable target tiene 1054 valores nulos. Es importante tener este dato presente para correr un algoritmo de clasificación.
+=======
+    A partir del gráfico de barras, se ha identificado que la variable target posee 1054 valores nulos. Es importante tener este dato presente al momento de correr un algoritmo de clasificación. Por otro lado, los nulos correspondientes a la variable ``hijos nacidos vivos'' se dan ya que los hijos se cuentan siempre a la madre y no al padre para no duplicar sus valores.
+>>>>>>> 570bcdeb50e6da7d617a8d06d2ecc0449185929c
 
     \subsection{Análisis univariado}
  
         \subsubsection{Género y edad}
            
+<<<<<<< HEAD
             Comenzamos con un pantallazo general sobre las primeras cualidades de los datos, como muestra representativa para la EPH, sobre quiénes son los ciudadanos representados en el dataset.
+=======
+            Se comienza con un pantallazo general sobre las primeras cualidades de los datos, como muestra representativa para la encuesta, sobre quiénes son los ciudadanos representados en el dataset.
+>>>>>>> 570bcdeb50e6da7d617a8d06d2ecc0449185929c
            
             \begin{center}
                 \includegraphics[scale=0.45]{Imagenes/AUGenero.png}    
@@ -232,10 +339,42 @@ Análisis socioeducativo de los habitantes de la Ciudad de Buenos Aires}}
            
             Ahora probamos con observar los ingresos familiares. Creemos que puede ser un indicador interesante del nivel educativo. Para esto, armamos una función para graficar y jugar con el nivel del filtrado de la variable y obtener un histograma que permita apreciar mejor la distribución de la variable sin tantos outliers:
            
+<<<<<<< HEAD
             \begin{center}
+=======
+            \begin{figure}[H]
+                \centering
+                \includegraphics[scale=0.6]{Imagenes/AUAnosEsc.png}
+                \caption{Años de escolaridad alcanzados.}
+                \label{AU years of scholarship}
+            \end{figure}
+           
+            A simple vista se observan tres ``picos'': en el valor mínimo, alrededor del 7.5 y alrededor del 12.5. Se ha inferido que estos tres casos corresponden a no tener estudios, solo haber transcurrido el primario y haber transcurrido hasta la educación secundaria, respectivamente.
+           
+            \subsubsection{Máximo nivel educativo (Target)}
+            
+            Asimismo, se ha definido analizar el balance de los datos propios del Target. Se presentan los gráficos correspondientes.
+            
+            \begin{figure}[H]
+                \centering
+                \includegraphics[scale=0.3]{Imagenes/AUTarget.png} 
+                \caption{Distribución de datos del target.}
+                \label{AU Target}
+            \end{figure}
+           
+            Con respecto a la distribución de los datos del Target se determina que el nivel máximo educativo alcanzado con mayor frecuencia es el secundario completo, seguido por el primario. Adicionalmente, el nivel secundario y primario explican casi el 77\% de los datos, por lo tanto hay un gran desbalance en el Target. Esto se debe tener en cuenta al momento de alcanzar las conclusiones del proyecto.
+           
+           \subsubsection{Ingreso familiar per cápita}
+           
+            Finalmente, se ha definido evaluar una variable que pone como objeto de estudio al grupo familiar en vez del individuo: \textit{ingresos familiares}. Al respecto,  como sabemos que las variables de ingresos suelen tener outliers para los valores más altos, a la hora de graficar esta variable se ha decidido retirar los mismos. En el título del mismo se aclara el valor máximo de la variable contemplada.
+           
+            \begin{figure}[H]
+                \centering
+>>>>>>> 570bcdeb50e6da7d617a8d06d2ecc0449185929c
                 \includegraphics[scale=0.325]{Imagenes/AUIngFam.png}
             \end{center}
            
+<<<<<<< HEAD
             % Y como hay muchos outliers que impiden ver la distribución correctamente, los quitamos de los gráficos:
            
             % \includegraphics[scale=0.4]{Graf5.png}
@@ -264,6 +403,13 @@ Análisis socioeducativo de los habitantes de la Ciudad de Buenos Aires}}
     \newpage
     
     \subsection{Análisis bivariado}
+=======
+             Como se puede ver en la figura, la distribución de los ingresos familiares se encuentra \textbf{sesgada}, existe un desbalanceo de datos.
+    
+    \subsection{Análisis bivariado}
+
+        \subsubsection{Análisis de variables numéricas}
+>>>>>>> 570bcdeb50e6da7d617a8d06d2ecc0449185929c
  
         Para comenzar el análisis bivariado del problema, realizamos diferentes heat maps para ver si algo nos llama la atención entre las variables numéricas.        
        
@@ -271,6 +417,7 @@ Análisis socioeducativo de los habitantes de la Ciudad de Buenos Aires}}
             \includegraphics[scale=0.65]{Imagenes/ABSpearman.png}
         \end{center}
  
+<<<<<<< HEAD
         A simple vista, no se observan fuertes correlaciones. Podemos notar que la variable ``años\_escolaridad'' correlaciona moderadamente bien con variables relacionadas al ingreso. La principal correlación positiva es ``años\_escolaridad'' con ingreso familiar per cápita (``ing\_per\_cap\_familiar''), lo cual hace sentido teórico.
  
         Ahora, utilizando el método para solo graficar en base a un threshold vemos que los años de escolaridad alcanzados por los entrevistados tienen algo de relación $(66\%$) con la variable ``ingresos\_totales''
@@ -279,6 +426,19 @@ Análisis socioeducativo de los habitantes de la Ciudad de Buenos Aires}}
         \begin{center}
             \includegraphics[scale=0.4]{Imagenes/ABThreshold.png}
         \end{center}
+=======
+        En primera instancia, no se observan fuertes correlaciones. Sin embargo, se puede apreciar que la variable ``años\_escolaridad'' correlaciona moderadamente bien con variables relacionadas al ingreso. En concreto, la principal correlación positiva es ``años\_escolaridad'' con ingreso familiar per cápita, lo cual hace sentido teórico.
+        
+        Por otra parte, al graficar en base a un threshold se puede observar que los años de escolaridad alcanzados por los entrevistados tienen una relación de $66\%$ con la variable ``ingresos\_totales''
+        % Estaría bien solo utilizar el gráfico de la derecha.
+
+        \begin{figure}[H]
+            \centering
+            \includegraphics[scale=0.38]{Imagenes/ABThreshold.png}
+            \caption{Correlación entre variables mayor 0,5(der).}
+            \label{AB Treshold Correlation}
+        \end{figure}
+>>>>>>> 570bcdeb50e6da7d617a8d06d2ecc0449185929c
  
         Por último corremos una tabla de correlación y filtramos las de valores más altos
  
@@ -311,7 +471,7 @@ Análisis socioeducativo de los habitantes de la Ciudad de Buenos Aires}}
                 \includegraphics[scale=0.2275]{Imagenes/ABCompVarNum.png}
             \end{center}
  
-            Se puede ver que desde los 30 años en adelante el ingreso total de la persona se corresponde con el ingreso familiar. Por ende suele haber un único ingreso fuerte por grupo familiar.
+            Se puede ver que desde los 30 años en adelante el ingreso total de la persona se corresponde con el ingreso familiar. Por ende, suele haber un único ingreso fuerte por grupo familiar.
  
         \subsubsection{Comparación de variables categóricas con numéricas}
  
@@ -327,6 +487,7 @@ Análisis socioeducativo de los habitantes de la Ciudad de Buenos Aires}}
                 \includegraphics[scale=0.425]{Imagenes/ABCatVsNum2.png}
             \end{center}
  
+<<<<<<< HEAD
             Por parte de las variables de ingreso, no parece haber nada disruptivo. La distribución por ingreso y años de escolaridad pareciera ocurrir pero no en un orden lineal.
  
             Llama la atención la variable ``sexo'': que por algún motivo, todos los encuestados hombres figuran sin hijos nacidos vivos. Alternativamente, se podría investigar la metodología de la encuesta para ver si hay alguna respuesta. Adicionalmente, los hombres parecieran tener ingresos totales y familiares mayores que las mujeres, pero no pareciera que haya distribuciones desiguales en los años de escolaridad.
@@ -334,6 +495,17 @@ Análisis socioeducativo de los habitantes de la Ciudad de Buenos Aires}}
             \begin{center}
                 \includegraphics[scale=0.3]{Imagenes/ABCatVsNum3Bis.png}
             \end{center}
+=======
+            Mediante el análisis de las figuras se determina que en el caso de los ingresos totales individuales los varones perciben mayores ingresos. Sin embargo, la diferencia no es significativa. En el caso de los ingresos familiares la distribución se da de manera similar. 
+
+            Luego del análisis bivariado preliminar realizado para enriquecer la descripción del dataset, se ha decidido correlacionar al Target con los ingresos.
+                \begin{figure}[H]
+                \centering
+                    \includegraphics[scale=0.3]{Imagenes/ABCatVsNum3Bis.png}
+                    \caption{Correlación entre ingresos totales y Target}
+                    \label{AB Target and Total Incomes}
+                \end{figure}
+>>>>>>> 570bcdeb50e6da7d617a8d06d2ecc0449185929c
  
             Parece que para el nivel inicial la remoción de outliers en otra categoría sigue siendo insuficiente para mostrar la distribución real de la variable. Echemos un vistazo a los valores de esta categoría:
  
@@ -343,6 +515,7 @@ Análisis socioeducativo de los habitantes de la Ciudad de Buenos Aires}}
  
             Lógicamente, la enorme mayoría de los ingresos tienen el valor inicial de 0, puesto que incluye a personas que en ese momento estaban cursando su educación inicial, por lo que tenían entre 2 y 6 años.
 
+<<<<<<< HEAD
             Entonces, es correspondiente analizar como se distribuyen los ingresos familiares con respecto a nuestro target:
  
             \begin{center}
@@ -351,11 +524,17 @@ Análisis socioeducativo de los habitantes de la Ciudad de Buenos Aires}}
  
             En definitiva, se observa un corrimiento de los valores centrales (dentro de la caja) hacia la izquierda a medida que aumenta el nivel educativo.
 
+=======
+>>>>>>> 570bcdeb50e6da7d617a8d06d2ecc0449185929c
         \newpage
  
         \subsubsection{Variable numéricas con comuna}
 
+<<<<<<< HEAD
             En primer lugar, analizaremos la relación de nuestro target con cada comuna: 
+=======
+            Para relacionar variables numéricas con la comuna, se ha analizado la interacción entre la frecuencia para cada categoría del Target y las comunas mediante mapas de calor: 
+>>>>>>> 570bcdeb50e6da7d617a8d06d2ecc0449185929c
  
             \begin{center}
                 \includegraphics[scale=0.65]{Imagenes/ABCatVsNum6.png}
@@ -363,7 +542,14 @@ Análisis socioeducativo de los habitantes de la Ciudad de Buenos Aires}}
  
             Se observa que en el sur de la ciudad hay  mayor cantidad de encuestados con niveles de inicial, primario y secundario completo, mientras que el norte (particularmente el barrio de Palermo) tiene mayor cantidad de personas con estudios superiores. En menor medida también las comunas del este (comúnmente llamado el ``centro de la ciudad'') destacan por la cantidad de encuestados con nivel superior.
 
+<<<<<<< HEAD
             \begin{center}
+=======
+            A su vez, se presenta otro heat map que reúne en un único gráfico el promedio de años de escolaridad por comuna. Este gráfico refuerza la relación presentada en la figura anterior.
+
+            \begin{figure}[H]
+            \centering
+>>>>>>> 570bcdeb50e6da7d617a8d06d2ecc0449185929c
                 \includegraphics[scale=0.65]{Imagenes/ABCatVsNum7.png}
             \end{center}
  
@@ -391,12 +577,21 @@ Análisis socioeducativo de los habitantes de la Ciudad de Buenos Aires}}
             \item Vemos dos años en que aparece el primario completo: 7 y 12 años. Estimamos que se debe a la división entre los que comenzaron su educación en la primaria y los que comenzaron en el nivel inicial.
             \item A partir de los 12 años vemos un aumento consistente de los ingresos totales.
         \end{itemize}
+<<<<<<< HEAD
+=======
+
+        A su vez, se ha buscado relacionar el Target, con los ingresos y el dominio.
+>>>>>>> 570bcdeb50e6da7d617a8d06d2ecc0449185929c
  
         \begin{center}
             \includegraphics[scale=0.255]{Imagenes/AMIngVSTargetBis.png}
         \end{center}
  
+<<<<<<< HEAD
         Aquí obtuvimos un descubrimiento interesante: no importa el nivel máximo educativo, los casos que no provienen de villas de emergencia (dominio=``villas\_de\_emergencia'') obtienen en promedio ingresos más altos en todos los niveles educativos. El alcanzar estudios superiores no parece homogeneizar ambos conjuntos. Esto se puede observar en el segundo gráfico, ya que el violín naranja acumula mayor cantidad de casos hacia la derecha, en comparación con los violines azules que tienen una mayor distribución.
+=======
+        En este punto se ha alcanzado una conclusión interesante: no importa el nivel máximo educativo, los casos que no provienen de villas de emergencia (dominio=``Resto de la Ciudad'') obtienen en promedio ingresos más altos en todos los niveles educativos. El alcanzar estudios superiores no parece homogeneizar ambos conjuntos. Esto se puede observar en el segundo gráfico, ya que el violín naranja acumula mayor cantidad de casos hacia la derecha, en comparación con los violines azules que tienen una mayor distribución.
+>>>>>>> 570bcdeb50e6da7d617a8d06d2ecc0449185929c
         
         \newpage
 
@@ -415,6 +610,7 @@ Análisis socioeducativo de los habitantes de la Ciudad de Buenos Aires}}
     \begin{itemize}
         \item recategorizando la variables ``Target'' en variables numéricas, es decir, a cada nivel educativo le asignamos un valor numérico del 1 al 4:
         \begin{itemize}
+<<<<<<< HEAD
             \item \textbf{inicial=} 1,
             \item \textbf{prim\_completo=} 2,
             \item \textbf{sec\_completo=} 3,
@@ -422,6 +618,15 @@ Análisis socioeducativo de los habitantes de la Ciudad de Buenos Aires}}
         \end{itemize}
         \item reagrupamos la variable ``comuna'' por regiones para reducir la dimensionalidad (en norte, centro, sur y oeste),
         \item y por último renombramos algunas variables para que sean más cortas.
+=======
+            \item \textbf{inicial =} 1,
+            \item \textbf{prim\_completo =} 2,
+            \item \textbf{sec\_completo =} 3,
+            \item \textbf{superior =} 4.
+        \end{itemize}
+        \item Se ha reagrupado la variable ``comuna'' por regiones para reducir la dimensionalidad (en norte, centro, sur y oeste).
+        \item Y por último, se han renombrado algunas variables para que sean más cortas.
+>>>>>>> 570bcdeb50e6da7d617a8d06d2ecc0449185929c
     \end{itemize}
 
     Como resultado nos quedan las siguientes variables:
@@ -429,6 +634,7 @@ Análisis socioeducativo de los habitantes de la Ciudad de Buenos Aires}}
     \begin{table}[H]
         \centering
         \begin{tabular}{clll}
+<<<<<<< HEAD
             \multicolumn{4}{l}{RangeIndex: 14319 entries, 0 to 14318} \\
             \multicolumn{4}{l}{Data columns (total 33 columns):} \\
             \#  & features & types & non\_null\_counts \\ \hline 
@@ -467,6 +673,47 @@ Análisis socioeducativo de los habitantes de la Ciudad de Buenos Aires}}
             32  & region & object & 14319 \\
             \multicolumn{4}{l}{dtypes: Int64(1), float64(1), int64(7), object(24)} \\
             \multicolumn{4}{l}{memory usage: 3.6+ MB } \\
+=======
+            \multicolumn{4}{l}{Tamaño del set de datos: 14319 entries, 0 to 14318} \\
+            \multicolumn{4}{l}{Con un total 33 columnas:} \\
+            \toprule
+            \#  & Columnas & Tipo de Dato & Entradas No Vacías \\ \midrule
+            0   & id & objeto & 14319 \\ 
+            1   & nhogar & objeto & 14319 \\ 
+            2   & miembro & objeto & 14319 \\ 
+            3   & comuna & objeto & 14319 \\ 
+            4   & dominio & objeto & 14319 \\ 
+            5   & edad & numérica & 14319 \\ 
+            6   & sexo & objeto & 14319 \\ 
+            7   & parentesco\_jefe & objeto & 14319 \\ 
+            8   & situacion\_conyugal & objeto & 14318 \\ 
+            9   & num\_miembro\_padre & objeto & 14319 \\ 
+            10  & num\_miembro\_madre & objeto & 14319 \\ 
+            11  & estado\_ocupacional & objeto & 14319 \\ 
+            12  & cat\_ocupacional & objeto & 14319 \\ 
+            13  & calidad\_ingresos\_lab & objeto & 14319 \\ 
+            14  & ingreso\_total\_lab & numérica & 14319 \\ 
+            15  & calidad\_ingresos\_no\_lab & objeto & 14319 \\ 
+            16  & ingreso\_total\_no\_lab & numérica & 14319 \\ 
+            17  & calidad\_ingresos\_totales & objeto & 14319 \\ 
+            18  & ingresos\_totales & numérica & 14319 \\ 
+            19  & calidad\_ingresos\_familiares & objeto & 14319 \\ 
+            20  & ingresos\_familiares & numérica & 14319 \\ 
+            21  & ing\_per\_cap\_familiar & numérica & 14319 \\ 
+            22  & estado\_educativo & objeto & 14319 \\ 
+            23  & sector\_educativo & objeto & 14316 \\ 
+            24  & nivel\_actual & objeto & 14319 \\ 
+            25  & nivel\_max\_educativo & objeto & 13265 \\ 
+            26  & años\_escolaridad & float64 & 14257 \\ 
+            27  & lugar\_nacimiento & objeto & 14318 \\ 
+            28  & afiliacion\_salud & objeto & 14315 \\ 
+            29  & hijos\_nacidos\_vivos & objeto & 6535 \\ 
+            30  & cant\_hijos\_nac\_vivos & numérica & 14319 \\ 
+            31  & Target & Numérica & 13223 \\ 
+            32  & region & objeto & 14319 \\
+            \bottomrule
+            \multicolumn{4}{l}{Tipos de datos: numérica(9), objeto(24)} \\
+>>>>>>> 570bcdeb50e6da7d617a8d06d2ecc0449185929c
         \end{tabular}
     \end{table}
 
@@ -475,7 +722,12 @@ Análisis socioeducativo de los habitantes de la Ciudad de Buenos Aires}}
         En primer lugar, armamos una función para tener una lista limpia de variables con nulos, que nos da como resultado:
 
         \begin{table}[H]
+            \centering
             \begin{tabular}{lr}
+                \multicolumn{2}{c}{\textbf{\large Nulos por variable}} \\
+                 & \\
+                \toprule
+                \textbf{Variable} & \textbf{Nulos} \\ \midrule
                 situacion\_conyugal & 1 \\ 
                 lugar\_nacimiento & 1 \\ 
                 sector\_educativo & 3 \\ 
@@ -484,9 +736,11 @@ Análisis socioeducativo de los habitantes de la Ciudad de Buenos Aires}}
                 nivel\_max\_educativo & 1054 \\ 
                 Target & 1096 \\ 
                 hijos\_nacidos\_vivos & 7784 \\ 
+                \bottomrule
             \end{tabular}
         \end{table}
 
+<<<<<<< HEAD
         Entonces, para eliminar los valores nulos de la variable ``años\_escolaridad'' reemplazamos los nulos con la mediana por comuna y sexo.
 
         Por otro lado, a los nulos las variables:
@@ -500,12 +754,20 @@ Análisis socioeducativo de los habitantes de la Ciudad de Buenos Aires}}
         los reemplazamos con la moda.
         
         Luego, eliminamos la variable ``nivel\_max\_educativo'' ya que no la vamos a utilizar y por último eliminamos los nulos de nuestro target. 
+=======
+        Entonces, cada una de las variables se ha tratado de manera particular dependiendo los tipos de datos que aloja. En ese sentido, para eliminar los valores nulos de la variable ``años\_escolaridad'', la cual tiene datos numéricos, se han reemplazado con la mediana por comuna y sexo. Por otro lado, a los nulos de las variables categóricas: \textit{``lugar\_nacimiento''}, \textit{``situacion\_conyugal''}
+        , \textit{``afiliacion\_salud''}, \textit{``sector\_educativo''} y \textit{``hijos\_nacidos\_vivos''}
+        se han reemplazado con la moda.
+ 
+        Finalmente, se ha eliminado la variable ``nivel\_max\_educativo'' ya que no es de interés. Asimismo, se han eliminado los nulos del Target y se ha pasado el tipo de dato de la misma a entero. 
+>>>>>>> 570bcdeb50e6da7d617a8d06d2ecc0449185929c
         
 
     \subsection{Target}
 
         \subsubsection{Borrado de variables}
     
+<<<<<<< HEAD
         Hay muchas variables que consideramos que no es necesario sumarlas al algoritmo de clasificación dado que brindan información repetida o que no suma para la clasificación. A continuación se comparten las categoría que se descartarán para correr el algoritmo: 
         \begin{itemize}
             \item \textbf{id:} no suma información para la clasificación,
@@ -524,12 +786,16 @@ Análisis socioeducativo de los habitantes de la Ciudad de Buenos Aires}}
             \item \textbf{hijos\_nacidos\_vivos:} brinda la misma información que cant\_hijos\_nac\_vivos,
             \item \textbf{comuna:} variable ya abordada en la variable 'región'.
         \end{itemize}
+=======
+        Hay muchas variables que no se han considerado esenciales dado que no aportan información relevante en el algoritmo de clasificación. Precisamente, brindan información repetida. A continuación se comparten las categorías que se han descartado para correr el algoritmo: 
+>>>>>>> 570bcdeb50e6da7d617a8d06d2ecc0449185929c
 
         Y como resultado, tenemos nuestro dataset listo para el procesamiento:
 
         \begin{table}[H]
             \centering
             \begin{tabular}{clll}
+<<<<<<< HEAD
                 \multicolumn{4}{l}{RangeIndex: 14319 entries, 0 to 14318} \\
                 \multicolumn{4}{l}{Data columns (total 18 columns):} \\
                 \# & features & types & non\_null\_counts \\ \hline
@@ -544,18 +810,44 @@ Análisis socioeducativo de los habitantes de la Ciudad de Buenos Aires}}
                 8 & ingresos\_familiares & int64 & 13223 \\ 
                 9 & ing\_per\_cap\_familiar & int64 & 13223 \\ 
                 10 & sector\_educativo & object & 13223 \\ 
+=======
+                \multicolumn{4}{l}{Tamaño del set de datos: 14319 filas, 0 to 14318} \\
+                \multicolumn{4}{l}{Con un total 17 columnas:} \\
+                \toprule
+                \#  & Columnas & Tipo de Dato & Entradas No Vacías \\ \hline
+                0 & dominio & objeto & 13223 \\ 
+                1 & edad & numérica & 13223 \\ 
+                2 & sexo & objeto & 13223 \\ 
+                3 & situacion\_conyugal & objeto & 13223 \\ 
+                4 & estado\_ocupacional & objeto & 13223 \\ 
+                5 & ingreso\_total\_lab & numérica & 13223 \\ 
+                6 & ingreso\_total\_no\_lab & numérica & 13223 \\ 
+                7 & ingresos\_totales & numérica & 13223 \\ 
+                8 & ingresos\_familiares & numérica & 13223 \\ 
+                9 & ing\_per\_cap\_familiar & numérica & 13223 \\ 
+                10 & sector\_educativo & objeto & 13223 \\ 
+>>>>>>> 570bcdeb50e6da7d617a8d06d2ecc0449185929c
                 11 & años\_escolaridad & float64 & 13223 \\ 
-                12 & lugar\_nacimiento & object & 13223 \\ 
-                13 & afiliacion\_salud & object & 13223 \\ 
-                14 & cant\_hijos\_nac\_vivos & int64 & 13223 \\ 
+                12 & lugar\_nacimiento & objeto & 13223 \\ 
+                13 & afiliacion\_salud & objeto & 13223 \\ 
+                14 & cant\_hijos\_nac\_vivos & numérica & 13223 \\ 
                 15 & Target & int32 & 13223 \\ 
+<<<<<<< HEAD
                 16 & region & object & 13223 \\ 
                 \multicolumn{4}{l}{dtypes: Int64(1), float64(1), int64(7), object(8)} \\
                 \multicolumn{4}{l}{memory usage: 2.0+ MB} 
+=======
+                16 & region & objeto & 13223 \\ 
+                \bottomrule
+                \multicolumn{4}{l}{Tipos de datos: numérica(9), objeto(8)} \\
+>>>>>>> 570bcdeb50e6da7d617a8d06d2ecc0449185929c
             \end{tabular}
         \end{table}
+
+
     \subsection{Procesamiento}
 
+<<<<<<< HEAD
         Para preparar los datos para el modelado:
         \begin{itemize}
             \item  Dividimos el dataframe en X\_train, y\_train, X\_test e y\_test, haciendo la división entre test y el train en un 30\% y un 70\% respectivamente, con una semilla especifica.
@@ -563,11 +855,23 @@ Análisis socioeducativo de los habitantes de la Ciudad de Buenos Aires}}
         \end{itemize}
 
         Con esta partición ya podemos comenzar a entrenar modelos de clasificación.
+=======
+        Para preparar los datos para el modelado se han generado las siguientes transformaciones al dataframe:
+        \begin{itemize}
+            \item  Dividimos el dataframe en X\_train, y\_train, X\_test e y\_test, haciendo la división entre test y el train en un 30\% y un 70\% respectivamente, con una semilla especifica.
+            \item  Y procesamos el X\_train y el X\_test con un pipeline generado previamente, el cual convierte las variable numéricas con el minmaxscaler y las categóricas con one hot encoding.
+        \end{itemize}
+
+        Una vez aplicadas dichas transformaciones al dataframe, tenemos listos los elementos para entrenar el modelo (con la misma cantidad de columnas): \textit{X\_train}, \textit{y\_train}, \textit{X\_test} e \textit{y\_test}.
+
+        Para que nuestro trabajo sea reproducible y, al mismo tiempo, podamos trabajar con la aleatoriedad, decidimos utilizar el parámetro random\_state = 50, tanto para el procesamiento del dataframe como para el entrenamiento de todos nuestro modelos.
+>>>>>>> 570bcdeb50e6da7d617a8d06d2ecc0449185929c
 
     \subsection{Árbol de decisión}
 
         \subsubsection{Primer modelo}
 
+<<<<<<< HEAD
             Como primera aproximación, vamos a usar un árbol de clasificación usando con parámetros:
             \begin{itemize}
                % \item random\_state = 50,
@@ -577,6 +881,16 @@ Análisis socioeducativo de los habitantes de la Ciudad de Buenos Aires}}
             para saber como performa y mejorarlo a partir de ahí.
 
             Como resultado obtenemos que el Accuracy score para el test es de: 0.940 y la matriz de confusión nos da:
+=======
+            Como primera aproximación, se ha utilizado un árbol de clasificación usando los parámetros:
+            \begin{itemize}
+                \item max\_depth = 8,
+                \item criterion = `gini',
+            \end{itemize}
+            para saber como performa y mejorarlo a partir de ahí.
+ 
+            Como resultado se ha observado que el Accuracy score para el test ha sido de: 0.940 y la matriz de confusión ha dado:
+>>>>>>> 570bcdeb50e6da7d617a8d06d2ecc0449185929c
             \begin{table}[H]
                 \centering
                 \begin{tabular}{|l|c|c|c|c|}
@@ -607,7 +921,11 @@ Análisis socioeducativo de los habitantes de la Ciudad de Buenos Aires}}
                 \end{tabular}
             \end{table}
 
+<<<<<<< HEAD
             A simple vista, parece que el modelo performa muy bien, dado su accuracy. Veamos más en detalle y calculemos su sesgo y su varianza:
+=======
+            A simple vista, se aprecia que el modelo performa muy bien, dado su accuracy. Cabe destacar que se observa una diferencia de 14 puntos en el f1-score de la categoría superior con respecto al de la incial, mientras que para las otras dos categorías es solo de 5 puntos. Asimismo, se ha calculado su sesgo y su varianza:
+>>>>>>> 570bcdeb50e6da7d617a8d06d2ecc0449185929c
             \begin{itemize}
                 \item \textbf{Bias o sesgo:} 96.89\% que nos indica que tengo poco error, lo que indica que tenemos un sesgo bajo,
                 \item \textbf{Variance=Test\_Score - Bias=} 2.89\%, lo que nos indica que la varianza también es baja.
@@ -615,12 +933,17 @@ Análisis socioeducativo de los habitantes de la Ciudad de Buenos Aires}}
 
             Entonces, el modelo tiene una \textbf{buena relación} de sesgo y varianza.
 
+<<<<<<< HEAD
             De aquí, vemos necesario ver cuáles son las variables más importantes para el armado del modelo. Esto nos permitirá volver el modelo más robusto, al quitar las mismas. 
+=======
+            De aquí, ha sido necesario ver cuáles eran las variables más importantes para el armado del modelo. Esto permite volver el modelo más robusto. Al quitar las mismas. se ha determinado que la variable ``años\_escolaridad'' tiene una importancia del 84\%, por mucho superior al resto de variables.
+>>>>>>> 570bcdeb50e6da7d617a8d06d2ecc0449185929c
 
             Y como resultado, tenemos que la variable ``años\_escolaridad'' tiene una importancia del 84\%, por mucho superior al resto de variables.
 
             % Tendríamos que agregar algo relacionado a la diferencia que tenemos con los resultado del EDA.
 
+<<<<<<< HEAD
             Por lo tanto, vamos a tener que desarrollar un nuevo modelo sin esta variable. El principal motivo es que los años de escolaridad es un dato que puede constatarse de forma conjunta con el nivel máximo educativo, por lo que tiene sentido que si no tenes la variable target, tampoco tengas la variable de los años de escolaridad.
 
             Así, creamos un dataset nuevo (llamado ``df2'') sin la variable ``años\_escolaridad'', para volver a aplicar la función ``procesador'' para dividir nuevamente el mismo y generar nuevos modelos.
@@ -628,8 +951,18 @@ Análisis socioeducativo de los habitantes de la Ciudad de Buenos Aires}}
         \subsubsection{Segundo modelo}
 
             Esta vez al correr el modelo, utilizaremos el ``DecisionTreeClassifier'' solo con el parámetro criterion=entropy, que nos da como resultado:  
+=======
+        \subsubsection{Segundo modelo}
 
-            \begin{table}[!ht]
+            Esta vez al correr el modelo, utilizando el nuevo dataset, se ha definido aplicar el ``DecisionTreeClassifier'' solo con el parámetro:
+            \begin{itemize}
+                \item cirterion=`entropy'.
+            \end{itemize}
+
+            Esto ha dado como resultado:  
+>>>>>>> 570bcdeb50e6da7d617a8d06d2ecc0449185929c
+
+            \begin{table}[H]
                 \centering
                 \begin{tabular}{rrrrr}
                     ~ & precision & recall & f1-score & suppo \\
@@ -651,11 +984,15 @@ Análisis socioeducativo de los habitantes de la Ciudad de Buenos Aires}}
                 \item \textbf{Variance=Test\_Score - Bias=} 46.39\%, lo que nos indica un nivel de varianza alto,
             \end{itemize}
             
+<<<<<<< HEAD
             Lo que nos da como resultado, que este modelo esta haciendo \textbf{OVERFITTING}.
 
             Por lo que se observa, el árbol performa bastante peor sin esta variable, aumentando especialmente la varianza. Por lo tanto optamos probar mejorar nuestro modelo con un grid search.
+=======
+            Analizando lo observado, se ha determinado que este modelo hacía \textbf{OVERFITTING}, y tenía un rendimiento bastante pobre respecto al f1-score. En consecuencia, el árbol performa peor sin esta variable, aumentando, especialmente, la varianza. Por lo tanto se ha optado por probar con un grid search.
+>>>>>>> 570bcdeb50e6da7d617a8d06d2ecc0449185929c
         
-        \subsubsection{Gridsearch con CV}
+        \subsubsection{Gridsearch con CV y Tercer Modelo}
             
             En la grilla de parámetros para el Gridsearch elegimos los siguientes:
             \begin{itemize}
@@ -663,10 +1000,19 @@ Análisis socioeducativo de los habitantes de la Ciudad de Buenos Aires}}
                 \item 'max\_features' (cantidad máxima de variables utilizadas): rango entre 1 y 13,
                 \item 'criterion' (criterio de partición de ramas): gini,entropy y log\_loss;
             \end{itemize}
+<<<<<<< HEAD
             
             A su vez, hacemos un cross validation de 10 particiones. Esto nos da como resultado que el mejor árbol de decisión posible obtiene 0.642. Y para eso el árbol debe tener una profundidad de  6, utilizar  10  variables y usar el método ``gini''.
 
             Entonces, entrenamos el modelo bajo estos mismos parámetros y obtenemos el siguiente reporte de clasificación:
+=======
+            a su vez realizamos un cross-validation con 10 particiones, usando todos los procesadores.
+            
+            Esto ha mostrado que el mejor árbol de decisión posible obtiene 0.642. Para alcanzarlo, el árbol debe tener una profundidad de  6, utilizar  10  variables y usar el método ``gini''.
+
+            Por lo tanto, se ha entrenado el modelo bajo estos mismos parámetros y obtenido el siguiente reporte de clasificación:
+>>>>>>> 570bcdeb50e6da7d617a8d06d2ecc0449185929c
+
 
             \begin{table}[H]
                 \centering
@@ -691,22 +1037,36 @@ Análisis socioeducativo de los habitantes de la Ciudad de Buenos Aires}}
 
             Por lo tanto, el modelo esta haciendo \textbf{UNDERFITTING}
 
+<<<<<<< HEAD
             \textbf{Conclusión}
             
             Utilizar el grid search nos permitió mejorar bastante el modelo que había perdido bastante accuracy al retirar los años de escolaridad. La métrica que más pudimos mejorar con este método fue la varianza, que pasó de 44.97\% a 5.14\%, pero en contra parte nuestro acuracy bajo de 100\% a 65.27\%.
+=======
+            \subsubsection*{Resultados}
+
+            El utilizar el grid search ha permitido mejorar bastante el modelo, el cual había perdido bastante accuracy al retirar los años de escolaridad. La métrica que más se ha podido mejorar con este método fue la varianza, que pasó de 44.97\% a 5.14\%, pero en contraparte, el acuracy bajo de 100\% a 65.27\%.
+>>>>>>> 570bcdeb50e6da7d617a8d06d2ecc0449185929c
 
     \subsection{Random Forest Classifier}
         
         Ahora vamos a trabajar con random forest, para saber si este algoritmo nos arroja mejores resultados. Y teniendo en cuento todo el dataset incluido la variable con los años de escolaridad. 
 
+<<<<<<< HEAD
         \subsubsection{Primer modelo}
+=======
+        \subsubsection{Cuarto modelo}
+>>>>>>> 570bcdeb50e6da7d617a8d06d2ecc0449185929c
 
             Como primer modelo con el Random Forest Classifier, elegimos los siguientes parámetros:
             \begin{itemize}
                 \item n\_estimators (número de árboles utilizados)=200,
                 \item max\_depth=15,
+<<<<<<< HEAD
                 %\item random\_state=50,
                 \item criterion='gini.
+=======
+                \item criterion=`gini'.
+>>>>>>> 570bcdeb50e6da7d617a8d06d2ecc0449185929c
             \end{itemize}
 
             Que nos da los siguientes resultados en cuanto a las métricas:
@@ -728,20 +1088,35 @@ Análisis socioeducativo de los habitantes de la Ciudad de Buenos Aires}}
 
              El random forest performa bastante bien, es decir, mucho mejor que los modelos anteriores:
              \begin{itemize}
+<<<<<<< HEAD
                 \item \textbf{Bias o sesgo:} 97.80\% que nos indica que tengo bastantes errores, es decir tenemos un sesgo alto,
                 \item \textbf{Variance=Test\_Score - Bias==} 7.20\%, que nos indica que la varianza es baja.
+=======
+                \item \textbf{Bias o sesgo:} 97.80\% indica que existen pocos errores, es decir hay un sesgo bajo,
+                \item \textbf{Variance=Test\_Score - Bias:} 7.20\%, que indica que la varianza es baja.
+>>>>>>> 570bcdeb50e6da7d617a8d06d2ecc0449185929c
              \end{itemize}
 
              En conclusión obtenemos un buen modelo. De todas maneras buscamos cuales son las variables más importantes, y encontramos que los años de escolaridad redujo la enorme importancia (a un 43.58\%) que tenía en el random tree. Sin embargo, sigue correspondiendo quitarla del modelo.
 
         \subsubsection{Segundo modelo}
 
+<<<<<<< HEAD
             En este caso elegimos los siguientes parámetros:
             \begin{itemize}
                 \item n\_estimators=200,
                 \item max\_depth=10,
               %  \item random\_state=50,
                 \item criterion='gini'.
+=======
+        \subsubsection{Quinto modelo}
+
+            En este cuarto caso se han elegido los siguientes parámetros:
+            \begin{itemize}
+                \item n\_estimators=200,
+                \item max\_depth=10,
+                \item criterion=`gini'.
+>>>>>>> 570bcdeb50e6da7d617a8d06d2ecc0449185929c
             \end{itemize}
 
             Dándonos por resultado los siguientes medidas de desempeño:
@@ -769,7 +1144,7 @@ Análisis socioeducativo de los habitantes de la Ciudad de Buenos Aires}}
 
             El modelo empeora su accuracy pero está muy cercano al mejor modelo de Random Tree, mientras que crece mucho la varianza a un 27.4\% (unos 20 puntos). Ahora, al igual que con el el DesicionTree, vamos a probar mejorándolo con grid search.
 
-        \subsubsection{Gridsearch con CV}
+        \subsubsection{Gridsearch con CV y Sexto Modelo}
 
             En la grilla de parámetros para el Gridsearch elegimos los siguientes:
             \begin{itemize}
@@ -778,9 +1153,15 @@ Análisis socioeducativo de los habitantes de la Ciudad de Buenos Aires}}
                 \item 'n\_estimators': 200,300 y 500,
                 \item 'criterion': gini, entropy y log\_loss
             \end{itemize}
+<<<<<<< HEAD
             A su vez, realizamos un cross validation con 10 particiones. Nos da como resultado que el mejor random forest posible obtiene 0.668. Para eso el árbol debe tener una profundidad de 15 , utilizar  10  variables, tener  300  estimadores y utilizar el método ``gini''.
             
             Entonces, entrenamos el modelo bajo estos mismos parámetros y obtenemos el siguiente reporte de clasificación:
+=======
+            a su vez realizamos un cross-validation con 10 particiones, usando todos los procesadores.
+
+           Como parte de los resultados, el mejor random forest posible ha obtenido 0.668. Para eso, el árbol ha tenido una profundidad de 15, utilizado  10  variables,  300  estimadores y utilizado el método ``gini''. Entonces, se ha entrenado el modelo bajo estos mismos parámetros y se ha obtenido el siguiente reporte de clasificación:
+>>>>>>> 570bcdeb50e6da7d617a8d06d2ecc0449185929c
 
             \begin{table}[!ht]
                 \centering
@@ -803,7 +1184,15 @@ Análisis socioeducativo de los habitantes de la Ciudad de Buenos Aires}}
                 \item \textbf{Variance=Test\_Score - Bias:} 28.54\% $\Rightarrow$, y nuestra varianza también es alta. 
             \end{itemize} 
 
+<<<<<<< HEAD
             Lo que nos indica que nuestro modelo esta haciendo \textbf{OVERFITING}.
+=======
+            Esto denota que este modelo está haciendo \textbf{OVERFITING} y continua desempeñándose mal al ver el f1-score.
+            
+            \subsubsection*{Resultados}
+            
+             Al utilizar random forest  se ha podido mejorar el sesgo y disminuir el underfitting en 2 puntos porcentuales aproximadamente. No obstante, se ha visto afectada la varianza en estos modelos, que pasó de estar alrededor del 5\% en el árbol de decisión mejorado a 28\%.
+>>>>>>> 570bcdeb50e6da7d617a8d06d2ecc0449185929c
 
 \newpage
 
@@ -813,6 +1202,7 @@ Análisis socioeducativo de los habitantes de la Ciudad de Buenos Aires}}
     
     \begin{table}[H]
         \centering
+<<<<<<< HEAD
         \begin{tabular}{|l|r|r|r|r|r|r|r|r|}
             \hline
             modelo & accuracy & sesgo & varianza & f1\_inicial & f1\_primario & f1\_secundario & f1\_superior \\ \hline
@@ -820,6 +1210,16 @@ Análisis socioeducativo de los habitantes de la Ciudad de Buenos Aires}}
             Árbol mejorado & 0.60 & 0.65 & 0.05 & 0.85 & 0.30 & 0.69 & 0.53 \\ \hline
             Bosque default & 0.62 & 0.89 & 0.27 & 0.86 & 0.32 & 0.69 & 0.53 \\ \hline
             Bosque mejorado & 0.62 & 0.91 & 0.29 & 0.86 & 0.33 & 0.69 & 0.54 \\ \hline
+=======
+        \begin{tabular}{ clccccccc }
+            \toprule
+           N° & Tipo de modelo & accuracy & sesgo & varianza & f1\_inicial & f1\_primario & f1\_secundario & f1\_superior \\ \midrule
+           2  & Árbol default & 0.53 & 1.00 & 0.46 & 0.81 & 0.33 & 0.60 & 0.42 \\ 
+           3  &  Árbol mejorado & 0.60 & 0.65 & 0.05 & 0.85 & 0.30 & 0.69 & 0.53 \\
+           5  & Bosque default & 0.62 & 0.89 & 0.27 & 0.86 & 0.32 & 0.69 & 0.53 \\ 
+           6  & Bosque mejorado & 0.62 & 0.91 & 0.29 & 0.86 & 0.33 & 0.69 & 0.54 \\
+           \bottomrule
+>>>>>>> 570bcdeb50e6da7d617a8d06d2ecc0449185929c
         \end{tabular}
     \end{table}
 
@@ -830,8 +1230,21 @@ Análisis socioeducativo de los habitantes de la Ciudad de Buenos Aires}}
         \item El bosque default tiene resultados mixtos en ambas categorías.
         \item El bosque mejorado destaca por bajo sesgo pero su varianza es la segunda peor.
     \end{itemize}
+<<<<<<< HEAD
     Como era de esperarse, los finalistas son el árbol y el bosque mejorado. Sorprendentemente, ambos performan muy bien pero en métricas diferentes. A su vez, el accuracy de ambos difiere en apenas un 2\%.
 
     En nuestra opinión, es el árbol mejorado el ganador, ya que tiene la robustez suficiente para poder generalizar en caso de agregar nuevos datos al modelo. Otra ventaja frente al bosque aleatorio es su mayor velocidad de entrenamiento, asì como su capacidad de ser visualizada en un gráfico.
         
 \end{document}
+=======
+    
+    Se considera que los finalistas son el árbol mejorado y el bosque mejorado. Llamativamente, ambos performan muy bien pero en métricas diferentes. A su vez, el accuracy de ambos difiere en apenas un 2\%. Por un lado, ambos modelos tienen un F1 Score similar, de 85\% y 86\% respectivamente. Sin embargo, el arbol mejorado presenta signos de underfitting cuando se lo compara con el otro modelo. A la inversa, el bosque mejorado muestra un escenario de overfitting con mayor varianza en la predicción. Cabe mencionar que aunque el bosque default tiene el mismo valor de F1 Score que el bosque mejorados, posee una probabilidad levemente mayor de underfitting. 
+    
+    En conclusión, en nuestra opinión, la mejor elección de modelo es el árbol mejorado, ya que tiene la mayor robustez  para poder generalizar en caso de agregar nuevos datos al modelo que difieran en gran medida con los existentes dentro del modelo, a comparación de los otros modelos, ya que presenta muy bajo overfitting. Otra ventaja frente al bosque aleatorio es su mayor velocidad de entrenamiento, asì como su capacidad de ser visualizada en un gráfico.
+
+    En futuras líneas de investigación se debería investigar en profundidad el desbalanceo de datos propio del Target. Como se ha visto en la etapa de EDA, el Target tiene un importante desequilibrio en el volumen de datos de cada categoría. De continuar con el proyecto, se indagaría acerca de dicho desbalance y se mitigaría la problemática agregando datos en categorías con deficit y eliminando datos de categorías en exceso.
+
+    
+    
+\end{document}
+>>>>>>> 570bcdeb50e6da7d617a8d06d2ecc0449185929c

@@ -99,6 +99,13 @@ def hist_box(DataFrame:pd.DataFrame, #dataset
     ax[1].set_xlabel("Ingreso per capita familiar", size=15)
     ax[1].set_ylabel("Conteo", size=15)
     ax[0].set(xticks=range(0,limite+1,int(limite/20)))
+    
+    for i in [0,1]:
+        ax[i].tick_params(axis='both',
+                labelsize=15
+                )
+        ax[i].set_facecolor('white')
+
     fig.savefig(ruta)
 
 
