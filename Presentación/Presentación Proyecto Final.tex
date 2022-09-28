@@ -55,7 +55,7 @@
 
 \section{Introducción}
 
-    \subsection{Resumen del proyecto}
+    \subsection{Principales hitos}
 
 \begin{frame}{Introdución}
 
@@ -90,8 +90,11 @@
         \end{itemize}
     \end{itemize}
 \end{frame}
+
 \section{Planificación}
+
     \subsection*{Estructura de los trabajos}
+
 \begin{frame}{Estructura de los trabajos}
     Este trabajo se ha dividido en 3 partes:
     \begin{enumerate}
@@ -283,6 +286,8 @@
 
 \section{Modelos analíticos}
 
+    \subsection{Transformación de variables}
+
 \begin{frame}{Modelos analíticos}
 
     \begin{Large}
@@ -334,21 +339,15 @@
     
 \end{frame}
 
-    \subsection{Target}
-
-        \subsubsection{Borrado de variables}
-    
-    \subsection{Procesamiento}
-
-    \subsection{Árbol de decisión}
+    \subsection{Primer modelo}
         
 \begin{frame}{Modelos analíticos}
-    \begin{Large}
+    \begin{LARGE}
         \textbf{Árbol de decisión}
-    \end{Large}
+    \end{LARGE}
     \vspace{10pt}
 
-     \textbf{1. Primer modelo:}
+     \textbf{\Large 1. Primer modelo:}
 
     Parámetros:
     \begin{itemize}
@@ -375,9 +374,10 @@
         \end{tabular}
     \end{table}
 \end{frame}
+
 \begin{frame}{Modelos analíticos}
     \begin{Large}
-        \textbf{Resultados}
+        \textbf{\large Resultados}
     \end{Large}
     \vspace{10pt}
 
@@ -395,9 +395,11 @@
 
     Por lo tanto, desarrollamos un nuevo modelo sin esta variable. 
 \end{frame}
-        \subsubsection{Segundo modelo}
+
+        \subsection{Segundo modelo}
+
 \begin{frame}{Modelos analíticos}
-    \textbf{2. Segundo modelo:}
+    \textbf{\Large 2. Segundo modelo:}
     \vspace{10pt}
     
     Esta vez al correr el modelo, utilizaremos el ``DecisionTreeClassifier'' sin la variable años\_escolaridad y con el criterion entropy.
@@ -421,9 +423,9 @@
 \end{frame}
 
 \begin{frame}{Modelos analíticos}
-    \begin{Large}
+    \begin{large}
         \textbf{Resultados}
-    \end{Large}
+    \end{large}
     \vspace{10pt}
 
     \begin{itemize}
@@ -435,7 +437,7 @@
     Por lo que se observa, el árbol performa bastante peor sin esta variable, aumentando especialmente la varianza. Por lo tanto optamos probar mejorar nuestro modelo con un grid search.
 \end{frame}
 
-    \subsubsection{Gridsearch con CV}
+    \subsection{Gridsearch con CV}
 
 \begin{frame}{Modelos analíticos}
     \begin{Large}
@@ -445,9 +447,11 @@
     
     En la grilla de parámetros para el Gridsearch elegimos los siguientes:
     \begin{itemize}
+        \justifying{
         \item Profundidad máxima del árbol: rango entre 5 y 10 niveles,
         \item Cantidad máxima de features: rango entre 11 y 13,
         \item Usamos todos los criterios posibles para el split: gini, entropy y log\_loss;
+        }
     \end{itemize}
     \vspace{10pt}
 
@@ -457,11 +461,14 @@
     Resultado: el mejor árbol de decisión posible obtiene 0.642, con las siguientes características.
     
     \begin{itemize}
-        \item Profundidad de  6
-        \item Utilizar  10  variables 
-        \item Usar el método ``gini''
+        \item Profundidad de  6.
+        \item Utilizar  10  variables.
+        \item Usar el método ``gini''.
     \end{itemize}
 \end{frame}
+
+    \subsection{Tercer Modelo}
+
 \begin{frame}{Modelos analíticos}
     
     \begin{Large}
@@ -491,9 +498,9 @@
 
 \begin{frame}{Modelos analíticos}
 
-    \begin{Large}
+    \begin{large}
         \textbf{Resultados}
-    \end{Large}
+    \end{large}
     \vspace{10pt}    
 
     \begin{itemize}
@@ -513,15 +520,16 @@
 
 \end{frame}
 
-    \subsection{Random Forest Classifier}
+    \subsection{Cuarto Modelo}
+
 \begin{frame}{Modelos analíticos}
     
-    \begin{Large}
+    \begin{LARGE}
         \textbf{Random Forest Classifier}
-    \end{Large}
+    \end{LARGE}
     \vspace{10pt}
     
-    \textbf{4. Cuarto modelo:}
+    \textbf{\Large 4. Cuarto modelo:}
     
     \vspace{6pt}
     En esta instancia volvemos a incluir la variable años de escolaridad.
@@ -537,12 +545,7 @@
 \end{frame}
 
 \begin{frame}{Modelos analíticos}
-
-    \begin{Large}
-        \textbf{Random Forest Classifier}
-    \end{Large}
-    \vspace{10pt}
-    
+ 
     Que nos da los siguientes resultados en cuanto a las métricas:
     \begin{table}[H]
         \scriptsize
@@ -568,9 +571,9 @@
 
 \begin{frame}{Modelos analíticos}
 
-    \begin{Large}
+    \begin{large}
         \textbf{Resultados}
-    \end{Large}
+    \end{large}
     \vspace{10pt}    
     
     \begin{itemize}
@@ -586,11 +589,11 @@
 
 \end{frame}
 
-\subsubsection{Cuarto modelo}
+\subsubsection{Quinto modelo}
 
 \begin{frame}{Modelos analíticos}
 
-    \textbf{5. Quinto modelo:}
+    \textbf{\Large 5. Quinto modelo:}
     \vspace{10pt}
 
     En este caso elegimos los siguientes parámetros, quitando la variable años de escolaridad:
@@ -624,9 +627,9 @@
 
 \begin{frame}{Modelos analíticos}
 
-    \begin{Large}
+    \begin{large}
         \textbf{Resultados}
-    \end{Large}
+    \end{large}
     \vspace{10pt}
 
     \begin{itemize}
@@ -638,7 +641,7 @@
 
 \end{frame}
 
-    \subsubsection{Gridsearch con CV}
+    \subsection{Gridsearch con CV}
 
 \begin{frame}{Modelos analíticos}
 
@@ -649,22 +652,27 @@
 
     En la grilla de parámetros para el Gridsearch elegimos los siguientes:
     \begin{itemize}
-        \item Profundidad máxima: 5,7,10,15 de profundidad, agregando la opción de que no tenga máximo,
-        \item Cantidad máxima de features: 5,8,10,30,41,
-        \item Número de estimadores: 200,300,500,
-        \item Criterion: [`gini',`entropy',`log\_loss'],
-        \item También realizamos un cross validation de 10 particiones.
+        \justifying{
+        \item Profundidad máxima del árbol: 5,7,10,15 de profundidad, agregando la opción de que no tenga máximo;
+        \item Cantidad máxima de features: 5,8,10,30,41;
+        \item Número de estimadores: 200,300,500;
+        \item Usamos todos los criterios posibles para el split: gini, entropy, log\_loss.
+        }
     \end{itemize}
     
+    También, realizamos un cross validation partiendo el dataframe en 10 secciones.
+
     Como resultado, el mejor random forest posible obtiene 0.668. Para eso el árbol debe tener: 
     \begin{itemize}
-        \item una profundidad de 15, 
-        \item utilizar  10  variables, 
-        \item tener  300  estimadores 
-        \item y utilizar el método ``gini''.
+        \item Una profundidad de 15.
+        \item Utilizar  10  variables.
+        \item Tener  300  estimadores.
+        \item Y utilizar el método ``gini''.
     \end{itemize}
 
 \end{frame}
+
+    \subsection{Sexto Modelo}
 
 \begin{frame}{Modelos analíticos}    
 
@@ -697,9 +705,9 @@
 
 \begin{frame}{Modelos analíticos}
 
-    \begin{Large}
+    \begin{large}
         \textbf{Resultados}
-    \end{Large}
+    \end{large}
     \vspace{10pt}
 
     \begin{itemize}
@@ -751,9 +759,11 @@
 
     En nuestra opinión, es \textbf{el árbol mejorado el ganador}, ya que:
     \begin{itemize}
+        \justifying{
         \item Tiene la robustez suficiente para poder generalizar en caso de agregar nuevos datos al modelo. 
         \item Tiene mayor velocidad de entrenamiento 
         \item Tiene mayor capacidad de ser visualizada en un gráfico.
+        }
     \end{itemize}
     \vspace{10pt} 
 
